@@ -1,0 +1,40 @@
+import type { Metadata } from "next";
+import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
+import { SiteLayout } from "@/components/site-shell";
+import { seoKeywords, siteName, siteTagline } from "@/lib/site";
+import "./globals.css";
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
+  subsets: ["latin"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://thaicloud.com"),
+  title: {
+    default: `${siteName} | ${siteTagline}`,
+    template: `%s | ${siteName}`,
+  },
+  description:
+    "ThaiCloud is AI fulfillment infrastructure for warehouse and logistics teams, combining workflow automation, operational intelligence, and cloud-native architecture.",
+  keywords: seoKeywords,
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={`${plusJakartaSans.variable} ${spaceGrotesk.variable} antialiased`}>
+        <SiteLayout>{children}</SiteLayout>
+      </body>
+    </html>
+  );
+}
