@@ -2,57 +2,73 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
-  caseStudies,
-  comparisonVideoRows,
-  comparisonWmsRows,
-  mainProducts,
+  customerOutcomes,
+  faqs,
+  footerItems,
+  homepageCustomers,
+  marketplaceList,
   navItems,
   pageData,
-  platformStats,
+  platformCapabilities,
   pricingTiers,
+  problemCards,
+  resourceGuides,
   siteName,
   siteTagline,
+  solutionAudiences,
+  solutionOverview,
   trustedBy,
-  type ComparisonRow,
-  type PageData,
+  type FeatureCard,
+  type PageKey,
 } from "@/lib/site";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#035897]/95 backdrop-blur">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 border-b border-slate-900/10 bg-[#f7f4ee]/90 backdrop-blur">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/brand/thaicloud/thai-logo-primary.png"
-            alt="ThaiCloud logo"
-            width={148}
+            src="/brand/packiko/packiko-logo-primary.png"
+            alt="Packiko by ThaiCloud logo"
+            width={158}
             height={40}
             className="h-9 w-auto"
             priority
           />
-          <span className="hidden text-xs font-semibold tracking-[0.16em] text-white/75 md:inline-block">
+          <span className="hidden text-xs font-semibold uppercase tracking-[0.18em] text-slate-600 md:inline-block">
             {siteTagline}
           </span>
         </Link>
         <nav className="hidden items-center gap-1 lg:flex">
-          {navItems.map((item) => {
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-full px-3 py-2 text-xs font-medium text-white/80 transition hover:bg-white/10 hover:text-white"
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="rounded-full px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-white hover:text-slate-950"
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
         <Link
           href="/book-demo"
-          className="rounded-full bg-[#f37521] px-4 py-2 text-xs font-semibold text-white transition hover:bg-[#f58a1f]"
+          className="rounded-full bg-[#0b6bcb] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#095aa9]"
         >
           Book Demo
         </Link>
+      </div>
+      <div className="border-t border-slate-900/6 lg:hidden">
+        <div className="mx-auto flex w-full max-w-7xl gap-2 overflow-x-auto px-4 py-3 sm:px-6">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="shrink-0 rounded-full border border-slate-900/10 bg-white px-3 py-2 text-sm font-medium text-slate-700"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
       </div>
     </header>
   );
@@ -60,50 +76,35 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-[#0671b8]/20 bg-[#035897] py-12 text-white">
-      <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
+    <footer className="border-t border-slate-900/10 bg-[#111827] text-slate-200">
+      <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.2fr_1fr] lg:px-8">
         <div>
-          <p className="text-lg font-semibold">{siteName}</p>
-          <p className="mt-2 text-sm text-white/75">{siteTagline}</p>
+          <p className="text-lg font-semibold text-white">{siteName}</p>
+          <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-300">
+            Warehouse operations platform for high-volume online sellers who need tighter inventory control,
+            fewer packing mistakes, and video evidence for every order.
+          </p>
         </div>
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#60c7d3]">Products</p>
-          <ul className="mt-3 space-y-2 text-sm text-white/85">
-            {mainProducts.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#60c7d3]">Brand Assets</p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <BrandLink href="/brand/thaicloud/ThaiCloud Logo Guide.pdf" label="ThaiCloud Guide" />
-            <BrandLink href="/brand/packiko/Packiko Logo Guide.pdf" label="Packiko Guide" />
-            <BrandLink href="/brand/lisa/LISA Logo Guide.pdf" label="LISA Guide" />
-          </div>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {footerItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-sm text-slate-300 transition hover:text-white"
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
       </div>
     </footer>
   );
 }
 
-function BrandLink({ href, label }: { href: string; label: string }) {
-  return (
-    <a
-      className="rounded-full border border-white/25 px-3 py-1.5 text-xs text-white/85 transition hover:border-white/50 hover:text-white"
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-    >
-      {label}
-    </a>
-  );
-}
-
 export function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-[#ffffff] text-[#035897]">
-      <div className="bg-[radial-gradient(circle_at_top_left,_#60c7d326_0,_#ffffff_45%)]">
+    <div className="min-h-screen bg-[#f7f4ee] text-slate-950">
+      <div className="bg-[radial-gradient(circle_at_top_left,_rgba(11,107,203,0.12),_transparent_38%),radial-gradient(circle_at_bottom_right,_rgba(232,115,49,0.10),_transparent_28%)]">
         <SiteHeader />
         <main>{children}</main>
       </div>
@@ -112,110 +113,154 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function Hero({ data }: { data: PageData }) {
-  return (
-    <section className="relative overflow-hidden border-b border-[#0671b8]/15 bg-gradient-to-br from-[#035897] via-[#0671b8] to-[#08aa87] text-white">
-      <div className="absolute -left-14 top-8 h-44 w-44 rounded-full bg-[#fab217]/35 blur-3xl" />
-      <div className="absolute bottom-0 right-0 h-56 w-56 rounded-full bg-[#f37521]/25 blur-3xl" />
-      <div className="relative mx-auto grid w-full max-w-7xl gap-8 px-4 py-20 sm:px-6 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:gap-12 lg:px-8 lg:py-24">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#60c7d3]">{data.kicker}</p>
-          <h1 className="mt-4 text-4xl font-semibold leading-tight md:text-5xl">{data.headline}</h1>
-          <p className="mt-6 max-w-3xl text-base leading-relaxed text-white/90">{data.intro}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            {data.ctaPrimary ? <Action href={data.ctaPrimary.href} primary label={data.ctaPrimary.label} /> : null}
-            {data.ctaSecondary ? <Action href={data.ctaSecondary.href} label={data.ctaSecondary.label} /> : null}
-          </div>
-        </div>
-        <ProductMockup />
-      </div>
-    </section>
-  );
-}
+function HeroAction({ href, label, primary }: { href: string; label: string; primary?: boolean }) {
+  const className = `inline-flex rounded-full px-5 py-3 text-sm font-semibold transition ${
+    primary
+      ? "bg-[#e87331] text-white hover:bg-[#cf5f20]"
+      : "border border-slate-900/12 bg-white text-slate-900 hover:border-slate-900/25"
+  }`;
 
-function Action({ href, label, primary }: { href: string; label: string; primary?: boolean }) {
   if (href.startsWith("#")) {
     return (
-      <a
-        href={href}
-        className={`rounded-full px-5 py-3 text-sm font-semibold transition ${
-          primary
-            ? "bg-[#f37521] text-white hover:bg-[#f58a1f]"
-            : "border border-white/35 text-white hover:border-white/60 hover:bg-white/10"
-        }`}
-      >
+      <a href={href} className={className}>
         {label}
       </a>
     );
   }
 
   return (
-    <Link
-      href={href}
-      className={`rounded-full px-5 py-3 text-sm font-semibold transition ${
-        primary
-          ? "bg-[#f37521] text-white hover:bg-[#f58a1f]"
-          : "border border-white/35 text-white hover:border-white/60 hover:bg-white/10"
-      }`}
-    >
+    <Link href={href} className={className}>
       {label}
     </Link>
   );
 }
 
-function ProductMockup() {
-  return (
-    <div className="rounded-2xl border border-white/25 bg-white/10 p-4 shadow-2xl backdrop-blur">
-      <div className="rounded-xl bg-white/95 p-4 text-[#035897]">
-        <div className="flex items-center justify-between border-b border-[#035897]/10 pb-3">
-          <p className="text-sm font-semibold">Operations Intelligence Console</p>
-          <p className="rounded-full bg-[#08aa87]/12 px-2.5 py-1 text-[11px] font-semibold text-[#08aa87]">Live</p>
-        </div>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2">
-          <MockTile label="Packing Accuracy" value="98.7%" accent="bg-[#08aa87]" />
-          <MockTile label="Orders / Hour" value="1,240" accent="bg-[#0671b8]" />
-          <MockTile label="AI Alerts" value="14" accent="bg-[#fab217]" />
-          <MockTile label="Queue Delay" value="-21%" accent="bg-[#f37521]" />
-        </div>
-      </div>
-    </div>
-  );
-}
+function PageHero({ pageKey }: { pageKey: PageKey }) {
+  const data = pageData[pageKey];
 
-function MockTile({ label, value, accent }: { label: string; value: string; accent: string }) {
   return (
-    <div className="rounded-lg border border-[#035897]/10 p-3">
-      <p className="text-[11px] uppercase tracking-[0.12em] text-[#035897]/60">{label}</p>
-      <div className="mt-1 flex items-center gap-2">
-        <div className={`h-2.5 w-2.5 rounded-full ${accent}`} />
-        <p className="text-xl font-semibold">{value}</p>
-      </div>
-    </div>
-  );
-}
-
-export function MetricStrip() {
-  return (
-    <section className="border-b border-[#0671b8]/15 bg-[#ffffff]">
-      <div className="mx-auto grid w-full max-w-7xl gap-3 px-4 py-6 sm:px-6 md:grid-cols-3 lg:px-8">
-        {platformStats.map((stat) => (
-          <div key={stat} className="rounded-xl border border-[#0671b8]/20 bg-[#f7fbfe] px-4 py-4 text-sm font-semibold text-[#035897]">
-            {stat}
+    <section className="px-4 pb-8 pt-14 sm:px-6 lg:px-8 lg:pb-12 lg:pt-18">
+      <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0b6bcb]">{data.eyebrow}</p>
+          <h1 className="mt-4 whitespace-pre-line text-4xl font-semibold leading-tight text-slate-950 md:text-6xl">
+            {data.headline}
+          </h1>
+          <p className="mt-6 max-w-3xl text-base leading-8 text-slate-700">{data.intro}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            {data.primaryCta ? <HeroAction href={data.primaryCta.href} label={data.primaryCta.label} primary /> : null}
+            {data.secondaryCta ? <HeroAction href={data.secondaryCta.href} label={data.secondaryCta.label} /> : null}
           </div>
-        ))}
+        </div>
+        <HeroPanel pageKey={pageKey} />
       </div>
     </section>
   );
 }
 
-export function TrustedStrip() {
+function HeroPanel({ pageKey }: { pageKey: PageKey }) {
+  if (pageKey === "home") {
+    return (
+      <div className="rounded-[2rem] border border-slate-900/10 bg-[#111827] p-6 text-white shadow-[0_30px_80px_rgba(15,23,42,0.18)]">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <PanelStat label="Inventory Control" value="คุม stock ให้ตรง" />
+          <PanelStat label="Packing Verification" value="ลดการแพ็คผิด" />
+          <PanelStat label="Video Evidence" value="ทุก Order" />
+          <PanelStat label="Marketplace Disputes" value="ตอบเคสได้เร็วขึ้น" />
+        </div>
+        <div className="mt-5 rounded-2xl bg-white/8 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8dc0f4]">Highlight</p>
+          <p className="mt-2 text-2xl font-semibold">วิดีโอหลักฐานระหว่างแพ็คทุก Order</p>
+          <p className="mt-3 text-sm leading-7 text-slate-300">
+            ค้นหาได้จาก Order Number, เวลาแพ็ค และพนักงาน เพื่อใช้ตรวจสอบและตอบ dispute กับ marketplace
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <section className="border-b border-[#0671b8]/15 bg-white py-8">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <p className="text-sm font-medium text-[#035897]/70">Trusted by fast-growing brands and fulfillment teams across Southeast Asia</p>
+    <div className="rounded-[2rem] border border-slate-900/10 bg-white p-6 shadow-[0_30px_80px_rgba(15,23,42,0.12)]">
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0b6bcb]">Built for daily operations</p>
+      <div className="mt-5 grid gap-3">
+        {solutionOverview.slice(0, 4).map((item) => (
+          <div key={item.title} className="rounded-2xl border border-slate-900/8 bg-[#f8fafc] p-4">
+            <p className="text-sm font-semibold text-slate-950">{item.title}</p>
+            <p className="mt-2 text-sm leading-7 text-slate-600">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PanelStat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/6 p-4">
+      <p className="text-xs uppercase tracking-[0.16em] text-slate-400">{label}</p>
+      <p className="mt-2 text-lg font-semibold">{value}</p>
+    </div>
+  );
+}
+
+function SectionIntro({
+  eyebrow,
+  title,
+  body,
+}: {
+  eyebrow?: string;
+  title: string;
+  body?: string;
+}) {
+  return (
+    <div className="max-w-3xl">
+      {eyebrow ? (
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0b6bcb]">{eyebrow}</p>
+      ) : null}
+      <h2 className="mt-3 text-3xl font-semibold leading-tight text-slate-950 md:text-4xl">{title}</h2>
+      {body ? <p className="mt-4 text-base leading-8 text-slate-700">{body}</p> : null}
+    </div>
+  );
+}
+
+function FeatureGrid({ items }: { items: FeatureCard[] }) {
+  return (
+    <div className="grid gap-5 md:grid-cols-2">
+      {items.map((item) => (
+        <article key={item.title} className="rounded-[1.6rem] border border-slate-900/8 bg-white p-6 shadow-sm">
+          <h3 className="text-xl font-semibold text-slate-950">{item.title}</h3>
+          <p className="mt-3 text-sm leading-7 text-slate-700">{item.description}</p>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function BulletList({ items }: { items: string[] }) {
+  return (
+    <ul className="grid gap-3">
+      {items.map((item) => (
+        <li
+          key={item}
+          className="rounded-2xl border border-slate-900/8 bg-white px-5 py-4 text-sm leading-7 text-slate-700"
+        >
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function TrustedStrip() {
+  return (
+    <section className="px-4 py-6 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl rounded-[1.8rem] border border-slate-900/8 bg-white p-6">
+        <p className="text-sm font-medium text-slate-600">
+          Trusted by fast-growing eCommerce brands and fulfillment teams across Southeast Asia
+        </p>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {trustedBy.map((item) => (
-            <div key={item} className="rounded-full border border-[#0671b8]/20 bg-[#f7fbfe] px-4 py-2 text-sm text-[#035897]">
+            <div key={item} className="rounded-full bg-[#f8fafc] px-4 py-3 text-sm font-medium text-slate-700">
               {item}
             </div>
           ))}
@@ -225,150 +270,458 @@ export function TrustedStrip() {
   );
 }
 
-export function ContentSections({ data }: { data: PageData }) {
+function HomeProblemSection() {
   return (
-    <section className="mx-auto w-full max-w-7xl space-y-10 px-4 py-14 sm:px-6 lg:px-8">
-      {data.sections.map((section) => (
-        <article key={section.title} className="rounded-2xl border border-[#0671b8]/15 bg-white p-7 shadow-sm">
-          <h2 className="text-2xl font-semibold text-[#035897]">{section.title}</h2>
-          {section.body ? <p className="mt-3 text-base leading-relaxed text-[#035897]/80">{section.body}</p> : null}
-          {section.features?.length ? <FeatureGrid features={section.features} /> : null}
-          {section.bullets?.length ? <BulletList items={section.bullets} /> : null}
-        </article>
-      ))}
-    </section>
-  );
-}
-
-function FeatureGrid({ features }: { features: { title: string; description: string }[] }) {
-  return (
-    <div className="mt-6 grid gap-4 md:grid-cols-2">
-      {features.map((item) => (
-        <div key={item.title} className="rounded-xl border border-[#0671b8]/15 bg-[#f7fbfe] p-4">
-          <h3 className="font-semibold text-[#035897]">{item.title}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-[#035897]/75">{item.description}</p>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function BulletList({ items }: { items: string[] }) {
-  return (
-    <ul className="mt-4 space-y-2 text-sm text-[#035897]/85">
-      {items.map((item) => (
-        <li key={item} className="flex gap-2">
-          <span className="mt-[7px] h-2 w-2 rounded-full bg-[#08aa87]" />
-          <span>{item}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-export function ComparisonBlock({ title, subtitle, rows }: { title: string; subtitle: string; rows: ComparisonRow[] }) {
-  return (
-    <section className="mx-auto w-full max-w-7xl px-4 pb-4 sm:px-6 lg:px-8">
-      <div className="overflow-hidden rounded-2xl border border-[#0671b8]/15 bg-white shadow-sm">
-        <div className="border-b border-[#0671b8]/15 bg-[#f7fbfe] px-6 py-5">
-          <h2 className="text-2xl font-semibold text-[#035897]">{title}</h2>
-          <p className="mt-2 text-sm text-[#035897]/75">{subtitle}</p>
-        </div>
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[700px] text-left text-sm">
-            <thead>
-              <tr className="border-b border-[#0671b8]/15 text-xs uppercase tracking-[0.12em] text-[#035897]/70">
-                <th className="px-6 py-3">Feature</th>
-                <th className="px-6 py-3">Traditional Systems</th>
-                <th className="px-6 py-3">ThaiCloud</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((row) => (
-                <tr key={row.feature} className="border-b border-[#0671b8]/10">
-                  <td className="px-6 py-4 font-medium text-[#035897]">{row.feature}</td>
-                  <td className="px-6 py-4 text-[#035897]/70">{row.legacy}</td>
-                  <td className="px-6 py-4 font-semibold text-[#08aa87]">{row.thaiCloud}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+    <section className="px-4 py-10 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
+        <SectionIntro
+          eyebrow="Problems"
+          title="ร้านออนไลน์ที่ขายดี มักเจอปัญหาเดียวกัน"
+          body="พอออเดอร์เริ่มเยอะขึ้น งานหลังบ้านจะเริ่มพลาดง่ายขึ้น ทั้ง stock ไม่ตรง แพ็คผิด และตอบเคสลูกค้าได้ช้าลงเพราะไม่มีหลักฐาน"
+        />
+        <FeatureGrid items={problemCards} />
       </div>
     </section>
   );
 }
 
-export function PricingGrid() {
+function HomeSolutionOverview() {
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
-      <div className="grid gap-5 lg:grid-cols-3">
-        {pricingTiers.map((tier) => (
-          <article
-            key={tier.name}
-            className={`rounded-2xl border p-6 shadow-sm ${
-              tier.featured
-                ? "border-[#08aa87] bg-gradient-to-b from-[#08aa87]/8 to-white"
-                : "border-[#0671b8]/15 bg-white"
-            }`}
-          >
-            <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[#0671b8]">{tier.name}</p>
-            <h3 className="mt-2 text-xl font-semibold text-[#035897]">{tier.audience}</h3>
-            <p className="mt-3 text-sm text-[#035897]/75">{tier.description}</p>
-            <ul className="mt-4 space-y-2 text-sm text-[#035897]/80">
-              {tier.highlights.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="mt-[7px] h-2 w-2 rounded-full bg-[#fab217]" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-            <Link
-              href="/book-demo"
-              className="mt-6 inline-flex rounded-full bg-[#035897] px-4 py-2 text-xs font-semibold text-white transition hover:bg-[#0671b8]"
-            >
-              {tier.cta}
-            </Link>
-          </article>
-        ))}
+    <section className="px-4 py-10 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
+        <SectionIntro
+          eyebrow="Solution"
+          title="Packiko ช่วยให้คุณคุมคลังได้จริง"
+          body="Packiko รวมเครื่องมือที่ทีมคลังต้องใช้จริงไว้ในที่เดียว ทั้งคุม stock ลดการแพ็คผิด เก็บวิดีโอหลักฐาน และดูภาพรวมงานแพ็คได้จาก dashboard"
+        />
+        <FeatureGrid items={solutionOverview} />
       </div>
     </section>
   );
 }
 
-export function CaseStudyGrid() {
+function HomeVideoEvidenceSection() {
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
-      <div className="grid gap-5 lg:grid-cols-3">
-        {caseStudies.map((item) => (
-          <article key={item.name} className="rounded-2xl border border-[#0671b8]/15 bg-white p-6 shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#0671b8]">{item.segment}</p>
-            <h3 className="mt-2 text-xl font-semibold text-[#035897]">{item.name}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-[#035897]/75">{item.summary}</p>
-            <ul className="mt-4 space-y-2 text-sm font-medium text-[#08aa87]">
-              {item.results.map((result) => (
-                <li key={result}>{result}</li>
-              ))}
-            </ul>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-export function DemoForm() {
-  return (
-    <section id="demo-form" className="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-      <div className="grid gap-8 rounded-2xl border border-[#0671b8]/15 bg-white p-7 shadow-sm lg:grid-cols-[1fr_1.2fr]">
-        <div>
-          <h2 className="text-2xl font-semibold text-[#035897]">Book a Demo</h2>
-          <p className="mt-3 text-sm leading-relaxed text-[#035897]/75">
-            Discover how ThaiCloud can improve warehouse operations with a session covering packing process, AI detection, and operational dashboards.
+    <section className="px-4 py-10 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl">
+        <article className="rounded-[1.8rem] border border-slate-900/8 bg-white p-7 shadow-sm">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0b6bcb]">Video Evidence</p>
+          <h2 className="mt-3 text-3xl font-semibold text-slate-950">วิดีโอหลักฐานระหว่างแพ็คทุก Order</h2>
+          <p className="mt-4 text-base leading-8 text-slate-700">
+            ทุกครั้งที่มีการแพ็คสินค้า ระบบจะบันทึกวิดีโอไว้เป็นหลักฐาน และค้นหาได้ทันทีจาก Order Number, เวลา
+            และพนักงานที่แพ็ค
           </p>
-          <div className="mt-5 space-y-3">
-            <Image src="/brand/packiko/packiko-logo-primary.png" alt="Packiko logo" width={130} height={34} className="h-8 w-auto" />
-            <Image src="/brand/lisa/lisa-logo-primary.png" alt="LISA logo" width={115} height={34} className="h-8 w-auto" />
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            <PanelStat label="Search by" value="Order Number" />
+            <PanelStat label="Search by" value="เวลา" />
+            <PanelStat label="Search by" value="พนักงาน" />
+          </div>
+          <p className="mt-6 text-sm leading-7 text-slate-700">
+            เวลาลูกค้าเคลมหรือมี dispute คุณเปิดวิดีโอของ Order นั้นได้เลย เพื่อเช็กว่าแพ็คอะไรไป ใครเป็นคนแพ็ค
+            และใช้เป็นหลักฐานได้ทันที
+          </p>
+        </article>
+      </div>
+    </section>
+  );
+}
+
+function HomeFeatureDetailSection({
+  eyebrow,
+  title,
+  body,
+}: {
+  eyebrow: string;
+  title: string;
+  body: string;
+}) {
+  return (
+    <section className="px-4 py-10 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl rounded-[1.8rem] border border-slate-900/8 bg-white p-7 shadow-sm">
+        <SectionIntro eyebrow={eyebrow} title={title} body={body} />
+      </div>
+    </section>
+  );
+}
+
+function HomeResults() {
+  return (
+    <section className="px-4 py-10 sm:px-6 lg:px-8">
+      <div className="mx-auto grid w-full max-w-7xl gap-5 rounded-[2rem] bg-[#0b6bcb] p-8 text-white lg:grid-cols-[0.95fr_1.05fr]">
+        <SectionIntro
+          eyebrow="Stats"
+          title="ตัวเลขที่ทีมเห็นจากการใช้งานจริง"
+          body="Packiko ช่วยให้ทีมแพ็คทำงานนิ่งขึ้น คุมความผิดพลาดได้ดีขึ้น และมีหลักฐานพร้อมใช้ทุก Order"
+        />
+        <div className="grid gap-3 sm:grid-cols-2">
+          {customerOutcomes.map((item) => (
+            <div key={item} className="rounded-2xl bg-white/10 px-5 py-4 text-sm font-medium">
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HomeCustomersSection() {
+  return (
+    <section className="px-4 py-10 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
+        <SectionIntro
+          eyebrow="Customers"
+          title="ร้านค้าและ fulfillment teams ที่ใช้ Packiko"
+          body="เหมาะกับทีมที่ต้องรันออเดอร์จำนวนมากต่อวัน และต้องการระบบที่ช่วยคุมหน้างานได้จริง"
+        />
+        <FeatureGrid items={homepageCustomers} />
+      </div>
+    </section>
+  );
+}
+
+function HomePricingSection() {
+  return (
+    <section className="px-4 py-10 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
+        <SectionIntro
+          eyebrow="Pricing"
+          title="เลือกแพ็กที่เหมาะกับทีมของคุณ"
+          body="เริ่มจากแพ็กที่พอดีกับ operation ปัจจุบัน แล้วค่อยขยายเมื่อทีมต้องการ workflow และการควบคุมเพิ่มขึ้น"
+        />
+        <div className="grid gap-5 lg:grid-cols-3">
+          {pricingTiers.map((tier) => (
+            <article
+              key={tier.name}
+              className={`rounded-[1.8rem] border p-7 shadow-sm ${
+                tier.featured
+                  ? "border-[#0b6bcb]/30 bg-[#0b6bcb] text-white"
+                  : "border-slate-900/8 bg-white text-slate-950"
+              }`}
+            >
+              <p
+                className={`text-sm font-semibold uppercase tracking-[0.16em] ${
+                  tier.featured ? "text-white/70" : "text-[#0b6bcb]"
+                }`}
+              >
+                {tier.name}
+              </p>
+              <p className={`mt-4 text-sm leading-7 ${tier.featured ? "text-white/85" : "text-slate-700"}`}>
+                {tier.description}
+              </p>
+              <ul className="mt-6 grid gap-3">
+                {tier.highlights.map((item) => (
+                  <li
+                    key={item}
+                    className={`rounded-2xl px-4 py-3 text-sm ${
+                      tier.featured ? "bg-white/10" : "bg-[#f8fafc]"
+                    }`}
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/book-demo"
+                className={`mt-7 inline-flex rounded-full px-5 py-3 text-sm font-semibold transition ${
+                  tier.featured
+                    ? "bg-white text-[#0b6bcb] hover:bg-slate-100"
+                    : "bg-[#111827] text-white hover:bg-slate-800"
+                }`}
+              >
+                {tier.cta}
+              </Link>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HomeFaqSection() {
+  return (
+    <section className="px-4 py-10 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 rounded-[1.8rem] border border-slate-900/8 bg-white p-7 shadow-sm">
+        <SectionIntro eyebrow="FAQ" title="คำถามที่ทีมมักถามก่อนเริ่มใช้" />
+        <div className="grid gap-4">
+          {faqs.map((item) => (
+            <article key={item.question} className="rounded-2xl bg-[#f8fafc] px-5 py-5">
+              <h3 className="text-lg font-semibold text-slate-950">{item.question}</h3>
+              <p className="mt-2 text-sm leading-7 text-slate-700">{item.answer}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FinalCta() {
+  return (
+    <section className="px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-7xl flex-col items-start gap-6 rounded-[2rem] border border-slate-900/8 bg-white p-8 shadow-sm">
+        <SectionIntro title="ดูว่า Packiko ช่วยให้คุณคุมคลังได้ง่ายขึ้นยังไง" />
+        <HeroAction href="/book-demo" label="Book Demo" primary />
+      </div>
+    </section>
+  );
+}
+
+function GenericPageSection({
+  title,
+  body,
+  cards,
+  bullets,
+}: {
+  title: string;
+  body?: string;
+  cards?: FeatureCard[];
+  bullets?: string[];
+}) {
+  return (
+    <section className="px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 rounded-[1.8rem] border border-slate-900/8 bg-white p-7 shadow-sm">
+        <SectionIntro title={title} body={body} />
+        {cards ? <FeatureGrid items={cards} /> : null}
+        {bullets ? <BulletList items={bullets} /> : null}
+      </div>
+    </section>
+  );
+}
+
+function PlatformPage() {
+  return (
+    <>
+      <PageHero pageKey="platform" />
+      <GenericPageSection
+        title="Platform Overview"
+        body="รวมระบบสำคัญของคลังไว้ในที่เดียว ทั้ง Inventory Control, Packing Verification, วิดีโอหลักฐานระหว่างแพ็ค และ Operations Dashboard"
+        cards={platformCapabilities}
+      />
+      <GenericPageSection
+        title="Designed for warehouse teams"
+        bullets={[
+          "ควบคุม stock แบบ real-time",
+          "ลดการแพ็คผิดด้วย workflow ที่ตรวจสอบได้",
+          "ค้นหาหลักฐานของแต่ละ Order ได้ทันที",
+          "เห็นภาพรวมการทำงานของคลังในหน้าเดียว",
+          "เชื่อมต่อกับระบบ eCommerce และ ERP",
+        ]}
+      />
+      <FinalCta />
+    </>
+  );
+}
+
+function SolutionsPage() {
+  return (
+    <>
+      <PageHero pageKey="solutions" />
+      <GenericPageSection title="Solutions" cards={solutionAudiences} />
+      <GenericPageSection
+        title="What ThaiCloud helps teams do"
+        bullets={[
+          "คุม Stock ให้ตรง",
+          "ลดการแพ็คผิด",
+          "แก้ dispute กับลูกค้าได้เร็วขึ้น",
+          "ทำให้ workflow การแพ็คชัดเจนและตรวจสอบได้",
+        ]}
+      />
+      <FinalCta />
+    </>
+  );
+}
+
+function CustomersPage() {
+  return (
+    <>
+      <PageHero pageKey="customers" />
+      <GenericPageSection
+        title="Outcomes"
+        body="ลูกค้าหลายรายใช้ ThaiCloud เพื่อลดการแพ็คผิด ลดเวลาหาหลักฐาน และคุมคลังได้ดีขึ้น"
+        bullets={customerOutcomes}
+      />
+      <GenericPageSection
+        title="Why operations teams stay with ThaiCloud"
+        bullets={[
+          "ตอบเคส dispute ได้เร็วขึ้น",
+          "ตรวจสอบงานแพ็คย้อนหลังได้จาก Order",
+          "คุม workflow ได้ชัดขึ้นในช่วงออเดอร์พุ่ง",
+          "ลดงานตามหาหลักฐานของทีมหลังบ้าน",
+        ]}
+      />
+      <FinalCta />
+    </>
+  );
+}
+
+function ResourcesPage() {
+  return (
+    <>
+      <PageHero pageKey="resources" />
+      <GenericPageSection title="Guides" cards={resourceGuides} />
+      <FinalCta />
+    </>
+  );
+}
+
+function PricingPage() {
+  return (
+    <>
+      <PageHero pageKey="pricing" />
+      <section className="px-4 py-8 sm:px-6 lg:px-8">
+        <div className="mx-auto grid w-full max-w-7xl gap-5 lg:grid-cols-3">
+          {pricingTiers.map((tier) => (
+            <article
+              key={tier.name}
+              className={`rounded-[1.8rem] border p-7 shadow-sm ${
+                tier.featured
+                  ? "border-[#0b6bcb]/30 bg-[#0b6bcb] text-white"
+                  : "border-slate-900/8 bg-white text-slate-950"
+              }`}
+            >
+              <p className={`text-sm font-semibold uppercase tracking-[0.16em] ${tier.featured ? "text-white/70" : "text-[#0b6bcb]"}`}>
+                {tier.name}
+              </p>
+              <p className={`mt-4 text-sm leading-7 ${tier.featured ? "text-white/85" : "text-slate-700"}`}>{tier.description}</p>
+              <ul className="mt-6 grid gap-3">
+                {tier.highlights.map((item) => (
+                  <li key={item} className={`rounded-2xl px-4 py-3 text-sm ${tier.featured ? "bg-white/10" : "bg-[#f8fafc]"}`}>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/book-demo"
+                className={`mt-7 inline-flex rounded-full px-5 py-3 text-sm font-semibold transition ${
+                  tier.featured
+                    ? "bg-white text-[#0b6bcb] hover:bg-slate-100"
+                    : "bg-[#111827] text-white hover:bg-slate-800"
+                }`}
+              >
+                {tier.cta}
+              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
+
+function AboutPage() {
+  return (
+    <>
+      <PageHero pageKey="about" />
+      <GenericPageSection
+        title="What ThaiCloud stands for"
+        body="ThaiCloud ถูกสร้างมาเพื่อช่วยผู้ขายออนไลน์และทีม fulfillment แก้ปัญหาคลังที่เกิดขึ้นจริงทุกวัน ไม่ว่าจะเป็น stock ไม่ตรง การแพ็คผิด หรือการหาหลักฐานเมื่อเกิดเคสเคลม"
+        bullets={[
+          "ควบคุมงานคลังให้แม่นขึ้น",
+          "ทำให้การทำงานของทีมตรวจสอบได้ง่ายขึ้น",
+          "ช่วยตอบปัญหากับ marketplace ได้เร็วขึ้น",
+        ]}
+      />
+      <FinalCta />
+    </>
+  );
+}
+
+function CaseStudiesPage() {
+  return (
+    <>
+      <PageHero pageKey="caseStudies" />
+      <GenericPageSection
+        title="ผลลัพธ์ที่ลูกค้ามองหา"
+        body="ร้านค้าและทีม fulfillment มักเริ่มต้นจากปัญหาเดียวกัน แล้วใช้ ThaiCloud เพื่อทำให้การทำงานหลังบ้านมีหลักฐานและควบคุมได้มากขึ้น"
+        cards={[
+          {
+            title: "ลดการแพ็คผิด",
+            description: "ทำให้ทีมแพ็คมี workflow ที่ชัดเจนและลดค่าเสียหายจากการส่งผิดหรือแพ็คไม่ครบ",
+          },
+          {
+            title: "ลดเวลาหาหลักฐาน",
+            description: "ค้นหาวิดีโอของ Order ได้เร็วขึ้นเมื่อเกิด dispute หรือเคสลูกค้าเคลม",
+          },
+          {
+            title: "คุมคลังได้ดีขึ้น",
+            description: "เห็นสถานะ stock และงานที่กำลังเกิดขึ้นในคลังได้ง่ายขึ้น",
+          },
+        ]}
+      />
+      <FinalCta />
+    </>
+  );
+}
+
+function ContactPage() {
+  return (
+    <>
+      <PageHero pageKey="contact" />
+      <GenericPageSection
+        title="How to reach us"
+        bullets={[
+          "Book a Demo เพื่อคุยกับทีมเรื่อง workflow, stock control และเคส dispute ของคุณ",
+          "ใช้หน้า Demo Request เพื่อส่งรายละเอียดเบื้องต้นของ operation ปัจจุบัน",
+          "ทีมจะใช้ข้อมูลนั้นเพื่อเตรียมเดโมให้ตรงกับปัญหาที่คุณกำลังเจอ",
+        ]}
+      />
+      <FinalCta />
+    </>
+  );
+}
+
+function PrivacyPage() {
+  return (
+    <>
+      <PageHero pageKey="privacy" />
+      <GenericPageSection
+        title="Privacy Principles"
+        bullets={[
+          "เก็บข้อมูลเท่าที่จำเป็นต่อการให้บริการ",
+          "ใช้ข้อมูลเพื่อสนับสนุนการทำงานของระบบและการให้บริการลูกค้า",
+          "ปกป้องข้อมูลการใช้งานและข้อมูลการปฏิบัติงานในคลังด้วยมาตรการที่เหมาะสม",
+          "จำกัดการเข้าถึงข้อมูลตามบทบาทของผู้ใช้งานและทีมที่เกี่ยวข้อง",
+        ]}
+      />
+    </>
+  );
+}
+
+function TermsPage() {
+  return (
+    <>
+      <PageHero pageKey="terms" />
+      <GenericPageSection
+        title="Terms of Use"
+        bullets={[
+          "การใช้งานแพลตฟอร์มต้องเป็นไปตามขอบเขตบริการที่ตกลงกัน",
+          "ผู้ใช้งานต้องดูแลบัญชีและสิทธิ์เข้าถึงของทีมงานภายในองค์กร",
+          "ข้อมูลและเนื้อหาที่บันทึกในระบบยังคงเป็นความรับผิดชอบของผู้ใช้งานตามข้อตกลงที่เกี่ยวข้อง",
+          "ThaiCloud อาจปรับปรุงบริการเพื่อเพิ่มประสิทธิภาพ ความปลอดภัย และความเสถียรของระบบ",
+        ]}
+      />
+    </>
+  );
+}
+
+function DemoForm() {
+  return (
+    <section id="demo-form" className="px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+      <div className="mx-auto grid w-full max-w-7xl gap-8 rounded-[2rem] border border-slate-900/8 bg-white p-7 shadow-sm lg:grid-cols-[0.9fr_1.1fr]">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0b6bcb]">Demo includes</p>
+          <h2 className="mt-3 text-3xl font-semibold text-slate-950">ดูระบบที่ช่วยให้คลังคุมงานได้ชัดขึ้น</h2>
+          <ul className="mt-6 grid gap-3">
+            {["Inventory Control", "Packing Workflow", "วิดีโอหลักฐานระหว่างแพ็ค", "Dashboard"].map((item) => (
+              <li key={item} className="rounded-2xl bg-[#f8fafc] px-4 py-3 text-sm text-slate-700">
+                {item}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-6 rounded-2xl bg-[#111827] p-5 text-sm leading-7 text-slate-300">
+            ThaiCloud ช่วยร้านที่ขายผ่าน {marketplaceList.join(" • ")} จัดการเคส dispute ได้เร็วขึ้นด้วยข้อมูลและวิดีโอหลักฐานระหว่างแพ็ค
           </div>
         </div>
         <form className="grid gap-3">
@@ -376,19 +729,18 @@ export function DemoForm() {
           <FormField label="Company" name="company" type="text" />
           <FormField label="Email" name="email" type="email" />
           <FormField label="Monthly Orders" name="monthly-orders" type="text" />
-          <label className="text-sm font-medium text-[#035897]" htmlFor="message">
+          <label className="text-sm font-medium text-slate-800" htmlFor="message">
             Message
           </label>
           <textarea
             id="message"
             name="message"
             rows={5}
-            className="rounded-xl border border-[#0671b8]/25 px-4 py-3 text-sm text-[#035897] outline-none ring-[#08aa87] focus:ring-2"
-            placeholder="Share your current fulfillment challenges and target outcomes."
+            className="rounded-2xl border border-slate-900/12 px-4 py-3 text-sm text-slate-900 outline-none ring-[#0b6bcb] focus:ring-2"
           />
           <button
             type="submit"
-            className="mt-2 rounded-full bg-[#f37521] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#f58a1f]"
+            className="mt-2 rounded-full bg-[#e87331] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#cf5f20]"
           >
             Submit Demo Request
           </button>
@@ -401,119 +753,107 @@ export function DemoForm() {
 function FormField({ label, name, type }: { label: string; name: string; type: string }) {
   return (
     <>
-      <label className="text-sm font-medium text-[#035897]" htmlFor={name}>
+      <label className="text-sm font-medium text-slate-800" htmlFor={name}>
         {label}
       </label>
       <input
         id={name}
         name={name}
         type={type}
-        className="rounded-xl border border-[#0671b8]/25 px-4 py-3 text-sm text-[#035897] outline-none ring-[#08aa87] focus:ring-2"
+        className="rounded-2xl border border-slate-900/12 px-4 py-3 text-sm text-slate-900 outline-none ring-[#0b6bcb] focus:ring-2"
       />
     </>
   );
 }
 
-export function BrandResources() {
-  return (
-    <section id="brand-resources" className="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-      <div className="rounded-2xl border border-[#0671b8]/15 bg-white p-7 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#035897]">Brand Resource Downloads</h2>
-        <p className="mt-3 text-sm text-[#035897]/75">
-          Official vector logos and guidebooks used in this website build.
-        </p>
-        <div className="mt-4 grid gap-3 sm:grid-cols-3">
-          <ResourceCard
-            title="ThaiCloud"
-            logo="/brand/thaicloud/thai-logo-primary.png"
-            aiFile="/brand/thaicloud/ThaiCloud LOGO.ai"
-            guide="/brand/thaicloud/ThaiCloud Logo Guide.pdf"
-          />
-          <ResourceCard
-            title="Packiko"
-            logo="/brand/packiko/packiko-logo-primary.png"
-            aiFile="/brand/packiko/Packiko LOGO.ai"
-            guide="/brand/packiko/Packiko Logo Guide.pdf"
-          />
-          <ResourceCard
-            title="LISA"
-            logo="/brand/lisa/lisa-logo-primary.png"
-            aiFile="/brand/lisa/LISA LOGO.ai"
-            guide="/brand/lisa/LISA Logo Guide.pdf"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ResourceCard({ title, logo, aiFile, guide }: { title: string; logo: string; aiFile: string; guide: string }) {
-  return (
-    <article className="rounded-xl border border-[#0671b8]/15 bg-[#f7fbfe] p-4">
-      <Image src={logo} alt={`${title} logo`} width={120} height={34} className="h-8 w-auto" />
-      <p className="mt-3 text-sm font-semibold text-[#035897]">{title}</p>
-      <div className="mt-3 flex flex-wrap gap-2 text-xs">
-        <a className="rounded-full border border-[#0671b8]/25 px-3 py-1.5 text-[#035897]" href={aiFile} target="_blank" rel="noreferrer">
-          Vector (.ai)
-        </a>
-        <a className="rounded-full border border-[#0671b8]/25 px-3 py-1.5 text-[#035897]" href={guide} target="_blank" rel="noreferrer">
-          Guide (PDF)
-        </a>
-      </div>
-    </article>
-  );
-}
-
-export function StandardPage({ pageKey }: { pageKey: keyof typeof pageData }) {
-  const data = pageData[pageKey];
-
+function BookDemoPage() {
   return (
     <>
-      <Hero data={data} />
-      {pageKey === "home" ? <TrustedStrip /> : null}
-      {pageKey === "home" ? <MetricStrip /> : null}
-      <ContentSections data={data} />
-      {pageKey === "solutions" ? (
-        <>
-          <ComparisonBlock
-            title="ThaiCloud vs Packing Video Systems"
-            subtitle="Beyond video recording with AI operational intelligence"
-            rows={comparisonVideoRows}
-          />
-          <ComparisonBlock
-            title="ThaiCloud vs Traditional WMS"
-            subtitle="Warehouse management versus warehouse intelligence"
-            rows={comparisonWmsRows}
-          />
-          <div className="pb-10" />
-        </>
-      ) : null}
-      {pageKey === "pricing" ? <PricingGrid /> : null}
-      {pageKey === "caseStudies" ? <CaseStudyGrid /> : null}
-      {pageKey === "resources" ? <BrandResources /> : null}
-      {pageKey === "bookDemo" ? <DemoForm /> : null}
+      <PageHero pageKey="bookDemo" />
+      <DemoForm />
     </>
   );
 }
 
-export function buildMetadata(pageKey: keyof typeof pageData): Metadata {
+function HomePage() {
+  return (
+    <>
+      <PageHero pageKey="home" />
+      <TrustedStrip />
+      <HomeProblemSection />
+      <HomeSolutionOverview />
+      <HomeVideoEvidenceSection />
+      <HomeFeatureDetailSection
+        eyebrow="Inventory"
+        title="คุม Stock ให้ตรงมากขึ้น"
+        body="เห็น stock ชัดขึ้น ลดของหาย ลด oversell และช่วยให้ทีมรู้สถานะสินค้าในคลังได้เร็วกว่าเดิม"
+      />
+      <HomeFeatureDetailSection
+        eyebrow="Packing Verification"
+        title="ลดการแพ็คผิด"
+        body="ทำให้ขั้นตอนหยิบและแพ็คตรวจสอบได้ชัดขึ้น ลดการหยิบผิด ส่งผิด หรือแพ็คไม่ครบในช่วงออเดอร์พุ่ง"
+      />
+      <HomeResults />
+      <HomeCustomersSection />
+      <HomePricingSection />
+      <HomeFaqSection />
+      <FinalCta />
+    </>
+  );
+}
+
+export function StandardPage({ pageKey }: { pageKey: PageKey }) {
+  switch (pageKey) {
+    case "home":
+      return <HomePage />;
+    case "platform":
+    case "technology":
+    case "visionAi":
+      return <PlatformPage />;
+    case "solutions":
+      return <SolutionsPage />;
+    case "customers":
+      return <CustomersPage />;
+    case "resources":
+    case "developers":
+      return <ResourcesPage />;
+    case "pricing":
+      return <PricingPage />;
+    case "about":
+      return <AboutPage />;
+    case "caseStudies":
+      return <CaseStudiesPage />;
+    case "contact":
+      return <ContactPage />;
+    case "privacy":
+      return <PrivacyPage />;
+    case "terms":
+      return <TermsPage />;
+    case "bookDemo":
+      return <BookDemoPage />;
+    default:
+      return <HomePage />;
+  }
+}
+
+export function buildMetadata(pageKey: PageKey): Metadata {
   const data = pageData[pageKey];
   const title = `${data.title} | ${siteName}`;
 
   return {
     title,
-    description: data.intro,
+    description: data.description,
     keywords: [
-      "AI warehouse platform",
-      "Fulfillment optimization",
       "ThaiCloud",
+      "warehouse operations platform",
+      "inventory control",
+      "packing verification",
+      "video evidence for every order",
       data.title,
-      "Packiko",
-      "Warehouse automation software",
     ],
     openGraph: {
       title,
-      description: data.intro,
+      description: data.description,
       url: `https://thaicloud.com${data.slug}`,
       siteName,
       images: [{ url: "/brand/thaicloud/thai-logo-primary.png", width: 1200, height: 630, alt: "ThaiCloud" }],
