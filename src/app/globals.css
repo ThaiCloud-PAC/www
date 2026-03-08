@@ -24,7 +24,8 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: var(--tc-white);
+  background: #f7f4ee;
+  color: #0f172a;
 }
 
 h1,
@@ -41,4 +42,9 @@ button,
 input,
 textarea {
   font-family: var(--font-plus-jakarta), sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }

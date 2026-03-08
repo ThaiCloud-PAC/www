@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteName}`,
   },
   description:
-    "ThaiCloud is AI fulfillment infrastructure for warehouse and logistics teams, combining workflow automation, operational intelligence, and cloud-native architecture.",
+    "ThaiCloud is a warehouse operations platform for high-volume online sellers. Control inventory, reduce packing mistakes, and keep video evidence for every order.",
   keywords: seoKeywords,
 };
 
@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="th">
       <body className={`${plusJakartaSans.variable} ${spaceGrotesk.variable} antialiased`}>
         <SiteLayout>{children}</SiteLayout>
       </body>
