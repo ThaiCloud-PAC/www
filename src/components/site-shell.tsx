@@ -5,7 +5,7 @@ import {
   customerOutcomes,
   faqs,
   footerItems,
-  homepageCustomers,
+  homepageTestimonials,
   marketplaceList,
   navItems,
   pageData,
@@ -146,7 +146,7 @@ function PageHero({ pageKey }: { pageKey: PageKey }) {
           <h1 className="mt-4 whitespace-pre-line text-4xl font-semibold leading-tight text-slate-950 md:text-6xl">
             {data.headline}
           </h1>
-          <p className="mt-6 max-w-3xl text-base leading-8 text-slate-700">{data.intro}</p>
+          <p className="mt-6 max-w-3xl whitespace-pre-line text-base leading-8 text-slate-700">{data.intro}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             {data.primaryCta ? <HeroAction href={data.primaryCta.href} label={data.primaryCta.label} primary /> : null}
             {data.secondaryCta ? <HeroAction href={data.secondaryCta.href} label={data.secondaryCta.label} /> : null}
@@ -165,14 +165,14 @@ function HeroPanel({ pageKey }: { pageKey: PageKey }) {
         <div className="grid gap-4 sm:grid-cols-2">
           <PanelStat label="Inventory Control" value="คุม stock ให้ตรง" />
           <PanelStat label="Packing Verification" value="ลดการแพ็คผิด" />
-          <PanelStat label="Video Evidence" value="ทุก Order" />
+          <PanelStat label="Video Evidence" value="มีทุก Order" />
           <PanelStat label="Marketplace Disputes" value="ตอบเคสได้เร็วขึ้น" />
         </div>
         <div className="mt-5 rounded-2xl bg-white/8 p-4">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8dc0f4]">Highlight</p>
-          <p className="mt-2 text-2xl font-semibold">วิดีโอหลักฐานระหว่างแพ็คทุก Order</p>
+          <p className="mt-2 text-2xl font-semibold">แพ็คของแล้ว ต้องมีหลักฐาน</p>
           <p className="mt-3 text-sm leading-7 text-slate-300">
-            ค้นหาได้จาก Order Number, เวลาแพ็ค และพนักงาน เพื่อใช้ตรวจสอบและตอบ dispute กับ marketplace
+            เวลาลูกค้าเคลม คุณเปิดวิดีโอหลักฐานตาม Order ได้ทันที เพื่อดูว่าใส่อะไรลงกล่อง ใครเป็นคนแพ็ค และแพ็คเวลาไหน
           </p>
         </div>
       </div>
@@ -218,7 +218,7 @@ function SectionIntro({
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0b6bcb]">{eyebrow}</p>
       ) : null}
       <h2 className="mt-3 text-3xl font-semibold leading-tight text-slate-950 md:text-4xl">{title}</h2>
-      {body ? <p className="mt-4 text-base leading-8 text-slate-700">{body}</p> : null}
+      {body ? <p className="mt-4 whitespace-pre-line text-base leading-8 text-slate-700">{body}</p> : null}
     </div>
   );
 }
@@ -256,7 +256,10 @@ function TrustedStrip() {
     <section className="px-4 py-6 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl rounded-[1.8rem] border border-slate-900/8 bg-white p-6">
         <p className="text-sm font-medium text-slate-600">
-          Trusted by fast-growing eCommerce brands and fulfillment teams across Southeast Asia
+          Trusted by fast-growing online sellers and fulfillment teams
+        </p>
+        <p className="mt-2 text-sm leading-7 text-slate-700">
+          ร้านค้าออนไลน์และคลัง fulfillment ใช้ Packiko เพื่อคุม Stock และลดปัญหาการแพ็คผิด
         </p>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {trustedBy.map((item) => (
@@ -277,7 +280,17 @@ function HomeProblemSection() {
         <SectionIntro
           eyebrow="Problems"
           title="ร้านออนไลน์ที่ขายดี มักเจอปัญหาเดียวกัน"
-          body="พอออเดอร์เริ่มเยอะขึ้น งานหลังบ้านจะเริ่มพลาดง่ายขึ้น ทั้ง stock ไม่ตรง แพ็คผิด และตอบเคสลูกค้าได้ช้าลงเพราะไม่มีหลักฐาน"
+          body="พอออเดอร์เริ่มเยอะ
+
+Stock เริ่มไม่ตรง
+ทีมแพ็คเริ่มหยิบผิด
+ลูกค้าเริ่มเคลมว่าได้ของไม่ครบ
+
+บางครั้งต้องคืนเงิน
+ทั้งที่ร้านแพ็คถูก
+
+Packiko ช่วยให้ร้านค้าคุมคลังได้ง่ายขึ้น
+และมีหลักฐานทุก Order"
         />
         <FeatureGrid items={problemCards} />
       </div>
@@ -287,7 +300,7 @@ function HomeProblemSection() {
 
 function HomeSolutionOverview() {
   return (
-    <section className="px-4 py-10 sm:px-6 lg:px-8">
+    <section id="solution" className="px-4 py-10 sm:px-6 lg:px-8">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
         <SectionIntro
           eyebrow="Solution"
@@ -306,20 +319,29 @@ function HomeVideoEvidenceSection() {
       <div className="mx-auto w-full max-w-7xl">
         <article className="rounded-[1.8rem] border border-slate-900/8 bg-white p-7 shadow-sm">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0b6bcb]">Video Evidence</p>
-          <h2 className="mt-3 text-3xl font-semibold text-slate-950">วิดีโอหลักฐานระหว่างแพ็คทุก Order</h2>
-          <p className="mt-4 text-base leading-8 text-slate-700">
-            ทุกครั้งที่มีการแพ็คสินค้า ระบบจะบันทึกวิดีโอไว้เป็นหลักฐาน และค้นหาได้ทันทีจาก Order Number, เวลา
-            และพนักงานที่แพ็ค
+          <h2 className="mt-3 text-3xl font-semibold text-slate-950">แพ็คของแล้ว ต้องมีหลักฐาน</h2>
+          <p className="mt-4 whitespace-pre-line text-base leading-8 text-slate-700">
+            เวลาลูกค้าเคลมว่า
+
+            ได้ของไม่ครบ
+            ไม่ได้ของ
+            ได้ของผิด
+
+            คุณสามารถเปิด
+
+            วิดีโอหลักฐานระหว่างแพ็ค
+
+            ดูได้ทันทีว่า
+
+            ใส่อะไรลงกล่อง
+            ใครเป็นคนแพ็ค
+            แพ็คเวลาไหน
           </p>
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
-            <PanelStat label="Search by" value="Order Number" />
-            <PanelStat label="Search by" value="เวลา" />
-            <PanelStat label="Search by" value="พนักงาน" />
+            <PanelStat label="ตรวจสอบได้" value="ใส่อะไรลงกล่อง" />
+            <PanelStat label="ตรวจสอบได้" value="ใครเป็นคนแพ็ค" />
+            <PanelStat label="ตรวจสอบได้" value="แพ็คเวลาไหน" />
           </div>
-          <p className="mt-6 text-sm leading-7 text-slate-700">
-            เวลาลูกค้าเคลมหรือมี dispute คุณเปิดวิดีโอของ Order นั้นได้เลย เพื่อเช็กว่าแพ็คอะไรไป ใครเป็นคนแพ็ค
-            และใช้เป็นหลักฐานได้ทันที
-          </p>
         </article>
       </div>
     </section>
@@ -350,7 +372,7 @@ function HomeResults() {
       <div className="mx-auto grid w-full max-w-7xl gap-5 rounded-[2rem] bg-[#0b6bcb] p-8 text-white lg:grid-cols-[0.95fr_1.05fr]">
         <SectionIntro
           eyebrow="Stats"
-          title="ตัวเลขที่ทีมเห็นจากการใช้งานจริง"
+          title="ผลลัพธ์ที่ร้านค้าเห็นจริง"
           body="Packiko ช่วยให้ทีมแพ็คทำงานนิ่งขึ้น คุมความผิดพลาดได้ดีขึ้น และมีหลักฐานพร้อมใช้ทุก Order"
         />
         <div className="grid gap-3 sm:grid-cols-2">
@@ -365,16 +387,23 @@ function HomeResults() {
   );
 }
 
-function HomeCustomersSection() {
+function HomeTestimonialsSection() {
   return (
     <section className="px-4 py-10 sm:px-6 lg:px-8">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
-        <SectionIntro
-          eyebrow="Customers"
-          title="ร้านค้าและ fulfillment teams ที่ใช้ Packiko"
-          body="เหมาะกับทีมที่ต้องรันออเดอร์จำนวนมากต่อวัน และต้องการระบบที่ช่วยคุมหน้างานได้จริง"
-        />
-        <FeatureGrid items={homepageCustomers} />
+        <SectionIntro eyebrow="Testimonials" title="เสียงจากร้านค้าที่ใช้ Packiko" />
+        <div className="grid gap-5 md:grid-cols-2">
+          {homepageTestimonials.map((item) => (
+            <article
+              key={`${item.author}-${item.role}`}
+              className="rounded-[1.6rem] border border-slate-900/8 bg-white p-6 shadow-sm"
+            >
+              <p className="text-base leading-8 text-slate-700">&ldquo;{item.quote}&rdquo;</p>
+              <p className="mt-4 text-sm font-semibold text-slate-950">{item.author}</p>
+              <p className="text-sm text-slate-600">{item.role}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -386,8 +415,8 @@ function HomePricingSection() {
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
         <SectionIntro
           eyebrow="Pricing"
-          title="เลือกแพ็กที่เหมาะกับทีมของคุณ"
-          body="เริ่มจากแพ็กที่พอดีกับ operation ปัจจุบัน แล้วค่อยขยายเมื่อทีมต้องการ workflow และการควบคุมเพิ่มขึ้น"
+          title="ราคาที่ร้านค้าออนไลน์ใช้ได้จริง"
+          body="เราออกแบบ Packiko ให้ร้านค้าออนไลน์ ใช้ระบบจัดการคลังได้โดยไม่ต้องลงทุนแพงแบบ enterprise"
         />
         <div className="grid gap-5 lg:grid-cols-3">
           {pricingTiers.map((tier) => (
@@ -461,7 +490,12 @@ function FinalCta() {
   return (
     <section className="px-4 pb-16 pt-8 sm:px-6 lg:px-8">
       <div className="mx-auto flex w-full max-w-7xl flex-col items-start gap-6 rounded-[2rem] border border-slate-900/8 bg-white p-8 shadow-sm">
-        <SectionIntro title="ดูว่า Packiko ช่วยให้คุณคุมคลังได้ง่ายขึ้นยังไง" />
+        <SectionIntro
+          title="ถ้าคลังเริ่มคุมยาก ถึงเวลาต้องมี Packiko"
+          body="ลด Stock ไม่ตรง
+ลดการแพ็คผิด
+มีหลักฐานทุก Order"
+        />
         <HeroAction href="/book-demo" label="Book Demo" primary />
       </div>
     </section>
@@ -786,15 +820,25 @@ function HomePage() {
       <HomeFeatureDetailSection
         eyebrow="Inventory"
         title="คุม Stock ให้ตรงมากขึ้น"
-        body="เห็น stock ชัดขึ้น ลดของหาย ลด oversell และช่วยให้ทีมรู้สถานะสินค้าในคลังได้เร็วกว่าเดิม"
+        body="เมื่อข้อมูลในระบบกับของจริงไม่ตรง ปัญหาจะลามไปทั้งทีมขายและทีมแพ็ค
+
+Packiko ช่วยให้คุณเห็นสถานะคลังได้ชัดขึ้น
+และลดปัญหา Oversell"
       />
       <HomeFeatureDetailSection
         eyebrow="Packing Verification"
         title="ลดการแพ็คผิด"
-        body="ทำให้ขั้นตอนหยิบและแพ็คตรวจสอบได้ชัดขึ้น ลดการหยิบผิด ส่งผิด หรือแพ็คไม่ครบในช่วงออเดอร์พุ่ง"
+        body="ช่วยให้ทีมแพ็คหยิบสินค้าได้ถูก
+และตรวจสอบย้อนหลังได้ง่าย
+
+ลดปัญหา
+
+หยิบผิด
+ส่งผิด
+แพ็คไม่ครบ"
       />
       <HomeResults />
-      <HomeCustomersSection />
+      <HomeTestimonialsSection />
       <HomePricingSection />
       <HomeFaqSection />
       <FinalCta />

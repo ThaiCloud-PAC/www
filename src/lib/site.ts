@@ -42,6 +42,12 @@ export type FaqItem = {
   answer: string;
 };
 
+export type TestimonialItem = {
+  quote: string;
+  author: string;
+  role: string;
+};
+
 export type PageKey =
   | "home"
   | "platform"
@@ -71,7 +77,7 @@ export type PageData = {
 };
 
 export const siteName = "Packiko by ThaiCloud";
-export const siteTagline = "Warehouse operations platform";
+export const siteTagline = "by ThaiCloud";
 
 export const seoKeywords = [
   "warehouse operations platform",
@@ -100,10 +106,10 @@ export const footerItems: FooterItem[] = [
 ];
 
 export const trustedBy = [
-  "Fast-growing online sellers",
+  "Shopee sellers",
+  "Lazada sellers",
+  "TikTok Shop sellers",
   "Fulfillment teams",
-  "High-volume warehouse teams",
-  "Operations leaders",
 ];
 
 export const problemCards: FeatureCard[] = [
@@ -191,18 +197,20 @@ export const solutionAudiences: FeatureCard[] = [
 
 export const customerOutcomes = [
   "45% ลดการแพ็คผิด",
-  "30% เพิ่มความเร็วในการแพ็ค",
+  "30% แพ็คสินค้าได้เร็วขึ้น",
   "100% มีหลักฐานทุก Order",
 ];
 
-export const homepageCustomers: FeatureCard[] = [
+export const homepageTestimonials: TestimonialItem[] = [
   {
-    title: "ร้านค้าออนไลน์ที่ออเดอร์วิ่งทั้งวัน",
-    description: "ใช้ Packiko เพื่อคุม stock ลดการแพ็คผิด และตอบเคสลูกค้าได้เร็วขึ้นเมื่อจำนวนออเดอร์เพิ่มต่อเนื่อง",
+    quote: "ก่อนใช้ระบบ ทีมต้องไล่หาคลิปเองทุกครั้ง ตอนนี้ค้นหาตาม Order ได้ทันที ช่วยลดเคสเคลมได้เยอะ",
+    author: "Operations Lead",
+    role: "ร้านค้าออนไลน์",
   },
   {
-    title: "Fulfillment teams ที่ต้องคุมหลายโต๊ะแพ็ค",
-    description: "ทำให้ workflow การแพ็คตรวจสอบได้ง่ายขึ้น และตามหลักฐานของแต่ละ Order ได้จากระบบเดียว",
+    quote: "พอออเดอร์ขึ้นหลักพันต่อวัน ทีมยังเช็กย้อนหลังได้ง่ายขึ้น เรื่องแพ็คผิดลดลงชัดเจน",
+    author: "Warehouse Manager",
+    role: "Fulfillment team",
   },
 ];
 
@@ -224,21 +232,21 @@ export const resourceGuides: ResourceGuide[] = [
 export const pricingTiers: PricingTier[] = [
   {
     name: "Starter",
-    description: "สำหรับร้านที่เริ่มมีออเดอร์เยอะและต้องการคุม stock กับมีหลักฐานทุก Order",
-    highlights: ["Inventory Control", "Video Evidence", "Book Demo"],
+    description: "สำหรับร้านที่อยากเริ่มคุม Stock และมีหลักฐานทุก Order แบบใช้งานง่าย",
+    highlights: ["คุม Stock", "วิดีโอหลักฐาน", "เริ่มใช้งานได้เร็ว"],
     cta: "Book Demo",
   },
   {
     name: "Growth",
-    description: "สำหรับทีมที่ต้องการลดการแพ็คผิดและเห็นภาพรวมงานแพ็คชัดขึ้นทุกวัน",
-    highlights: ["Packing Verification", "Dashboard", "Book Demo"],
+    description: "สำหรับทีมที่ออเดอร์โตเร็วและต้องการลดการแพ็คผิดในทุกกะงาน",
+    highlights: ["Packing Verification", "Operations Dashboard", "รองรับหลายโต๊ะแพ็ค"],
     cta: "Book Demo",
     featured: true,
   },
   {
     name: "Enterprise",
-    description: "สำหรับ warehouse หรือ fulfillment operation ที่มี volume สูงและ workflow ซับซ้อน",
-    highlights: ["Custom Workflow", "Multi-team Support", "Book Demo"],
+    description: "สำหรับคลังหรือ fulfillment ที่มี volume สูงและต้องคุมหลายทีมพร้อมกัน",
+    highlights: ["Custom Workflow", "Multi-team Support", "รองรับการขยายทีม"],
     cta: "Book Demo",
   },
 ];
@@ -255,6 +263,10 @@ export const faqs: FaqItem[] = [
   {
     question: "ต้องเปลี่ยน workflow ไหม",
     answer: "ส่วนใหญ่ไม่ต้องรื้อ workflow ใหม่ทั้งหมด แต่จะทำให้ขั้นตอนหยิบ แพ็ค และตรวจสอบชัดขึ้นเพื่อให้ทีมทำงานง่ายกว่าเดิม",
+  },
+  {
+    question: "ใช้กับ Shopee / Lazada ได้ไหม",
+    answer: "ได้ Packiko ถูกออกแบบมาสำหรับร้านที่ขายผ่าน Shopee, Lazada และ TikTok Shop รวมถึงทีม fulfillment ที่ดูแลงานหลายช่องทาง",
   },
 ];
 
@@ -278,8 +290,9 @@ export const pageData: Record<PageKey, PageData> = {
     eyebrow: "Packiko by ThaiCloud",
     headline: "ขายวันละหลายร้อยออเดอร์\nแต่คลังยังคุมอยู่",
     intro:
-      "Packiko ช่วยร้านออนไลน์คุม Stock ลดแพ็คผิด และมีวิดีโอหลักฐานทุก Order",
+      "Packiko ช่วยร้านออนไลน์\n\n• คุม Stock ให้ตรง\n• ลดการแพ็คผิด\n• มีวิดีโอหลักฐานระหว่างแพ็คทุก Order\n\nเวลาลูกค้าเคลม\nเปิดดูตาม Order ได้ทันที\n\nใช้ได้กับ\nShopee\nLazada\nTikTok Shop",
     primaryCta: { label: "Book Demo", href: "/book-demo" },
+    secondaryCta: { label: "ดูระบบทำงาน", href: "#solution" },
   },
   platform: {
     slug: "/platform",
