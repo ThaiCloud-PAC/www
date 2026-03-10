@@ -1,7 +1,7 @@
-import { StandardPage, buildMetadata } from "@/components/site-shell";
+import { HomePageContent, buildMetadata } from "@/components/site-shell";
 
-export const metadata = buildMetadata("home");
+export const metadata = buildMetadata("Home");
 
 export default function HomePage() {
-  return <StandardPage pageKey="home" />;
+  return <HomePageContent />;
 }

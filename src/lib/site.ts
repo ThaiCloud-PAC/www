@@ -8,33 +8,16 @@ export type FooterItem = {
   href: string;
 };
 
-export type HeroCta = {
-  label: string;
-  href: string;
-};
-
 export type FeatureCard = {
   title: string;
   description: string;
 };
 
-export type ComparisonRow = {
-  feature: string;
-  standard: string;
-  thaiCloud: string;
-};
-
-export type PricingTier = {
+export type PricingPlan = {
   name: string;
   description: string;
-  highlights: string[];
-  cta: string;
+  features: string[];
   featured?: boolean;
-};
-
-export type ResourceGuide = {
-  title: string;
-  description: string;
 };
 
 export type FaqItem = {
@@ -42,51 +25,14 @@ export type FaqItem = {
   answer: string;
 };
 
-export type TestimonialItem = {
-  quote: string;
-  author: string;
-  role: string;
-};
-
-export type PageKey =
-  | "home"
-  | "platform"
-  | "solutions"
-  | "customers"
-  | "resources"
-  | "pricing"
-  | "about"
-  | "caseStudies"
-  | "contact"
-  | "privacy"
-  | "terms"
-  | "bookDemo"
-  | "technology"
-  | "developers"
-  | "visionAi";
-
-export type PageData = {
-  slug: string;
+export type SimplePage = {
   title: string;
-  description: string;
   eyebrow: string;
-  headline: string;
   intro: string;
-  primaryCta?: HeroCta;
-  secondaryCta?: HeroCta;
+  body: string[];
 };
 
 export const siteName = "Packiko by ThaiCloud";
-export const siteTagline = "by ThaiCloud";
-
-export const seoKeywords = [
-  "warehouse operations platform",
-  "inventory control software",
-  "packing verification",
-  "packing video evidence",
-  "ecommerce warehouse software",
-  "ThaiCloud",
-];
 
 export const navItems: NavItem[] = [
   { label: "Home", href: "/" },
@@ -103,13 +49,6 @@ export const footerItems: FooterItem[] = [
   { label: "Contact", href: "/contact" },
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
-];
-
-export const trustedBy = [
-  "Shopee sellers",
-  "Lazada sellers",
-  "TikTok Shop sellers",
-  "Fulfillment teams",
 ];
 
 export const problemCards: FeatureCard[] = [
@@ -135,14 +74,7 @@ export const problemCards: FeatureCard[] = [
   },
 ];
 
-export const whyToolsFail = [
-  "ระบบคลังไว้จด Stock แต่ไม่ได้ช่วยหาหลักฐานเวลาเกิดปัญหา",
-  "กล้องดูย้อนหลังได้ แต่ค้นหาตาม Order ไม่ง่าย",
-  "ทีมต้องไล่หาคลิปเองทุกครั้งเมื่อมี dispute",
-  "กว่าจะหาคำตอบเจอ ร้านมักเสียเวลาและจบด้วยการคืนเงินลูกค้า",
-];
-
-export const solutionOverview: FeatureCard[] = [
+export const solutionCards: FeatureCard[] = [
   {
     title: "Inventory Control",
     description: "เห็นสถานะสินค้าในคลังแบบ real-time เพื่อคุม stock ให้ตรงมากขึ้น",
@@ -161,283 +93,174 @@ export const solutionOverview: FeatureCard[] = [
   },
 ];
 
-export const platformCapabilities: FeatureCard[] = [
+export const videoSearchKeys = ["Order Number", "เวลา", "พนักงาน"];
+
+export const stats = [
+  { value: "45%", label: "ลดการแพ็คผิด" },
+  { value: "30%", label: "แพ็คได้เร็วขึ้น" },
+  { value: "100%", label: "มีหลักฐานทุก Order" },
+];
+
+export const useCases: FeatureCard[] = [
   {
-    title: "Inventory Control",
-    description: "ควบคุม stock แบบ real-time เพื่อลด oversell, stock mismatch และของหาย",
+    title: "ร้านค้าออนไลน์ที่ออเดอร์วิ่งทั้งวัน",
+    description:
+      "ใช้ Packiko เพื่อคุม stock ลดการแพ็คผิด และตอบเคสลูกค้าได้เร็วขึ้นเมื่อจำนวนออเดอร์เพิ่มต่อเนื่อง",
   },
   {
-    title: "Packing Verification",
-    description: "ลดการแพ็คผิดด้วยขั้นตอนตรวจสอบที่ชัดเจนสำหรับทีมแพ็ค",
-  },
-  {
-    title: "Video Evidence",
-    description: "วิดีโอหลักฐานระหว่างแพ็คทุก Order พร้อมค้นหาได้ทันทีเมื่อต้องตรวจสอบเคส",
-  },
-  {
-    title: "Operations Dashboard",
-    description: "เห็นจำนวน Order ที่กำลังแพ็ค ประสิทธิภาพทีม และปัญหาที่ต้องแก้ทันที",
-  },
-  {
-    title: "Integrations",
-    description: "เชื่อมต่อกับระบบ eCommerce และ ERP ที่ทีมใช้งานอยู่เดิม",
+    title: "Fulfillment teams ที่ต้องคุมหลายโต๊ะแพ็ค",
+    description:
+      "ทำให้ workflow การแพ็คตรวจสอบได้ง่ายขึ้น และตามหลักฐานของแต่ละ Order ได้จากระบบเดียว",
   },
 ];
 
-export const solutionAudiences: FeatureCard[] = [
-  {
-    title: "For Large Online Sellers",
-    description: "เหมาะสำหรับร้านที่มีออเดอร์จำนวนมากและต้องการคุม stock ลดการแพ็คผิด และแก้ dispute ได้เร็วขึ้น",
-  },
-  {
-    title: "For Fulfillment Teams",
-    description: "เหมาะสำหรับทีมแพ็คที่ต้องการ workflow ที่ชัดเจน ตรวจสอบได้ และลดข้อผิดพลาดในงานประจำวัน",
-  },
-];
-
-export const customerOutcomes = [
-  "45% ลดการแพ็คผิด",
-  "30% แพ็คสินค้าได้เร็วขึ้น",
-  "100% มีหลักฐานทุก Order",
-];
-
-export const homepageTestimonials: TestimonialItem[] = [
-  {
-    quote: "ก่อนใช้ระบบ ทีมต้องไล่หาคลิปเองทุกครั้ง ตอนนี้ค้นหาตาม Order ได้ทันที ช่วยลดเคสเคลมได้เยอะ",
-    author: "Operations Lead",
-    role: "ร้านค้าออนไลน์",
-  },
-  {
-    quote: "พอออเดอร์ขึ้นหลักพันต่อวัน ทีมยังเช็กย้อนหลังได้ง่ายขึ้น เรื่องแพ็คผิดลดลงชัดเจน",
-    author: "Warehouse Manager",
-    role: "Fulfillment team",
-  },
-];
-
-export const resourceGuides: ResourceGuide[] = [
-  {
-    title: "การจัดการคลังสินค้า",
-    description: "แนวทางจัดระบบคลังให้รองรับออเดอร์ที่เพิ่มขึ้นโดยไม่เสียการควบคุมหน้างาน",
-  },
-  {
-    title: "การลดการแพ็คผิด",
-    description: "วิธีจัด workflow การหยิบและแพ็คให้ชัดเจนขึ้นสำหรับทีมที่มีหลายคน หลายรอบงาน",
-  },
-  {
-    title: "วิธีจัดการเคสลูกค้าเคลม",
-    description: "แนวทางตอบ dispute ให้เร็วขึ้นด้วยข้อมูล order และวิดีโอหลักฐานระหว่างแพ็ค",
-  },
-];
-
-export const pricingTiers: PricingTier[] = [
+export const pricingPlans: PricingPlan[] = [
   {
     name: "Starter",
-    description: "สำหรับร้านที่อยากเริ่มคุม Stock และมีหลักฐานทุก Order แบบใช้งานง่าย",
-    highlights: ["คุม Stock", "วิดีโอหลักฐาน", "เริ่มใช้งานได้เร็ว"],
-    cta: "Book Demo",
+    description: "สำหรับร้านที่เริ่มมีออเดอร์เยอะและต้องการคุม stock กับมีหลักฐานทุก Order",
+    features: ["Inventory Control", "Video Evidence"],
   },
   {
     name: "Growth",
-    description: "สำหรับทีมที่ออเดอร์โตเร็วและต้องการลดการแพ็คผิดในทุกกะงาน",
-    highlights: ["Packing Verification", "Operations Dashboard", "รองรับหลายโต๊ะแพ็ค"],
-    cta: "Book Demo",
+    description: "สำหรับทีมที่ต้องการลดการแพ็คผิดและเห็นภาพรวมงานแพ็คชัดขึ้นทุกวัน",
+    features: ["Packing Verification", "Dashboard"],
     featured: true,
   },
   {
     name: "Enterprise",
-    description: "สำหรับคลังหรือ fulfillment ที่มี volume สูงและต้องคุมหลายทีมพร้อมกัน",
-    highlights: ["Custom Workflow", "Multi-team Support", "รองรับการขยายทีม"],
-    cta: "Book Demo",
+    description: "สำหรับ warehouse หรือ fulfillment operation ที่มี volume สูงและ workflow ซับซ้อน",
+    features: ["Custom Workflow", "Multi-team Support"],
   },
 ];
 
 export const faqs: FaqItem[] = [
   {
     question: "Packiko คืออะไร",
-    answer: "Packiko คือระบบคลังสำหรับร้านออนไลน์และ fulfillment teams ที่ช่วยคุม stock ลดแพ็คผิด และเก็บวิดีโอหลักฐานทุก Order",
+    answer:
+      "Packiko คือระบบคลังสำหรับร้านออนไลน์และ fulfillment teams ที่ช่วยคุม stock ลดแพ็คผิด และเก็บวิดีโอหลักฐานทุก Order",
   },
   {
     question: "ต่างจากกล้องแพ็คของยังไง",
-    answer: "Packiko ไม่ได้มีแค่วิดีโอย้อนหลัง แต่ค้นหาหลักฐานตาม Order Number, เวลา และพนักงานได้ พร้อมใช้ควบคู่กับการคุม stock และงานแพ็ค",
+    answer:
+      "Packiko ไม่ได้มีแค่วิดีโอย้อนหลัง แต่ค้นหาหลักฐานตาม Order Number, เวลา และพนักงานได้ พร้อมใช้ควบคู่กับการคุม stock และงานแพ็ค",
   },
   {
     question: "ต้องเปลี่ยน workflow ไหม",
-    answer: "ส่วนใหญ่ไม่ต้องรื้อ workflow ใหม่ทั้งหมด แต่จะทำให้ขั้นตอนหยิบ แพ็ค และตรวจสอบชัดขึ้นเพื่อให้ทีมทำงานง่ายกว่าเดิม",
+    answer:
+      "ส่วนใหญ่ไม่ต้องรื้อ workflow ใหม่ทั้งหมด แต่จะทำให้ขั้นตอนหยิบ แพ็ค และตรวจสอบชัดขึ้นเพื่อให้ทีมทำงานง่ายกว่าเดิม",
   },
   {
-    question: "ใช้กับ Shopee / Lazada ได้ไหม",
-    answer: "ได้ Packiko ถูกออกแบบมาสำหรับร้านที่ขายผ่าน Shopee, Lazada และ TikTok Shop รวมถึงทีม fulfillment ที่ดูแลงานหลายช่องทาง",
+    question: "ใช้กับ marketplace ได้ไหม",
+    answer:
+      "ใช้เป็นหลักฐานเพื่อตรวจสอบและตอบเคสลูกค้าได้เร็วขึ้น โดยเฉพาะเวลามี dispute กับ Shopee, Lazada หรือ TikTok Shop",
   },
 ];
 
-export const comparisonRows: ComparisonRow[] = [
-  { feature: "บันทึก Video", standard: "มี", thaiCloud: "มี" },
-  { feature: "ค้นหา Video ตาม Order", standard: "ไม่มี", thaiCloud: "มี" },
-  { feature: "ใช้เป็นหลักฐานเคลม", standard: "ยาก", thaiCloud: "ง่าย" },
-  { feature: "ตรวจสอบการแพ็ค", standard: "ไม่มี", thaiCloud: "มี" },
-  { feature: "วิเคราะห์ workflow", standard: "ไม่มี", thaiCloud: "มี" },
-  { feature: "Operations Dashboard", standard: "ไม่มี", thaiCloud: "มี" },
+export const audienceStrip = [
+  "Shopee sellers",
+  "Lazada sellers",
+  "TikTok Shop sellers",
+  "Fulfillment teams",
 ];
 
-export const marketplaceList = ["Shopee", "Lazada", "TikTok Shop"];
-
-export const pageData: Record<PageKey, PageData> = {
-  home: {
-    slug: "/",
-    title: "Home",
-    description:
-      "Packiko by ThaiCloud ช่วยร้านออนไลน์คุม stock ลดแพ็คผิด และมีวิดีโอหลักฐานทุก order สำหรับทีมที่รันออเดอร์จำนวนมากต่อวัน",
-    eyebrow: "Packiko by ThaiCloud",
-    headline: "ขายวันละหลายร้อยออเดอร์\nแต่คลังยังคุมอยู่",
-    intro:
-      "Packiko ช่วยร้านออนไลน์\n\n• คุม Stock ให้ตรง\n• ลดการแพ็คผิด\n• มีวิดีโอหลักฐานระหว่างแพ็คทุก Order\n\nเวลาลูกค้าเคลม\nเปิดดูตาม Order ได้ทันที\n\nใช้ได้กับ\nShopee\nLazada\nTikTok Shop",
-    primaryCta: { label: "Book Demo", href: "/book-demo" },
-    secondaryCta: { label: "ดูระบบทำงาน", href: "#solution" },
-  },
+export const simplePages: Record<string, SimplePage> = {
   platform: {
-    slug: "/platform",
     title: "Platform",
-    description: "ดูภาพรวมความสามารถของ ThaiCloud ตั้งแต่ inventory control ไปจนถึง video evidence และ dashboard",
-    eyebrow: "ThaiCloud Platform",
-    headline: "รวมระบบสำคัญของคลังไว้ในที่เดียว",
-    intro:
-      "ThaiCloud ช่วยให้ร้านออนไลน์และทีม fulfillment คุม stock ลดการแพ็คผิด และตรวจสอบงานแพ็คได้จากข้อมูลและวิดีโอในระบบเดียว",
-    primaryCta: { label: "Book a Demo", href: "/book-demo" },
-    secondaryCta: { label: "View Pricing", href: "/pricing" },
+    eyebrow: "Packiko by ThaiCloud",
+    intro: "ดูภาพรวมของระบบที่ช่วยคุม stock ลดการแพ็คผิด และเก็บหลักฐานทุก Order",
+    body: [
+      "Packiko รวม Inventory Control, Packing Verification, Video Evidence และ Operations Dashboard ไว้ใน workflow เดียว",
+      "ออกแบบมาสำหรับทีมที่ต้องคุมงานคลังทุกวันและต้องตอบปัญหาหน้างานได้เร็ว",
+    ],
   },
   solutions: {
-    slug: "/solutions",
     title: "Solutions",
-    description: "ThaiCloud เหมาะกับทั้งร้านออนไลน์ขนาดใหญ่และทีม fulfillment ที่ต้องการ workflow ชัดเจนและตรวจสอบได้",
-    eyebrow: "Solutions",
-    headline: "เหมาะกับทีมที่ต้องคุมงานคลังทุกวัน",
-    intro:
-      "ThaiCloud ถูกออกแบบมาสำหรับผู้ขายออนไลน์ที่มี volume สูง และทีม fulfillment ที่ต้องการลดข้อผิดพลาดและตอบเคสได้เร็วขึ้น",
-    primaryCta: { label: "Book a Demo", href: "/book-demo" },
-    secondaryCta: { label: "See Pricing", href: "/pricing" },
+    eyebrow: "Packiko by ThaiCloud",
+    intro: "เหมาะกับร้านค้าออนไลน์และ fulfillment teams ที่ต้องคุมออเดอร์จำนวนมากต่อวัน",
+    body: [
+      "ช่วยคุม stock ให้ตรงขึ้น ลดการหยิบผิด และทำให้การตรวจสอบย้อนหลังชัดขึ้น",
+      "โดยเฉพาะในช่วงที่ออเดอร์พุ่งและทีมต้องทำงานหลายโต๊ะพร้อมกัน",
+    ],
   },
   customers: {
-    slug: "/customers",
     title: "Customers",
-    description: "ร้านค้าและทีม fulfillment ใช้ ThaiCloud เพื่อลดการแพ็คผิด ลดเวลาหาหลักฐาน และคุมคลังได้ดีขึ้น",
-    eyebrow: "Customers",
-    headline: "ร้านค้าและทีม fulfillment ที่ใช้ ThaiCloud",
-    intro:
-      "ลูกค้าหลายรายใช้ ThaiCloud เพื่อคุมงานหลังบ้านให้ชัดขึ้น ลดความผิดพลาด และหาหลักฐานได้เร็วเมื่อต้องตอบ dispute",
-    primaryCta: { label: "Book a Demo", href: "/book-demo" },
-    secondaryCta: { label: "View Case Studies", href: "/case-studies" },
+    eyebrow: "Packiko by ThaiCloud",
+    intro: "เหมาะกับทีมที่ยังทำงานแบบลงหน้างานจริง แต่ต้องการระบบที่ช่วยคุม operation ให้แม่นขึ้น",
+    body: [
+      "ร้านออนไลน์ที่ขายดีใช้ Packiko เพื่อไม่ให้ stock mismatch และ packing error ลามเป็นปัญหาลูกค้า",
+      "fulfillment teams ใช้เพื่อคุม workflow และเปิดดูหลักฐานตาม Order ได้จากระบบเดียว",
+    ],
   },
   resources: {
-    slug: "/resources",
     title: "Resources",
-    description: "บทความและคู่มือสำหรับทีมคลังที่ต้องการลดการแพ็คผิด จัดการ stock และรับมือกับเคสลูกค้าเคลม",
-    eyebrow: "Resources",
-    headline: "คู่มือสำหรับทีมที่ต้องคุมคลังให้แม่นขึ้น",
-    intro:
-      "รวมบทความและคู่มือเกี่ยวกับการจัดการคลังสินค้า การลดการแพ็คผิด และการจัดการเคสลูกค้าเคลมสำหรับทีมที่ทำงานจริงทุกวัน",
-    primaryCta: { label: "Book a Demo", href: "/book-demo" },
+    eyebrow: "Packiko by ThaiCloud",
+    intro: "คำถามที่ทีม operations มักสนใจก่อนเริ่มใช้ระบบ",
+    body: [
+      "Packiko ช่วยให้ทีมตอบเคสลูกค้าได้เร็วขึ้นด้วยข้อมูล Order และวิดีโอหลักฐานระหว่างแพ็ค",
+      "เหมาะกับทีมที่ต้องการลดงานตามหาหลักฐานและทำให้การตรวจสอบคลังชัดขึ้น",
+    ],
   },
   pricing: {
-    slug: "/pricing",
     title: "Pricing",
-    description: "Flexible pricing สำหรับร้านออนไลน์และคลังสินค้าที่กำลังโต",
-    eyebrow: "Pricing",
-    headline: "Flexible pricing สำหรับร้านออนไลน์และคลังสินค้าที่กำลังโต",
-    intro:
-      "เลือกแพ็กเกจที่เหมาะกับ volume ปัจจุบันของคุณ แล้วค่อยขยายต่อเมื่อทีมต้องการ workflow tools, dashboard และ integrations เพิ่มขึ้น",
-    primaryCta: { label: "Contact Sales", href: "/book-demo" },
-    secondaryCta: { label: "Book a Demo", href: "/book-demo" },
+    eyebrow: "Packiko by ThaiCloud",
+    intro: "เลือกแพ็กที่เหมาะกับ operation ปัจจุบัน แล้วค่อยขยายเมื่อทีมต้องการ workflow เพิ่มขึ้น",
+    body: [
+      "ราคาและการใช้งานถูกวางให้ practical สำหรับทีมที่กำลังโต",
+      "เริ่มจากสิ่งที่ทีมต้องใช้จริงก่อน แล้วค่อยขยายตาม volume ของออเดอร์",
+    ],
+  },
+  "book-demo": {
+    title: "Book Demo",
+    eyebrow: "Packiko by ThaiCloud",
+    intro: "ดูว่า Packiko ช่วยให้คุณคุมคลังได้ง่ายขึ้นยังไง",
+    body: [
+      "ในเดโม คุณจะเห็นการคุม stock, การแพ็ค, dashboard และวิดีโอหลักฐานของแต่ละ Order",
+      "เหมาะสำหรับทีมที่อยากเห็นภาพการใช้งานจริงก่อนเริ่มต้น",
+    ],
   },
   about: {
-    slug: "/about",
     title: "About",
-    description: "ThaiCloud คือ warehouse operations platform สำหรับร้านออนไลน์และทีม fulfillment ที่มีออเดอร์จำนวนมาก",
-    eyebrow: "About ThaiCloud",
-    headline: "พลังของระบบคลังที่ช่วยงานจริงในทุกวัน",
-    intro:
-      "ThaiCloud สร้างระบบที่ช่วยให้ทีมคลังทำงานได้แม่นขึ้น ตรวจสอบได้ง่ายขึ้น และตอบปัญหาหน้างานได้เร็วขึ้น โดยไม่เพิ่มความซับซ้อนเกินจำเป็น",
-    primaryCta: { label: "Book a Demo", href: "/book-demo" },
-    secondaryCta: { label: "Contact", href: "/contact" },
+    eyebrow: "ThaiCloud",
+    intro: "ThaiCloud คือบริษัทที่พัฒนา Packiko สำหรับทีม warehouse และ online seller volume สูง",
+    body: [
+      "แบรนด์หลักบนเว็บไซต์นี้คือ Packiko ซึ่งเป็นตัวผลิตภัณฑ์",
+      "ThaiCloud จะอยู่ในบทบาทบริษัทและการสนับสนุนด้านแพลตฟอร์ม",
+    ],
   },
-  caseStudies: {
-    slug: "/case-studies",
+  "case-studies": {
     title: "Case Studies",
-    description: "ผลลัพธ์ที่ร้านค้าและทีม fulfillment ได้จากการใช้ ThaiCloud",
-    eyebrow: "Case Studies",
-    headline: "ผลลัพธ์ที่ทีมปฏิบัติการต้องการเห็นจริง",
-    intro:
-      "ทีมที่ใช้ ThaiCloud มักเริ่มจากการต้องการลดการแพ็คผิด หาหลักฐานให้เร็วขึ้น และคุม stock ให้ตรงมากขึ้น แล้วจึงต่อยอดไปสู่ workflow ที่นิ่งกว่าเดิม",
-    primaryCta: { label: "Book a Demo", href: "/book-demo" },
+    eyebrow: "Packiko by ThaiCloud",
+    intro: "ตัวอย่างผลลัพธ์ที่ทีมมักคาดหวังเมื่อเริ่มคุมคลังอย่างจริงจัง",
+    body: [
+      "ลดการแพ็คผิด ลดเวลาหาหลักฐาน และทำให้ workflow หลังบ้านนิ่งขึ้น",
+      "เหมาะกับทีมที่มีแรงกดดันจาก marketplace และ volume ออเดอร์ที่เพิ่มขึ้นต่อเนื่อง",
+    ],
   },
   contact: {
-    slug: "/contact",
     title: "Contact",
-    description: "พูดคุยกับ ThaiCloud เกี่ยวกับการใช้งานสำหรับร้านออนไลน์และทีม fulfillment",
-    eyebrow: "Contact",
-    headline: "เริ่มคุยเรื่องคลังของคุณได้เลย",
-    intro:
-      "ถ้าคุณกำลังมองหาระบบที่ช่วยคุม stock ลดการแพ็คผิด และทำให้การตอบเคสลูกค้าเคลมเร็วขึ้น ThaiCloud พร้อมคุยกับทีมของคุณ",
-    primaryCta: { label: "Book a Demo", href: "/book-demo" },
+    eyebrow: "Packiko by ThaiCloud",
+    intro: "คุยกับทีมเรื่อง workflow ปัจจุบัน ปัญหา stock และเคส dispute ที่คุณเจออยู่",
+    body: [
+      "ทีมจะช่วยวางเดโมให้ตรงกับหน้างานจริงของคุณ",
+      "เหมาะกับทั้งร้านออนไลน์และ fulfillment operations",
+    ],
   },
   privacy: {
-    slug: "/privacy",
     title: "Privacy",
-    description: "นโยบายความเป็นส่วนตัวของ ThaiCloud",
-    eyebrow: "Privacy",
-    headline: "Privacy Policy",
-    intro:
-      "ThaiCloud ให้ความสำคัญกับข้อมูลของลูกค้าและข้อมูลการปฏิบัติงานในคลัง โดยกำหนดแนวทางการเก็บ ใช้ และปกป้องข้อมูลอย่างชัดเจน",
+    eyebrow: "ThaiCloud",
+    intro: "แนวทางการดูแลข้อมูลของลูกค้าและข้อมูลหน้างานในระบบ Packiko",
+    body: [
+      "เก็บและใช้งานข้อมูลเท่าที่จำเป็นต่อการให้บริการ",
+      "เน้นการปกป้องข้อมูลการปฏิบัติงานและหลักฐานที่เกี่ยวข้องกับแต่ละ Order",
+    ],
   },
   terms: {
-    slug: "/terms",
     title: "Terms",
-    description: "ข้อกำหนดการใช้งานของ ThaiCloud",
-    eyebrow: "Terms",
-    headline: "Terms of Use",
-    intro:
-      "ข้อกำหนดการใช้งานของ ThaiCloud ครอบคลุมการใช้งานแพลตฟอร์ม การเข้าถึงบริการ การใช้งานข้อมูล และความรับผิดชอบของทั้งสองฝ่าย",
-  },
-  bookDemo: {
-    slug: "/book-demo",
-    title: "Book Demo",
-    description: "ดูว่า ThaiCloud ช่วยให้คุณคุมคลังได้ง่ายขึ้นอย่างไร",
-    eyebrow: "Book Demo",
-    headline: "ดูว่า ThaiCloud ช่วยให้คุณคุมคลังได้ง่ายขึ้นอย่างไร",
-    intro:
-      "ในเดโม คุณจะเห็นทั้ง Inventory Control, Packing Workflow, วิดีโอหลักฐานระหว่างแพ็ค และ Dashboard ที่ช่วยให้ทีมจัดการงานคลังได้ง่ายขึ้น",
-    primaryCta: { label: "Submit Demo Request", href: "#demo-form" },
-    secondaryCta: { label: "Explore Platform", href: "/platform" },
-  },
-  technology: {
-    slug: "/technology",
-    title: "Platform",
-    description: "ThaiCloud platform overview",
-    eyebrow: "ThaiCloud Platform",
-    headline: "รวมระบบสำคัญของคลังไว้ในที่เดียว",
-    intro:
-      "ThaiCloud ช่วยให้ร้านออนไลน์และทีม fulfillment คุม stock ลดการแพ็คผิด และตรวจสอบงานแพ็คได้จากข้อมูลและวิดีโอในระบบเดียว",
-    primaryCta: { label: "Book a Demo", href: "/book-demo" },
-    secondaryCta: { label: "View Pricing", href: "/pricing" },
-  },
-  developers: {
-    slug: "/developers",
-    title: "Resources",
-    description: "ThaiCloud resource center",
-    eyebrow: "Resources",
-    headline: "คู่มือสำหรับทีมที่ต้องคุมคลังให้แม่นขึ้น",
-    intro:
-      "รวมบทความและคู่มือเกี่ยวกับการจัดการคลังสินค้า การลดการแพ็คผิด และการจัดการเคสลูกค้าเคลมสำหรับทีมที่ทำงานจริงทุกวัน",
-    primaryCta: { label: "Book a Demo", href: "/book-demo" },
-  },
-  visionAi: {
-    slug: "/vision-ai",
-    title: "Platform",
-    description: "ThaiCloud platform overview",
-    eyebrow: "ThaiCloud Platform",
-    headline: "รวมระบบสำคัญของคลังไว้ในที่เดียว",
-    intro:
-      "ThaiCloud ช่วยให้ร้านออนไลน์และทีม fulfillment คุม stock ลดการแพ็คผิด และตรวจสอบงานแพ็คได้จากข้อมูลและวิดีโอในระบบเดียว",
-    primaryCta: { label: "Book a Demo", href: "/book-demo" },
-    secondaryCta: { label: "View Pricing", href: "/pricing" },
+    eyebrow: "ThaiCloud",
+    intro: "ข้อกำหนดการใช้งานบริการ Packiko by ThaiCloud",
+    body: [
+      "ครอบคลุมขอบเขตบริการ การเข้าถึงระบบ และความรับผิดชอบในการใช้งาน",
+      "รายละเอียดเชิงสัญญาและ deployment สามารถกำหนดตามแผนการใช้งานของแต่ละทีม",
+    ],
   },
 };

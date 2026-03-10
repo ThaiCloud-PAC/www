@@ -1,910 +1,588 @@
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
-  customerOutcomes,
+  audienceStrip,
   faqs,
   footerItems,
-  homepageTestimonials,
-  marketplaceList,
   navItems,
-  pageData,
-  platformCapabilities,
-  pricingTiers,
+  pricingPlans,
   problemCards,
-  resourceGuides,
+  simplePages,
   siteName,
-  siteTagline,
-  solutionAudiences,
-  solutionOverview,
-  trustedBy,
-  type FeatureCard,
-  type PageKey,
+  solutionCards,
+  stats,
+  useCases,
+  videoSearchKeys,
 } from "@/lib/site";
+
+function SectionHeading({
+  eyebrow,
+  title,
+  body,
+  centered,
+}: {
+  eyebrow?: string;
+  title: string;
+  body?: string;
+  centered?: boolean;
+}) {
+  return (
+    <div className={`main-title wow fadeIn ${centered ? "text-center" : ""}`} data-wow-delay="300ms">
+      {eyebrow ? <h5>{eyebrow}</h5> : null}
+      <h2 className="mb-0" dangerouslySetInnerHTML={{ __html: title }} />
+      {body ? <p className="mt-4 mb-0">{body}</p> : null}
+    </div>
+  );
+}
+
+function BrandLockup({ light }: { light?: boolean }) {
+  return (
+    <span className={`packiko-logo ${light ? "light" : ""}`}>
+      <span className="packiko-wordmark">Packiko</span>
+      <span className="packiko-submark">by ThaiCloud</span>
+    </span>
+  );
+}
+
+function FeatureCard({ title, description, accent }: { title: string; description: string; accent: string }) {
+  return (
+    <div className="col-lg-3 col-md-6 col-12 mb-4">
+      <div className={`about-box packiko-card h-100 mx-auto ${accent}`}>
+        <h5 className="font-weight-600 color-white mt-0 mb-15px">{title}</h5>
+        <p className="font-weight-light color-white mb-0">{description}</p>
+      </div>
+    </div>
+  );
+}
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-900/10 bg-[#f7f4ee]/90 backdrop-blur">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/brand/packiko/packiko-logo-primary.png"
-            alt="Packiko by ThaiCloud logo"
-            width={158}
-            height={40}
-            className="h-9 w-auto"
-            priority
-          />
-          <span className="hidden text-xs font-semibold uppercase tracking-[0.18em] text-slate-600 md:inline-block">
-            {siteTagline}
-          </span>
-        </Link>
-        <nav className="hidden items-center gap-1 lg:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-full px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-white hover:text-slate-950"
-            >
-              {item.label}
+    <header className="cursor-light">
+      <nav className="navbar navbar-top-default navbar-expand-lg nav-three-circles black bottom-nav nav-box-shadow no-animation">
+        <div className="container-fluid">
+          <Link className="logo ml-lg-1" href="/">
+            <BrandLockup />
+          </Link>
+          <div className="collapse navbar-collapse d-none d-lg-block">
+            <ul className="nav navbar-nav mx-auto">
+              {navItems.map((item) => (
+                <li className="nav-item" key={item.href}>
+                  <Link href={item.href} className="nav-link">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <Link href="/book-demo" className="btn-setting btn-hvr-up btn-blue text-white mr-lg-3 d-none d-lg-block">
+            Book Demo
+          </Link>
+          <a className="menu_bars d-inline-block menu-bars-setting animated-wrap sidemenu_toggle d-block d-lg-none">
+            <div className="menu-lines animated-element">
+              <span />
+              <span />
+              <span />
+            </div>
+          </a>
+        </div>
+      </nav>
+      <a className="menu_bars menu-bars-setting animated-wrap sidemenu_toggle d-lg-inline-block d-none">
+        <div className="menu-lines animated-element">
+          <span />
+          <span />
+          <span />
+        </div>
+      </a>
+      <div className="side-menu center">
+        <div className="quarter-circle">
+          <div className="menu_bars2 active" id="btn_sideNavClose">
+            <span />
+            <span />
+            <span />
+          </div>
+        </div>
+        <div className="inner-wrapper justify-content-center">
+          <div className="col-md-12 text-center">
+            <Link href="/" className="logo-full mb-4 d-inline-flex">
+              <BrandLockup light />
             </Link>
-          ))}
-        </nav>
-        <Link
-          href="/book-demo"
-          className="rounded-full bg-[#0b6bcb] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#095aa9]"
-        >
-          Book Demo
-        </Link>
-      </div>
-      <div className="border-t border-slate-900/6 lg:hidden">
-        <div className="mx-auto flex w-full max-w-7xl gap-2 overflow-x-auto px-4 py-3 sm:px-6">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="shrink-0 rounded-full border border-slate-900/10 bg-white px-3 py-2 text-sm font-medium text-slate-700"
-            >
-              {item.label}
-            </Link>
-          ))}
+          </div>
+          <nav className="side-nav m-0">
+            <ul className="navbar-nav flex-lg-row">
+              {navItems.map((item) => (
+                <li className="nav-item" key={item.href}>
+                  <Link href={item.href} className="nav-link">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+              <li className="nav-item">
+                <Link href="/book-demo" className="nav-link">
+                  Book Demo
+                </Link>
+              </li>
+            </ul>
+          </nav>
+          <div className="side-footer text-white w-100">
+            <p className="text-white mb-0">Warehouse platform for high-volume online sellers</p>
+          </div>
         </div>
       </div>
+      <a id="close_side_menu" href="javascript:void(0);" />
     </header>
   );
 }
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-slate-900/10 bg-[#111827] text-slate-200">
-      <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.2fr_1fr] lg:px-8">
-        <div>
-          <p className="text-lg font-semibold text-white">{siteName}</p>
-          <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-300">
-            Warehouse operations platform for high-volume online sellers who need tighter inventory control,
-            fewer packing mistakes, and video evidence for every order.
-          </p>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {footerItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm text-slate-300 transition hover:text-white"
-            >
-              {item.label}
-            </Link>
-          ))}
+    <footer className="p-half bg-white" id="footer">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-5 col-md-12 text-center text-lg-left mb-4 mb-lg-0">
+            <BrandLockup />
+            <p className="copyrights mt-4 mb-0 footer-description">
+              Warehouse operations platform for high-volume online sellers who need tighter inventory control,
+              fewer packing mistakes, and video evidence for every order.
+            </p>
+          </div>
+          <div className="col-lg-7 col-md-12">
+            <ul className="footer-links">
+              {footerItems.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href}>{item.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </footer>
   );
 }
 
-export function SiteLayout({ children }: { children: React.ReactNode }) {
+export function HomePageContent() {
   return (
-    <div className="min-h-screen bg-[#f7f4ee] text-slate-950">
-      <div className="bg-[radial-gradient(circle_at_top_left,_rgba(11,107,203,0.12),_transparent_38%),radial-gradient(circle_at_bottom_right,_rgba(232,115,49,0.10),_transparent_28%)]">
-        <SiteHeader />
-        <main>{children}</main>
-      </div>
-      <SiteFooter />
-    </div>
-  );
-}
-
-function HeroAction({ href, label, primary }: { href: string; label: string; primary?: boolean }) {
-  const className = `inline-flex rounded-full px-5 py-3 text-sm font-semibold transition ${
-    primary
-      ? "bg-[#e87331] text-white hover:bg-[#cf5f20]"
-      : "border border-slate-900/12 bg-white text-slate-900 hover:border-slate-900/25"
-  }`;
-
-  if (href.startsWith("#")) {
-    return (
-      <a href={href} className={className}>
-        {label}
-      </a>
-    );
-  }
-
-  return (
-    <Link href={href} className={className}>
-      {label}
-    </Link>
-  );
-}
-
-function PageHero({ pageKey }: { pageKey: PageKey }) {
-  const data = pageData[pageKey];
-
-  return (
-    <section className="px-4 pb-8 pt-14 sm:px-6 lg:px-8 lg:pb-12 lg:pt-18">
-      <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0b6bcb]">{data.eyebrow}</p>
-          <h1 className="mt-4 whitespace-pre-line text-4xl font-semibold leading-tight text-slate-950 md:text-6xl">
-            {data.headline}
-          </h1>
-          <p className="mt-6 max-w-3xl whitespace-pre-line text-base leading-8 text-slate-700">{data.intro}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            {data.primaryCta ? <HeroAction href={data.primaryCta.href} label={data.primaryCta.label} primary /> : null}
-            {data.secondaryCta ? <HeroAction href={data.secondaryCta.href} label={data.secondaryCta.label} /> : null}
-          </div>
-        </div>
-        <HeroPanel pageKey={pageKey} />
-      </div>
-    </section>
-  );
-}
-
-function HeroPanel({ pageKey }: { pageKey: PageKey }) {
-  if (pageKey === "home") {
-    return (
-      <div className="rounded-[2rem] border border-slate-900/10 bg-[#111827] p-6 text-white shadow-[0_30px_80px_rgba(15,23,42,0.18)]">
-        <div className="grid gap-4 sm:grid-cols-2">
-          <PanelStat label="Inventory Control" value="คุม stock ให้ตรง" />
-          <PanelStat label="Packing Verification" value="ลดการแพ็คผิด" />
-          <PanelStat label="Video Evidence" value="มีทุก Order" />
-          <PanelStat label="Marketplace Disputes" value="ตอบเคสได้เร็วขึ้น" />
-        </div>
-        <div className="mt-5 rounded-2xl bg-white/8 p-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8dc0f4]">Highlight</p>
-          <p className="mt-2 text-2xl font-semibold">แพ็คของแล้ว ต้องมีหลักฐาน</p>
-          <p className="mt-3 text-sm leading-7 text-slate-300">
-            เวลาลูกค้าเคลม คุณเปิดวิดีโอหลักฐานตาม Order ได้ทันที เพื่อดูว่าใส่อะไรลงกล่อง ใครเป็นคนแพ็ค และแพ็คเวลาไหน
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="rounded-[2rem] border border-slate-900/10 bg-white p-6 shadow-[0_30px_80px_rgba(15,23,42,0.12)]">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0b6bcb]">Built for daily operations</p>
-      <div className="mt-5 grid gap-3">
-        {solutionOverview.slice(0, 4).map((item) => (
-          <div key={item.title} className="rounded-2xl border border-slate-900/8 bg-[#f8fafc] p-4">
-            <p className="text-sm font-semibold text-slate-950">{item.title}</p>
-            <p className="mt-2 text-sm leading-7 text-slate-600">{item.description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function PanelStat({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-2xl border border-white/10 bg-white/6 p-4">
-      <p className="text-xs uppercase tracking-[0.16em] text-slate-400">{label}</p>
-      <p className="mt-2 text-lg font-semibold">{value}</p>
-    </div>
-  );
-}
-
-function SectionIntro({
-  eyebrow,
-  title,
-  body,
-}: {
-  eyebrow?: string;
-  title: string;
-  body?: string;
-}) {
-  return (
-    <div className="max-w-3xl">
-      {eyebrow ? (
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0b6bcb]">{eyebrow}</p>
-      ) : null}
-      <h2 className="mt-3 text-3xl font-semibold leading-tight text-slate-950 md:text-4xl">{title}</h2>
-      {body ? <p className="mt-4 whitespace-pre-line text-base leading-8 text-slate-700">{body}</p> : null}
-    </div>
-  );
-}
-
-function FeatureGrid({ items }: { items: FeatureCard[] }) {
-  return (
-    <div className="grid gap-5 md:grid-cols-2">
-      {items.map((item) => (
-        <article key={item.title} className="rounded-[1.6rem] border border-slate-900/8 bg-white p-6 shadow-sm">
-          <h3 className="text-xl font-semibold text-slate-950">{item.title}</h3>
-          <p className="mt-3 text-sm leading-7 text-slate-700">{item.description}</p>
-        </article>
-      ))}
-    </div>
-  );
-}
-
-function BulletList({ items }: { items: string[] }) {
-  return (
-    <ul className="grid gap-3">
-      {items.map((item) => (
-        <li
-          key={item}
-          className="rounded-2xl border border-slate-900/8 bg-white px-5 py-4 text-sm leading-7 text-slate-700"
-        >
-          {item}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function TrustedStrip() {
-  return (
-    <section className="px-4 py-6 sm:px-6 lg:px-8">
-      <div className="mx-auto w-full max-w-7xl rounded-[1.8rem] border border-slate-900/8 bg-white p-6">
-        <p className="text-sm font-medium text-slate-600">
-          Trusted by fast-growing online sellers and fulfillment teams
-        </p>
-        <p className="mt-2 text-sm leading-7 text-slate-700">
-          ร้านค้าออนไลน์และคลัง fulfillment ใช้ Packiko เพื่อคุม Stock และลดปัญหาการแพ็คผิด
-        </p>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {trustedBy.map((item) => (
-            <div key={item} className="rounded-full bg-[#f8fafc] px-4 py-3 text-sm font-medium text-slate-700">
-              {item}
+    <>
+      <section id="home" className="packiko-hero cursor-light">
+        <div className="hero-shape hero-shape-one" />
+        <div className="hero-shape hero-shape-two" />
+        <div className="container position-relative">
+          <div className="row min-vh-100 align-items-center">
+            <div className="col-lg-6 col-md-12 wow fadeInLeft" data-wow-delay="300ms">
+              <p className="hero-eyebrow">Packiko by ThaiCloud</p>
+              <h1>ขายวันละหลายร้อยออเดอร์<br />แต่คลังยังคุมอยู่</h1>
+              <p className="hero-copy">
+                Packiko ช่วยร้านออนไลน์คุม Stock ลดแพ็คผิด และมีวิดีโอหลักฐานทุก Order
+                <br />
+                <br />
+                เวลาลูกค้าเคลม เปิดดูตาม Order ได้ทันที
+                <br />
+                <br />
+                ใช้ได้กับ Shopee • Lazada • TikTok Shop
+              </p>
+              <div className="hero-actions">
+                <Link href="/book-demo" className="btn-setting color-black btn-hvr-up btn-blue btn-hvr-yellow text-white">
+                  Book Demo
+                </Link>
+                <a href="#video-evidence" className="btn-setting color-black btn-hvr-up btn-transparent-black">
+                  ดูระบบทำงาน
+                </a>
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function HomeProblemSection() {
-  return (
-    <section className="px-4 py-10 sm:px-6 lg:px-8">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
-        <SectionIntro
-          eyebrow="Problems"
-          title="ร้านออนไลน์ที่ขายดี มักเจอปัญหาเดียวกัน"
-          body="พอออเดอร์เริ่มเยอะ
-
-Stock เริ่มไม่ตรง
-ทีมแพ็คเริ่มหยิบผิด
-ลูกค้าเริ่มเคลมว่าได้ของไม่ครบ
-
-บางครั้งต้องคืนเงิน
-ทั้งที่ร้านแพ็คถูก
-
-Packiko ช่วยให้ร้านค้าคุมคลังได้ง่ายขึ้น
-และมีหลักฐานทุก Order"
-        />
-        <FeatureGrid items={problemCards} />
-      </div>
-    </section>
-  );
-}
-
-function HomeSolutionOverview() {
-  return (
-    <section id="solution" className="px-4 py-10 sm:px-6 lg:px-8">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
-        <SectionIntro
-          eyebrow="Solution"
-          title="Packiko ช่วยให้คุณคุมคลังได้จริง"
-          body="Packiko รวมเครื่องมือที่ทีมคลังต้องใช้จริงไว้ในที่เดียว ทั้งคุม stock ลดการแพ็คผิด เก็บวิดีโอหลักฐาน และดูภาพรวมงานแพ็คได้จาก dashboard"
-        />
-        <FeatureGrid items={solutionOverview} />
-      </div>
-    </section>
-  );
-}
-
-function HomeVideoEvidenceSection() {
-  return (
-    <section className="px-4 py-10 sm:px-6 lg:px-8">
-      <div className="mx-auto w-full max-w-7xl">
-        <article className="rounded-[1.8rem] border border-slate-900/8 bg-white p-7 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0b6bcb]">Video Evidence</p>
-          <h2 className="mt-3 text-3xl font-semibold text-slate-950">แพ็คของแล้ว ต้องมีหลักฐาน</h2>
-          <p className="mt-4 whitespace-pre-line text-base leading-8 text-slate-700">
-            เวลาลูกค้าเคลมว่า
-
-            ได้ของไม่ครบ
-            ไม่ได้ของ
-            ได้ของผิด
-
-            คุณสามารถเปิด
-
-            วิดีโอหลักฐานระหว่างแพ็ค
-
-            ดูได้ทันทีว่า
-
-            ใส่อะไรลงกล่อง
-            ใครเป็นคนแพ็ค
-            แพ็คเวลาไหน
-          </p>
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
-            <PanelStat label="ตรวจสอบได้" value="ใส่อะไรลงกล่อง" />
-            <PanelStat label="ตรวจสอบได้" value="ใครเป็นคนแพ็ค" />
-            <PanelStat label="ตรวจสอบได้" value="แพ็คเวลาไหน" />
-          </div>
-        </article>
-      </div>
-    </section>
-  );
-}
-
-function HomeFeatureDetailSection({
-  eyebrow,
-  title,
-  body,
-}: {
-  eyebrow: string;
-  title: string;
-  body: string;
-}) {
-  return (
-    <section className="px-4 py-10 sm:px-6 lg:px-8">
-      <div className="mx-auto w-full max-w-7xl rounded-[1.8rem] border border-slate-900/8 bg-white p-7 shadow-sm">
-        <SectionIntro eyebrow={eyebrow} title={title} body={body} />
-      </div>
-    </section>
-  );
-}
-
-function HomeResults() {
-  return (
-    <section className="px-4 py-10 sm:px-6 lg:px-8">
-      <div className="mx-auto grid w-full max-w-7xl gap-5 rounded-[2rem] bg-[#0b6bcb] p-8 text-white lg:grid-cols-[0.95fr_1.05fr]">
-        <SectionIntro
-          eyebrow="Stats"
-          title="ผลลัพธ์ที่ร้านค้าเห็นจริง"
-          body="Packiko ช่วยให้ทีมแพ็คทำงานนิ่งขึ้น คุมความผิดพลาดได้ดีขึ้น และมีหลักฐานพร้อมใช้ทุก Order"
-        />
-        <div className="grid gap-3 sm:grid-cols-2">
-          {customerOutcomes.map((item) => (
-            <div key={item} className="rounded-2xl bg-white/10 px-5 py-4 text-sm font-medium">
-              {item}
+            <div className="col-lg-6 col-md-12 wow fadeInRight" data-wow-delay="400ms">
+              <div className="packiko-hero-panel">
+                <div className="hero-panel-top">
+                  <span className="panel-chip">Warehouse platform</span>
+                  <span className="panel-chip">Video evidence</span>
+                </div>
+                <div className="hero-panel-video">
+                  <div className="video-frame-header">
+                    <span>Order PK-240318</span>
+                    <span>14:28</span>
+                  </div>
+                  <div className="video-frame-body">
+                    <div className="scan-column">
+                      <span className="scan-label">Packing verification</span>
+                      <strong>แพ็คครบ ตรวจสอบได้</strong>
+                      <p>เห็นขั้นตอนแพ็คและย้อนดูหลักฐานได้จาก Order เดียวกัน</p>
+                    </div>
+                    <div className="timeline-column">
+                      <div className="timeline-dot" />
+                      <div className="timeline-line" />
+                    </div>
+                    <div className="evidence-column">
+                      <span className="metric">Stock status</span>
+                      <strong>พร้อมหยิบ</strong>
+                      <span className="metric">Packed by</span>
+                      <strong>Table 03 / Mint</strong>
+                    </div>
+                  </div>
+                </div>
+                <div className="hero-panel-stats">
+                  {stats.map((item) => (
+                    <div key={item.label} className="hero-mini-stat">
+                      <strong>{item.value}</strong>
+                      <span>{item.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
-      </div>
-    </section>
-  );
-}
+      </section>
 
-function HomeTestimonialsSection() {
-  return (
-    <section className="px-4 py-10 sm:px-6 lg:px-8">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
-        <SectionIntro eyebrow="Testimonials" title="เสียงจากร้านค้าที่ใช้ Packiko" />
-        <div className="grid gap-5 md:grid-cols-2">
-          {homepageTestimonials.map((item) => (
-            <article
-              key={`${item.author}-${item.role}`}
-              className="rounded-[1.6rem] border border-slate-900/8 bg-white p-6 shadow-sm"
-            >
-              <p className="text-base leading-8 text-slate-700">&ldquo;{item.quote}&rdquo;</p>
-              <p className="mt-4 text-sm font-semibold text-slate-950">{item.author}</p>
-              <p className="text-sm text-slate-600">{item.role}</p>
-            </article>
-          ))}
+      <section className="packiko-strip">
+        <div className="container">
+          <div className="audience-strip wow fadeInUp" data-wow-delay="300ms">
+            <div className="row align-items-center">
+              <div className="col-lg-5">
+                <h5>Trusted by fast-growing online sellers and fulfillment teams</h5>
+                <p>ร้านค้าออนไลน์และคลัง fulfillment ใช้ Packiko เพื่อคุม Stock และลดปัญหาการแพ็คผิด</p>
+              </div>
+              <div className="col-lg-7">
+                <div className="audience-pill-list">
+                  {audienceStrip.map((item) => (
+                    <span className="audience-pill" key={item}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-  );
-}
+      </section>
 
-function HomePricingSection() {
-  return (
-    <section className="px-4 py-10 sm:px-6 lg:px-8">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
-        <SectionIntro
-          eyebrow="Pricing"
-          title="ราคาที่ร้านค้าออนไลน์ใช้ได้จริง"
-          body="เราออกแบบ Packiko ให้ร้านค้าออนไลน์ ใช้ระบบจัดการคลังได้โดยไม่ต้องลงทุนแพงแบบ enterprise"
-        />
-        <div className="grid gap-5 lg:grid-cols-3">
-          {pricingTiers.map((tier) => (
-            <article
-              key={tier.name}
-              className={`rounded-[1.8rem] border p-7 shadow-sm ${
-                tier.featured
-                  ? "border-[#0b6bcb]/30 bg-[#0b6bcb] text-white"
-                  : "border-slate-900/8 bg-white text-slate-950"
-              }`}
-            >
-              <p
-                className={`text-sm font-semibold uppercase tracking-[0.16em] ${
-                  tier.featured ? "text-white/70" : "text-[#0b6bcb]"
-                }`}
-              >
-                {tier.name}
-              </p>
-              <p className={`mt-4 text-sm leading-7 ${tier.featured ? "text-white/85" : "text-slate-700"}`}>
-                {tier.description}
-              </p>
-              <ul className="mt-6 grid gap-3">
-                {tier.highlights.map((item) => (
-                  <li
-                    key={item}
-                    className={`rounded-2xl px-4 py-3 text-sm ${
-                      tier.featured ? "bg-white/10" : "bg-[#f8fafc]"
-                    }`}
-                  >
-                    {item}
-                  </li>
+      <section className="about pb-0 overflow-visible" id="problems">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <SectionHeading
+                eyebrow="Common pain points"
+                title="ร้านออนไลน์ที่ขายดี <span class='color-pink'>มักเจอปัญหาเดียวกัน</span>"
+                body="พอออเดอร์เริ่มเยอะขึ้น งานหลังบ้านจะเริ่มพลาดง่ายขึ้น ทั้ง stock ไม่ตรง แพ็คผิด และตอบเคสลูกค้าได้ช้าลงเพราะไม่มีหลักฐาน"
+                centered
+              />
+            </div>
+          </div>
+          <div className="row mt-66px">
+            {problemCards.map((item, index) => (
+              <FeatureCard
+                key={item.title}
+                title={item.title}
+                description={item.description}
+                accent={["bg-blue", "bg-yellow", "bg-pink", "bg-black"][index] ?? "bg-blue"}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="solutions" className="bg-light-gray packiko-section">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <SectionHeading
+                eyebrow="Platform overview"
+                title="Packiko ช่วยให้คุณ<span class='color-blue'>คุมคลังได้จริง</span>"
+                body="Packiko รวมเครื่องมือที่ทีมคลังต้องใช้จริงไว้ในที่เดียว ทั้งคุม stock ลดการแพ็คผิด เก็บวิดีโอหลักฐาน และดูภาพรวมงานแพ็คได้จาก dashboard"
+                centered
+              />
+            </div>
+          </div>
+          <div className="row mt-66px">
+            {solutionCards.map((item, index) => (
+              <div className="col-lg-6 col-md-6 col-sm-12 mb-4" key={item.title}>
+                <div className={`solution-box wow fadeInUp accent-${index + 1}`} data-wow-delay={`${300 + index * 100}ms`}>
+                  <span className="solution-count">0{index + 1}</span>
+                  <h4>{item.title}</h4>
+                  <p>{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="video-evidence" className="half-section p-0 bg-change bg-yellow">
+        <div className="container-fluid">
+          <div className="row align-items-center">
+            <div className="col-lg-6 col-md-12 p-0">
+              <div className="hover-effect packiko-media-panel">
+                <img alt="Video evidence placeholder" src="/creative-studio/img/work5.jpg" className="about-img" />
+                <div className="media-overlay-card">
+                  <p className="media-kicker">Video evidence</p>
+                  <h4>ค้นหาได้ตาม Order Number, เวลา และพนักงาน</h4>
+                  <ul>
+                    {videoSearchKeys.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-6 col-md-12 p-lg-0">
+              <div className="split-container-setting style-three text-center text-lg-left">
+                <SectionHeading
+                  eyebrow="Most important proof layer"
+                  title="วิดีโอหลักฐานระหว่างแพ็คทุก <span class='color-pink'>Order</span>"
+                  body="ทุกครั้งที่มีการแพ็คสินค้า ระบบจะบันทึกวิดีโอไว้เป็นหลักฐาน และค้นหาได้ทันทีจาก Order Number, เวลา และพนักงานที่แพ็ค"
+                />
+                <div className="evidence-search-list">
+                  {videoSearchKeys.map((item) => (
+                    <div className="evidence-search-item" key={item}>
+                      {item}
+                    </div>
+                  ))}
+                </div>
+                <p className="color-black mt-4 mb-0">
+                  เวลาลูกค้าเคลมหรือมี dispute คุณเปิดวิดีโอของ Order นั้นได้เลย เพื่อเช็กว่าแพ็คอะไรไป
+                  ใครเป็นคนแพ็ค และใช้เป็นหลักฐานได้ทันที
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="platform" className="about overflow-visible">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-6 pr-lg-5 mb-5 mb-lg-0 wow fadeInLeft" data-wow-delay="300ms">
+              <div className="rare-box" />
+              <img src="/creative-studio/img/about.jpg" className="about-img-small position-relative w-100" alt="Inventory control placeholder" />
+            </div>
+            <div className="col-lg-6 pl-lg-5">
+              <SectionHeading
+                eyebrow="Inventory feature"
+                title="คุม Stock ให้<span class='color-blue'>ตรงมากขึ้น</span>"
+                body="เห็น stock ชัดขึ้น ลดของหาย ลด oversell และช่วยให้ทีมรู้สถานะสินค้าในคลังได้เร็วกว่าเดิม"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="half-section p-0 bg-light-gray" id="packing-verification">
+        <div className="container-fluid">
+          <div className="row align-items-center flex-lg-row-reverse">
+            <div className="col-lg-6 col-md-12 p-0">
+              <div className="hover-effect">
+                <img alt="Packing verification placeholder" src="/creative-studio/img/work2.jpg" className="about-img" />
+              </div>
+            </div>
+            <div className="col-lg-6 col-md-12 p-lg-0">
+              <div className="split-container-setting text-center text-lg-left">
+                <SectionHeading
+                  eyebrow="Packing verification"
+                  title="ลดการ<span class='color-pink'>แพ็คผิด</span>"
+                  body="ทำให้ขั้นตอนหยิบและแพ็คตรวจสอบได้ชัดขึ้น ลดการหยิบผิด ส่งผิด หรือแพ็คไม่ครบในช่วงออเดอร์พุ่ง"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="parallax-setting parallaxie parallax1 packiko-stats">
+        <div className="container">
+          <div className="row align-items-end">
+            <div className="col-lg-5 mb-5 mb-lg-0">
+              <SectionHeading
+                eyebrow="Results"
+                title="ตัวเลขที่ทีมเห็นจาก<span class='color-yellow'>การใช้งานจริง</span>"
+                body="Packiko ช่วยให้ทีมแพ็คทำงานนิ่งขึ้น คุมความผิดพลาดได้ดีขึ้น และมีหลักฐานพร้อมใช้ทุก Order"
+              />
+            </div>
+            <div className="col-lg-7">
+              <div className="row">
+                {stats.map((item, index) => (
+                  <div className="col-md-4 col-sm-6 mb-4" key={item.label}>
+                    <div className="stats-box wow fadeInUp" data-wow-delay={`${300 + index * 100}ms`}>
+                      <h3>{item.value}</h3>
+                      <p>{item.label}</p>
+                    </div>
+                  </div>
                 ))}
-              </ul>
-              <Link
-                href="/book-demo"
-                className={`mt-7 inline-flex rounded-full px-5 py-3 text-sm font-semibold transition ${
-                  tier.featured
-                    ? "bg-white text-[#0b6bcb] hover:bg-slate-100"
-                    : "bg-[#111827] text-white hover:bg-slate-800"
-                }`}
-              >
-                {tier.cta}
-              </Link>
-            </article>
-          ))}
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-  );
-}
+      </section>
 
-function HomeFaqSection() {
-  return (
-    <section className="px-4 py-10 sm:px-6 lg:px-8">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 rounded-[1.8rem] border border-slate-900/8 bg-white p-7 shadow-sm">
-        <SectionIntro eyebrow="FAQ" title="คำถามที่ทีมมักถามก่อนเริ่มใช้" />
-        <div className="grid gap-4">
-          {faqs.map((item) => (
-            <article key={item.question} className="rounded-2xl bg-[#f8fafc] px-5 py-5">
-              <h3 className="text-lg font-semibold text-slate-950">{item.question}</h3>
-              <p className="mt-2 text-sm leading-7 text-slate-700">{item.answer}</p>
-            </article>
-          ))}
+      <section id="customers" className="bg-white packiko-section">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <SectionHeading
+                eyebrow="Customers"
+                title="ร้านค้าและ fulfillment teams <span class='color-pink'>ที่ใช้ Packiko</span>"
+                body="เหมาะกับทีมที่ต้องรันออเดอร์จำนวนมากต่อวัน และต้องการระบบที่ช่วยคุมหน้างานได้จริง"
+                centered
+              />
+            </div>
+          </div>
+          <div className="row mt-66px">
+            {useCases.map((item, index) => (
+              <div className="col-lg-6 col-md-6 mb-4" key={item.title}>
+                <div className={`use-case-card wow fadeInUp tone-${index + 1}`} data-wow-delay={`${300 + index * 100}ms`}>
+                  <span className="use-case-label">Use case 0{index + 1}</span>
+                  <h4>{item.title}</h4>
+                  <p>{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  );
-}
+      </section>
 
-function FinalCta() {
-  return (
-    <section className="px-4 pb-16 pt-8 sm:px-6 lg:px-8">
-      <div className="mx-auto flex w-full max-w-7xl flex-col items-start gap-6 rounded-[2rem] border border-slate-900/8 bg-white p-8 shadow-sm">
-        <SectionIntro
-          title="ถ้าคลังเริ่มคุมยาก ถึงเวลาต้องมี Packiko"
-          body="ลด Stock ไม่ตรง
-ลดการแพ็คผิด
-มีหลักฐานทุก Order"
-        />
-        <HeroAction href="/book-demo" label="Book Demo" primary />
-      </div>
-    </section>
-  );
-}
+      <section id="pricing" className="bg-light-gray pricing-padding">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <SectionHeading
+                eyebrow="Pricing"
+                title="เลือกแพ็กที่เหมาะกับ<span class='color-pink'>ทีมของคุณ</span>"
+                body="เริ่มจากแพ็กที่พอดีกับ operation ปัจจุบัน แล้วค่อยขยายเมื่อทีมต้องการ workflow และการควบคุมเพิ่มขึ้น"
+                centered
+              />
+            </div>
+          </div>
+          <div className="row mt-66px mt-xs-4rem">
+            {pricingPlans.map((plan, index) => (
+              <div className="col-lg-4 col-md-6 col-sm-12 text-center mb-xs-5 wow fadeInUp" data-wow-delay={`${300 + index * 100}ms`} key={plan.name}>
+                <div className={`pricing-item ${plan.featured ? "price-transform hvr-bg-yellow packiko-price-featured" : "hvr-bg-blue"}`}>
+                  {plan.featured ? <div className="quarter-triangle" /> : null}
+                  <div className="price-box clearfix">
+                    <div className="price_title">
+                      <h4 className="text-capitalize">{plan.name}</h4>
+                    </div>
+                  </div>
+                  <div className="price plan-intro">
+                    <p>{plan.description}</p>
+                  </div>
+                  <div className="price-description">
+                    {plan.features.map((feature) => (
+                      <p key={feature}>{feature}</p>
+                    ))}
+                  </div>
+                  <div className="text-center">
+                    <Link href="/book-demo" className="btn-setting color-black btn-hvr-up btn-blue btn-hvr-white">
+                      Book Demo
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-function GenericPageSection({
-  title,
-  body,
-  cards,
-  bullets,
-}: {
-  title: string;
-  body?: string;
-  cards?: FeatureCard[];
-  bullets?: string[];
-}) {
-  return (
-    <section className="px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 rounded-[1.8rem] border border-slate-900/8 bg-white p-7 shadow-sm">
-        <SectionIntro title={title} body={body} />
-        {cards ? <FeatureGrid items={cards} /> : null}
-        {bullets ? <BulletList items={bullets} /> : null}
-      </div>
-    </section>
-  );
-}
+      <section id="faq" className="packiko-section bg-white">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <SectionHeading
+                eyebrow="FAQ"
+                title="คำถามที่ทีมมักถาม<span class='color-blue'>ก่อนเริ่มใช้</span>"
+                centered
+              />
+            </div>
+          </div>
+          <div className="row mt-66px">
+            {faqs.map((item, index) => (
+              <div className="col-lg-6 col-md-6 mb-4" key={item.question}>
+                <div className="faq-card wow fadeInUp" data-wow-delay={`${300 + index * 100}ms`}>
+                  <h4>{item.question}</h4>
+                  <p>{item.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-function PlatformPage() {
-  return (
-    <>
-      <PageHero pageKey="platform" />
-      <GenericPageSection
-        title="Platform Overview"
-        body="รวมระบบสำคัญของคลังไว้ในที่เดียว ทั้ง Inventory Control, Packing Verification, วิดีโอหลักฐานระหว่างแพ็ค และ Operations Dashboard"
-        cards={platformCapabilities}
-      />
-      <GenericPageSection
-        title="Designed for warehouse teams"
-        bullets={[
-          "ควบคุม stock แบบ real-time",
-          "ลดการแพ็คผิดด้วย workflow ที่ตรวจสอบได้",
-          "ค้นหาหลักฐานของแต่ละ Order ได้ทันที",
-          "เห็นภาพรวมการทำงานของคลังในหน้าเดียว",
-          "เชื่อมต่อกับระบบ eCommerce และ ERP",
-        ]}
-      />
-      <FinalCta />
-    </>
-  );
-}
-
-function SolutionsPage() {
-  return (
-    <>
-      <PageHero pageKey="solutions" />
-      <GenericPageSection title="Solutions" cards={solutionAudiences} />
-      <GenericPageSection
-        title="What ThaiCloud helps teams do"
-        bullets={[
-          "คุม Stock ให้ตรง",
-          "ลดการแพ็คผิด",
-          "แก้ dispute กับลูกค้าได้เร็วขึ้น",
-          "ทำให้ workflow การแพ็คชัดเจนและตรวจสอบได้",
-        ]}
-      />
-      <FinalCta />
-    </>
-  );
-}
-
-function CustomersPage() {
-  return (
-    <>
-      <PageHero pageKey="customers" />
-      <GenericPageSection
-        title="Outcomes"
-        body="ลูกค้าหลายรายใช้ ThaiCloud เพื่อลดการแพ็คผิด ลดเวลาหาหลักฐาน และคุมคลังได้ดีขึ้น"
-        bullets={customerOutcomes}
-      />
-      <GenericPageSection
-        title="Why operations teams stay with ThaiCloud"
-        bullets={[
-          "ตอบเคส dispute ได้เร็วขึ้น",
-          "ตรวจสอบงานแพ็คย้อนหลังได้จาก Order",
-          "คุม workflow ได้ชัดขึ้นในช่วงออเดอร์พุ่ง",
-          "ลดงานตามหาหลักฐานของทีมหลังบ้าน",
-        ]}
-      />
-      <FinalCta />
-    </>
-  );
-}
-
-function ResourcesPage() {
-  return (
-    <>
-      <PageHero pageKey="resources" />
-      <GenericPageSection title="Guides" cards={resourceGuides} />
-      <FinalCta />
-    </>
-  );
-}
-
-function PricingPage() {
-  return (
-    <>
-      <PageHero pageKey="pricing" />
-      <section className="px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mx-auto grid w-full max-w-7xl gap-5 lg:grid-cols-3">
-          {pricingTiers.map((tier) => (
-            <article
-              key={tier.name}
-              className={`rounded-[1.8rem] border p-7 shadow-sm ${
-                tier.featured
-                  ? "border-[#0b6bcb]/30 bg-[#0b6bcb] text-white"
-                  : "border-slate-900/8 bg-white text-slate-950"
-              }`}
-            >
-              <p className={`text-sm font-semibold uppercase tracking-[0.16em] ${tier.featured ? "text-white/70" : "text-[#0b6bcb]"}`}>
-                {tier.name}
-              </p>
-              <p className={`mt-4 text-sm leading-7 ${tier.featured ? "text-white/85" : "text-slate-700"}`}>{tier.description}</p>
-              <ul className="mt-6 grid gap-3">
-                {tier.highlights.map((item) => (
-                  <li key={item} className={`rounded-2xl px-4 py-3 text-sm ${tier.featured ? "bg-white/10" : "bg-[#f8fafc]"}`}>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/book-demo"
-                className={`mt-7 inline-flex rounded-full px-5 py-3 text-sm font-semibold transition ${
-                  tier.featured
-                    ? "bg-white text-[#0b6bcb] hover:bg-slate-100"
-                    : "bg-[#111827] text-white hover:bg-slate-800"
-                }`}
-              >
-                {tier.cta}
+      <section id="final-cta" className="packiko-final-cta">
+        <div className="container">
+          <div className="cta-panel wow fadeInUp" data-wow-delay="300ms">
+            <SectionHeading
+              eyebrow="Book a demo"
+              title="ดูว่า Packiko ช่วยให้คุณ<span class='color-yellow'>คุมคลังได้ง่ายขึ้นยังไง</span>"
+              centered
+            />
+            <div className="text-center mt-4">
+              <Link href="/book-demo" className="btn-setting color-black btn-hvr-up btn-yellow btn-hvr-pink text-white">
+                Book Demo
               </Link>
-            </article>
-          ))}
+            </div>
+          </div>
         </div>
       </section>
     </>
   );
 }
 
-function AboutPage() {
+export function SimplePageContent({ slug }: { slug: string }) {
+  const page = simplePages[slug];
+
   return (
     <>
-      <PageHero pageKey="about" />
-      <GenericPageSection
-        title="What ThaiCloud stands for"
-        body="ThaiCloud ถูกสร้างมาเพื่อช่วยผู้ขายออนไลน์และทีม fulfillment แก้ปัญหาคลังที่เกิดขึ้นจริงทุกวัน ไม่ว่าจะเป็น stock ไม่ตรง การแพ็คผิด หรือการหาหลักฐานเมื่อเกิดเคสเคลม"
-        bullets={[
-          "ควบคุมงานคลังให้แม่นขึ้น",
-          "ทำให้การทำงานของทีมตรวจสอบได้ง่ายขึ้น",
-          "ช่วยตอบปัญหากับ marketplace ได้เร็วขึ้น",
-        ]}
-      />
-      <FinalCta />
-    </>
-  );
-}
-
-function CaseStudiesPage() {
-  return (
-    <>
-      <PageHero pageKey="caseStudies" />
-      <GenericPageSection
-        title="ผลลัพธ์ที่ลูกค้ามองหา"
-        body="ร้านค้าและทีม fulfillment มักเริ่มต้นจากปัญหาเดียวกัน แล้วใช้ ThaiCloud เพื่อทำให้การทำงานหลังบ้านมีหลักฐานและควบคุมได้มากขึ้น"
-        cards={[
-          {
-            title: "ลดการแพ็คผิด",
-            description: "ทำให้ทีมแพ็คมี workflow ที่ชัดเจนและลดค่าเสียหายจากการส่งผิดหรือแพ็คไม่ครบ",
-          },
-          {
-            title: "ลดเวลาหาหลักฐาน",
-            description: "ค้นหาวิดีโอของ Order ได้เร็วขึ้นเมื่อเกิด dispute หรือเคสลูกค้าเคลม",
-          },
-          {
-            title: "คุมคลังได้ดีขึ้น",
-            description: "เห็นสถานะ stock และงานที่กำลังเกิดขึ้นในคลังได้ง่ายขึ้น",
-          },
-        ]}
-      />
-      <FinalCta />
-    </>
-  );
-}
-
-function ContactPage() {
-  return (
-    <>
-      <PageHero pageKey="contact" />
-      <GenericPageSection
-        title="How to reach us"
-        bullets={[
-          "Book a Demo เพื่อคุยกับทีมเรื่อง workflow, stock control และเคส dispute ของคุณ",
-          "ใช้หน้า Demo Request เพื่อส่งรายละเอียดเบื้องต้นของ operation ปัจจุบัน",
-          "ทีมจะใช้ข้อมูลนั้นเพื่อเตรียมเดโมให้ตรงกับปัญหาที่คุณกำลังเจอ",
-        ]}
-      />
-      <FinalCta />
-    </>
-  );
-}
-
-function PrivacyPage() {
-  return (
-    <>
-      <PageHero pageKey="privacy" />
-      <GenericPageSection
-        title="Privacy Principles"
-        bullets={[
-          "เก็บข้อมูลเท่าที่จำเป็นต่อการให้บริการ",
-          "ใช้ข้อมูลเพื่อสนับสนุนการทำงานของระบบและการให้บริการลูกค้า",
-          "ปกป้องข้อมูลการใช้งานและข้อมูลการปฏิบัติงานในคลังด้วยมาตรการที่เหมาะสม",
-          "จำกัดการเข้าถึงข้อมูลตามบทบาทของผู้ใช้งานและทีมที่เกี่ยวข้อง",
-        ]}
-      />
-    </>
-  );
-}
-
-function TermsPage() {
-  return (
-    <>
-      <PageHero pageKey="terms" />
-      <GenericPageSection
-        title="Terms of Use"
-        bullets={[
-          "การใช้งานแพลตฟอร์มต้องเป็นไปตามขอบเขตบริการที่ตกลงกัน",
-          "ผู้ใช้งานต้องดูแลบัญชีและสิทธิ์เข้าถึงของทีมงานภายในองค์กร",
-          "ข้อมูลและเนื้อหาที่บันทึกในระบบยังคงเป็นความรับผิดชอบของผู้ใช้งานตามข้อตกลงที่เกี่ยวข้อง",
-          "ThaiCloud อาจปรับปรุงบริการเพื่อเพิ่มประสิทธิภาพ ความปลอดภัย และความเสถียรของระบบ",
-        ]}
-      />
-    </>
-  );
-}
-
-function DemoForm() {
-  return (
-    <section id="demo-form" className="px-4 pb-16 pt-8 sm:px-6 lg:px-8">
-      <div className="mx-auto grid w-full max-w-7xl gap-8 rounded-[2rem] border border-slate-900/8 bg-white p-7 shadow-sm lg:grid-cols-[0.9fr_1.1fr]">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0b6bcb]">Demo includes</p>
-          <h2 className="mt-3 text-3xl font-semibold text-slate-950">ดูระบบที่ช่วยให้คลังคุมงานได้ชัดขึ้น</h2>
-          <ul className="mt-6 grid gap-3">
-            {["Inventory Control", "Packing Workflow", "วิดีโอหลักฐานระหว่างแพ็ค", "Dashboard"].map((item) => (
-              <li key={item} className="rounded-2xl bg-[#f8fafc] px-4 py-3 text-sm text-slate-700">
-                {item}
-              </li>
-            ))}
-          </ul>
-          <div className="mt-6 rounded-2xl bg-[#111827] p-5 text-sm leading-7 text-slate-300">
-            ThaiCloud ช่วยร้านที่ขายผ่าน {marketplaceList.join(" • ")} จัดการเคส dispute ได้เร็วขึ้นด้วยข้อมูลและวิดีโอหลักฐานระหว่างแพ็ค
+      <section className="packiko-inner-hero">
+        <div className="container">
+          <div className="row min-vh-75 align-items-center">
+            <div className="col-lg-8 mx-auto text-center wow fadeInUp" data-wow-delay="300ms">
+              <p className="hero-eyebrow">{page.eyebrow}</p>
+              <h1>{page.title}</h1>
+              <p className="hero-copy mb-0">{page.intro}</p>
+            </div>
           </div>
         </div>
-        <form className="grid gap-3">
-          <FormField label="Name" name="name" type="text" />
-          <FormField label="Company" name="company" type="text" />
-          <FormField label="Email" name="email" type="email" />
-          <FormField label="Monthly Orders" name="monthly-orders" type="text" />
-          <label className="text-sm font-medium text-slate-800" htmlFor="message">
-            Message
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            rows={5}
-            className="rounded-2xl border border-slate-900/12 px-4 py-3 text-sm text-slate-900 outline-none ring-[#0b6bcb] focus:ring-2"
-          />
-          <button
-            type="submit"
-            className="mt-2 rounded-full bg-[#e87331] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#cf5f20]"
-          >
-            Submit Demo Request
-          </button>
-        </form>
-      </div>
-    </section>
-  );
-}
-
-function FormField({ label, name, type }: { label: string; name: string; type: string }) {
-  return (
-    <>
-      <label className="text-sm font-medium text-slate-800" htmlFor={name}>
-        {label}
-      </label>
-      <input
-        id={name}
-        name={name}
-        type={type}
-        className="rounded-2xl border border-slate-900/12 px-4 py-3 text-sm text-slate-900 outline-none ring-[#0b6bcb] focus:ring-2"
-      />
+      </section>
+      <section className="packiko-section bg-white">
+        <div className="container">
+          <div className="row">
+            {page.body.map((paragraph, index) => (
+              <div className="col-lg-6 mb-4" key={paragraph}>
+                <div className="faq-card wow fadeInUp" data-wow-delay={`${300 + index * 100}ms`}>
+                  <h4>{page.title}</h4>
+                  <p>{paragraph}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          {slug === "book-demo" ? (
+            <div className="row mt-4">
+              <div className="col-lg-8 mx-auto">
+                <div className="contact-box demo-box">
+                  <h3 className="mb-4">Book Demo</h3>
+                  <form className="demo-form">
+                    <input type="text" placeholder="Name" />
+                    <input type="text" placeholder="Company" />
+                    <input type="email" placeholder="Email" />
+                    <input type="text" placeholder="Daily orders" />
+                    <textarea placeholder="Tell us about your current workflow" rows={5} />
+                    <button type="submit" className="btn-setting color-black btn-hvr-up btn-blue btn-hvr-yellow text-white">
+                      Submit Request
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          ) : null}
+        </div>
+      </section>
     </>
   );
 }
 
-function BookDemoPage() {
-  return (
-    <>
-      <PageHero pageKey="bookDemo" />
-      <DemoForm />
-    </>
-  );
-}
-
-function HomePage() {
-  return (
-    <>
-      <PageHero pageKey="home" />
-      <TrustedStrip />
-      <HomeProblemSection />
-      <HomeSolutionOverview />
-      <HomeVideoEvidenceSection />
-      <HomeFeatureDetailSection
-        eyebrow="Inventory"
-        title="คุม Stock ให้ตรงมากขึ้น"
-        body="เมื่อข้อมูลในระบบกับของจริงไม่ตรง ปัญหาจะลามไปทั้งทีมขายและทีมแพ็ค
-
-Packiko ช่วยให้คุณเห็นสถานะคลังได้ชัดขึ้น
-และลดปัญหา Oversell"
-      />
-      <HomeFeatureDetailSection
-        eyebrow="Packing Verification"
-        title="ลดการแพ็คผิด"
-        body="ช่วยให้ทีมแพ็คหยิบสินค้าได้ถูก
-และตรวจสอบย้อนหลังได้ง่าย
-
-ลดปัญหา
-
-หยิบผิด
-ส่งผิด
-แพ็คไม่ครบ"
-      />
-      <HomeResults />
-      <HomeTestimonialsSection />
-      <HomePricingSection />
-      <HomeFaqSection />
-      <FinalCta />
-    </>
-  );
-}
-
-export function StandardPage({ pageKey }: { pageKey: PageKey }) {
-  switch (pageKey) {
-    case "home":
-      return <HomePage />;
-    case "platform":
-    case "technology":
-    case "visionAi":
-      return <PlatformPage />;
-    case "solutions":
-      return <SolutionsPage />;
-    case "customers":
-      return <CustomersPage />;
-    case "resources":
-    case "developers":
-      return <ResourcesPage />;
-    case "pricing":
-      return <PricingPage />;
-    case "about":
-      return <AboutPage />;
-    case "caseStudies":
-      return <CaseStudiesPage />;
-    case "contact":
-      return <ContactPage />;
-    case "privacy":
-      return <PrivacyPage />;
-    case "terms":
-      return <TermsPage />;
-    case "bookDemo":
-      return <BookDemoPage />;
-    default:
-      return <HomePage />;
-  }
-}
-
-export function buildMetadata(pageKey: PageKey): Metadata {
-  const data = pageData[pageKey];
-  const title = `${data.title} | ${siteName}`;
+export function buildMetadata(title?: string): Metadata {
+  const fullTitle = title ? `${title} | ${siteName}` : siteName;
 
   return {
-    title,
-    description: data.description,
-    keywords: [
-      "ThaiCloud",
-      "warehouse operations platform",
-      "inventory control",
-      "packing verification",
-      "video evidence for every order",
-      data.title,
-    ],
-    openGraph: {
-      title,
-      description: data.description,
-      url: `https://thaicloud.com${data.slug}`,
-      siteName,
-      images: [{ url: "/brand/thaicloud/thai-logo-primary.png", width: 1200, height: 630, alt: "ThaiCloud" }],
-      type: "website",
-    },
-    alternates: {
-      canonical: data.slug,
-    },
+    title: fullTitle,
+    description:
+      "Warehouse operations platform for high-volume online sellers who need tighter inventory control, fewer packing mistakes, and video evidence for every order.",
   };
 }
