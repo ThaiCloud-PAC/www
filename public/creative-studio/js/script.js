@@ -7,6 +7,12 @@ jQuery(window).on("load", function () {
     $("#loader-fade").fadeOut(800);
 });
 
+if (document.readyState === "complete" || document.readyState === "interactive") {
+    jQuery(function ($) {
+        $("#loader-fade").fadeOut(800);
+    });
+}
+
 jQuery(function ($) {
     "use strict";
 
