@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { DemoFormClient } from "./demo-form.client";
 import {
   customerOutcomes,
   faqs,
@@ -724,45 +725,9 @@ function DemoForm() {
             ThaiCloud ช่วยร้านที่ขายผ่าน {marketplaceList.join(" • ")} จัดการเคส dispute ได้เร็วขึ้นด้วยข้อมูลและวิดีโอหลักฐานระหว่างแพ็ค
           </div>
         </div>
-        <form className="grid gap-3">
-          <FormField label="Name" name="name" type="text" />
-          <FormField label="Company" name="company" type="text" />
-          <FormField label="Email" name="email" type="email" />
-          <FormField label="Monthly Orders" name="monthly-orders" type="text" />
-          <label className="text-sm font-medium text-slate-800" htmlFor="message">
-            Message
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            rows={5}
-            className="rounded-2xl border border-slate-900/12 px-4 py-3 text-sm text-slate-900 outline-none ring-[#0b6bcb] focus:ring-2"
-          />
-          <button
-            type="submit"
-            className="mt-2 rounded-full bg-[#e87331] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#cf5f20]"
-          >
-            Submit Demo Request
-          </button>
-        </form>
+        <DemoFormClient />
       </div>
     </section>
-  );
-}
-
-function FormField({ label, name, type }: { label: string; name: string; type: string }) {
-  return (
-    <>
-      <label className="text-sm font-medium text-slate-800" htmlFor={name}>
-        {label}
-      </label>
-      <input
-        id={name}
-        name={name}
-        type={type}
-        className="rounded-2xl border border-slate-900/12 px-4 py-3 text-sm text-slate-900 outline-none ring-[#0b6bcb] focus:ring-2"
-      />
-    </>
   );
 }
 
