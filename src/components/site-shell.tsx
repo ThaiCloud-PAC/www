@@ -39,12 +39,12 @@ export function SiteHeader() {
             {siteTagline}
           </span>
         </Link>
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav aria-label="Main Navigation" className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-full px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-white hover:text-slate-950"
+              className="flex min-h-[44px] items-center rounded-full px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-white hover:text-slate-950"
             >
               {item.label}
             </Link>
@@ -52,18 +52,18 @@ export function SiteHeader() {
         </nav>
         <Link
           href="/book-demo"
-          className="rounded-full bg-[#0b6bcb] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#095aa9]"
+          className="inline-flex min-h-[44px] items-center rounded-full bg-[#0b6bcb] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#095aa9]"
         >
           Book Demo
         </Link>
       </div>
       <div className="border-t border-slate-900/6 lg:hidden">
-        <div className="mx-auto flex w-full max-w-7xl gap-2 overflow-x-auto px-4 py-3 sm:px-6">
+        <div className="mx-auto flex w-full max-w-7xl gap-2 overflow-x-auto px-4 py-3 sm:px-6 [mask-image:linear-gradient(to_right,black_85%,transparent)]">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="shrink-0 rounded-full border border-slate-900/10 bg-white px-3 py-2 text-sm font-medium text-slate-700"
+              className="shrink-0 flex min-h-[44px] items-center rounded-full border border-slate-900/10 bg-white px-4 py-2 text-sm font-medium text-slate-700"
             >
               {item.label}
             </Link>
@@ -114,7 +114,7 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
 }
 
 function HeroAction({ href, label, primary }: { href: string; label: string; primary?: boolean }) {
-  const className = `inline-flex rounded-full px-5 py-3 text-sm font-semibold transition ${
+  const className = `inline-flex min-h-[44px] items-center rounded-full px-5 py-3 text-sm font-semibold transition ${
     primary
       ? "bg-[#e87331] text-white hover:bg-[#cf5f20]"
       : "border border-slate-900/12 bg-white text-slate-900 hover:border-slate-900/25"
