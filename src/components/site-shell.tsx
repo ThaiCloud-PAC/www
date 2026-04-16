@@ -821,7 +821,7 @@ export function buildMetadata(pageKey: PageKey): Metadata {
       description: data.description,
       url: `https://thaicloud.com${data.slug}`,
       siteName,
-      images: [{ url: "/brand/thaicloud/thai-logo-primary.png", width: 1200, height: 630, alt: "ThaiCloud" }],
+      images: [{ url: `/api/og?title=${encodeURIComponent(data.title)}`, width: 1200, height: 630, alt: title }],
       type: "website",
     },
     alternates: {
