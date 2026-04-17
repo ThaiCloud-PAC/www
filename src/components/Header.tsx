@@ -45,12 +45,7 @@ export default function Header() {
             </a>
           </div>
           <div className="col-4 d-flex justify-content-end">
-            <a
-              href="#contact-sec"
-              className="btn btn-medium btn-rounded btn-trans mr-lg-4 d-none d-lg-inline-block scroll"
-            >
-              Get a Quote
-            </a>
+            {/* Get a Quote button removed */}
           </div>
         </div>
         <div>

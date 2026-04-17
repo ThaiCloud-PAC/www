@@ -31,12 +31,11 @@ export default function Contact() {
               </p>
               <ul>
                 <li>
-                  <i aria-hidden="true" className="fas fa-map-marker-alt"></i> 123 Park Avenue, New York, United States{" "}
+                  <i aria-hidden="true" className="fas fa-map-marker-alt"></i> 1853/2-3 Soi Uthaifarm, Rim Thang Rot Fai Sai Pak Nam Road, Khlong Tan, Khlong Toei, Bangkok 10110 Thailand{" "}
                 </li>
                 <li>
                   <i aria-hidden="true" className="fas fa-phone-volume"></i>
-                  <span>+1 631 1234 5678</span>
-                  <span>+1 631 1234 5678</span>
+                  <span>+66 9 3545 5599</span>
                 </li>
                 <li>
                   <i aria-hidden="true" className="fas fa-paper-plane"></i>hello@thaicloud.com | thaicloud.com
