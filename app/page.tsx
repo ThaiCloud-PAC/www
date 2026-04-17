@@ -130,16 +130,16 @@ export default function Home() {
                          data-paddingbottom="[0,0,0,0]"
                          data-paddingleft="[0,0,0,0]"
 
-                         style={{ zIndex: '10', minWidth: '556px', maxWidth: '556px', whiteSpace: 'nowrap', fontSize: '60px', lineHeight: '75px', fontWeight: '300', letterSpacing: '0px', fontFamily: '\'Montserrat\', sans-serif' }}>Creative</div>
+                         style={{ zIndex: '10', minWidth: '556px', maxWidth: '556px', whiteSpace: 'nowrap', fontSize: '60px', lineHeight: '75px', fontWeight: '300', letterSpacing: '0px', fontFamily: '\'Montserrat\', sans-serif' }}>Packiko</div>
 
                     {/*  LAYER Text  */}
                     <div className="tp-caption color-black"
                          data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                         data-y="['top','top','top','top']" data-voffset="['348','260','155','98']"
-                         data-fontsize="['60','50','40','40']"
-                         data-lineheight="['75','75','45','45']"
-                         data-width="['556','556','556','350']"
-                         data-height="['none','none','none','87']"
+                         data-y="['top','top','top','top']" data-voffset="['320','240','140','90']"
+                         data-fontsize="['48','40','34','24']"
+                         data-lineheight="['65','55','45','35']"
+                         data-width="none"
+                         data-height="none"
                          data-whitespace="nowrap"
 
                          data-type="text"
@@ -153,16 +153,16 @@ export default function Home() {
                          data-paddingbottom="[0,0,0,0]"
                          data-paddingleft="[0,0,0,0]"
 
-                         style={{ zIndex: '10', minWidth: '556px', maxWidth: '556px', whiteSpace: 'nowrap', fontWeight: '700', letterSpacing: '0px', fontFamily: '\'Montserrat\', sans-serif' }}><div id="js-rotating">Digital Agency, Modern Works, Design Elevation </div> </div>
+                         style={{ zIndex: '10', minWidth: 'auto', maxWidth: 'none', whiteSpace: 'nowrap', fontWeight: '700', letterSpacing: '0px', fontFamily: '\'Montserrat\', sans-serif' }}><div>ปลดล็อคศักยภาพคลังสินค้าของคุณ<br/>ด้วยระบบสมองกลอัจฉริยะ</div> </div>
 
                     {/*  LAYER Text  */}
                     <div className="tp-caption color-black"
                          data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                         data-y="['top','middle','middle','middle']" data-voffset="['460','95','0','10']"
+                         data-y="['top','middle','middle','middle']" data-voffset="['480','120','20','25']"
                          data-whitespace="normal"
-                         data-width="['630','630','550','440']"
-                         data-fontsize="['16','15','15','15']"
-                         data-lineheight="['25','25','22','22']"
+                         data-width="['700','650','550','440']"
+                         data-fontsize="['18','16','15','15']"
+                         data-lineheight="['28','26','24','22']"
                          data-type="text"
                          data-responsive_offset="on"
                          data-frames='[{"delay":100,"speed":1480,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":350,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
@@ -172,18 +172,18 @@ export default function Home() {
                          data-paddingbottom="[0,0,0,0]"
                          data-paddingleft="[0,0,0,0]"
 
-                         style={{ zIndex: '10', minWidth: '650px', maxWidth: '650px', whiteSpace: 'nowrap', fontWeight: '400', letterSpacing: '0px', fontFamily: '\'Source Sans Pro\', sans-serif' }}>Lorem ipsum is simply dummy text of the printing and typesetting. Lorem Ipsum has been the industry’s standard dummy.  Lorem Ipsum has been the industry’s standard dummy.
+                         style={{ zIndex: '10', minWidth: 'auto', maxWidth: '700px', whiteSpace: 'normal', fontWeight: '400', letterSpacing: '0px', fontFamily: '\'Source Sans Pro\', sans-serif' }}>Packiko by ThaiCloud — ยกระดับการจัดการ eCommerce ด้วย AI เพื่อการตัดสินใจที่แม่นยำและมีประสิทธิภาพสูงสุด
                     </div>
 
                     {/*  LAYER Button  */}
                     <div className="tp-caption tp-resizeme"
                          data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                         data-y="['middle','middle','middle','middle']" data-voffset="['170','200','90','120']"
+                         data-y="['middle','middle','middle','middle']" data-voffset="['190','220','110','130']"
                          data-frames='[{"from":"y:50px;opacity:0;","speed":1000,"to":"o:1;","delay":800,"ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:2px 2px 2px 2px;"}]'
                          data-textalign="['center','center','center','center']"
                          data-width="['160','160','160','160']"
                          style={{ zIndex: '10', minWidth: '960px', maxWidth: '960px' }}>
-                        <a href="#" className="btn-setting color-black btn-hvr-up btn-hvr-yellow link">learn more</a>
+                        <a href="#contact" className="btn-setting color-black btn-hvr-up btn-hvr-yellow link">ลงทะเบียนขอรับคำปรึกษาฟรี</a>
                     </div>
 
                     {/*  LAYER Cylinder  */}
@@ -546,17 +546,11 @@ export default function Home() {
             </div>
             <div className="col-lg-6 pl-6">
                 <div className="main-title text-lg-left offset-md-1 mb-0 wow fadeInUp" data-wow-delay="300ms">
-                    <h5 className="wow fadeInUp" data-wow-delay="300ms"> Lorem ipsum dolor sit amet consectetur </h5>
-                    <h2 className="wow fadeInUp font-weight-light" data-wow-delay="400ms"> We are making <span className="color-pink">design</span> better for everyone</h2>
-                    <p className="pb-4 wow fadeInUp" data-wow-delay="500ms">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed augue diam, accumsan vitae justo non, euismod aliquam lectus. Etiam elementum tortor quis risus posuere, in cursus arcu lobortis.</p>
+                    <h5 className="wow fadeInUp" data-wow-delay="300ms"> เกี่ยวกับเรา </h5>
+                    <h2 className="wow fadeInUp font-weight-light" data-wow-delay="400ms"> Built by Operators, <span className="color-pink">Not Just Engineers</span></h2>
+                    <p className="pb-4 wow fadeInUp" data-wow-delay="500ms">เราคือทีมผู้เชี่ยวชาญที่มีประสบการณ์บริหารคลังสินค้าจริงระดับประเทศกว่า 10 ปี เราไม่ได้แค่เขียนโค้ด แต่เราสร้างโซลูชันจากความเข้าใจในปัญหาหน้างานจริง เพื่อเปลี่ยนระบบที่ทำได้เพียงบันทึกข้อมูล ให้กลายเป็นระบบที่ช่วยตัดสินใจ</p>
 
-                    <ul className="pb-5 text-left wow fadeInUp" data-wow-delay="600ms">
-                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                        <li>Morbi ornare nibh id cursus vestibulum.</li>
-                        <li>Duis vitae lectus facilisis, tristique lorem sit amet, malesuada diam.</li>
-                    </ul>
-
-                    <a href="#" className="btn-setting color-black btn-hvr-up btn-yellow btn-hvr-pink text-white link wow fadeInUp" data-wow-delay="700ms">learn more</a>
+                    <a href="#contact" className="btn-setting color-black btn-hvr-up btn-yellow btn-hvr-pink text-white link wow fadeInUp" data-wow-delay="700ms">learn more</a>
                 </div>
             </div>
         </div>
@@ -570,30 +564,30 @@ export default function Home() {
         <div className="row">
             <div className="col-md-12">
                 <div className="main-title wow fadeIn" data-wow-delay="300ms">
-                    <h2>We’re <span className="color-pink">Creative</span> Branding<br />and Corporate Identity <span className="color-blue">Agency</span></h2>
+                    <h2>บริการของเรา<br />Solutions <span className="color-blue">Overview</span></h2>
                 </div>
             </div>
         </div>
         <div className="row">
             <div className="col-lg-4 col-md-6 col-12">
                 <div className="about-box mb-5 mb-lg-0 mx-auto bg-blue">
-                    <span className="pro-step d-inline-block color-white"><i className="fa fa-pencil-alt"></i></span>
-                    <h5 className="font-weight-500 color-white mt-25px mb-15px text-capitalize">branding design</h5>
-                    <p className="font-weight-light color-white">Lorem dapibus, tortor eget turpis auctor, convallis odio ac.</p>
+                    <span className="pro-step d-inline-block color-white"><i className="fa fa-box-open"></i></span>
+                    <h5 className="font-weight-500 color-white mt-25px mb-15px">Packiko Platform (SaaS)</h5>
+                    <p className="font-weight-light color-white">ระบบ AI อัจฉริยะที่ช่วยจัดลำดับคิวงาน วางแผนเส้นทางเดิน และดักจับความผิดพลาดแบบ Real-time</p>
                 </div>
             </div>
             <div className="col-lg-4 col-md-6 col-12">
                 <div className="about-box mb-5 mb-lg-0 mx-auto bg-yellow">
-                    <span className="pro-step d-inline-block color-white"><i className="fa fa-cog"></i></span>
-                    <h5 className="font-weight-500 color-white mt-25px mb-15px">SEO Marketing</h5>
-                    <p className="font-weight-light color-white">Etiam luctus, lacus maximus elementum dapibus felis.</p>
+                    <span className="pro-step d-inline-block color-white"><i className="fa fa-plug"></i></span>
+                    <h5 className="font-weight-500 color-white mt-25px mb-15px">Implementation & Customization</h5>
+                    <p className="font-weight-light color-white">บริการเชื่อมต่อระบบ Packiko เข้ากับ Workflow เดิมของธุรกิจอย่างไร้รอยต่อ ติดตั้งไว ธุรกิจไม่สะดุด</p>
                 </div>
             </div>
             <div className="col-lg-4 col-md-12 col-12">
                 <div className="about-box mb-0 mx-auto bg-pink">
-                    <span className="pro-step d-inline-block color-white"><i className="fa fa-code"></i></span>
-                    <h5 className="font-weight-500 color-white mt-25px mb-15px text-capitalize">web development</h5>
-                    <p className="font-weight-light color-white">Pellentesque habitant morbi tristique senectus et malesuada.</p>
+                    <span className="pro-step d-inline-block color-white"><i className="fa fa-chart-line"></i></span>
+                    <h5 className="font-weight-500 color-white mt-25px mb-15px">Warehouse Consulting</h5>
+                    <p className="font-weight-light color-white">บริการตรวจสุขภาพคลังสินค้า ออกแบบกระบวนการใหม่ และวางแผนกำลังคนโดยผู้เชี่ยวชาญ เพื่อลดต้นทุนและเพิ่มประสิทธิภาพสูงสุด</p>
                 </div>
             </div>
         </div>
@@ -607,21 +601,20 @@ export default function Home() {
         <div className="row">
             <div className="col-md-12">
                 <div className="main-title wow fadeIn" data-wow-delay="300ms">
-                    <h5> Lorem ipsum dolor sit amet </h5>
-                    <h2 className="mb-0">Our <span className="color-pink">Creative</span> Team </h2>
+                    <h5> ทำไมต้องเลือกเรา </h5>
+                    <h2 className="mb-0">Key <span className="color-pink">Features</span> </h2>
                 </div>
             </div>
         </div>
         <div className="row wow fadeInUp team" data-wow-delay="300">
             <div className="col-lg-6 col-xl-3 p-0 team-col ml-md-auto mr-md-0 mx-auto">
-                <div className="team-image">
-                    <img src="creative-studio/img/team1.jpg" alt="team1" className="m-image1" />
+                <div className="team-image bg-pink text-center" style={{height: '250px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    <i className="fa fa-cubes fa-5x text-white"></i>
                 </div>
                 <div className="team-classic-content hvr-team pink">
-                    <h3 className="mb-3 text-capitalize color-black">Jessica Jones</h3>
-                    <h5 className="mb-3 text-capitalize color-pink">Lead Designer</h5>
-                    <p className="mt-3 mb-3 color-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit augue.</p>
-                    <ul className="team-social">
+                    <h3 className="mb-3 text-capitalize color-black">AI Packing Optimization</h3>
+                    <p className="mt-3 mb-3 color-black">คำนวณขนาดกล่องและวิธีแพ็คที่ดีที่สุดอัตโนมัติ</p>
+                    <ul className="team-social d-none">
                         <li className="d-inline-block"><a href="#" className="facebook-bg-hvr"><i className="fab fa-facebook-f" aria-hidden="true"></i></a></li>
                         <li className="d-inline-block"><a href="#" className="twitter-bg-hvr"><i className="fab fa-x-twitter" aria-hidden="true"></i></a></li>
                         <li className="d-inline-block"><a href="#" className="google-bg-hvr"><i className="fab fa-google" aria-hidden="true"></i></a></li>
@@ -631,16 +624,15 @@ export default function Home() {
             <div className="col-lg-6 col-xl-3 p-0 team-col2 mr-md-auto ml-md-0 mx-auto">
                 <div className="row">
                     <div className="col-md-12 order-md-1">
-                        <div className="team-image">
-                            <img src="creative-studio/img/team2.jpg" alt="team2" className="m-image2" />
+                        <div className="team-image bg-blue text-center" style={{height: '250px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                            <i className="fa fa-route fa-5x text-white"></i>
                         </div>
                     </div>
                     <div className="col-md-12 order-md-0">
                         <div className="team-classic-content hvr-team2 blue">
-                            <h3 className="mb-3 text-capitalize color-black">Rob Clark</h3>
-                            <h5 className="mb-3 text-capitalize color-blue">marketing head</h5>
-                            <p className="mt-3 mb-3 color-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit augue.</p>
-                            <ul className="team-social">
+                            <h3 className="mb-3 text-capitalize color-black">Order Prioritization</h3>
+                            <p className="mt-3 mb-3 color-black">เรียงลำดับออเดอร์ให้พนักงานเดินในเส้นทางที่สั้นที่สุด</p>
+                            <ul className="team-social d-none">
                                 <li className="d-inline-block"><a href="#" className="facebook-bg-hvr"><i className="fab fa-facebook-f" aria-hidden="true"></i></a></li>
                                 <li className="d-inline-block"><a href="#" className="twitter-bg-hvr"><i className="fab fa-x-twitter" aria-hidden="true"></i></a></li>
                                 <li className="d-inline-block"><a href="#" className="google-bg-hvr"><i className="fab fa-google" aria-hidden="true"></i></a></li>
@@ -651,14 +643,13 @@ export default function Home() {
             </div>
             <div className="w-100 d-none d-lg-block d-xl-none"></div>
             <div className="col-lg-6 col-xl-3 p-0 team-col ml-md-auto mr-md-0 mx-auto team-row2">
-                <div className="team-image">
-                    <img src="creative-studio/img/team3.jpg" alt="team3" className="m-image3" />
+                <div className="team-image bg-yellow text-center" style={{height: '250px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    <i className="fa fa-check-double fa-5x text-white"></i>
                 </div>
                 <div className="team-classic-content hvr-team yellow">
-                    <h3 className="mb-3 text-capitalize color-black">Nicole Cross</h3>
-                    <h5 className="mb-3 text-capitalize color-yellow">Visualizer</h5>
-                    <p className="mt-3 mb-3 color-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit augue.</p>
-                    <ul className="team-social">
+                    <h3 className="mb-3 text-capitalize color-black">AI Quality Checks</h3>
+                    <p className="mt-3 mb-3 color-black">ดักจับความผิดพลาดก่อนส่งมอบถึงมือลูกค้า</p>
+                    <ul className="team-social d-none">
                         <li className="d-inline-block"><a href="#" className="facebook-bg-hvr"><i className="fab fa-facebook-f" aria-hidden="true"></i></a></li>
                         <li className="d-inline-block"><a href="#" className="twitter-bg-hvr"><i className="fab fa-x-twitter" aria-hidden="true"></i></a></li>
                         <li className="d-inline-block"><a href="#" className="google-bg-hvr"><i className="fab fa-google" aria-hidden="true"></i></a></li>
@@ -668,16 +659,15 @@ export default function Home() {
             <div className="col-lg-6 col-xl-3 p-0 team-col2 mr-md-auto ml-md-0 mx-auto team-row2">
                 <div className="row">
                     <div className="col-md-12 order-md-1">
-                        <div className="team-image2">
-                            <img src="creative-studio/img/team4.jpg" alt="team4" className="m-image2" />
+                        <div className="team-image2 bg-pink text-center" style={{height: '250px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                            <i className="fa fa-network-wired fa-5x text-white"></i>
                         </div>
                     </div>
                     <div className="col-md-12 order-md-0">
                         <div className="team-classic-content hvr-team2 pink">
-                            <h3 className="mb-3 text-capitalize color-black">Albert Rodricks</h3>
-                            <h5 className="mb-3 text-capitalize color-pink">Creative Lead</h5>
-                            <p className="mt-3 mb-3 color-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit augue.</p>
-                            <ul className="team-social">
+                            <h3 className="mb-3 text-capitalize color-black">Seamless Integration</h3>
+                            <p className="mt-3 mb-3 color-black">เชื่อมต่อกับ ERP, Shopee, Lazada, TikTok Shop และขนส่งชั้นนำ</p>
+                            <ul className="team-social d-none">
                                 <li className="d-inline-block"><a href="#" className="facebook-bg-hvr"><i className="fab fa-facebook-f" aria-hidden="true"></i></a></li>
                                 <li className="d-inline-block"><a href="#" className="twitter-bg-hvr"><i className="fab fa-x-twitter" aria-hidden="true"></i></a></li>
                                 <li className="d-inline-block"><a href="#" className="google-bg-hvr"><i className="fab fa-google" aria-hidden="true"></i></a></li>
@@ -863,8 +853,8 @@ export default function Home() {
         <div className="row">
             <div className="col-md-12">
                 <div className="main-title wow fadeIn" data-wow-delay="300ms">
-                    <h5> Lorem ipsum dolor sit amet </h5>
-                    <h2 className="mb-0">Flexible<span className="color-pink"> Pricing</span> Packages </h2>
+                    <h5> ผลลัพธ์ที่พิสูจน์แล้ว </h5>
+                    <h2 className="mb-0">Stats & <span className="color-pink">Impact</span></h2>
                 </div>
             </div>
         </div>
@@ -873,20 +863,14 @@ export default function Home() {
                 <div className="pricing-item hvr-bg-blue">
                     <div className="price-box clearfix">
                         <div className="price_title">
-                            <h4 className="text-capitalize">Basic</h4>
+                            <h4 className="text-capitalize">Error Reduction</h4>
                         </div>
                     </div>
                     <div className="price">
-                        <h2 className="position-relative"><span className="dollar">$</span>19<span className="month">/ month</span></h2>
+                        <h2 className="position-relative">80<span className="dollar">%</span></h2>
                     </div>
                     <div className="price-description">
-                        <p>Full Access</p>
-                        <p>Unlimited Bandwidth</p>
-                        <p>Email Accounts</p>
-                        <p>8 Free Forks Every Months</p>
-                    </div>
-                    <div className="text-center">
-                        <a href="#" className="btn-setting color-black btn-hvr-up btn-blue btn-hvr-white">learn more</a>
+                        <p>ลดความผิดพลาดในกระบวนการทำงาน</p>
                     </div>
                 </div>
             </div>
@@ -896,26 +880,19 @@ export default function Home() {
 
                     <div className="triangle-inner-content">
                         <i className="fa fa-star"></i>
-                        <span> SPECIAL </span>
+                        <span> IMPACT </span>
                     </div>
 
                     <div className="price-box2 clearfix">
                         <div className="price_title">
-                            <h4 className="text-capitalize m-0">Standard</h4>
-                            <p className="price-sub-heading text-capitalize">the most popular</p>
+                            <h4 className="text-capitalize m-0">Faster Packing</h4>
                         </div>
                     </div>
                     <div className="price">
-                        <h2 className="position-relative"><span className="dollar">$</span>29<span className="month">/ month</span></h2>
+                        <h2 className="position-relative">30<span className="dollar">%</span></h2>
                     </div>
                     <div className="price-description">
-                        <p> Full Access</p>
-                        <p>Unlimited Bandwidth</p>
-                        <p>Email Accounts</p>
-                        <p>8 Free Forks Every Months</p>
-                    </div>
-                    <div className="text-center">
-                        <a href="#" className="btn-setting color-black btn-hvr-up btn-yellow btn-hvr-white">learn more</a>
+                        <p>เพิ่มความเร็วในการแพ็คสินค้า</p>
                     </div>
 
                 </div>
@@ -924,20 +901,14 @@ export default function Home() {
                 <div className="pricing-item hvr-bg-pink">
                     <div className="price-box clearfix">
                         <div className="price_title">
-                            <h4 className="text-capitalize">Advance</h4>
+                            <h4 className="text-capitalize">Labor Efficiency</h4>
                         </div>
                     </div>
                     <div className="price">
-                        <h2 className="position-relative"><span className="dollar">$</span>49<span className="month">/ month</span></h2>
+                        <h2 className="position-relative">80<span className="dollar">%</span></h2>
                     </div>
                     <div className="price-description">
-                        <p> Full Access</p>
-                        <p>Unlimited Bandwidth</p>
-                        <p>Email Accounts</p>
-                        <p>8 Free Forks Every Months</p>
-                    </div>
-                    <div className="text-center">
-                        <a href="#" className="btn-setting color-black btn-hvr-up btn-pink btn-hvr-white">learn more</a>
+                        <p>เพิ่มประสิทธิภาพการใช้แรงงานและพื้นที่</p>
                     </div>
                 </div>
             </div>
@@ -1145,12 +1116,10 @@ export default function Home() {
             <div className="col-lg-6 col-md-12 p-lg-0">
                 <div className="split-container-setting style-three text-center">
                     <div className="main-title mb-5 wow fadeIn" data-wow-delay="300ms">
-                        <h5 className="font-18 text-blue"> Oct 12, 2019</h5>
-                        <h2 className="mb-0 font-weight-normal"> Agency Blog </h2>
+                        <h5 className="font-18 text-blue"> Success Story</h5>
+                        <h2 className="mb-0 font-weight-normal"> YUEDPAO × Packiko </h2>
                     </div>
-                    <p className="color-black mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodt temp to the incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis a nostr a exercitation ullamco laboris nisi ut aliquip.</p>
-
-                    <a href="creative-studio/blog.html" className="btn-setting color-black btn-hvr-up btn-blue btn-hvr-pink">learn more</a>
+                    <p className="color-black mb-5">ช่วยให้แบรนด์เสื้อผ้าชั้นนำสเกลออเดอร์จาก 1,000 เป็น 5,000 ออเดอร์ต่อวันได้สำเร็จ โดยไม่ต้องขยายพื้นที่คลังสินค้า และลดการพึ่งพาแรงงานได้มหาศาล</p>
                 </div>
             </div>
 
@@ -1166,21 +1135,14 @@ export default function Home() {
             <div className="col-lg-6 col-md-6 col-sm-12 p-0">
                 <div className="contact-box">
                     <div className="main-title text-center text-md-left mb-4">
-                        <h2 className="font-weight-normal">Connect With Us </h2>
+                        <h2 className="font-weight-normal">พร้อมเปลี่ยนคลังสินค้าของคุณแล้วหรือยัง? </h2>
                     </div>
 
-                    <div className="text-center text-md-left">
-
-                        {/* Address */}
-                        <p className="mb-3">123 Street New York City , United States Of America. </p>
-
-                        {/* Phone */}
-                        <p className="mb-3"> Office Telephone : 001 01085379709 <br />
-                            Mobile : 001 63165370895 </p>
+                    <div className="text-center text-md-left mt-5">
+                        <p className="mb-3"> Website: <a href="https://thaicloud.com" className="color-black" target="_blank" rel="noopener noreferrer">thaicloud.com</a> </p>
 
                         {/* Email */}
-                        <p className="mb-3"> Email: <a href="mailto:email@website.com" className="color-black">admin@website.com</a> <br />
-                            Inquiries: <a href="mailto:email@website.com" className="color-black">email@website.com</a> </p>
+                        <p className="mb-3"> Email: <a href="mailto:hello@thaicloud.com" className="color-black">hello@thaicloud.com</a></p>
 
                         {/* Timing */}
                         <p className="mb-0">Mon-Sat: 9am to 6pm</p>
