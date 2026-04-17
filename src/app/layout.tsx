@@ -1,4 +1,8 @@
 import type { Metadata } from "next";
+import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
+import Script from "next/script";
+import { SiteLayout } from "@/components/site-shell";
+import { seoKeywords, siteName, siteTagline } from "@/lib/site";
 import { Kanit } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
@@ -23,6 +27,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <html lang="th">
+      <body className={`${plusJakartaSans.variable} ${spaceGrotesk.variable} antialiased`}>
+        <SiteLayout>{children}</SiteLayout>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-MJP9XE8QC2"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-MJP9XE8QC2');
+          `}
+        </Script>
     <html
       lang="en"
       className={`${kanit.variable}`}
