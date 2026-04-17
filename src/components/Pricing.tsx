@@ -9,11 +9,11 @@ export default function Pricing() {
             data-wow-delay=".1s"
           >
             <p className="sub-heading text-red">
-              <span></span>Most flexible one page
+              <span></span>Why Choose Us
             </p>
-            <h4 className="heading">Agency Packages</h4>
+            <h4 className="heading">จุดเด่นที่แตกต่าง</h4>
             <p className="text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut posuere nisi est, sed ullamcorper nibh volutpat at. In rutrum, metus ut posuere gravida, tellus lacus faucibus lectus, sed cursus eros ligula non odio. Suspendisse volutpat sagittis sapien. Curabitur quis malesuada ipsum.
+              เราให้ความสำคัญกับผลลัพธ์ที่จับต้องได้ ด้วยระบบที่สร้างจากความเข้าใจคลังสินค้าอย่างแท้จริง
             </p>
           </div>
         </div>
@@ -24,19 +24,11 @@ export default function Pricing() {
             data-wow-duration="2s"
             data-wow-delay=".1s"
           >
-            <h4 className="pricing-card-heading">Startup</h4>
+            <h4 className="pricing-card-heading">Built by Operators</h4>
             <p className="pricing-card-text">
-              Click edit button to change this text. Lorem dolor sit amet, consectetur adipiscing elit.
+              เราสร้างระบบจากความเข้าใจ &quot;หน้างานจริง&quot; ไม่ใช่แค่จากห้องแล็บ
             </p>
-            <h3 className="pricing-amount">
-              <i className="lni-dollar"></i>19<span>/ Month</span>
-            </h3>
-            <ul className="pricing-features">
-              <li>Full Access</li>
-              <li>Unlimited Bandwidth</li>
-              <li>Email Accounts</li>
-              <li>8 Free Forks Every Months</li>
-            </ul>
+
             <a href="#" className="btn btn-medium btn-rounded btn-black">
               Learn More
             </a>
@@ -47,19 +39,11 @@ export default function Pricing() {
             data-wow-duration="2s"
             data-wow-delay=".1s"
           >
-            <h4 className="pricing-card-heading">Standard</h4>
+            <h4 className="pricing-card-heading">Data-Driven Decisions</h4>
             <p className="pricing-card-text">
-              Click edit button to change this text. Lorem dolor sit amet, consectetur adipiscing elit.
+              เปลี่ยนจากระบบบันทึกข้อมูลแบบเดิม เป็นระบบที่ช่วย &quot;วางแผน&quot; และ &quot;คาดการณ์&quot;
             </p>
-            <h3 className="pricing-amount">
-              <i className="lni-dollar"></i>56<span>/ Month</span>
-            </h3>
-            <ul className="pricing-features">
-              <li>Full Access</li>
-              <li>Unlimited Bandwidth</li>
-              <li>Email Accounts</li>
-              <li>8 Free Forks Every Months</li>
-            </ul>
+
             <a href="#" className="btn btn-medium btn-rounded btn-black">
               Learn More
             </a>
@@ -70,19 +54,11 @@ export default function Pricing() {
             data-wow-duration="2s"
             data-wow-delay=".1s"
           >
-            <h4 className="pricing-card-heading">Premium</h4>
+            <h4 className="pricing-card-heading">Scale Without Limits</h4>
             <p className="pricing-card-text">
-              Click edit button to change this text. Lorem dolor sit amet, consectetur adipiscing elit.
+              ช่วยให้ธุรกิจขยายจาก 1,000 เป็น 5,000 ออเดอร์/วัน ได้โดยไม่ต้องเพิ่มพื้นที่คลัง
             </p>
-            <h3 className="pricing-amount">
-              <i className="lni-dollar"></i>89<span>/ Month</span>
-            </h3>
-            <ul className="pricing-features">
-              <li>Full Access</li>
-              <li>Unlimited Bandwidth</li>
-              <li>Email Accounts</li>
-              <li>8 Free Forks Every Months</li>
-            </ul>
+
             <a href="#" className="btn btn-medium btn-rounded btn-black">
               Learn More
             </a>

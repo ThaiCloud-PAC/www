@@ -20,13 +20,13 @@ export default function Blog() {
         <div className="row align-items-center blog-area" id="blog">
           <div className="col-12 col-md-6 wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".1s">
             <h4 className="heading">
-              Creative <span className="d-block text-orange">Design Blogs</span>
+              Featured <span className="d-block text-orange">Case Study</span>
             </h4>
             <p className="text">
-              Donec quis nunc mollis, tincidunt mi vel, pellentesque arcu. Nam nec tristique ex, vitae posuere enim. Nunc vulputate metus id ex pretium fermentum.
+              YUEDPAO (ยืดเปล่า) – การบริหารจัดการออเดอร์มหาศาลในช่วง Peak Season อย่างมีประสิทธิภาพ ด้วยเทคโนโลยี Fulfillment ของเรา
             </p>
-            <Link href="/minimal-creative/standalone.html" className="btn btn-medium btn-rounded btn-red mb-5 mb-md-0">
-              Read Blog
+            <Link href="#" className="btn btn-medium btn-rounded btn-red mb-5 mb-md-0">
+              Read Case Study
             </Link>
           </div>
           <div className="col-12 col-md-6 d-flex align-items-center">
@@ -46,9 +46,9 @@ export default function Blog() {
                 data-wow-duration="1.5s"
                 data-wow-delay=".1s"
               >
-                <Link href="/minimal-creative/standalone.html" className="text-decoration-none">
+                <Link href="#" className="text-decoration-none">
                   <div className="blog-box bg-orange">
-                    <h1 className="box-text">Want to know about designing?</h1>
+                    <h1 className="box-text">Discover How YUEDPAO Scaled with Us</h1>
                   </div>
                 </Link>
               </div>

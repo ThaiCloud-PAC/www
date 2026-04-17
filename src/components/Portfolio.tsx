@@ -8,32 +8,40 @@ export default function Portfolio() {
         <div className="row my-4 my-md-0">
           <div className="col-12 col-md-3">
             <div className="parallax-box">
-              <h2 className="count">125</h2>
-              <h5>Happy Customers</h5>
+              <h2 className="count">80</h2>
+              <h5>% Error Reduction</h5>
             </div>
           </div>
           <div className="col-12 col-md-3">
             <div className="parallax-box">
-              <h2 className="count text-orange">865</h2>
-              <h5>Lines of Codes</h5>
+              <h2 className="count text-orange">30</h2>
+              <h5>% Faster Packing</h5>
             </div>
           </div>
           <div className="col-12 col-md-3">
             <div className="parallax-box">
-              <h2 className="count text-red">510</h2>
-              <h5>Project Completed</h5>
+              <h2 className="count text-red">80</h2>
+              <h5>% Labor Efficiency</h5>
             </div>
           </div>
           <div className="col-12 col-md-3">
             <div className="parallax-box">
-              <h2 className="count">699</h2>
-              <h5>Satisfied Reviews</h5>
+              <h2 className="count">5000</h2>
+              <h5>Orders / Day</h5>
             </div>
           </div>
         </div>
       </div>
       {/* Portfolio */}
       <div className="container-fluid wow fadeInUp" data-wow-duration="2s" data-wow-delay=".1s">
+        <div className="row mt-5 mb-4">
+          <div className="col-12 text-center">
+            <h3 className="heading">The Future of Logistics <span className="text-orange d-block">is Autonomous</span></h3>
+            <p className="text mx-auto" style={{ maxWidth: '800px' }}>
+              จากระบบช่วยตัดสินใจ (Operational Intelligence) สู่การทำคลังสินค้าบริหารจัดการตัวเองอัตโนมัติ (Autonomous Fulfillment) เพื่อรองรับการเติบโตของ eCommerce ในระดับภูมิภาค SEA
+            </p>
+          </div>
+        </div>
         <div className="row padding-top">
           <div className="col-sm-12">
             <div className="text-center row">

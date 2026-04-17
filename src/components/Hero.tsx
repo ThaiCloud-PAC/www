@@ -44,13 +44,13 @@ export default function Hero() {
             >
               <div className="detail-sec">
                 <h1 className="main-heading">
-                  Design makes <span className="d-block text-orange js-rotating">creativity., artistry.</span>
+                  Intelligence Layer <span className="d-block text-orange js-rotating">for eCommerce., for Logistics., for Fulfillment.</span>
                 </h1>
                 <p className="sub-para margin-sub-heading">
-                  Donec quis nunc mollis, tincidunt mi vel, pellentesque arcu. Nam nec tristique ex, vitae posuere enim. Nunc vulputate metus id ex pretium fermentum.
+                  เราไม่ได้แค่สร้างระบบจัดการคลังสินค้า แต่เราสร้าง &quot;สมองกล&quot; ที่ช่วยตัดสินใจแทนคุณ เพื่อให้การ Fulfillment เป็นเรื่องง่ายและไร้ข้อผิดพลาด
                 </p>
                 <a href="#about" className="btn btn-medium btn-rounded btn-red scroll">
-                  Read More
+                  Explore Solutions
                 </a>
               </div>
             </div>
@@ -79,7 +79,7 @@ export default function Hero() {
                         <i className="las la-address-book"></i>
                       </div>
                       <h1 className="box-text mb-sm-2 mt-sm-2 mb-md-3 mt-md-3 mb-lg-3 mt-lg-3">
-                        Check Latest Portfolio
+                        Watch Demo
                       </h1>
                       <div className="arrow-box">
                         <i className="las la-arrow-right"></i>
@@ -92,7 +92,7 @@ export default function Hero() {
                       <div className="bg-campus-icon">
                         <i className="las la-registered"></i>
                       </div>
-                      <h1 className="box-text">Want to know about Company?</h1>
+                      <h1 className="box-text">Explore Our Services</h1>
                       <div className="arrow-box1">
                         <i className="las la-arrow-right"></i>
                       </div>

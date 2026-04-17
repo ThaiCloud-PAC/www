@@ -1,9 +1,60 @@
 @import "tailwindcss";
 
-@import "tailwindcss";
-
 /* 
  * Minimal Creative overrides: 
  * We leave font-family and background to be governed by the template's style.css 
  * to ensure exact visual compatibility. 
  */
+
+/* =========================================
+   ThaiCloud Brand Color Overrides
+========================================= */
+
+/* Primary Orange: #f37521 */
+.bg-orange {
+  background-color: #f37521 !important;
+}
+.text-orange {
+  color: #f37521 !important;
+}
+
+/* Primary Dark Blue/Cyan: #035897 / #00a8a7 */
+.bg-red, .btn-red {
+  background-color: #035897 !important;
+  color: #ffffff !important;
+  border-color: #035897 !important;
+}
+.text-red {
+  color: #035897 !important;
+}
+
+.btn-red:hover {
+  background-color: #00a8a7 !important;
+  border-color: #00a8a7 !important;
+}
+
+/* Update slider/banner accents */
+.slider-sec .owl-dots .owl-dot.active span {
+  background: #f37521 !important;
+}
+
+.count.text-orange {
+  color: #fab217 !important; /* Yellow for stats */
+}
+.count.text-red {
+  color: #00a8a7 !important; /* Teal for stats */
+}
+
+/* Box arrows and hover effects */
+.custom-box:hover .arrow-box1 i {
+  color: #f37521 !important;
+}
+.pricing-card.active {
+  border-color: #035897 !important;
+}
+.pricing-card.active .pricing-amount {
+  color: #035897 !important;
+}
+.pricing-card.active .btn-black {
+  background-color: #035897 !important;
+}

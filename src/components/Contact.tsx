@@ -4,7 +4,7 @@ export default function Contact() {
       <div className="container">
         <div className="row">
           <div className="col-12 col-lg-7">
-            <h4 className="heading text-center text-lg-left">Get In Touch</h4>
+            <h4 className="heading text-center text-lg-left">Ready to make your warehouse intelligent?</h4>
             <form className="row contact-form wow fadeInLeft" id="contact-form-data">
               <div className="col-sm-12" id="result"></div>
               <div className="col-12 col-md-5">
@@ -27,7 +27,7 @@ export default function Contact() {
             <div className="contact-details wow fadeInRight">
               <h4 className="heading">Our Location</h4>
               <p className="text">
-                There are many variations of passages of Lorem Ipsum available, but the majority have suffered .
+                ติดต่อสอบถามโซลูชัน Fulfillment และ AI อัจฉริยะสำหรับคลังสินค้าของคุณได้เลย
               </p>
               <ul>
                 <li>
@@ -39,7 +39,7 @@ export default function Contact() {
                   <span>+1 631 1234 5678</span>
                 </li>
                 <li>
-                  <i aria-hidden="true" className="fas fa-paper-plane"></i>email@website.com
+                  <i aria-hidden="true" className="fas fa-paper-plane"></i>hello@thaicloud.com | thaicloud.com
                 </li>
               </ul>
             </div>

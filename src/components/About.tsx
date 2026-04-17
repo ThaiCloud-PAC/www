@@ -9,13 +9,13 @@ export default function About() {
             data-wow-delay=".1s"
           >
             <p className="sub-heading text-center">
-              <span></span>Most flexible one page
+              <span></span>Our Core Offerings
             </p>
             <h3 className="heading text-center">
-              Trending <span className="d-block">Creative Agency</span>
+              Services <span className="d-block">Minimal Approach</span>
             </h3>
             <p className="text text-center">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut posuere nisi est, sed ullamcorper nibh volutpat at. In rutrum, metus ut posuere gravida, tellus lacus faucibus lectus, sed cursused eros ligula non odio. Suspendisse volutpat sagittis sapien. Curabitur quis malesuada ipsum.
+              เทคโนโลยีที่ถูกออกแบบมาให้เข้าถึงง่ายและใช้งานได้จริง
             </p>
             <a href="#portfolio" className="btn btn-medium btn-rounded btn-red scroll">
               Learn More
@@ -29,9 +29,9 @@ export default function About() {
                 <div className="image-holder">
                   <i className="lni-pencil-alt"></i>
                 </div>
-                <h3 className="about-card-heading">Logo Designing</h3>
+                <h3 className="about-card-heading">Packiko Platform</h3>
                 <p className="about-card-detail">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.
+                  ระบบ SaaS อัจฉริยะที่ใช้ AI ช่วยจัดลำดับงานและเส้นทางเดินหยิบของในคลัง
                 </p>
               </a>
             </div>
@@ -42,9 +42,9 @@ export default function About() {
                 <div className="image-holder">
                   <i className="lni-cog"></i>
                 </div>
-                <h3 className="about-card-heading">Customer Setup</h3>
+                <h3 className="about-card-heading">Custom Implementation</h3>
                 <p className="about-card-detail">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.
+                  บริการเชื่อมต่อเทคโนโลยีของเราเข้ากับระบบเดิมของคุณ (ERP/WMS) อย่างไร้รอยต่อ
                 </p>
               </a>
             </div>
@@ -55,9 +55,9 @@ export default function About() {
                 <div className="image-holder">
                   <i className="lni-code"></i>
                 </div>
-                <h3 className="about-card-heading">Latest Technologies</h3>
+                <h3 className="about-card-heading">Expert Consulting</h3>
                 <p className="about-card-detail">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.
+                  ให้คำปรึกษาโดยทีมที่มีประสบการณ์บริหารคลังจริงกว่า 10 ปี เพื่อแก้ปัญหาที่ต้นตอ
                 </p>
               </a>
             </div>
