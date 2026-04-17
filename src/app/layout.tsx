@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Kanit } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const kanit = Kanit({
@@ -37,6 +38,7 @@ export default function RootLayout({
       </head>
       <body data-spy="scroll" data-target=".navbar" data-offset="90">
         {children}
+        <Analytics />
         
         {/* JavaScript Plugins */}
         <Script src="/vendor/js/bundle.min.js" strategy="beforeInteractive" />
