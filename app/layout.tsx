@@ -67,7 +67,7 @@ export default function RootLayout({
         <Script src="/vendor/js/extensions/revolution.extension.parallax.min.js" strategy="lazyOnload" />
         <Script src="/vendor/js/extensions/revolution.extension.slideanims.min.js" strategy="lazyOnload" />
         <Script src="/vendor/js/extensions/revolution.extension.video.min.js" strategy="lazyOnload" />
-        <Script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgIfLQi8KTxTJahilcem6qHusV-V6XXjw&loading=async" strategy="lazyOnload" />
+        <Script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgIfLQi8KTxTJahilcem6qHusV-V6XXjw&loading=async&libraries=marker" strategy="lazyOnload" />
         <Script src="/creative-studio/js/maps.min.js" strategy="lazyOnload" />
         <Script src="/creative-studio/js/script.js" strategy="lazyOnload" />
       </body>
