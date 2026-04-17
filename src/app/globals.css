@@ -10,6 +10,10 @@
    ThaiCloud Brand Color Overrides
 ========================================= */
 
+body, h1, h2, h3, h4, h5, h6, p, a, div, span, li, button, input, textarea, .main-heading, .sub-heading, .heading {
+  font-family: var(--font-kanit), sans-serif !important;
+}
+
 /* Primary Orange: #f37521 */
 .bg-orange {
   background-color: #f37521 !important;

@@ -45,8 +45,7 @@ export default function Footer() {
             {/* Text */}
             <div className="col-lg-6 text-center text-lg-right">
               <p className="company-about fadeIn">
-                &copy; {new Date().getFullYear()} MegaOne. Made With Love By{" "}
-                <a href="#">Themesindustry</a>
+                &copy; {new Date().getFullYear()} ThaiCloud PAC Co., Ltd. 0105569016405
               </p>
             </div>
           </div>
