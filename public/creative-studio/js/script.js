@@ -1,11 +1,11 @@
-jQuery(window).on("load", function () {
-    "use strict";
-
-    /*  ===================================
-     Loading Timeout
-     ====================================== */
-    $("#loader-fade").fadeOut(800);
-});
+    function hideLoader() {
+        $("#loader-fade").fadeOut(800);
+    }
+    if (document.readyState === "complete") {
+        hideLoader();
+    } else {
+        jQuery(window).on("load", hideLoader);
+    }
 
 jQuery(function ($) {
     "use strict";
