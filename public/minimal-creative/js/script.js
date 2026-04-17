@@ -1,4 +1,4 @@
-jQuery(window).on("load", function () {
+function initLoader() {
     "use strict";
 
     /* ===================================
@@ -14,7 +14,13 @@ jQuery(window).on("load", function () {
 
     // $('.navbar-collapse .navbar-nav .nav-link:nth-child(1)').addClass('active');
     $('.navbar-collapse .navbar-nav .nav-link:nth-child(2)').removeClass('active');
-});
+}
+
+if (document.readyState === 'complete') {
+    initLoader();
+} else {
+    jQuery(window).on("load", initLoader);
+}
 
 jQuery(function ($) {
     "use strict";
