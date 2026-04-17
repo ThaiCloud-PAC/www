@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
+import { Plus_Jakarta_Sans, Space_Grotesk, Kanit } from "next/font/google";
 import Script from "next/script";
-import { SiteLayout } from "@/components/site-shell";
-import { seoKeywords, siteName, siteTagline } from "@/lib/site";
-import { Kanit } from "next/font/google";
-import Script from "next/script";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const kanit = Kanit({
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-kanit",
   subsets: ["thai", "latin"],
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
+  subsets: ["latin"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -27,9 +31,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="th">
-      <body className={`${plusJakartaSans.variable} ${spaceGrotesk.variable} antialiased`}>
-        <SiteLayout>{children}</SiteLayout>
+    <html lang="th" className={`${kanit.variable} ${plusJakartaSans.variable} ${spaceGrotesk.variable}`}>
+      <head>
+        <link href="/minimal-creative/images/favicon.ico" rel="icon" />
+        <link href="/vendor/css/bundle.min.css" rel="stylesheet" />
+        <link href="/vendor/css/LineIcons.min.css" rel="stylesheet" />
+        <link href="/vendor/css/jquery.fancybox.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/vendor/css/owl.carousel.min.css" />
+        <link href="/vendor/css/cubeportfolio.min.css" rel="stylesheet" />
+        <link href="/minimal-creative/css/line-awesome.min.css" rel="stylesheet" />
+        <link href="/minimal-creative/css/style.css" rel="stylesheet" />
+      </head>
+      <body className="antialiased" data-spy="scroll" data-target=".navbar" data-offset="90">
+        {children}
+        
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-MJP9XE8QC2"
           strategy="afterInteractive"
@@ -43,25 +58,7 @@ export default function RootLayout({
             gtag('config', 'G-MJP9XE8QC2');
           `}
         </Script>
-    <html
-      lang="en"
-      className={`${kanit.variable}`}
-    >
-      <head>
-        <link href="/minimal-creative/images/favicon.ico" rel="icon" />
-        <link href="/vendor/css/bundle.min.css" rel="stylesheet" />
-        <link href="/vendor/css/LineIcons.min.css" rel="stylesheet" />
-        <link href="/vendor/css/jquery.fancybox.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="/vendor/css/owl.carousel.min.css" />
-        <link href="/vendor/css/cubeportfolio.min.css" rel="stylesheet" />
-        <link href="/minimal-creative/css/line-awesome.min.css" rel="stylesheet" />
-        <link href="/minimal-creative/css/style.css" rel="stylesheet" />
-      </head>
-      <body data-spy="scroll" data-target=".navbar" data-offset="90">
-        {children}
-        <Analytics />
-        <SpeedInsights />
-        
+
         {/* JavaScript Plugins */}
         <Script src="/vendor/js/bundle.min.js" strategy="beforeInteractive" />
         <Script src="/vendor/js/jquery.appear.js" strategy="lazyOnload" />
