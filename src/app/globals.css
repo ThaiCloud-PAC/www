@@ -1,64 +1,143 @@
+/* === Fonts (must come before tailwind import per CSS spec) === */
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Sans+Thai+Looped:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
 @import "tailwindcss";
 
-/* 
- * Minimal Creative overrides: 
- * We leave font-family and background to be governed by the template's style.css 
- * to ensure exact visual compatibility. 
- */
+/* === Design Tokens === */
+@theme {
+  /* Brand — Packiko navy + cyan */
+  --color-ink-950: #050b18;
+  --color-ink-900: #0a1424;
+  --color-ink-800: #11203a;
+  --color-ink-700: #1a2d4d;
+  --color-ink-600: #243a5e;
+  --color-ink-500: #324c75;
+  --color-ink-400: #5a73a0;
+  --color-ink-300: #8ca0c4;
+  --color-ink-200: #c4d0e3;
+  --color-ink-100: #e6ecf5;
+  --color-ink-50: #f4f7fb;
 
-/* =========================================
-   ThaiCloud Brand Color Overrides
-========================================= */
+  --color-cyan-500: #22d3ee;
+  --color-cyan-400: #38e0f0;
+  --color-cyan-300: #67e8f5;
+  --color-cyan-600: #06b6d4;
 
-body, h1, h2, h3, h4, h5, h6, p, a, div, span, li, button, input, textarea, .main-heading, .sub-heading, .heading {
-  font-family: var(--font-kanit), sans-serif !important;
-}
+  --color-coral-500: #ff6b47;
+  --color-coral-400: #ff8a6a;
 
-/* Primary Orange: #f37521 */
-.bg-orange {
-  background-color: #f37521 !important;
-}
-.text-orange {
-  color: #f37521 !important;
-}
+  --color-bone: #f6f3ee;
+  --color-paper: #fafaf7;
 
-/* Primary Dark Blue/Cyan: #035897 / #00a8a7 */
-.bg-red, .btn-red {
-  background-color: #035897 !important;
-  color: #ffffff !important;
-  border-color: #035897 !important;
-}
-.text-red {
-  color: #035897 !important;
-}
+  /* Typography */
+  --font-display: "Bricolage Grotesque", "IBM Plex Sans Thai Looped", system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", "IBM Plex Sans Thai Looped", system-ui, sans-serif;
+  --font-thai: "IBM Plex Sans Thai Looped", "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
-.btn-red:hover {
-  background-color: #00a8a7 !important;
-  border-color: #00a8a7 !important;
-}
-
-/* Update slider/banner accents */
-.slider-sec .owl-dots .owl-dot.active span {
-  background: #f37521 !important;
+  /* Radii */
+  --radius-card: 1.25rem;
+  --radius-pill: 999px;
 }
 
-.count.text-orange {
-  color: #fab217 !important; /* Yellow for stats */
-}
-.count.text-red {
-  color: #00a8a7 !important; /* Teal for stats */
+/* === Base === */
+html {
+  scroll-behavior: smooth;
 }
 
-/* Box arrows and hover effects */
-.custom-box:hover .arrow-box1 i {
-  color: #f37521 !important;
+html[lang="th"] body {
+  font-family: var(--font-thai);
 }
-.pricing-card.active {
-  border-color: #035897 !important;
+
+html[lang="en"] body {
+  font-family: var(--font-sans);
 }
-.pricing-card.active .pricing-amount {
-  color: #035897 !important;
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink-900);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-.pricing-card.active .btn-black {
-  background-color: #035897 !important;
+
+/* Display class — used for hero/section headings */
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
+
+html[lang="th"] .font-display {
+  font-family: var(--font-thai);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.font-mono-num {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum", "zero";
+}
+
+/* === Decorative patterns === */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.bg-grid-light {
+  background-image:
+    linear-gradient(to right, rgba(10, 20, 36, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 20, 36, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.bg-dots {
+  background-image: radial-gradient(rgba(34, 211, 238, 0.18) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Cyan glow utility */
+.glow-cyan {
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.25), 0 0 40px -10px rgba(34, 211, 238, 0.45);
+}
+
+/* === Animations === */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.55); }
+  70% { opacity: 0.7; box-shadow: 0 0 0 10px rgba(34, 211, 238, 0); }
+}
+
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-fade-up { animation: fadeUp 0.7s ease-out backwards; }
+.animate-ticker { animation: ticker 40s linear infinite; }
+.animate-pulse-dot { animation: pulse-dot 2.2s ease-in-out infinite; }
+
+/* Selection */
+::selection {
+  background: var(--color-cyan-500);
+  color: var(--color-ink-950);
+}
+
+/* Scrollbar — keep subtle */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-ink-200); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink-300); }

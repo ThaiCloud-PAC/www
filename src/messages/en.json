@@ -1,0 +1,232 @@
+{
+  "Nav": {
+    "product": "Product",
+    "solutions": "Solutions",
+    "pricing": "Pricing",
+    "customers": "Customers",
+    "docs": "Docs",
+    "signIn": "Sign in",
+    "tryFree": "Try free",
+    "contactSales": "Contact sales"
+  },
+  "Hero": {
+    "badge": "Operational intelligence for eCommerce ops",
+    "titleLead": "One platform for",
+    "titleAccent": "high-growth fulfillment",
+    "titleTrail": "across Southeast Asia",
+    "subtitle": "ThaiCloud unifies WMS, OMS and shipping in one place — so eCommerce brands and 3PLs in Thailand and ASEAN ship faster, with fewer errors, and scale without the chaos.",
+    "ctaPrimary": "Start free trial",
+    "ctaSecondary": "Talk to sales",
+    "trustRating": "4.9 / 5",
+    "trustLabel": "from 200+ warehouses in SEA",
+    "live": "LIVE",
+    "liveLabel": "warehouses operating right now"
+  },
+  "LogoCloud": {
+    "title": "Trusted by Southeast Asia's fastest-growing brands",
+    "logos": ["Pomelo", "Lazada Cross-border", "Konvy", "Central Online", "Shopee Mall", "GoTo Brands", "Sasin Tech"]
+  },
+  "Preview": {
+    "tabOrders": "Orders",
+    "tabPick": "Picking",
+    "tabInbound": "Inbound",
+    "tabAnalytics": "Analytics",
+    "metricOrdersToday": "Orders today",
+    "metricSLA": "On-time ship",
+    "metricPickRate": "Pick rate / hr",
+    "metricAccuracy": "Accuracy",
+    "channels": "Channels",
+    "shopee": "Shopee",
+    "lazada": "Lazada",
+    "tiktok": "TikTok Shop",
+    "web": "Web",
+    "feedTitle": "Live operations feed",
+    "feedLines": [
+      "Parcel TC-48201 departed warehouse — Bangkok",
+      "Wave #233 picking • 18 items • Zone B-2",
+      "Replenish SKU-7733 to bin A-04",
+      "Inbound PO-1188 received • 432 units"
+    ]
+  },
+  "Features": {
+    "eyebrow": "Every step on one platform",
+    "title": "Fewer systems. Fewer errors.",
+    "subtitle": "From inbound and picking to shipping, returns and analytics — every step connected, every signal in one place.",
+    "items": [
+      {
+        "title": "Smarter inbound",
+        "description": "Receive against supplier ASNs automatically, inspect from mobile, putaway by FEFO with system-suggested bins — no spreadsheets, no guesswork."
+      },
+      {
+        "title": "Precise pick & pack",
+        "description": "Automated wave + FEFO picking cuts errors by up to 80%. Works offline when Wi-Fi drops. Built-in weight check before every box is sealed."
+      },
+      {
+        "title": "Multi-carrier shipping",
+        "description": "Pre-integrated with Flash, Kerry, J&T, Thailand Post and Ninja Van. Pick the cheapest or fastest carrier per order using rules you define."
+      },
+      {
+        "title": "Insights that act",
+        "description": "Real-time view of worker productivity, cost per order, low-stock SKUs, and demand forecasts — not yesterday's report, today's signal."
+      }
+    ]
+  },
+  "Stats": {
+    "title": "One platform, real cost savings",
+    "subtitle": "Average across customer warehouses, 90 days after onboarding",
+    "items": [
+      { "value": "3.4x", "label": "orders per worker per hour" },
+      { "value": "−80%", "label": "picking errors" },
+      { "value": "−38%", "label": "shipping cost per order" }
+    ],
+    "cta": "See real customer stories"
+  },
+  "Platform": {
+    "eyebrow": "One platform. One contract.",
+    "title": "Every module ready from day one",
+    "subtitle": "No more integration projects. No more juggling licenses.",
+    "modules": [
+      { "name": "WMS", "desc": "Multi-warehouse ops" },
+      { "name": "OMS", "desc": "All channels, one queue" },
+      { "name": "Picking", "desc": "Wave + FEFO automation" },
+      { "name": "Shipping", "desc": "Multi-carrier rules" },
+      { "name": "Returns", "desc": "RMA + auto-refund" },
+      { "name": "Inventory", "desc": "Real-time counts" },
+      { "name": "Settlement", "desc": "COD reconciliation" },
+      { "name": "API", "desc": "Open ERP integration" }
+    ]
+  },
+  "Testimonials": {
+    "eyebrow": "Customer voices",
+    "title": "Leading operators choose ThaiCloud",
+    "items": [
+      {
+        "quote": "We cut daily warehouse hours in half after switching. Staff love it — one phone, every task.",
+        "name": "Natthapon W.",
+        "role": "Head of Fulfillment, Beauty Brand"
+      },
+      {
+        "quote": "For the first time we know our true cost per order. That gave us the confidence to reprice shipping in certain provinces.",
+        "name": "Siriporn K.",
+        "role": "COO, Lifestyle DTC Brand"
+      },
+      {
+        "quote": "During 11.11 we grew 4x without adding headcount — the system reorganized waves automatically as load climbed.",
+        "name": "Teerawut P.",
+        "role": "Founder, Supplements Brand"
+      }
+    ]
+  },
+  "Stories": {
+    "eyebrow": "Measurable results",
+    "title": "See what real teams achieved",
+    "items": [
+      {
+        "tag": "Beauty • DTC",
+        "title": "3x faster picking in 60 days",
+        "metric": "−72%",
+        "metricLabel": "picking errors"
+      },
+      {
+        "tag": "Fashion • Cross-border",
+        "title": "Scaled to 3 warehouses in 4 months",
+        "metric": "+18,000",
+        "metricLabel": "orders per week"
+      },
+      {
+        "tag": "F&B • Health",
+        "title": "Cut fulfillment cost by 42%",
+        "metric": "฿24",
+        "metricLabel": "cost per order"
+      }
+    ],
+    "readAll": "Read all stories"
+  },
+  "Security": {
+    "eyebrow": "Security & governance",
+    "title": "Built on standards enterprises trust",
+    "subtitle": "ThaiCloud is hosted on Microsoft Azure (Southeast Asia region) with encryption at rest and in transit, PDPA readiness, and a path to ISO 27001 / SOC 2.",
+    "badges": ["PDPA Thailand", "ISO 27001 (in progress)", "SOC 2 Type II", "Azure SEA Region", "Daily Backup", "RBAC + SSO"]
+  },
+  "Pricing": {
+    "eyebrow": "Pricing",
+    "title": "Choose the plan that fits your scale",
+    "subtitle": "Every plan includes WMS, OMS, shipping and core modules. Go live in 7 days.",
+    "billed": "Per warehouse, per month",
+    "popular": "Most popular",
+    "tiers": [
+      {
+        "name": "Starter",
+        "price": "฿4,900",
+        "tagline": "For brands starting in-house fulfillment",
+        "features": [
+          "1 warehouse • 2 users",
+          "1,500 orders / month",
+          "3 sales channel integrations",
+          "Standard Thai carriers",
+          "Email support"
+        ],
+        "cta": "Start trial"
+      },
+      {
+        "name": "Growth",
+        "price": "฿14,900",
+        "tagline": "For brands scaling fast",
+        "features": [
+          "1 warehouse • 10 users",
+          "10,000 orders / month",
+          "All channels + API access",
+          "Wave picking + FEFO",
+          "Analytics dashboard",
+          "Chat + phone support"
+        ],
+        "cta": "Start trial"
+      },
+      {
+        "name": "Enterprise",
+        "price": "Contact us",
+        "tagline": "For 3PLs and multi-warehouse brands",
+        "features": [
+          "Multi-warehouse • Unlimited users",
+          "Unlimited orders",
+          "Advanced SSO + RBAC",
+          "Custom integrations",
+          "99.95% SLA",
+          "Dedicated success manager"
+        ],
+        "cta": "Talk to sales"
+      }
+    ]
+  },
+  "FooterCTA": {
+    "title": "Turn your warehouse into an advantage",
+    "subtitle": "30-day free trial. No credit card required. Thai-speaking team to help you onboard.",
+    "ctaPrimary": "Start free trial",
+    "ctaSecondary": "Book a 30-min demo"
+  },
+  "Footer": {
+    "tagline": "Operational intelligence for warehouses and eCommerce across Southeast Asia",
+    "columns": {
+      "product": {
+        "title": "Product",
+        "items": ["WMS", "OMS", "Picking", "Shipping", "Returns", "Analytics", "API"]
+      },
+      "solutions": {
+        "title": "Solutions",
+        "items": ["DTC brands", "Cross-border", "3PL Operators", "Food & Beverage", "Cold chain"]
+      },
+      "company": {
+        "title": "Company",
+        "items": ["About", "Customers", "News", "Careers", "Contact"]
+      },
+      "resources": {
+        "title": "Resources",
+        "items": ["Blog", "Docs", "Webinars", "Help Center", "Status"]
+      }
+    },
+    "legal": "© 2026 Packiko (ThaiCloud). All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "pdpa": "PDPA Notice"
+  }
+}

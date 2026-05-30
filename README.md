@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ThaiCloud — Marketing Landing
 
-## Getting Started
+Next.js 15 + Tailwind CSS v4 + next-intl v4 landing page for **ThaiCloud (Packiko)**.
 
-First, run the development server:
+> Operational intelligence layer for warehouses and eCommerce fulfillment across Thailand and Southeast Asia.
+
+## Stack
+
+- **Next.js 15** (App Router, React 19, TypeScript)
+- **Tailwind CSS v4** (no config file — design tokens via `@theme` in `globals.css`)
+- **next-intl v4** with `localePrefix: "as-needed"`
+  - Thai (`/`) = default, no prefix
+  - English (`/en`)
+- Fonts: **Bricolage Grotesque** (display Latin) + **IBM Plex Sans Thai Looped** (Thai) + **JetBrains Mono** (numerals)
+- No external image deps — product mockups are inline SVG
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# → http://localhost:3000        (Thai)
+# → http://localhost:3000/en     (English)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Production build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm run start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploy
 
-## Learn More
+**Vercel** (recommended): connect this repo to Vercel; defaults work out of the box.
 
-To learn more about Next.js, take a look at the following resources:
+**Other hosts**: any Node.js host supporting Next.js 15 standalone output works. Set Node ≥ 20.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project layout
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/
+│   ├── [locale]/
+│   │   ├── layout.tsx       — locale-aware <html lang> + provider
+│   │   └── page.tsx         — composes all sections
+│   ├── globals.css          — Tailwind v4 + design tokens
+│   └── layout.tsx           — root passthrough
+├── components/
+│   ├── Nav.tsx              — sticky nav over hero
+│   ├── Hero.tsx             — dark hero with grid + cyan glow
+│   ├── ProductPreview.tsx   — stylized warehouse dashboard (inline SVG)
+│   ├── LogoCloud.tsx        — customer marquee
+│   ├── Features.tsx         — 4-column with mini SVG visuals
+│   ├── Stats.tsx            — 3 big numbers on dark panel
+│   ├── OnePlatform.tsx      — 8-module bento grid
+│   ├── Testimonials.tsx     — 3 quote cards
+│   ├── Stories.tsx          — case study cards w/ metric overlay
+│   ├── Security.tsx         — PDPA / ISO / SOC2 badges
+│   ├── Pricing.tsx          — 3 tiers, Growth featured
+│   ├── FooterCTA.tsx        — closing banner
+│   ├── Footer.tsx           — multi-column footer
+│   ├── Logo.tsx
+│   └── LocaleToggle.tsx     — TH / EN toggle (client component)
+├── i18n/
+│   ├── routing.ts
+│   ├── request.ts
+│   └── navigation.ts
+├── messages/
+│   ├── th.json
+│   └── en.json
+└── middleware.ts
+```
 
-## Deploy on Vercel
+## Editing copy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+All text lives in `src/messages/th.json` and `src/messages/en.json`. Keep both files in lockstep — same keys, same shape.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Design tokens
+
+Brand palette + typography are defined in `src/app/globals.css` under `@theme`. Override there to rebrand.
+
+- `--color-ink-*` — deep navy spectrum (Packiko primary)
+- `--color-cyan-*` — electric cyan accent
+- `--color-coral-*` — warm secondary accent
+- `--color-bone`, `--color-paper` — light neutrals
+- `--font-display`, `--font-thai`, `--font-mono`
+
+## Notes
+
+- Customer logos in `LogoCloud` are placeholders — swap with real partners.
+- Testimonial names are placeholders — replace with consenting customers + photos.
+- Hero `live` counter (231) is hard-coded — wire to a real metric if desired.
+- `Features` and `Stats` numbers are illustrative — replace with audited figures before going public.

@@ -1,68 +1,126 @@
-export default function Pricing() {
+import { useTranslations } from "next-intl";
+
+type Tier = {
+  name: string;
+  price: string;
+  tagline: string;
+  features: string[];
+  cta: string;
+};
+
+export function Pricing() {
+  const t = useTranslations("Pricing");
+  const tiers = t.raw("tiers") as Tier[];
+
   return (
-    <section id="pricing-sec" className="pricing-sec bg-gray">
-      <div className="container">
-        <div className="row">
-          <div
-            className="pricing-details col-10 offset-1 col-lg-8 offset-lg-2 text-center wow zoomIn"
-            data-wow-duration="1s"
-            data-wow-delay=".1s"
-          >
-            <p className="sub-heading text-red">
-              <span></span>Why Choose Us
-            </p>
-            <h4 className="heading">จุดเด่นที่แตกต่าง</h4>
-            <p className="text">
-              เราให้ความสำคัญกับผลลัพธ์ที่จับต้องได้ ด้วยระบบที่สร้างจากความเข้าใจคลังสินค้าอย่างแท้จริง
-            </p>
-          </div>
+    <section id="pricing" className="bg-paper py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="text-[12px] uppercase tracking-[0.16em] text-cyan-600">
+            {t("eyebrow")}
+          </span>
+          <h2 className="font-display mt-4 text-[36px] leading-[1.1] tracking-tight text-ink-900 md:text-[52px]">
+            {t("title")}
+          </h2>
+          <p className="mt-5 text-[16px] leading-relaxed text-ink-500">
+            {t("subtitle")}
+          </p>
         </div>
-        <div className="row price-cards mt-5">
-          {/* Price-1 */}
-          <div
-            className="pricing-card col-12 col-lg-4 text-center wow fadeInLeft"
-            data-wow-duration="2s"
-            data-wow-delay=".1s"
-          >
-            <h4 className="pricing-card-heading">Built by Operators</h4>
-            <p className="pricing-card-text">
-              เราสร้างระบบจากความเข้าใจ &quot;หน้างานจริง&quot; ไม่ใช่แค่จากห้องแล็บ
-            </p>
 
-            <a href="#" className="btn btn-medium btn-rounded btn-black">
-              Learn More
-            </a>
-          </div>
-          {/* Price-2 */}
-          <div
-            className="pricing-card active col-12 col-lg-4 text-center wow fadeInUp"
-            data-wow-duration="2s"
-            data-wow-delay=".1s"
-          >
-            <h4 className="pricing-card-heading">Data-Driven Decisions</h4>
-            <p className="pricing-card-text">
-              เปลี่ยนจากระบบบันทึกข้อมูลแบบเดิม เป็นระบบที่ช่วย &quot;วางแผน&quot; และ &quot;คาดการณ์&quot;
-            </p>
+        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
+          {tiers.map((tier, i) => {
+            const featured = i === 1;
+            return (
+              <div
+                key={tier.name}
+                className={`relative flex flex-col rounded-2xl p-7 ${
+                  featured
+                    ? "bg-ink-900 text-bone shadow-xl shadow-cyan-500/10 ring-1 ring-cyan-500/30 md:-mt-4 md:mb-4"
+                    : "border border-ink-100 bg-white"
+                }`}
+              >
+                {featured && (
+                  <span className="absolute -top-3 left-1/2 inline-flex -translate-x-1/2 items-center rounded-full bg-cyan-500 px-3 py-1 text-[10.5px] font-semibold uppercase tracking-wider text-ink-950">
+                    {t("popular")}
+                  </span>
+                )}
 
-            <a href="#" className="btn btn-medium btn-rounded btn-black">
-              Learn More
-            </a>
-          </div>
-          {/* Price-3 */}
-          <div
-            className="pricing-card col-12 col-lg-4 text-center wow fadeInRight"
-            data-wow-duration="2s"
-            data-wow-delay=".1s"
-          >
-            <h4 className="pricing-card-heading">Scale Without Limits</h4>
-            <p className="pricing-card-text">
-              ช่วยให้ธุรกิจขยายจาก 1,000 เป็น 5,000 ออเดอร์/วัน ได้โดยไม่ต้องเพิ่มพื้นที่คลัง
-            </p>
+                <div
+                  className={`font-display text-[22px] font-semibold ${
+                    featured ? "text-bone" : "text-ink-900"
+                  }`}
+                >
+                  {tier.name}
+                </div>
+                <p
+                  className={`mt-1.5 text-[13px] ${
+                    featured ? "text-bone/55" : "text-ink-500"
+                  }`}
+                >
+                  {tier.tagline}
+                </p>
 
-            <a href="#" className="btn btn-medium btn-rounded btn-black">
-              Learn More
-            </a>
-          </div>
+                <div className="mt-7">
+                  <div
+                    className={`font-display font-mono-num text-[38px] leading-none font-semibold ${
+                      featured ? "text-cyan-300" : "text-ink-900"
+                    }`}
+                  >
+                    {tier.price}
+                  </div>
+                  <div
+                    className={`mt-1 text-[11px] uppercase tracking-wider ${
+                      featured ? "text-bone/40" : "text-ink-400"
+                    }`}
+                  >
+                    {t("billed")}
+                  </div>
+                </div>
+
+                <a
+                  href="#trial"
+                  className={`mt-6 inline-flex items-center justify-center rounded-full px-4 py-3 text-[13px] font-semibold transition ${
+                    featured
+                      ? "bg-cyan-500 text-ink-950 hover:bg-cyan-400"
+                      : "border border-ink-900 text-ink-900 hover:bg-ink-900 hover:text-bone"
+                  }`}
+                >
+                  {tier.cta}
+                </a>
+
+                <ul className="mt-7 space-y-2.5">
+                  {tier.features.map((f) => (
+                    <li
+                      key={f}
+                      className={`flex items-start gap-2.5 text-[13.5px] ${
+                        featured ? "text-bone/75" : "text-ink-700"
+                      }`}
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        className={`mt-0.5 flex-shrink-0 ${
+                          featured ? "text-cyan-300" : "text-cyan-600"
+                        }`}
+                        aria-hidden
+                      >
+                        <path
+                          d="M3 8.5l3 3 7-7"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

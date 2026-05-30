@@ -1,81 +1,69 @@
-export default function Footer() {
+import { useTranslations } from "next-intl";
+import { Logo } from "./Logo";
+import { LocaleToggle } from "./LocaleToggle";
+
+type Column = { title: string; items: string[] };
+
+export function Footer() {
+  const t = useTranslations("Footer");
+  const cols = t.raw("columns") as Record<string, Column>;
+  const colKeys = ["product", "solutions", "company", "resources"] as const;
+
   return (
-    <>
-      {/* Footer Start */}
-      <footer className="footer-style-1 bg-gray">
-        <div className="container">
-          <div className="row align-items-center">
-            {/* Social */}
-            <div className="col-lg-6">
-              <div className="footer-social text-center text-lg-left ">
-                <ul className="list-unstyled">
-                  <li>
-                    <a className="wow fadeInUp" href="#">
-                      <i aria-hidden="true" className="fab fa-facebook-f"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="wow fadeInDown" href="#">
-                      <i aria-hidden="true" className="fab fa-x-twitter"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="wow fadeInUp" href="#">
-                      <i aria-hidden="true" className="fab fa-google-plus-g"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="wow fadeInDown" href="#">
-                      <i aria-hidden="true" className="fab fa-linkedin-in"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="wow fadeInUp" href="#">
-                      <i aria-hidden="true" className="fab fa-instagram"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="wow fadeInDown" href="#">
-                      <i aria-hidden="true" className="fab fa-pinterest-p"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            {/* Text */}
-            <div className="col-lg-6 text-center text-lg-right">
-              <p className="company-about fadeIn">
-                &copy; {new Date().getFullYear()} ThaiCloud PAC Co., Ltd. 0105569016405
-              </p>
+    <footer className="bg-ink-950 pt-20 pb-10 text-bone">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <Logo variant="dark" />
+            <p className="mt-5 max-w-xs text-[13.5px] leading-relaxed text-bone/55">
+              {t("tagline")}
+            </p>
+            <div className="mt-6">
+              <LocaleToggle tone="dark" />
             </div>
           </div>
-        </div>
-      </footer>
-      {/* Footer End */}
 
-      {/* Animated Cursor */}
-      <div id="animated-cursor">
-        <div id="cursor">
-          <div id="cursor-loader"></div>
-        </div>
-      </div>
-
-      {/* Fixed Menu */}
-      <div className="fixed-nav-on-scroll fixed-nav-appear d-none sidemenu_toggle">
-        <div className="row no-gutters">
-          <div className="col-12 d-flex justify-content-center align-items-center position-relative">
-            <div className="fixed-icon-scroll">
-              <a className="menu_bars menu-bars-setting link mr-3 mr-lg-0" style={{ cursor: 'pointer' }}>
-                <div className="menu-lines">
-                  <span></span>
-                  <span></span>
-                  <span></span>
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8">
+            {colKeys.map((k) => {
+              const col = cols[k];
+              return (
+                <div key={k}>
+                  <div className="text-[11px] uppercase tracking-[0.15em] text-bone/35">
+                    {col.title}
+                  </div>
+                  <ul className="mt-4 space-y-2.5">
+                    {col.items.map((item) => (
+                      <li key={item}>
+                        <a
+                          href="#"
+                          className="text-[13.5px] text-bone/70 transition hover:text-bone"
+                        >
+                          {item}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </a>
-            </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-bone/10 pt-6 md:flex-row md:items-center">
+          <span className="text-[12px] text-bone/40">{t("legal")}</span>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[12px] text-bone/55">
+            <a href="#" className="transition hover:text-bone">
+              {t("privacy")}
+            </a>
+            <a href="#" className="transition hover:text-bone">
+              {t("terms")}
+            </a>
+            <a href="#" className="transition hover:text-bone">
+              {t("pdpa")}
+            </a>
           </div>
         </div>
       </div>
-    </>
+    </footer>
   );
 }
