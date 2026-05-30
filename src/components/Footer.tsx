@@ -10,12 +10,12 @@ export function Footer() {
   const colKeys = ["product", "solutions", "company", "resources"] as const;
 
   return (
-    <footer className="bg-ink-950 pt-20 pb-10 text-bone">
+    <footer className="bg-ink-950 pb-8 pt-20 text-white/80">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-[60px]">
           <div className="lg:col-span-4">
             <Logo variant="dark" />
-            <p className="mt-5 max-w-xs text-[13.5px] leading-relaxed text-bone/55">
+            <p className="mt-[18px] max-w-[280px] text-[13.5px] leading-[1.6] text-white/55">
               {t("tagline")}
             </p>
             <div className="mt-6">
@@ -23,20 +23,20 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8">
+          <div className="grid grid-cols-2 gap-7 sm:grid-cols-4 lg:col-span-8">
             {colKeys.map((k) => {
               const col = cols[k];
               return (
                 <div key={k}>
-                  <div className="text-[11px] uppercase tracking-[0.15em] text-bone/35">
+                  <h4 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.15em] text-white/40">
                     {col.title}
-                  </div>
-                  <ul className="mt-4 space-y-2.5">
+                  </h4>
+                  <ul className="space-y-2.5">
                     {col.items.map((item) => (
                       <li key={item}>
                         <a
                           href="#"
-                          className="text-[13.5px] text-bone/70 transition hover:text-bone"
+                          className="text-[13.5px] text-white/70 transition hover:text-white"
                         >
                           {item}
                         </a>
@@ -49,16 +49,16 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-bone/10 pt-6 md:flex-row md:items-center">
-          <span className="text-[12px] text-bone/40">{t("legal")}</span>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[12px] text-bone/55">
-            <a href="#" className="transition hover:text-bone">
+        <div className="mt-[60px] flex flex-col items-start justify-between gap-3.5 border-t border-white/[0.08] pt-[22px] md:flex-row md:items-center">
+          <span className="text-[12px] text-white/40">{t("legal")}</span>
+          <div className="flex flex-wrap items-center gap-x-[22px] gap-y-2 text-[12px] text-white/55">
+            <a href="#" className="transition hover:text-white">
               {t("privacy")}
             </a>
-            <a href="#" className="transition hover:text-bone">
+            <a href="#" className="transition hover:text-white">
               {t("terms")}
             </a>
-            <a href="#" className="transition hover:text-bone">
+            <a href="#" className="transition hover:text-white">
               {t("pdpa")}
             </a>
           </div>

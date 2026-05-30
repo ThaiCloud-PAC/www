@@ -13,87 +13,94 @@ export function Pricing() {
   const tiers = t.raw("tiers") as Tier[];
 
   return (
-    <section id="pricing" className="bg-white py-24 md:py-32">
+    <section id="pricing" className="bg-bone py-[100px]">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="text-[12px] uppercase tracking-[0.16em] text-cyan-700">
+        <div className="mx-auto mb-[60px] max-w-2xl text-center">
+          <span className="text-[12px] font-semibold uppercase tracking-[0.18em] text-orange-500">
             {t("eyebrow")}
           </span>
-          <h2 className="font-display mt-4 text-[36px] leading-[1.1] tracking-tight text-ink-900 md:text-[52px]">
+          <h2 className="font-display mt-3.5 text-[clamp(34px,4.5vw,54px)] font-bold leading-[1.1] tracking-[-0.02em] text-slate-900">
             {t("title")}
           </h2>
-          <p className="mt-5 text-[16px] leading-relaxed text-ink-500">
+          <p className="mt-4 text-[17px] leading-[1.65] text-slate-500">
             {t("subtitle")}
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="grid grid-cols-1 items-stretch gap-[18px] md:grid-cols-3">
           {tiers.map((tier, i) => {
             const featured = i === 1;
             return (
               <div
                 key={tier.name}
-                className={`relative flex flex-col rounded-2xl p-7 ${
+                className={`relative flex flex-col rounded-[18px] p-[30px] ${
                   featured
-                    ? "bg-ink-900 text-white shadow-xl shadow-ink-900/20 ring-1 ring-cyan-500/30 md:-mt-4 md:mb-4"
+                    ? "-translate-y-3 border border-ink-800 text-white"
                     : "border border-ink-100 bg-white"
                 }`}
+                style={
+                  featured
+                    ? {
+                        background:
+                          "linear-gradient(180deg, var(--color-ink-900) 0%, var(--color-ink-950) 100%)",
+                        boxShadow: "0 30px 60px -20px rgba(2,40,63,0.4)",
+                      }
+                    : undefined
+                }
               >
                 {featured && (
-                  <span className="absolute -top-3 left-1/2 inline-flex -translate-x-1/2 items-center rounded-full bg-cyan-500 px-3 py-1 text-[10.5px] font-semibold uppercase tracking-wider text-ink-950">
+                  <span className="absolute -top-3 left-1/2 inline-flex -translate-x-1/2 items-center rounded-full bg-orange-500 px-3.5 py-1.5 text-[10.5px] font-bold uppercase tracking-[0.12em] text-white">
                     {t("popular")}
                   </span>
                 )}
 
                 <div
-                  className={`font-display text-[22px] font-semibold ${
-                    featured ? "text-white" : "text-ink-900"
+                  className={`font-display text-[22px] font-bold ${
+                    featured ? "text-white" : "text-slate-900"
                   }`}
                 >
                   {tier.name}
                 </div>
                 <p
                   className={`mt-1.5 text-[13px] ${
-                    featured ? "text-white/65" : "text-ink-500"
+                    featured ? "text-white/70" : "text-slate-500"
                   }`}
                 >
                   {tier.tagline}
                 </p>
 
-                <div className="mt-7">
-                  <div
-                    className={`font-display font-mono-num text-[38px] leading-none font-semibold ${
-                      featured ? "text-cyan-200" : "text-ink-900"
-                    }`}
-                  >
-                    {tier.price}
-                  </div>
-                  <div
-                    className={`mt-1 text-[11px] uppercase tracking-wider ${
-                      featured ? "text-white/45" : "text-ink-400"
-                    }`}
-                  >
-                    {t("billed")}
-                  </div>
+                <div
+                  className={`font-mono-num mt-7 text-[40px] font-bold leading-none ${
+                    featured ? "text-amber-500" : "text-slate-900"
+                  }`}
+                >
+                  {tier.price}
+                </div>
+                <div
+                  className={`mt-1.5 text-[10.5px] uppercase tracking-[0.12em] ${
+                    featured ? "text-white/60" : "text-slate-400"
+                  }`}
+                >
+                  {t("billed")}
                 </div>
 
                 <a
                   href="#trial"
-                  className={`mt-6 inline-flex items-center justify-center rounded-full px-4 py-3 text-[13px] font-semibold transition ${
+                  className={`mt-5 inline-flex items-center justify-center rounded-full px-5 py-3 text-[13.5px] font-bold transition ${
                     featured
-                      ? "bg-white text-ink-900 hover:bg-cyan-100"
-                      : "border border-ink-900 text-ink-900 hover:bg-ink-900 hover:text-white"
+                      ? "border border-transparent bg-orange-500 text-white hover:bg-orange-600"
+                      : "border border-ink-900 text-slate-900 hover:bg-ink-900 hover:text-white"
                   }`}
                 >
                   {tier.cta}
                 </a>
 
-                <ul className="mt-7 space-y-2.5">
+                <ul className="mt-6 space-y-1.5">
                   {tier.features.map((f) => (
                     <li
                       key={f}
-                      className={`flex items-start gap-2.5 text-[13.5px] ${
-                        featured ? "text-white/85" : "text-ink-700"
+                      className={`flex items-start gap-2.5 py-1 text-[13.5px] leading-[1.55] ${
+                        featured ? "text-white/85" : "text-slate-700"
                       }`}
                     >
                       <svg
@@ -101,14 +108,12 @@ export function Pricing() {
                         height="16"
                         viewBox="0 0 16 16"
                         fill="none"
-                        className={`mt-0.5 flex-shrink-0 ${
-                          featured ? "text-cyan-200" : "text-cyan-700"
-                        }`}
+                        className="mt-0.5 shrink-0"
                         aria-hidden
                       >
                         <path
                           d="M3 8.5l3 3 7-7"
-                          stroke="currentColor"
+                          stroke={featured ? "var(--color-amber-500)" : "var(--color-teal-500)"}
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"

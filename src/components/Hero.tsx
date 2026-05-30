@@ -4,137 +4,158 @@ export function Hero() {
   const t = useTranslations("Hero");
 
   return (
-    <section className="relative overflow-hidden bg-white pt-32 pb-20 text-ink-900 md:pt-40 md:pb-28">
-      {/* soft top-down cyan wash */}
+    <section
+      className="relative overflow-hidden text-white"
+      style={{
+        background:
+          "radial-gradient(120% 80% at 50% 0%, var(--color-ink-900) 0%, var(--color-ink-950) 60%)",
+        padding: "140px 0 60px",
+      }}
+    >
+      {/* masked grid */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-[420px]"
+        className="pointer-events-none absolute inset-0"
         style={{
-          background:
-            "linear-gradient(to bottom, rgba(96,199,211,0.16), transparent 80%)",
+          backgroundImage:
+            "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)",
+          backgroundSize: "56px 56px",
+          WebkitMaskImage:
+            "radial-gradient(120% 60% at 50% 30%, black 30%, transparent 80%)",
+          maskImage:
+            "radial-gradient(120% 60% at 50% 30%, black 30%, transparent 80%)",
         }}
         aria-hidden
       />
 
-      {/* tasteful teal blob, lower-right */}
+      {/* amber glow — upper left */}
       <div
-        className="pointer-events-none absolute -right-32 bottom-[-120px] h-[420px] w-[420px] rounded-full opacity-50 blur-[120px]"
+        className="pointer-events-none absolute h-[540px] w-[540px] blur-[60px]"
         style={{
+          left: "-200px",
+          top: "60px",
           background:
-            "radial-gradient(circle at center, rgba(80,192,174,0.28), transparent 70%)",
+            "radial-gradient(circle, rgba(250,178,23,0.35), transparent 65%)",
         }}
         aria-hidden
       />
 
-      <div className="relative mx-auto max-w-7xl px-6">
+      {/* orange glow — upper right */}
+      <div
+        className="pointer-events-none absolute h-[480px] w-[480px] blur-[60px]"
+        style={{
+          right: "-180px",
+          top: "200px",
+          background:
+            "radial-gradient(circle, rgba(243,117,33,0.25), transparent 65%)",
+        }}
+        aria-hidden
+      />
+
+      {/* cyan glow — bottom center */}
+      <div
+        className="pointer-events-none absolute h-[320px] w-[700px] -translate-x-1/2 blur-[60px]"
+        style={{
+          left: "50%",
+          bottom: "-120px",
+          background:
+            "radial-gradient(ellipse, rgba(96,199,211,0.35), transparent 70%)",
+        }}
+        aria-hidden
+      />
+
+      <div className="relative z-[2] mx-auto max-w-7xl px-6 text-center">
         {/* badge */}
-        <div className="animate-fade-up mx-auto flex w-fit items-center gap-2 rounded-full border border-ink-100 bg-white/80 px-4 py-1.5 text-[12px] text-ink-700 backdrop-blur">
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inset-0 animate-pulse-dot rounded-full bg-cyan-500" />
-            <span className="relative h-1.5 w-1.5 rounded-full bg-cyan-500" />
+        <span className="inline-flex items-center gap-[9px] rounded-full border border-white/12 bg-white/[0.06] px-4 py-[7px] text-[12px] text-white/80 backdrop-blur">
+          <span className="relative inline-flex h-[7px] w-[7px]">
+            <span className="absolute inset-0 animate-pulse-amber rounded-full bg-amber-500" />
+            <span className="relative inline-block h-[7px] w-[7px] rounded-full bg-amber-500" />
           </span>
           {t("badge")}
-        </div>
+        </span>
 
         {/* headline */}
         <h1
-          className="animate-fade-up font-display mx-auto mt-7 max-w-5xl text-center text-[44px] leading-[1.05] sm:text-[60px] md:text-[74px]"
-          style={{ animationDelay: "100ms" }}
+          className="font-display mx-auto mt-7 max-w-[1100px] leading-[1.02] tracking-[-0.025em] text-white"
+          style={{ fontSize: "clamp(44px, 7vw, 92px)" }}
         >
           {t("titleLead")}{" "}
           <span className="relative inline-block">
-            <span className="relative z-10 text-ink-900">
+            <span
+              className="relative z-10"
+              style={{
+                background:
+                  "linear-gradient(135deg, var(--color-orange-400) 20%, var(--color-amber-500) 80%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                color: "transparent",
+              }}
+            >
               {t("titleAccent")}
             </span>
+            {/* halo behind accent */}
             <span
-              className="absolute inset-x-0 bottom-1 -z-0 h-3 rounded-sm bg-cyan-500/35"
+              className="absolute inset-x-0 -z-0 rounded"
+              style={{
+                bottom: "4%",
+                height: "16%",
+                background: "var(--color-orange-500)",
+                opacity: 0.18,
+              }}
               aria-hidden
             />
-          </span>{" "}
-          <span className="block text-ink-900">{t("titleTrail")}</span>
+          </span>
+          <br />
+          {t("titleTrail")}
         </h1>
 
         {/* subtitle */}
-        <p
-          className="animate-fade-up mx-auto mt-6 max-w-2xl text-center text-[16px] leading-relaxed text-ink-600 md:text-[18px]"
-          style={{ animationDelay: "200ms" }}
-        >
+        <p className="mx-auto mt-[26px] max-w-[720px] text-[17px] leading-[1.65] text-white/72">
           {t("subtitle")}
         </p>
 
         {/* CTAs */}
-        <div
-          className="animate-fade-up mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
-          style={{ animationDelay: "300ms" }}
-        >
+        <div className="mt-9 flex flex-wrap justify-center gap-3.5">
           <a
             href="#trial"
-            className="group inline-flex items-center gap-2 rounded-full bg-ink-900 px-6 py-3.5 text-[15px] font-semibold text-white transition hover:bg-ink-800"
+            className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-7 py-4 text-[15px] font-bold text-white transition hover:-translate-y-px hover:bg-orange-600"
+            style={{ boxShadow: "0 8px 24px -8px rgba(243,117,33,0.6)" }}
           >
-            {t("ctaPrimary")}
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              className="transition group-hover:translate-x-0.5"
-              aria-hidden
-            >
-              <path
-                d="M2 8h11M9 4l4 4-4 4"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            {t("ctaPrimary")} →
           </a>
           <a
             href="#demo"
-            className="inline-flex items-center rounded-full border border-ink-200 bg-white px-6 py-3.5 text-[15px] font-medium text-ink-900 transition hover:bg-ink-50"
+            className="inline-flex items-center rounded-full border border-white/[0.18] bg-white/[0.08] px-7 py-4 text-[15px] font-semibold text-white backdrop-blur transition hover:bg-white/[0.14]"
           >
             {t("ctaSecondary")}
           </a>
         </div>
 
         {/* trust row */}
-        <div
-          className="animate-fade-up mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[13px] text-ink-500"
-          style={{ animationDelay: "400ms" }}
-        >
-          <div className="flex items-center gap-1.5">
-            <span className="flex">
-              {[0, 1, 2, 3, 4].map((i) => (
-                <svg
-                  key={i}
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="var(--color-teal-500)"
-                  aria-hidden
-                >
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
-              ))}
+        <div className="mt-[42px] flex flex-wrap items-center justify-center gap-x-7 gap-y-3.5 text-[13px] text-white/65">
+          <span className="inline-flex items-center gap-px">
+            {[0, 1, 2, 3, 4].map((i) => (
+              <span
+                key={i}
+                className="text-amber-500"
+                style={{ fontSize: "14px", lineHeight: 1 }}
+              >
+                ★
+              </span>
+            ))}
+          </span>
+          <span className="font-mono-num text-white/85">{t("trustRating")}</span>
+          <span>·</span>
+          <span>{t("trustLabel")}</span>
+          <span className="hidden h-3.5 w-px bg-white/[0.18] sm:inline-block" />
+          <span className="font-mono-num inline-flex items-center gap-1.5 text-[11px] tracking-[0.12em] text-amber-500">
+            <span className="relative inline-flex h-[7px] w-[7px]">
+              <span className="absolute inset-0 animate-pulse-amber rounded-full bg-amber-500" />
+              <span className="relative inline-block h-[7px] w-[7px] rounded-full bg-amber-500" />
             </span>
-            <span className="font-mono-num text-ink-800">
-              {t("trustRating")}
-            </span>
-            <span>·</span>
-            <span>{t("trustLabel")}</span>
-          </div>
-
-          <span className="hidden h-3 w-px bg-ink-200 sm:inline" />
-
-          <div className="flex items-center gap-2">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inset-0 animate-[pulse-dot-amber_2.2s_ease-in-out_infinite] rounded-full bg-amber-500" />
-              <span className="relative h-1.5 w-1.5 rounded-full bg-amber-500" />
-            </span>
-            <span className="font-mono-num text-[11px] tracking-widest text-amber-600">
-              {t("live")}
-            </span>
-            <span>231 {t("liveLabel")}</span>
-          </div>
+            {t("live")}
+          </span>
+          <span>231 {t("liveLabel")}</span>
         </div>
       </div>
     </section>

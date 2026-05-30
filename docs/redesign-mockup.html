@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ThaiCloud — ระบบเดียวเพื่อคลังที่โตเร็ว</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Sans+Thai+Looped:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Brand */
+    --navy-950: #02283F;
+    --navy-900: #035897;
+    --navy-800: #0671B8;
+    --navy-700: #2080BD;
+
+    --orange-700: #C45418;
+    --orange-600: #DD661C;
+    --orange-500: #F37521;
+    --orange-400: #F58A1F;
+    --orange-300: #F8A24A;
+    --orange-100: #FDE0BA;
+    --orange-50:  #FEF3E3;
+
+    --amber-500: #FAB217;
+    --amber-300: #FCD479;
+    --amber-100: #FEEFCC;
+    --amber-50:  #FFF8E5;
+
+    --cyan-600: #008B8B;
+    --cyan-500: #60C7D3;
+    --cyan-300: #A8E1E8;
+    --cyan-100: #E5F6F8;
+
+    --teal-600: #008B8B;
+    --teal-500: #00A8A7;
+    --teal-300: #74CDBF;
+
+    --ink-900: #0F1A2A;
+    --ink-700: #2E3D54;
+    --ink-500: #5D6C82;
+    --ink-300: #B5C2D2;
+    --ink-200: #DBE2EB;
+    --ink-100: #ECF1F6;
+    --ink-50:  #F6F8FB;
+
+    --bone: #FAFBFC;
+    --paper: #FFFFFF;
+    --cream: #FFF8E5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    font-family: "IBM Plex Sans Thai Looped", "IBM Plex Sans", system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink-900);
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; }
+  img, svg { display: block; max-width: 100%; }
+
+  .display { font-family: "Bricolage Grotesque", "IBM Plex Sans Thai Looped", sans-serif; letter-spacing: -0.02em; font-weight: 700; }
+  .mono { font-family: "JetBrains Mono", monospace; font-feature-settings: "tnum", "zero"; }
+  .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+  .eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 0.18em; font-weight: 600; }
+
+  /* ============ NAV ============ */
+  .nav {
+    position: absolute; inset: 0 0 auto 0;
+    z-index: 30;
+    padding: 22px 0;
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: white; font-weight: 700; font-size: 21px; letter-spacing: -0.01em;
+    font-family: "Bricolage Grotesque", sans-serif;
+  }
+  .logo-glyph {
+    width: 36px; height: 36px;
+    position: relative;
+  }
+  .nav-links { display: none; gap: 30px; }
+  @media (min-width: 1024px) { .nav-links { display: flex; } }
+  .nav-links a {
+    font-size: 14px; color: rgba(255,255,255,0.78); transition: color .2s;
+  }
+  .nav-links a:hover { color: white; }
+  .nav-actions { display: flex; align-items: center; gap: 12px; }
+  .locale-toggle {
+    display: inline-flex; padding: 3px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+  }
+  .locale-toggle button {
+    padding: 5px 11px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    border-radius: 999px;
+    color: rgba(255,255,255,0.6);
+  }
+  .locale-toggle button.active {
+    background: var(--amber-500); color: var(--navy-950);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 14px; font-weight: 600;
+    transition: all .2s;
+  }
+  .btn-primary {
+    background: var(--orange-500); color: white;
+  }
+  .btn-primary:hover { background: var(--orange-600); }
+  .btn-ghost {
+    color: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(8px);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.14); }
+
+  /* ============ HERO — FULL BLEED DARK ============ */
+  .hero {
+    position: relative;
+    background: radial-gradient(120% 80% at 50% 0%, var(--navy-900) 0%, var(--navy-950) 60%);
+    color: white;
+    padding: 140px 0 60px;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(120% 60% at 50% 30%, black 30%, transparent 80%);
+  }
+  .hero-glow-amber {
+    position: absolute; left: -200px; top: 60px;
+    width: 540px; height: 540px;
+    background: radial-gradient(circle, rgba(250,178,23,0.35), transparent 65%);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  .hero-glow-orange {
+    position: absolute; right: -180px; top: 200px;
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, rgba(243,117,33,0.25), transparent 65%);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  .hero-glow-cyan {
+    position: absolute; left: 50%; transform: translateX(-50%); bottom: -120px;
+    width: 700px; height: 320px;
+    background: radial-gradient(ellipse, rgba(96,199,211,0.35), transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative; z-index: 2;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 7px 16px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 999px;
+    font-size: 12px; color: rgba(255,255,255,0.8);
+    backdrop-filter: blur(8px);
+  }
+  .live-dot {
+    display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--amber-500);
+    box-shadow: 0 0 0 0 rgba(250,178,23,0.6);
+    animation: pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(250,178,23,0.55); }
+    70% { box-shadow: 0 0 0 12px rgba(250,178,23,0); }
+  }
+  .hero h1 {
+    font-size: clamp(44px, 7vw, 92px);
+    line-height: 1.02;
+    margin: 28px auto 0;
+    max-width: 1100px;
+    letter-spacing: -0.025em;
+  }
+  .hero h1 .accent {
+    position: relative;
+    color: white;
+    background: linear-gradient(135deg, var(--orange-400) 20%, var(--amber-500) 80%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero h1 .accent::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 4%;
+    height: 16%;
+    background: var(--orange-500); opacity: 0.18;
+    border-radius: 4px; z-index: -1;
+  }
+  .hero p.sub {
+    margin: 26px auto 0;
+    max-width: 720px;
+    font-size: 17px; line-height: 1.65;
+    color: rgba(255,255,255,0.72);
+  }
+  .hero-ctas {
+    display: flex; justify-content: center; gap: 14px;
+    margin-top: 36px; flex-wrap: wrap;
+  }
+  .btn-hero-primary {
+    padding: 16px 28px; font-size: 15px;
+    background: var(--orange-500); color: white;
+    border-radius: 999px; font-weight: 700;
+    box-shadow: 0 8px 24px -8px rgba(243,117,33,0.6);
+    transition: all .2s;
+  }
+  .btn-hero-primary:hover { background: var(--orange-600); transform: translateY(-1px); }
+  .btn-hero-ghost {
+    padding: 16px 28px; font-size: 15px; font-weight: 600;
+    color: white;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    transition: all .2s;
+  }
+  .btn-hero-ghost:hover { background: rgba(255,255,255,0.14); }
+
+  .hero-trust {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    align-items: center; gap: 22px 28px;
+    margin-top: 42px;
+    color: rgba(255,255,255,0.65); font-size: 13px;
+  }
+  .stars { display: inline-flex; gap: 1px; }
+  .star { color: var(--amber-500); font-size: 14px; }
+  .hero-trust .divider { width: 1px; height: 14px; background: rgba(255,255,255,0.18); }
+
+  /* ============ HERO PRODUCT MOCKUP ============ */
+  .hero-product {
+    position: relative; z-index: 3;
+    max-width: 1100px;
+    margin: 70px auto 0;
+    padding: 0 12px;
+  }
+  .hero-product::before {
+    content: ""; position: absolute;
+    left: 4%; right: 4%; bottom: -40px; height: 120px;
+    background: radial-gradient(ellipse at center, rgba(96,199,211,0.5), transparent 70%);
+    filter: blur(40px); z-index: -1;
+  }
+  .product-frame {
+    border-radius: 14px; overflow: hidden;
+    background: white;
+    box-shadow: 0 30px 80px -20px rgba(2,40,63,0.7), 0 0 0 1px rgba(255,255,255,0.1);
+  }
+  .product-chrome {
+    display: flex; align-items: center; gap: 7px;
+    padding: 11px 16px;
+    background: var(--ink-50);
+    border-bottom: 1px solid var(--ink-100);
+  }
+  .traffic { width: 11px; height: 11px; border-radius: 50%; }
+  .product-chrome .url {
+    margin-left: 14px;
+    font: 11px "JetBrains Mono", monospace;
+    color: var(--ink-300);
+  }
+  .product-body {
+    display: grid; grid-template-columns: 56px 1fr;
+    min-height: 360px;
+  }
+  .product-sidebar {
+    background: var(--ink-50);
+    border-right: 1px solid var(--ink-100);
+    padding: 14px 0;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+  }
+  .sb-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-300);
+    font-size: 16px;
+  }
+  .sb-icon.active { background: var(--cyan-100); color: var(--navy-900); }
+  .product-main { padding: 16px 20px; }
+  .tabs { display: flex; gap: 6px; border-bottom: 1px solid var(--ink-100); margin-bottom: 16px; }
+  .tab {
+    padding: 8px 14px;
+    font-size: 12.5px; font-weight: 500;
+    color: var(--ink-300);
+    position: relative;
+  }
+  .tab.active { color: var(--ink-900); }
+  .tab.active::after {
+    content: ""; position: absolute; left: 8px; right: 8px; bottom: -1px;
+    height: 2px; background: var(--cyan-500);
+  }
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .metric {
+    border: 1px solid var(--ink-100); border-radius: 10px; padding: 12px;
+  }
+  .metric .label { font-size: 10px; color: var(--ink-500); text-transform: uppercase; letter-spacing: 0.1em; }
+  .metric .value { font-family: "JetBrains Mono", monospace; font-size: 22px; font-weight: 600; color: var(--ink-900); margin-top: 4px; }
+  .metric .delta { font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--teal-600); margin-left: 6px; }
+  .product-grid {
+    display: grid; grid-template-columns: 7fr 5fr; gap: 10px; margin-top: 14px;
+  }
+  .panel {
+    background: var(--paper); border: 1px solid var(--ink-100); border-radius: 10px; padding: 14px;
+  }
+  .panel-title { font-size: 10.5px; color: var(--ink-500); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; margin-bottom: 10px; }
+  .bars { display: flex; align-items: flex-end; gap: 4px; height: 90px; }
+  .bar { flex: 1; border-radius: 3px 3px 0 0; background: var(--cyan-100); }
+  .bar.alt { background: var(--cyan-500); opacity: 0.35; }
+  .bar.peak { background: linear-gradient(to top, var(--cyan-500), var(--cyan-300)); }
+  .channels .channel-row { margin-bottom: 7px; }
+  .channels .channel-row:last-child { margin-bottom: 0; }
+  .channel-row .top { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 3px; }
+  .channel-row .track { height: 4px; background: var(--ink-100); border-radius: 999px; overflow: hidden; }
+  .channel-row .fill { height: 100%; border-radius: 999px; }
+  .feed {
+    margin-top: 10px;
+    background: var(--paper); border: 1px solid var(--ink-100); border-radius: 10px; padding: 14px;
+    font: 11px "JetBrains Mono", monospace; color: var(--ink-700);
+  }
+  .feed-row { display: flex; gap: 14px; margin-top: 6px; }
+  .feed-row .ts { color: var(--ink-300); }
+
+  /* ============ LOGO CLOUD ============ */
+  .logos {
+    padding: 60px 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--ink-100);
+  }
+  .logos .label {
+    text-align: center;
+    color: var(--ink-500); font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.15em;
+    margin-bottom: 32px;
+  }
+  .marquee { overflow: hidden; position: relative; }
+  .marquee::before, .marquee::after {
+    content: ""; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2;
+  }
+  .marquee::before { left: 0; background: linear-gradient(to right, var(--paper), transparent); }
+  .marquee::after { right: 0; background: linear-gradient(to left, var(--paper), transparent); }
+  .marquee-track {
+    display: flex; gap: 64px; width: max-content;
+    animation: scroll 36s linear infinite;
+    color: var(--ink-300);
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: 24px; font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ============ FEATURES ============ */
+  .features {
+    padding: 100px 0;
+    background: var(--paper);
+  }
+  .section-head { text-align: center; max-width: 760px; margin: 0 auto 60px; }
+  .section-head .eyebrow { color: var(--orange-500); }
+  .section-head h2 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: clamp(34px, 4.5vw, 54px);
+    line-height: 1.1;
+    color: var(--ink-900);
+    letter-spacing: -0.02em;
+    margin: 14px 0 16px;
+    font-weight: 700;
+  }
+  .section-head p { font-size: 17px; color: var(--ink-500); }
+  .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  @media (max-width: 1024px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .feature-grid { grid-template-columns: 1fr; } }
+  .feature-card {
+    background: var(--paper);
+    border: 1px solid var(--ink-100);
+    border-radius: 18px;
+    padding: 22px;
+    transition: all .25s ease;
+    position: relative; overflow: hidden;
+  }
+  .feature-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--cyan-500);
+    box-shadow: 0 20px 40px -20px rgba(0,168,167,0.25);
+  }
+  .feature-visual {
+    aspect-ratio: 16/9;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    position: relative; overflow: hidden;
+  }
+  .fv-1 { background: linear-gradient(135deg, var(--cyan-100), var(--paper)); }
+  .fv-2 { background: linear-gradient(135deg, var(--orange-50), var(--amber-50)); }
+  .fv-3 { background: linear-gradient(135deg, var(--navy-900), var(--navy-950)); }
+  .fv-4 { background: linear-gradient(135deg, var(--cream), var(--amber-100)); }
+  .feature-card h3 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: 19px; font-weight: 700;
+    color: var(--ink-900);
+    margin-bottom: 8px; letter-spacing: -0.01em;
+  }
+  .feature-card p { font-size: 14px; color: var(--ink-500); line-height: 1.6; }
+
+  /* ============ STATS — FULL WARM BLEED ============ */
+  .stats {
+    position: relative;
+    padding: 110px 0;
+    background: linear-gradient(135deg, var(--orange-500) 0%, var(--orange-400) 50%, var(--amber-500) 100%);
+    color: white;
+    overflow: hidden;
+  }
+  .stats::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  }
+  .stats-glow {
+    position: absolute; right: -200px; bottom: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(196,84,24,0.5), transparent 65%);
+    filter: blur(80px);
+  }
+  .stats-inner {
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: center;
+  }
+  @media (max-width: 768px) { .stats-inner { grid-template-columns: 1fr; gap: 40px; } }
+  .stats-head h2 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: clamp(34px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .stats-head p {
+    margin-top: 14px; font-size: 15px;
+    color: rgba(255,255,255,0.82);
+  }
+  .stats-head a {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 22px;
+    padding: 11px 22px;
+    background: white; color: var(--orange-600);
+    border-radius: 999px; font-weight: 700; font-size: 14px;
+    transition: transform .2s;
+  }
+  .stats-head a:hover { transform: translateX(4px); }
+  .stats-numbers {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+  }
+  @media (max-width: 640px) { .stats-numbers { grid-template-columns: 1fr; gap: 28px; } }
+  .stat-item .value {
+    font-family: "JetBrains Mono", monospace;
+    font-size: clamp(56px, 8vw, 96px);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+  }
+  .stat-item .label {
+    margin-top: 12px;
+    font-size: 13px; line-height: 1.5;
+    color: rgba(255,255,255,0.88);
+  }
+  .stat-item + .stat-item { border-left: 1px solid rgba(255,255,255,0.18); padding-left: 30px; }
+  @media (max-width: 640px) { .stat-item + .stat-item { border-left: 0; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.18); padding-top: 24px; } }
+
+  /* ============ ONE PLATFORM — FULL DARK BLEED ============ */
+  .platform {
+    position: relative;
+    padding: 110px 0;
+    background: linear-gradient(180deg, var(--navy-950) 0%, var(--navy-900) 100%);
+    color: white;
+    overflow: hidden;
+  }
+  .platform::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(96,199,211,0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(96,199,211,0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  }
+  .platform-glow-cyan {
+    position: absolute; left: 8%; top: 10%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(96,199,211,0.25), transparent 65%);
+    filter: blur(80px);
+  }
+  .platform-glow-amber {
+    position: absolute; right: 8%; bottom: 5%;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(250,178,23,0.18), transparent 65%);
+    filter: blur(80px);
+  }
+  .platform-inner { position: relative; z-index: 2; }
+  .platform .section-head { color: white; }
+  .platform .section-head .eyebrow { color: var(--cyan-300); }
+  .platform .section-head h2 { color: white; }
+  .platform .section-head p { color: rgba(255,255,255,0.65); }
+  .modules { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 900px) { .modules { grid-template-columns: repeat(2, 1fr); } }
+  .module {
+    position: relative;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 22px;
+    backdrop-filter: blur(8px);
+    transition: all .2s ease;
+  }
+  .module:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(96,199,211,0.4);
+    transform: translateY(-2px);
+  }
+  .module-icon {
+    width: 42px; height: 42px;
+    background: rgba(96,199,211,0.12);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--cyan-500);
+    margin-bottom: 16px;
+  }
+  .module:nth-child(4n+2) .module-icon { background: rgba(250,178,23,0.12); color: var(--amber-500); }
+  .module:nth-child(4n+3) .module-icon { background: rgba(0,168,167,0.18); color: var(--teal-300); }
+  .module:nth-child(4n+4) .module-icon { background: rgba(243,117,33,0.15); color: var(--orange-400); }
+  .module-name {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: 18px; font-weight: 700; color: white;
+    margin-bottom: 4px;
+  }
+  .module-desc { font-size: 12.5px; color: rgba(255,255,255,0.55); }
+  .module .index {
+    position: absolute; top: 14px; right: 16px;
+    font: 10px "JetBrains Mono", monospace; color: rgba(255,255,255,0.2);
+  }
+
+  /* ============ TESTIMONIALS ============ */
+  .testimonials {
+    padding: 100px 0;
+    background: var(--bone);
+  }
+  .quotes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 900px) { .quotes-grid { grid-template-columns: 1fr; } }
+  .quote-card {
+    background: var(--paper);
+    border-radius: 18px;
+    padding: 30px;
+    transition: all .25s;
+  }
+  .quote-card:hover { transform: translateY(-3px); box-shadow: 0 18px 36px -20px rgba(2,40,63,0.16); }
+  .quote-mark {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: 64px; font-weight: 800;
+    line-height: 0.6;
+    margin-bottom: 8px;
+  }
+  .quote-card:nth-child(1) .quote-mark { color: var(--cyan-500); }
+  .quote-card:nth-child(2) .quote-mark { color: var(--orange-400); }
+  .quote-card:nth-child(3) .quote-mark { color: var(--navy-900); }
+  .quote-text { font-size: 16px; line-height: 1.65; color: var(--ink-700); margin-bottom: 24px; }
+  .quote-author { display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--ink-100); padding-top: 18px; }
+  .avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; font-size: 14px; }
+  .quote-card:nth-child(1) .avatar { background: var(--cyan-500); }
+  .quote-card:nth-child(2) .avatar { background: var(--orange-500); }
+  .quote-card:nth-child(3) .avatar { background: var(--navy-900); }
+  .author-name { font-weight: 700; font-size: 14px; color: var(--ink-900); }
+  .author-role { font-size: 12px; color: var(--ink-500); }
+
+  /* ============ STORIES ============ */
+  .stories {
+    padding: 80px 0 100px;
+    background: var(--bone);
+  }
+  .stories-head {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 40px; gap: 20px; flex-wrap: wrap;
+  }
+  .stories-head h2 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: clamp(30px, 4vw, 46px); font-weight: 700;
+    line-height: 1.1; letter-spacing: -0.02em;
+    max-width: 700px;
+  }
+  .stories-head .eyebrow { color: var(--orange-500); margin-bottom: 12px; }
+  .stories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 900px) { .stories-grid { grid-template-columns: 1fr; } }
+  .story {
+    aspect-ratio: 5/6; border-radius: 20px;
+    padding: 28px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden;
+    color: white;
+  }
+  .story-1 { background: linear-gradient(135deg, var(--orange-500), var(--amber-500)); color: var(--navy-950); }
+  .story-2 { background: linear-gradient(135deg, var(--navy-950), var(--navy-900)); }
+  .story-3 { background: linear-gradient(135deg, var(--cyan-500), var(--teal-500)); color: var(--navy-950); }
+  .story-tag {
+    display: inline-block; padding: 5px 11px;
+    border: 1px solid currentColor; opacity: 0.85;
+    border-radius: 999px;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+    width: fit-content;
+  }
+  .story-2 .story-tag { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.85); }
+  .story-metric {
+    font-family: "JetBrains Mono", monospace;
+    font-size: clamp(56px, 8vw, 84px);
+    font-weight: 700; line-height: 0.9; letter-spacing: -0.04em;
+  }
+  .story-metric-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+    margin-top: 8px; opacity: 0.78;
+  }
+  .story-title {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: 21px; line-height: 1.25; font-weight: 700;
+    margin-top: 26px; letter-spacing: -0.01em;
+  }
+
+  /* ============ SECURITY ============ */
+  .security {
+    padding: 100px 0;
+    background: var(--paper);
+  }
+  .sec-inner {
+    display: grid; grid-template-columns: 5fr 7fr; gap: 60px; align-items: start;
+  }
+  @media (max-width: 900px) { .sec-inner { grid-template-columns: 1fr; gap: 40px; } }
+  .sec-head .eyebrow { color: var(--teal-600); }
+  .sec-head h2 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: clamp(28px, 3vw, 38px); font-weight: 700;
+    line-height: 1.15; letter-spacing: -0.02em;
+    margin: 14px 0 16px;
+  }
+  .sec-head p { font-size: 15px; color: var(--ink-500); line-height: 1.65; }
+  .badges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  @media (max-width: 640px) { .badges { grid-template-columns: 1fr 1fr; } }
+  .badge {
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px;
+    border: 1px solid var(--ink-100);
+    border-radius: 14px;
+    transition: border-color .2s;
+  }
+  .badge:hover { border-color: var(--cyan-500); }
+  .badge-shield {
+    width: 28px; height: 28px;
+    flex-shrink: 0;
+  }
+  .badge span { font-size: 13px; font-weight: 600; color: var(--ink-700); line-height: 1.3; }
+
+  /* ============ PRICING ============ */
+  .pricing {
+    padding: 100px 0;
+    background: var(--bone);
+  }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
+  @media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; } }
+  .tier {
+    background: var(--paper);
+    border: 1px solid var(--ink-100);
+    border-radius: 18px;
+    padding: 30px;
+    display: flex; flex-direction: column;
+    position: relative;
+  }
+  .tier.featured {
+    background: linear-gradient(180deg, var(--navy-900) 0%, var(--navy-950) 100%);
+    color: white;
+    border: 1px solid var(--navy-800);
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px -20px rgba(2,40,63,0.4);
+  }
+  .tier-popular {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    padding: 5px 14px;
+    background: var(--orange-500); color: white;
+    border-radius: 999px; font-size: 10.5px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+  }
+  .tier-name {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: 22px; font-weight: 700;
+  }
+  .tier-tagline { font-size: 13px; margin-top: 6px; opacity: 0.7; }
+  .tier-price {
+    margin-top: 28px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 40px; font-weight: 700;
+    line-height: 1;
+  }
+  .tier.featured .tier-price { color: var(--amber-500); }
+  .tier-period { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.12em; opacity: 0.6; margin-top: 6px; }
+  .tier-cta {
+    display: inline-flex; justify-content: center; align-items: center;
+    padding: 12px 18px;
+    margin-top: 22px;
+    border-radius: 999px;
+    font-size: 13.5px; font-weight: 700;
+    border: 1px solid var(--ink-900); color: var(--ink-900);
+    transition: all .2s;
+  }
+  .tier-cta:hover { background: var(--ink-900); color: white; }
+  .tier.featured .tier-cta {
+    background: var(--orange-500); color: white; border-color: transparent;
+  }
+  .tier.featured .tier-cta:hover { background: var(--orange-600); }
+  .tier-features { list-style: none; margin-top: 26px; }
+  .tier-features li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13.5px; line-height: 1.55;
+    padding: 5px 0;
+  }
+  .tier-features li::before {
+    content: ""; display: inline-block;
+    width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'><path d='M3 8.5l3 3 7-7' stroke='%2300A8A7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") no-repeat center / contain;
+  }
+  .tier.featured .tier-features li::before {
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'><path d='M3 8.5l3 3 7-7' stroke='%23FAB217' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") no-repeat center / contain;
+  }
+
+  /* ============ FOOTER CTA — FULL WARM BLEED ============ */
+  .cta {
+    position: relative;
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--orange-500) 0%, var(--orange-400) 60%, var(--amber-500) 100%);
+    color: white;
+    overflow: hidden;
+  }
+  .cta::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+  }
+  .cta-glow-1 {
+    position: absolute; left: -200px; top: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(196,84,24,0.4), transparent 65%);
+    filter: blur(70px);
+  }
+  .cta-glow-2 {
+    position: absolute; right: -150px; bottom: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(250,178,23,0.5), transparent 65%);
+    filter: blur(70px);
+  }
+  .cta-inner {
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 7fr 5fr; gap: 60px; align-items: center;
+  }
+  @media (max-width: 900px) { .cta-inner { grid-template-columns: 1fr; gap: 32px; } }
+  .cta h2 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: clamp(32px, 4.5vw, 56px); font-weight: 700;
+    line-height: 1.05; letter-spacing: -0.025em;
+  }
+  .cta p { margin-top: 18px; font-size: 16px; color: rgba(255,255,255,0.85); line-height: 1.6; max-width: 540px; }
+  .cta-actions { display: flex; flex-direction: column; gap: 12px; }
+  .cta-actions .btn-primary { background: var(--navy-900); color: white; padding: 16px 28px; font-size: 15px; font-weight: 700; }
+  .cta-actions .btn-primary:hover { background: var(--navy-950); }
+  .cta-actions .btn-outline {
+    padding: 16px 28px; font-size: 15px; font-weight: 600; font-family: inherit;
+    background: transparent;
+    color: white;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    border-radius: 999px;
+    text-align: center;
+    transition: all .2s;
+  }
+  .cta-actions .btn-outline:hover { background: rgba(255,255,255,0.12); border-color: white; }
+
+  /* ============ FOOTER ============ */
+  footer.footer {
+    background: var(--navy-950);
+    color: rgba(255,255,255,0.8);
+    padding: 80px 0 32px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 4fr 8fr; gap: 60px;
+  }
+  @media (max-width: 900px) { .footer-top { grid-template-columns: 1fr; gap: 40px; } }
+  .footer-brand .logo { color: white; }
+  .footer-tagline { margin-top: 18px; font-size: 13.5px; color: rgba(255,255,255,0.55); max-width: 280px; line-height: 1.6; }
+  .footer-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+  @media (max-width: 640px) { .footer-cols { grid-template-columns: repeat(2, 1fr); } }
+  .footer-col h4 {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a { font-size: 13.5px; color: rgba(255,255,255,0.7); transition: color .2s; }
+  .footer-col a:hover { color: white; }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 60px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    flex-wrap: wrap; gap: 14px;
+  }
+  .footer-legal { font-size: 12px; color: rgba(255,255,255,0.4); }
+  .footer-links { display: flex; gap: 22px; font-size: 12px; }
+  .footer-links a { color: rgba(255,255,255,0.55); }
+  .footer-links a:hover { color: white; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="#" class="logo">
+      <svg class="logo-glyph" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+        <defs>
+          <linearGradient id="loopL" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#F37521"/>
+            <stop offset="100%" stop-color="#FAB217"/>
+          </linearGradient>
+          <linearGradient id="loopR" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#60C7D3"/>
+            <stop offset="100%" stop-color="#035897"/>
+          </linearGradient>
+        </defs>
+        <path d="M11 14 C 4 14, 4 26, 11 26 C 17 26, 17 14, 24 14" stroke="url(#loopL)" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M16 26 C 22 26, 22 14, 29 14 C 36 14, 36 26, 29 26 C 22 26, 22 14, 16 14" stroke="url(#loopR)" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M14 10 Q 20 6, 26 10" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.95"/>
+      </svg>
+      ThaiCloud
+    </a>
+    <nav class="nav-links">
+      <a href="#features">ผลิตภัณฑ์</a>
+      <a href="#stories">ลูกค้า</a>
+      <a href="#pricing">ราคา</a>
+      <a href="#docs">คู่มือ</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="locale-toggle">
+        <button class="active">TH</button>
+        <button>EN</button>
+      </div>
+      <a href="#" class="btn btn-ghost">เข้าสู่ระบบ</a>
+      <a href="#trial" class="btn btn-primary">ทดลองฟรี</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow-amber"></div>
+  <div class="hero-glow-orange"></div>
+  <div class="hero-glow-cyan"></div>
+  <div class="container hero-inner">
+    <span class="hero-badge">
+      <span class="live-dot"></span>
+      Operational intelligence สำหรับธุรกิจ eCommerce
+    </span>
+    <h1 class="display">
+      ระบบเดียวเพื่อ <span class="accent">คลังที่โตเร็ว</span><br/>
+      ในเอเชียตะวันออกเฉียงใต้
+    </h1>
+    <p class="sub">ThaiCloud รวม WMS, OMS และการจัดส่งไว้ในที่เดียว เพื่อให้แบรนด์อีคอมเมิร์ซและผู้ให้บริการคลังในไทยและอาเซียนทำงานเร็วขึ้น แม่นยำขึ้น และโตได้โดยไม่ต้องเพิ่มความวุ่นวาย</p>
+    <div class="hero-ctas">
+      <a href="#trial" class="btn-hero-primary">เริ่มทดลองใช้ฟรี →</a>
+      <a href="#demo" class="btn-hero-ghost">นัดคุยกับทีม</a>
+    </div>
+    <div class="hero-trust">
+      <span class="stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </span>
+      <span class="mono" style="color: rgba(255,255,255,0.85);">4.9 / 5</span>
+      <span>·</span>
+      <span>จาก 200+ คลังในเอเชียตะวันออกเฉียงใต้</span>
+      <span class="divider"></span>
+      <span class="mono" style="color: var(--amber-500); letter-spacing: 0.12em; font-size: 11px;">● LIVE</span>
+      <span>231 คลังกำลังใช้งานอยู่ตอนนี้</span>
+    </div>
+  </div>
+
+  <!-- product mockup -->
+  <div class="hero-product">
+    <div class="product-frame">
+      <div class="product-chrome">
+        <span class="traffic" style="background: #ff5f57;"></span>
+        <span class="traffic" style="background: #febc2e;"></span>
+        <span class="traffic" style="background: #28c840;"></span>
+        <span class="url">app.thaicloud.com / dashboard</span>
+      </div>
+      <div class="product-body">
+        <aside class="product-sidebar">
+          <div class="sb-icon active">▤</div>
+          <div class="sb-icon">◫</div>
+          <div class="sb-icon">▣</div>
+          <div class="sb-icon">◧</div>
+          <div class="sb-icon">◪</div>
+        </aside>
+        <div class="product-main">
+          <div class="tabs">
+            <div class="tab active">คำสั่งซื้อ</div>
+            <div class="tab">การหยิบสินค้า</div>
+            <div class="tab">รับเข้า</div>
+            <div class="tab">วิเคราะห์</div>
+          </div>
+          <div class="metrics">
+            <div class="metric">
+              <div class="label">ออเดอร์วันนี้</div>
+              <div class="value">12,847<span class="delta">+18%</span></div>
+            </div>
+            <div class="metric">
+              <div class="label">ส่งทันเวลา</div>
+              <div class="value">98.4%<span class="delta">+1.2%</span></div>
+            </div>
+            <div class="metric">
+              <div class="label">หยิบ / ชม.</div>
+              <div class="value">143<span class="delta">+22%</span></div>
+            </div>
+            <div class="metric">
+              <div class="label">ความแม่นยำ</div>
+              <div class="value">99.7%<span class="delta">+0.4%</span></div>
+            </div>
+          </div>
+          <div class="product-grid">
+            <div class="panel">
+              <div class="panel-title">Orders / hour · last 12h</div>
+              <div class="bars">
+                <div class="bar" style="height: 42%;"></div>
+                <div class="bar alt" style="height: 58%;"></div>
+                <div class="bar" style="height: 35%;"></div>
+                <div class="bar" style="height: 71%;"></div>
+                <div class="bar alt" style="height: 64%;"></div>
+                <div class="bar" style="height: 88%;"></div>
+                <div class="bar" style="height: 54%;"></div>
+                <div class="bar alt" style="height: 76%;"></div>
+                <div class="bar" style="height: 92%;"></div>
+                <div class="bar" style="height: 68%;"></div>
+                <div class="bar" style="height: 80%;"></div>
+                <div class="bar peak" style="height: 95%;"></div>
+              </div>
+            </div>
+            <div class="panel channels">
+              <div class="panel-title">ช่องทาง</div>
+              <div class="channel-row">
+                <div class="top"><span>Shopee</span><span class="mono" style="color: var(--ink-500);">38%</span></div>
+                <div class="track"><div class="fill" style="width: 92%; background: var(--orange-400);"></div></div>
+              </div>
+              <div class="channel-row">
+                <div class="top"><span>Lazada</span><span class="mono" style="color: var(--ink-500);">27%</span></div>
+                <div class="track"><div class="fill" style="width: 65%; background: var(--cyan-500);"></div></div>
+              </div>
+              <div class="channel-row">
+                <div class="top"><span>TikTok Shop</span><span class="mono" style="color: var(--ink-500);">21%</span></div>
+                <div class="track"><div class="fill" style="width: 51%; background: var(--teal-500);"></div></div>
+              </div>
+              <div class="channel-row">
+                <div class="top"><span>เว็บไซต์</span><span class="mono" style="color: var(--ink-500);">14%</span></div>
+                <div class="track"><div class="fill" style="width: 34%; background: var(--navy-900);"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="feed">
+            <div style="font-size: 10.5px; color: var(--ink-500); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600;">
+              <span class="live-dot" style="margin-right: 6px; vertical-align: middle;"></span>ฟีดการดำเนินงานสด
+            </div>
+            <div class="feed-row"><span class="ts">14:43</span><span>พัสดุ TC-48201 ออกจากคลัง — กรุงเทพฯ</span></div>
+            <div class="feed-row"><span class="ts">14:32</span><span>Wave #233 กำลังหยิบ • 18 รายการ • โซน B-2</span></div>
+            <div class="feed-row"><span class="ts">14:21</span><span>เติมสต๊อก SKU-7733 ที่บิน A-04</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO CLOUD -->
+<section class="logos">
+  <div class="container">
+    <div class="label">แบรนด์ที่โตเร็วในเอเชียตะวันออกเฉียงใต้เลือกใช้ ThaiCloud</div>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>Pomelo</span><span>Lazada Cross-border</span><span>Konvy</span><span>Central Online</span><span>Shopee Mall</span><span>GoTo Brands</span><span>Sasin Tech</span>
+        <span>Pomelo</span><span>Lazada Cross-border</span><span>Konvy</span><span>Central Online</span><span>Shopee Mall</span><span>GoTo Brands</span><span>Sasin Tech</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">ทุกขั้นตอนทำงานบนระบบเดียว</span>
+      <h2 class="display">เลิกใช้ระบบหลายตัว แค่ตัวเดียวก็พอ</h2>
+      <p>ตั้งแต่รับเข้า หยิบ แพ็ค ส่ง ไปจนถึงการคืนสินค้าและการวิเคราะห์ — ทุกขั้นตอนเชื่อมต่อกันอย่างราบรื่น</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-visual fv-1">
+          <svg viewBox="0 0 200 100" style="position: absolute; inset: 0; width: 100%; height: 100%;">
+            <rect x="14" y="20" width="172" height="60" rx="6" fill="white" stroke="#DBE2EB"/>
+            <text x="22" y="34" font-size="8" fill="#5D6C82" font-family="JetBrains Mono">PO-1188</text>
+            <text x="120" y="34" font-size="8" fill="#5D6C82" font-family="JetBrains Mono">432 units</text>
+            <rect x="18" y="44" width="164" height="9" rx="4" fill="#ECF1F6"/>
+            <rect x="18" y="44" width="150" height="9" rx="4" fill="#60C7D3"/>
+            <text x="22" y="68" font-size="7" fill="#5D6C82" font-family="JetBrains Mono">RECEIVED 92%</text>
+            <circle cx="175" cy="65" r="3" fill="#00A8A7"/>
+          </svg>
+        </div>
+        <h3>Inbound อัจฉริยะ</h3>
+        <p>รับสินค้าด้วย ASN จากซัพพลายเออร์โดยอัตโนมัติ ตรวจสภาพได้ผ่านมือถือ จัดเก็บตาม FEFO โดยที่ระบบเลือกบินให้เอง</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-visual fv-2">
+          <svg viewBox="0 0 200 100" style="position: absolute; inset: 0; width: 100%; height: 100%;">
+            <rect x="14" y="14" width="86" height="72" rx="8" fill="#02283F"/>
+            <text x="24" y="32" font-size="8" fill="#60C7D3" font-family="JetBrains Mono">WAVE #233</text>
+            <text x="24" y="54" font-size="22" font-weight="700" fill="white" font-family="Bricolage Grotesque">18</text>
+            <text x="24" y="64" font-size="6" fill="rgba(255,255,255,0.5)" font-family="JetBrains Mono">ITEMS</text>
+            <text x="24" y="78" font-size="7" fill="rgba(255,255,255,0.75)" font-family="JetBrains Mono">ZONE B-2 • FEFO</text>
+            <rect x="108" y="14" width="78" height="34" rx="8" fill="#F58A1F"/>
+            <text x="118" y="30" font-size="7" fill="white" font-family="JetBrains Mono" font-weight="700">PRIORITY</text>
+            <text x="118" y="42" font-size="12" font-weight="700" fill="white" font-family="Bricolage Grotesque">SLA 2h</text>
+            <rect x="108" y="52" width="78" height="34" rx="8" fill="white" stroke="#DBE2EB"/>
+            <text x="118" y="68" font-size="6" fill="#5D6C82" font-family="JetBrains Mono">ACCURACY</text>
+            <text x="118" y="80" font-size="11" font-weight="700" fill="#0F1A2A" font-family="JetBrains Mono">99.7%</text>
+          </svg>
+        </div>
+        <h3>หยิบและแพ็คแม่นยำ</h3>
+        <p>Wave picking + FEFO อัตโนมัติ ลดการหยิบผิดถึง 80% ทำงานออฟไลน์ได้เมื่อ Wi-Fi หลุด พร้อมระบบเช็คน้ำหนักก่อนปิดกล่อง</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-visual fv-3">
+          <svg viewBox="0 0 200 100" style="position: absolute; inset: 0; width: 100%; height: 100%;">
+            <text x="20" y="28" font-size="8" fill="#60C7D3" font-family="JetBrains Mono">SELECTED CARRIER</text>
+            <g><rect x="20" y="36" width="50" height="20" rx="10" fill="#FAB217"/><text x="45" y="49" font-size="8" fill="#02283F" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">FLASH</text></g>
+            <g><rect x="76" y="36" width="46" height="20" rx="10" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)"/><text x="99" y="49" font-size="7" fill="rgba(255,255,255,0.6)" font-family="JetBrains Mono" text-anchor="middle">KERRY</text></g>
+            <g><rect x="128" y="36" width="38" height="20" rx="10" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)"/><text x="147" y="49" font-size="7" fill="rgba(255,255,255,0.6)" font-family="JetBrains Mono" text-anchor="middle">J&amp;T</text></g>
+            <text x="20" y="78" font-size="7" fill="rgba(255,255,255,0.55)" font-family="JetBrains Mono">RULE: CHEAPEST IN ZONE A</text>
+          </svg>
+        </div>
+        <h3>ส่งหลายขนส่งในคลิกเดียว</h3>
+        <p>เชื่อมต่อกับ Flash, Kerry, J&amp;T, ไทยโพสต์, Ninja Van อัตโนมัติ เลือกขนส่งที่ถูกที่สุดหรือเร็วที่สุดตามกติกาที่คุณตั้งไว้</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-visual fv-4">
+          <svg viewBox="0 0 200 100" style="position: absolute; inset: 0; width: 100%; height: 100%;">
+            <rect x="14" y="14" width="172" height="72" rx="8" fill="white" stroke="#DBE2EB"/>
+            <text x="22" y="30" font-size="7" fill="#5D6C82" font-family="JetBrains Mono">COST PER ORDER</text>
+            <text x="22" y="50" font-size="22" font-weight="700" fill="#02283F" font-family="JetBrains Mono">฿24.10</text>
+            <text x="22" y="62" font-size="7" fill="#F37521" font-family="JetBrains Mono" font-weight="700">▼ 38% vs last quarter</text>
+            <polyline points="22,80 50,72 78,76 106,65 134,58 162,48 182,38" fill="none" stroke="#60C7D3" stroke-width="2.2"/>
+            <circle cx="182" cy="38" r="3.5" fill="#60C7D3"/>
+          </svg>
+        </div>
+        <h3>Insight ที่ใช้งานได้จริง</h3>
+        <p>ดู productivity ของพนักงาน, ต้นทุนต่อออเดอร์, SKU ที่กำลังจะหมด, และพยากรณ์ความต้องการได้แบบเรียลไทม์</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS — FULL WARM BLEED -->
+<section class="stats">
+  <div class="stats-glow"></div>
+  <div class="container stats-inner">
+    <div class="stats-head">
+      <h2>ระบบเดียว ค่าใช้จ่ายลดลงจริง</h2>
+      <p>ค่าเฉลี่ยจากคลังลูกค้าหลังใช้ ThaiCloud 90 วัน</p>
+      <a href="#stories">ดูเคสลูกค้าจริง →</a>
+    </div>
+    <div class="stats-numbers">
+      <div class="stat-item">
+        <div class="value">3.4×</div>
+        <div class="label">ออเดอร์ต่อพนักงานต่อชั่วโมง</div>
+      </div>
+      <div class="stat-item">
+        <div class="value">−80%</div>
+        <div class="label">ข้อผิดพลาดในการหยิบ</div>
+      </div>
+      <div class="stat-item">
+        <div class="value">−38%</div>
+        <div class="label">ต้นทุนการจัดส่งเฉลี่ย</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ONE PLATFORM — FULL DARK BLEED -->
+<section class="platform" id="platform">
+  <div class="platform-glow-cyan"></div>
+  <div class="platform-glow-amber"></div>
+  <div class="container platform-inner">
+    <div class="section-head">
+      <span class="eyebrow">หนึ่งแพลตฟอร์ม หนึ่งสัญญา</span>
+      <h2 class="display">ทุกโมดูลทำงานร่วมกันตั้งแต่วันแรก</h2>
+      <p>ไม่ต้องเสียเวลาเชื่อมระบบ ไม่ต้องจ่ายค่า license หลายเจ้า</p>
+    </div>
+    <div class="modules">
+      <div class="module">
+        <div class="module-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21V9l9-6 9 6v12" stroke-linejoin="round"/><path d="M9 21V12h6v9"/></svg>
+        </div>
+        <div class="module-name">WMS</div>
+        <div class="module-desc">บริหารคลังหลายสาขา</div>
+        <span class="index">01</span>
+      </div>
+      <div class="module">
+        <div class="module-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18M8 14h4" stroke-linecap="round"/></svg>
+        </div>
+        <div class="module-name">OMS</div>
+        <div class="module-desc">รวมออเดอร์ทุกช่องทาง</div>
+        <span class="index">02</span>
+      </div>
+      <div class="module">
+        <div class="module-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h10" stroke-linecap="round"/><circle cx="20" cy="17" r="2"/></svg>
+        </div>
+        <div class="module-name">Picking</div>
+        <div class="module-desc">Wave + FEFO อัตโนมัติ</div>
+        <span class="index">03</span>
+      </div>
+      <div class="module">
+        <div class="module-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z" stroke-linejoin="round"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>
+        </div>
+        <div class="module-name">Shipping</div>
+        <div class="module-desc">ขนส่งหลายเจ้า</div>
+        <span class="index">04</span>
+      </div>
+      <div class="module">
+        <div class="module-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 14L4 9l5-5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 9h11a5 5 0 015 5v1a5 5 0 01-5 5h-4" stroke-linecap="round"/></svg>
+        </div>
+        <div class="module-name">Returns</div>
+        <div class="module-desc">RMA + คืนเงินอัตโนมัติ</div>
+        <span class="index">05</span>
+      </div>
+      <div class="module">
+        <div class="module-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7l9-4 9 4-9 4z" stroke-linejoin="round"/><path d="M3 7v10l9 4 9-4V7" stroke-linejoin="round"/><path d="M12 11v10"/></svg>
+        </div>
+        <div class="module-name">Inventory</div>
+        <div class="module-desc">นับสต๊อกเรียลไทม์</div>
+        <span class="index">06</span>
+      </div>
+      <div class="module">
+        <div class="module-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M15 9.5c-.5-1-1.7-1.5-3-1.5-1.7 0-3 .8-3 2s1.3 1.7 3 2 3 .8 3 2-1.3 2-3 2-2.5-.5-3-1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="module-name">Settlement</div>
+        <div class="module-desc">กระทบยอด COD</div>
+        <span class="index">07</span>
+      </div>
+      <div class="module">
+        <div class="module-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7M14 4l-4 16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="module-name">API</div>
+        <div class="module-desc">เปิดให้ ERP เชื่อม</div>
+        <span class="index">08</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-head" style="text-align: left; max-width: 700px; margin-left: 0;">
+      <span class="eyebrow" style="color: var(--orange-500);">เสียงจากลูกค้า</span>
+      <h2 class="display" style="font-size: clamp(30px, 4vw, 46px);">องค์กรชั้นนำเลือก ThaiCloud</h2>
+    </div>
+    <div class="quotes-grid">
+      <div class="quote-card">
+        <div class="quote-mark">"</div>
+        <p class="quote-text">เปลี่ยนมาใช้ ThaiCloud แล้วลดเวลาทำงานในคลังต่อวันได้ครึ่งหนึ่ง พนักงานชอบมากเพราะมือถือเครื่องเดียวทำได้ทุกอย่าง</p>
+        <div class="quote-author">
+          <div class="avatar">ณ</div>
+          <div>
+            <div class="author-name">ณัฐพล ว.</div>
+            <div class="author-role">Head of Fulfillment, แบรนด์เครื่องสำอาง</div>
+          </div>
+        </div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-mark">"</div>
+        <p class="quote-text">เป็นครั้งแรกที่เรารู้ต้นทุนต่อออเดอร์จริง ๆ ทำให้ตัดสินใจขึ้นราคา shipping ในบางพื้นที่ได้อย่างมั่นใจ</p>
+        <div class="quote-author">
+          <div class="avatar">ศ</div>
+          <div>
+            <div class="author-name">ศิริพร ก.</div>
+            <div class="author-role">COO, Lifestyle DTC Brand</div>
+          </div>
+        </div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-mark">"</div>
+        <p class="quote-text">ระหว่าง 11.11 ปีที่แล้วเราโต 4 เท่า แต่ไม่ต้องเพิ่มคน — ระบบจัด Wave ให้เองตามโหลด</p>
+        <div class="quote-author">
+          <div class="avatar">ธ</div>
+          <div>
+            <div class="author-name">ธีรวุฒิ พ.</div>
+            <div class="author-role">ผู้ก่อตั้งแบรนด์อาหารเสริม</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORIES -->
+<section class="stories" id="stories">
+  <div class="container">
+    <div class="stories-head">
+      <div>
+        <span class="eyebrow">ผลลัพธ์ที่วัดได้</span>
+        <h2 class="display">ดูว่าธุรกิจจริงทำได้แค่ไหน</h2>
+      </div>
+      <a href="#all" style="font-size: 14px; font-weight: 600; color: var(--ink-700); border-bottom: 1px solid currentColor; padding-bottom: 2px;">ดูเคสทั้งหมด →</a>
+    </div>
+    <div class="stories-grid">
+      <article class="story story-1">
+        <span class="story-tag">Beauty • DTC</span>
+        <div>
+          <div class="story-metric">−72%</div>
+          <div class="story-metric-label">ข้อผิดพลาดในการหยิบ</div>
+          <h3 class="story-title">หยิบเร็วขึ้น 3 เท่าใน 60 วัน</h3>
+        </div>
+      </article>
+      <article class="story story-2">
+        <span class="story-tag">Fashion • Cross-border</span>
+        <div>
+          <div class="story-metric">+18K</div>
+          <div class="story-metric-label">ออเดอร์ต่อสัปดาห์</div>
+          <h3 class="story-title">ขยาย 3 คลังใน 4 เดือน</h3>
+        </div>
+      </article>
+      <article class="story story-3">
+        <span class="story-tag">F&amp;B • Health</span>
+        <div>
+          <div class="story-metric">฿24</div>
+          <div class="story-metric-label">ต้นทุนต่อออเดอร์</div>
+          <h3 class="story-title">ลดต้นทุน fulfillment 42%</h3>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section class="security">
+  <div class="container sec-inner">
+    <div class="sec-head">
+      <span class="eyebrow">ความปลอดภัยและการกำกับดูแล</span>
+      <h2 class="display">สร้างบนมาตรฐานที่องค์กรไว้ใจได้</h2>
+      <p>ThaiCloud โฮสต์บน Microsoft Azure (Southeast Asia region) เข้ารหัสข้อมูลทั้งขณะเก็บและขณะส่ง พร้อมเตรียมความพร้อมตาม PDPA และมาตรฐานสากล</p>
+    </div>
+    <div class="badges">
+      <div class="badge"><svg class="badge-shield" viewBox="0 0 28 28" fill="none"><path d="M14 3l9 4v7c0 5-3.5 9.5-9 11-5.5-1.5-9-6-9-11V7l9-4z" fill="#035897" opacity="0.15"/><path d="M14 3l9 4v7c0 5-3.5 9.5-9 11-5.5-1.5-9-6-9-11V7l9-4z" stroke="#035897" stroke-width="1.5"/><path d="M10 14l3 3 5-6" stroke="#035897" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>PDPA Thailand</span></div>
+      <div class="badge"><svg class="badge-shield" viewBox="0 0 28 28" fill="none"><path d="M14 3l9 4v7c0 5-3.5 9.5-9 11-5.5-1.5-9-6-9-11V7l9-4z" fill="#F37521" opacity="0.15"/><path d="M14 3l9 4v7c0 5-3.5 9.5-9 11-5.5-1.5-9-6-9-11V7l9-4z" stroke="#F37521" stroke-width="1.5"/><path d="M10 14l3 3 5-6" stroke="#F37521" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>ISO 27001 (กำลังรับรอง)</span></div>
+      <div class="badge"><svg class="badge-shield" viewBox="0 0 28 28" fill="none"><path d="M14 3l9 4v7c0 5-3.5 9.5-9 11-5.5-1.5-9-6-9-11V7l9-4z" fill="#00A8A7" opacity="0.15"/><path d="M14 3l9 4v7c0 5-3.5 9.5-9 11-5.5-1.5-9-6-9-11V7l9-4z" stroke="#00A8A7" stroke-width="1.5"/><path d="M10 14l3 3 5-6" stroke="#00A8A7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>SOC 2 Type II</span></div>
+      <div class="badge"><svg class="badge-shield" viewBox="0 0 28 28" fill="none"><path d="M14 3l9 4v7c0 5-3.5 9.5-9 11-5.5-1.5-9-6-9-11V7l9-4z" fill="#FAB217" opacity="0.18"/><path d="M14 3l9 4v7c0 5-3.5 9.5-9 11-5.5-1.5-9-6-9-11V7l9-4z" stroke="#C58E12" stroke-width="1.5"/><path d="M10 14l3 3 5-6" stroke="#C58E12" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Azure SEA Region</span></div>
+      <div class="badge"><svg class="badge-shield" viewBox="0 0 28 28" fill="none"><path d="M14 3l9 4v7c0 5-3.5 9.5-9 11-5.5-1.5-9-6-9-11V7l9-4z" fill="#60C7D3" opacity="0.18"/><path d="M14 3l9 4v7c0 5-3.5 9.5-9 11-5.5-1.5-9-6-9-11V7l9-4z" stroke="#008B8B" stroke-width="1.5"/><path d="M10 14l3 3 5-6" stroke="#008B8B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Daily Backup</span></div>
+      <div class="badge"><svg class="badge-shield" viewBox="0 0 28 28" fill="none"><path d="M14 3l9 4v7c0 5-3.5 9.5-9 11-5.5-1.5-9-6-9-11V7l9-4z" fill="#0671B8" opacity="0.15"/><path d="M14 3l9 4v7c0 5-3.5 9.5-9 11-5.5-1.5-9-6-9-11V7l9-4z" stroke="#0671B8" stroke-width="1.5"/><path d="M10 14l3 3 5-6" stroke="#0671B8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>RBAC + SSO</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">ราคา</span>
+      <h2 class="display">เลือกแพ็กเกจที่เหมาะกับสเกลของคุณ</h2>
+      <p>ราคารวม WMS, OMS, การจัดส่ง และโมดูลพื้นฐาน เริ่มต้นใช้งานได้ใน 7 วัน</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="tier">
+        <div class="tier-name">Starter</div>
+        <div class="tier-tagline">สำหรับแบรนด์ที่เริ่ม fulfillment เอง</div>
+        <div class="tier-price">฿4,900</div>
+        <div class="tier-period">ต่อคลัง / เดือน</div>
+        <a href="#" class="tier-cta">เริ่มทดลอง</a>
+        <ul class="tier-features">
+          <li>1 คลัง · 2 ผู้ใช้</li>
+          <li>1,500 ออเดอร์ / เดือน</li>
+          <li>เชื่อม 3 ช่องทางการขาย</li>
+          <li>ขนส่งไทยมาตรฐาน</li>
+          <li>Email support</li>
+        </ul>
+      </div>
+      <div class="tier featured">
+        <span class="tier-popular">นิยมที่สุด</span>
+        <div class="tier-name">Growth</div>
+        <div class="tier-tagline" style="opacity: 0.7;">สำหรับแบรนด์ที่กำลังขยายอย่างรวดเร็ว</div>
+        <div class="tier-price">฿14,900</div>
+        <div class="tier-period">ต่อคลัง / เดือน</div>
+        <a href="#" class="tier-cta">เริ่มทดลอง</a>
+        <ul class="tier-features">
+          <li>1 คลัง · 10 ผู้ใช้</li>
+          <li>10,000 ออเดอร์ / เดือน</li>
+          <li>เชื่อมทุกช่องทาง + API</li>
+          <li>Wave picking + FEFO</li>
+          <li>Analytics dashboard</li>
+          <li>Chat + phone support</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Enterprise</div>
+        <div class="tier-tagline">สำหรับ 3PL และแบรนด์ที่มีหลายคลัง</div>
+        <div class="tier-price">ติดต่อทีม</div>
+        <div class="tier-period">ราคาเฉพาะองค์กร</div>
+        <a href="#" class="tier-cta">นัดคุยกับทีม</a>
+        <ul class="tier-features">
+          <li>หลายคลัง · ผู้ใช้ไม่จำกัด</li>
+          <li>ออเดอร์ไม่จำกัด</li>
+          <li>SSO + RBAC ขั้นสูง</li>
+          <li>Custom integration</li>
+          <li>SLA 99.95%</li>
+          <li>Dedicated success manager</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA — FULL WARM BLEED -->
+<section class="cta">
+  <div class="cta-glow-1"></div>
+  <div class="cta-glow-2"></div>
+  <div class="container cta-inner">
+    <div>
+      <h2 class="display">เปลี่ยนคลังของคุณ<br/>เป็นข้อได้เปรียบ</h2>
+      <p>เริ่มทดลองฟรี 30 วัน ไม่ต้องใช้บัตรเครดิต ทีมไทยพร้อมช่วย onboarding ในระยะแรก</p>
+    </div>
+    <div class="cta-actions">
+      <a href="#trial" class="btn-primary">เริ่มทดลองฟรี →</a>
+      <a href="#demo" class="btn-outline">นัด demo 30 นาที</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg class="logo-glyph" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <path d="M11 14 C 4 14, 4 26, 11 26 C 17 26, 17 14, 24 14" stroke="url(#loopL)" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <path d="M16 26 C 22 26, 22 14, 29 14 C 36 14, 36 26, 29 26 C 22 26, 22 14, 16 14" stroke="url(#loopR)" stroke-width="5" fill="none" stroke-linecap="round"/>
+          </svg>
+          ThaiCloud
+        </div>
+        <p class="footer-tagline">Operational intelligence สำหรับคลังและอีคอมเมิร์ซในเอเชียตะวันออกเฉียงใต้</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>ผลิตภัณฑ์</h4>
+          <ul><li><a href="#">WMS</a></li><li><a href="#">OMS</a></li><li><a href="#">Picking</a></li><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">Analytics</a></li><li><a href="#">API</a></li></ul>
+        </div>
+        <div class="footer-col">
+          <h4>โซลูชัน</h4>
+          <ul><li><a href="#">แบรนด์ DTC</a></li><li><a href="#">Cross-border</a></li><li><a href="#">3PL Operator</a></li><li><a href="#">อาหารและเครื่องดื่ม</a></li><li><a href="#">Cold chain</a></li></ul>
+        </div>
+        <div class="footer-col">
+          <h4>บริษัท</h4>
+          <ul><li><a href="#">เกี่ยวกับเรา</a></li><li><a href="#">ลูกค้าของเรา</a></li><li><a href="#">ข่าวสาร</a></li><li><a href="#">ร่วมงานกับเรา</a></li><li><a href="#">ติดต่อ</a></li></ul>
+        </div>
+        <div class="footer-col">
+          <h4>ทรัพยากร</h4>
+          <ul><li><a href="#">บล็อก</a></li><li><a href="#">คู่มือ</a></li><li><a href="#">Webinar</a></li><li><a href="#">Help Center</a></li><li><a href="#">Status</a></li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-legal">© 2026 Packiko (ThaiCloud). สงวนสิทธิ์ทุกประการ</span>
+      <div class="footer-links">
+        <a href="#">นโยบายความเป็นส่วนตัว</a>
+        <a href="#">ข้อกำหนดการใช้งาน</a>
+        <a href="#">PDPA Notice</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

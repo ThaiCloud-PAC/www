@@ -23,7 +23,7 @@
     "liveLabel": "warehouses operating right now"
   },
   "LogoCloud": {
-    "title": "Trusted by Southeast Asia's fastest-growing brands",
+    "title": "Trusted by Southeast Asia’s fastest-growing brands",
     "logos": ["Pomelo", "Lazada Cross-border", "Konvy", "Central Online", "Shopee Mall", "GoTo Brands", "Sasin Tech"]
   },
   "Preview": {
@@ -67,7 +67,7 @@
       },
       {
         "title": "Insights that act",
-        "description": "Real-time view of worker productivity, cost per order, low-stock SKUs, and demand forecasts — not yesterday's report, today's signal."
+        "description": "Real-time view of worker productivity, cost per order, low-stock SKUs, and demand forecasts — not yesterday’s report, today’s signal."
       }
     ]
   },
@@ -75,7 +75,7 @@
     "title": "One platform, real cost savings",
     "subtitle": "Average across customer warehouses, 90 days after onboarding",
     "items": [
-      { "value": "3.4x", "label": "orders per worker per hour" },
+      { "value": "3.4×", "label": "orders per worker per hour" },
       { "value": "−80%", "label": "picking errors" },
       { "value": "−38%", "label": "shipping cost per order" }
     ],
@@ -111,7 +111,7 @@
         "role": "COO, Lifestyle DTC Brand"
       },
       {
-        "quote": "During 11.11 we grew 4x without adding headcount — the system reorganized waves automatically as load climbed.",
+        "quote": "During 11.11 we grew 4× without adding headcount — the system reorganized waves automatically as load climbed.",
         "name": "Teerawut P.",
         "role": "Founder, Supplements Brand"
       }
@@ -123,7 +123,7 @@
     "items": [
       {
         "tag": "Beauty • DTC",
-        "title": "3x faster picking in 60 days",
+        "title": "3× faster picking in 60 days",
         "metric": "−72%",
         "metricLabel": "picking errors"
       },

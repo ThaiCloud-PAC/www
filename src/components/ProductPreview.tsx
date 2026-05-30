@@ -13,70 +13,86 @@ export function ProductPreview() {
   ];
 
   const channels = [
-    { name: t("shopee"), value: 38, color: "#F58A1F" },
-    { name: t("lazada"), value: 27, color: "#60C7D3" },
-    { name: t("tiktok"), value: 21, color: "#00A8A7" },
-    { name: t("web"), value: 14, color: "#B5D3EA" },
+    { name: t("shopee"), value: 38, color: "var(--color-orange-400)" },
+    { name: t("lazada"), value: 27, color: "var(--color-cyan-500)" },
+    { name: t("tiktok"), value: 21, color: "var(--color-teal-500)" },
+    { name: t("web"), value: 14, color: "var(--color-ink-900)" },
   ];
 
   const feedLinesRaw = t.raw("feedLines") as string[];
 
-  // Synthetic bar chart values
+  // Synthetic bar chart heights
   const bars = [42, 58, 35, 71, 64, 88, 54, 76, 92, 68, 80, 95];
 
   return (
-    <section className="relative -mt-12 bg-bone pb-24 md:-mt-20 md:pb-32">
-      <div className="relative mx-auto max-w-6xl px-6">
-        {/* soft glow */}
+    <section className="relative -mt-32 pb-24 md:-mt-48 md:pb-32">
+      <div className="relative mx-auto max-w-6xl px-3">
+        {/* cyan underglow blob */}
         <div
-          className="pointer-events-none absolute inset-x-10 top-10 -z-0 h-40 rounded-full opacity-70 blur-3xl"
+          className="pointer-events-none absolute -z-10 h-[120px] blur-[40px]"
           style={{
+            left: "4%",
+            right: "4%",
+            bottom: "-40px",
             background:
-              "radial-gradient(ellipse at center, rgba(96,199,211,0.25), transparent 70%)",
+              "radial-gradient(ellipse at center, rgba(96,199,211,0.5), transparent 70%)",
           }}
           aria-hidden
         />
 
-        {/* Frame */}
-        <div className="animate-float relative overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-xl shadow-ink-900/5 [animation-duration:8s]">
+        {/* product frame */}
+        <div
+          className="relative overflow-hidden rounded-[14px] bg-white"
+          style={{
+            boxShadow:
+              "0 30px 80px -20px rgba(2,40,63,0.7), 0 0 0 1px rgba(255,255,255,0.1)",
+          }}
+        >
           {/* window chrome */}
-          <div className="flex items-center gap-1.5 border-b border-ink-100 bg-ink-50 px-4 py-3">
-            <span className="h-2.5 w-2.5 rounded-full bg-ink-200" />
-            <span className="h-2.5 w-2.5 rounded-full bg-ink-200" />
-            <span className="h-2.5 w-2.5 rounded-full bg-ink-200" />
-            <span className="ml-3 font-mono-num text-[11px] text-ink-400">
+          <div className="flex items-center gap-[7px] border-b border-ink-100 bg-ink-50 px-4 py-[11px]">
+            <span
+              className="h-[11px] w-[11px] rounded-full"
+              style={{ background: "#ff5f57" }}
+            />
+            <span
+              className="h-[11px] w-[11px] rounded-full"
+              style={{ background: "#febc2e" }}
+            />
+            <span
+              className="h-[11px] w-[11px] rounded-full"
+              style={{ background: "#28c840" }}
+            />
+            <span className="ml-3.5 font-mono-num text-[11px] text-slate-300">
               app.thaicloud.com / dashboard
             </span>
           </div>
 
-          <div className="grid grid-cols-12 gap-0">
+          <div className="grid grid-cols-[56px_1fr] min-h-[360px]">
             {/* sidebar */}
-            <aside className="col-span-1 hidden border-r border-ink-100 bg-ink-50/60 p-3 sm:block">
-              <div className="flex flex-col items-center gap-3">
-                {["▤", "◫", "▣", "◧", "◪", "◩"].map((g, i) => (
-                  <div
-                    key={i}
-                    className={`flex h-9 w-9 items-center justify-center rounded-lg font-mono-num text-[15px] ${
-                      i === 0
-                        ? "bg-cyan-100 text-ink-900"
-                        : "text-ink-400 hover:text-ink-700"
-                    }`}
-                  >
-                    {g}
-                  </div>
-                ))}
-              </div>
+            <aside className="flex flex-col items-center gap-3 border-r border-ink-100 bg-ink-50 py-3.5">
+              {["▤", "◫", "▣", "◧", "◪"].map((g, i) => (
+                <div
+                  key={i}
+                  className={`flex h-8 w-8 items-center justify-center rounded-lg text-[16px] ${
+                    i === 0
+                      ? "bg-cyan-100 text-slate-900"
+                      : "text-slate-300 hover:text-slate-700"
+                  }`}
+                >
+                  {g}
+                </div>
+              ))}
             </aside>
 
             {/* main */}
-            <div className="col-span-12 p-5 sm:col-span-11 md:p-6">
+            <div className="px-5 py-4 md:px-6">
               {/* tabs */}
-              <div className="mb-5 flex items-center gap-1 border-b border-ink-100">
+              <div className="mb-4 flex items-center gap-1.5 border-b border-ink-100">
                 {tabs.map((label, i) => (
                   <button
                     key={label}
-                    className={`relative px-3 py-2 text-[12px] font-medium transition ${
-                      i === 0 ? "text-ink-900" : "text-ink-400 hover:text-ink-700"
+                    className={`relative px-3.5 py-2 text-[12.5px] font-medium transition ${
+                      i === 0 ? "text-slate-900" : "text-slate-400 hover:text-slate-700"
                     }`}
                     aria-pressed={i === 0}
                   >
@@ -88,18 +104,18 @@ export function ProductPreview() {
                 ))}
               </div>
 
-              {/* metric cards */}
-              <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+              {/* metrics */}
+              <div className="grid grid-cols-2 gap-2.5 md:grid-cols-4">
                 {metrics.map((m) => (
                   <div
                     key={m.label}
-                    className="rounded-lg border border-ink-100 bg-white p-3"
+                    className="rounded-[10px] border border-ink-100 bg-white p-3"
                   >
-                    <div className="text-[10px] uppercase tracking-wider text-ink-500">
+                    <div className="text-[10px] uppercase tracking-[0.1em] text-slate-500">
                       {m.label}
                     </div>
-                    <div className="mt-1.5 flex items-baseline gap-1.5">
-                      <span className="font-display font-mono-num text-[22px] font-semibold text-ink-900">
+                    <div className="mt-1 flex items-baseline gap-1.5">
+                      <span className="font-mono-num text-[22px] font-semibold text-slate-900">
                         {m.value}
                       </span>
                       <span className="font-mono-num text-[10px] text-teal-600">
@@ -110,31 +126,26 @@ export function ProductPreview() {
                 ))}
               </div>
 
-              {/* bottom row: bar chart + channel split + feed */}
-              <div className="mt-4 grid grid-cols-12 gap-3">
+              {/* bottom row */}
+              <div className="mt-3.5 grid grid-cols-12 gap-2.5">
                 {/* bar chart */}
-                <div className="col-span-12 rounded-lg border border-ink-100 bg-white p-4 md:col-span-7">
-                  <div className="mb-3 flex items-baseline justify-between">
-                    <div className="text-[11px] uppercase tracking-wider text-ink-500">
-                      Orders / hour
-                    </div>
-                    <div className="font-mono-num text-[10px] text-ink-400">
-                      last 12h
-                    </div>
+                <div className="col-span-12 rounded-[10px] border border-ink-100 bg-white p-3.5 md:col-span-7">
+                  <div className="mb-2.5 text-[10.5px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+                    Orders / hour · last 12h
                   </div>
-                  <div className="flex h-32 items-end gap-1.5">
+                  <div className="flex h-[90px] items-end gap-1">
                     {bars.map((h, i) => (
                       <div
                         key={i}
-                        className="flex-1 rounded-t-sm"
+                        className="flex-1 rounded-t-[3px]"
                         style={{
                           height: `${h}%`,
                           background:
                             i === bars.length - 1
-                              ? "linear-gradient(to top, #60C7D3, rgba(96,199,211,0.4))"
-                              : i % 4 === 0
-                              ? "rgba(96,199,211,0.55)"
-                              : "rgba(3,88,151,0.12)",
+                              ? "linear-gradient(to top, var(--color-cyan-500), var(--color-cyan-300))"
+                              : i % 4 === 1
+                              ? "rgba(96,199,211,0.35)"
+                              : "var(--color-cyan-100)",
                         }}
                       />
                     ))}
@@ -142,16 +153,16 @@ export function ProductPreview() {
                 </div>
 
                 {/* channel split */}
-                <div className="col-span-12 rounded-lg border border-ink-100 bg-white p-4 md:col-span-5">
-                  <div className="mb-3 text-[11px] uppercase tracking-wider text-ink-500">
+                <div className="col-span-12 rounded-[10px] border border-ink-100 bg-white p-3.5 md:col-span-5">
+                  <div className="mb-2.5 text-[10.5px] font-semibold uppercase tracking-[0.12em] text-slate-500">
                     {t("channels")}
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-[7px]">
                     {channels.map((c) => (
-                      <div key={c.name} className="space-y-1">
-                        <div className="flex items-center justify-between text-[11px]">
-                          <span className="text-ink-700">{c.name}</span>
-                          <span className="font-mono-num text-ink-500">
+                      <div key={c.name}>
+                        <div className="mb-[3px] flex items-center justify-between text-[11px]">
+                          <span className="text-slate-700">{c.name}</span>
+                          <span className="font-mono-num text-slate-500">
                             {c.value}%
                           </span>
                         </div>
@@ -170,24 +181,23 @@ export function ProductPreview() {
                 </div>
 
                 {/* live feed */}
-                <div className="col-span-12 rounded-lg border border-ink-100 bg-white p-4">
-                  <div className="mb-3 flex items-center gap-2">
-                    <span className="relative flex h-1.5 w-1.5">
-                      <span className="absolute inset-0 animate-pulse-dot rounded-full bg-cyan-500" />
-                      <span className="relative h-1.5 w-1.5 rounded-full bg-cyan-500" />
+                <div className="col-span-12 rounded-[10px] border border-ink-100 bg-white p-3.5">
+                  <div className="mb-2 flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+                    <span className="relative inline-flex h-[7px] w-[7px]">
+                      <span className="absolute inset-0 animate-pulse-amber rounded-full bg-amber-500" />
+                      <span className="relative inline-block h-[7px] w-[7px] rounded-full bg-amber-500" />
                     </span>
-                    <span className="text-[11px] uppercase tracking-wider text-ink-500">
-                      {t("feedTitle")}
-                    </span>
+                    {t("feedTitle")}
                   </div>
                   <ul className="space-y-1.5">
                     {feedLinesRaw.map((line, i) => (
                       <li
                         key={i}
-                        className="flex items-baseline gap-3 font-mono-num text-[11px] text-ink-700"
+                        className="font-mono-num flex items-baseline gap-3 text-[11px] text-slate-700"
                       >
-                        <span className="text-ink-400">
-                          {String(14 - i).padStart(2, "0")}:{String(43 - i * 11).padStart(2, "0")}
+                        <span className="text-slate-300">
+                          {String(14 - i).padStart(2, "0")}:
+                          {String(43 - i * 11).padStart(2, "0")}
                         </span>
                         <span>{line}</span>
                       </li>

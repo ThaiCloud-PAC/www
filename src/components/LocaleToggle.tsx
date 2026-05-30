@@ -23,22 +23,27 @@ export function LocaleToggle({
   }
 
   const baseBtn =
-    "px-2.5 py-1 text-[12px] font-medium tracking-wide uppercase rounded-full transition";
+    "px-2.5 py-1 text-[11px] font-semibold tracking-[0.08em] uppercase rounded-full transition";
 
   const active =
     tone === "dark"
-      ? "bg-cyan-500 text-ink-950"
-      : "bg-ink-900 text-bone";
+      ? "bg-amber-500 text-slate-950"
+      : "bg-ink-900 text-white";
   const idle =
     tone === "dark"
-      ? "text-bone/60 hover:text-bone"
-      : "text-ink-500 hover:text-ink-900";
+      ? "text-white/60 hover:text-white"
+      : "text-slate-500 hover:text-slate-900";
+
+  const track =
+    tone === "dark"
+      ? "bg-white/[0.08] backdrop-blur"
+      : "bg-ink-100";
 
   return (
     <div
-      className={`inline-flex items-center gap-0.5 rounded-full p-0.5 ${
-        tone === "dark" ? "bg-bone/10" : "bg-ink-100"
-      } ${isPending ? "opacity-70" : ""}`}
+      className={`inline-flex items-center gap-0.5 rounded-full p-[3px] ${track} ${
+        isPending ? "opacity-70" : ""
+      }`}
     >
       <button
         type="button"

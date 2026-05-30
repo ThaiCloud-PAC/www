@@ -4,53 +4,74 @@ export function FooterCTA() {
   const t = useTranslations("FooterCTA");
 
   return (
-    <section className="bg-white pb-24">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-orange-100/60 via-amber-50 to-cyan-100/60 px-8 py-16 ring-1 ring-ink-100 md:px-16 md:py-20">
-          {/* soft orange blob, lower-right */}
-          <div
-            className="pointer-events-none absolute -right-24 -bottom-24 h-[360px] w-[360px] rounded-full blur-[100px]"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(243,117,33,0.18), transparent 70%)",
-            }}
-            aria-hidden
-          />
-          {/* soft cyan blob, upper-left */}
-          <div
-            className="pointer-events-none absolute -left-24 -top-24 h-[360px] w-[360px] rounded-full blur-[100px]"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(96,199,211,0.18), transparent 70%)",
-            }}
-            aria-hidden
-          />
+    <section
+      className="relative overflow-hidden text-white"
+      style={{
+        background:
+          "linear-gradient(135deg, var(--color-orange-500) 0%, var(--color-orange-400) 60%, var(--color-amber-500) 100%)",
+        padding: "100px 0",
+      }}
+    >
+      {/* masked grid */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent, black 25%, black 75%, transparent)",
+          maskImage:
+            "linear-gradient(to bottom, transparent, black 25%, black 75%, transparent)",
+        }}
+        aria-hidden
+      />
+      {/* deep-orange blob upper-left */}
+      <div
+        className="pointer-events-none absolute h-[500px] w-[500px] blur-[70px]"
+        style={{
+          left: "-200px",
+          top: "-100px",
+          background:
+            "radial-gradient(circle, rgba(196,84,24,0.4), transparent 65%)",
+        }}
+        aria-hidden
+      />
+      {/* amber blob lower-right */}
+      <div
+        className="pointer-events-none absolute h-[500px] w-[500px] blur-[70px]"
+        style={{
+          right: "-150px",
+          bottom: "-150px",
+          background:
+            "radial-gradient(circle, rgba(250,178,23,0.5), transparent 65%)",
+        }}
+        aria-hidden
+      />
 
-          <div className="relative grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
-            <div className="lg:col-span-7">
-              <h2 className="font-display text-[36px] leading-tight tracking-tight text-ink-900 md:text-[48px]">
-                {t("title")}
-              </h2>
-              <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-600">
-                {t("subtitle")}
-              </p>
-            </div>
+      <div className="relative z-[2] mx-auto grid max-w-7xl items-center gap-8 px-6 md:grid-cols-12 md:gap-[60px]">
+        <div className="md:col-span-7">
+          <h2 className="font-display text-[clamp(32px,4.5vw,56px)] font-bold leading-[1.05] tracking-[-0.025em]">
+            {t("title")}
+          </h2>
+          <p className="mt-[18px] max-w-[540px] text-[16px] leading-[1.6] text-white/85">
+            {t("subtitle")}
+          </p>
+        </div>
 
-            <div className="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:flex-col">
-              <a
-                href="#trial"
-                className="inline-flex items-center justify-center rounded-full bg-ink-900 px-6 py-3.5 text-[15px] font-semibold text-white transition hover:bg-ink-800"
-              >
-                {t("ctaPrimary")}
-              </a>
-              <a
-                href="#demo"
-                className="inline-flex items-center justify-center rounded-full border border-ink-200 bg-white px-6 py-3.5 text-[15px] font-medium text-ink-900 transition hover:bg-ink-50"
-              >
-                {t("ctaSecondary")}
-              </a>
-            </div>
-          </div>
+        <div className="flex flex-col gap-3 md:col-span-5">
+          <a
+            href="#trial"
+            className="inline-flex items-center justify-center rounded-full bg-ink-900 px-7 py-4 text-[15px] font-bold text-white transition hover:bg-ink-950"
+          >
+            {t("ctaPrimary")}
+          </a>
+          <a
+            href="#demo"
+            className="inline-flex items-center justify-center rounded-full border-[1.5px] border-white/50 bg-transparent px-7 py-4 text-[15px] font-semibold text-white transition hover:border-white hover:bg-white/12"
+          >
+            {t("ctaSecondary")}
+          </a>
         </div>
       </div>
     </section>

@@ -6,62 +6,61 @@ export function Testimonials() {
   const t = useTranslations("Testimonials");
   const items = t.raw("items") as Testimonial[];
 
-  // Solid color avatars (no fake photos) — brand palette rotation
-  const accents = ["#60C7D3", "#F58A1F", "#035897"];
+  // Per-card accent rotation: cyan / orange / navy
+  const accents = [
+    { mark: "var(--color-cyan-500)", avatarBg: "var(--color-cyan-500)" },
+    { mark: "var(--color-orange-400)", avatarBg: "var(--color-orange-500)" },
+    { mark: "var(--color-ink-900)", avatarBg: "var(--color-ink-900)" },
+  ];
 
   return (
-    <section id="customers" className="bg-bone py-24 md:py-32">
+    <section id="customers" className="bg-bone py-[100px]">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-          <div>
-            <span className="text-[12px] uppercase tracking-[0.16em] text-cyan-700">
-              {t("eyebrow")}
-            </span>
-            <h2 className="font-display mt-4 max-w-2xl text-[36px] leading-[1.1] tracking-tight text-ink-900 md:text-[48px]">
-              {t("title")}
-            </h2>
-          </div>
+        <div className="mb-12 max-w-[700px]">
+          <span className="text-[12px] font-semibold uppercase tracking-[0.18em] text-orange-500">
+            {t("eyebrow")}
+          </span>
+          <h2 className="font-display mt-3.5 text-[clamp(30px,4vw,46px)] font-bold leading-[1.1] tracking-[-0.02em] text-slate-900">
+            {t("title")}
+          </h2>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3">
-          {items.map((q, i) => (
-            <figure
-              key={q.name}
-              className="flex flex-col justify-between rounded-2xl border border-ink-100 bg-white p-7 transition hover:border-cyan-500/40"
-            >
-              <svg
-                width="28"
-                height="22"
-                viewBox="0 0 28 22"
-                fill="none"
-                aria-hidden
+        <div className="grid grid-cols-1 gap-[18px] md:grid-cols-3">
+          {items.map((q, i) => {
+            const a = accents[i % accents.length];
+            return (
+              <figure
+                key={q.name}
+                className="flex flex-col rounded-[18px] bg-white p-[30px] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_18px_36px_-20px_rgba(2,40,63,0.16)]"
               >
-                <path
-                  d="M0 22V13c0-7.2 4-12 11-13l1 4c-4 1-6 4-6 9h6v9H0zm16 0V13c0-7.2 4-12 11-13l1 4c-4 1-6 4-6 9h6v9H16z"
-                  fill={accents[i % accents.length]}
-                  opacity="0.5"
-                />
-              </svg>
-              <blockquote className="mt-5 grow text-[16px] leading-relaxed text-ink-800">
-                {q.quote}
-              </blockquote>
-              <figcaption className="mt-7 flex items-center gap-3 border-t border-ink-100 pt-5">
                 <div
-                  className="flex h-9 w-9 items-center justify-center rounded-full font-display text-[14px] font-semibold text-white"
-                  style={{ background: accents[i % accents.length] }}
+                  className="font-display mb-2 text-[64px] font-extrabold leading-[0.6]"
+                  style={{ color: a.mark }}
                   aria-hidden
                 >
-                  {q.name.charAt(0)}
+                  &ldquo;
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-[13.5px] font-semibold text-ink-900">
-                    {q.name}
-                  </span>
-                  <span className="text-[12px] text-ink-500">{q.role}</span>
-                </div>
-              </figcaption>
-            </figure>
-          ))}
+                <blockquote className="grow text-[16px] leading-[1.65] text-slate-700">
+                  {q.quote}
+                </blockquote>
+                <figcaption className="mt-6 flex items-center gap-3 border-t border-ink-100 pt-[18px]">
+                  <div
+                    className="font-display flex h-[38px] w-[38px] items-center justify-center rounded-full text-[14px] font-bold text-white"
+                    style={{ background: a.avatarBg }}
+                    aria-hidden
+                  >
+                    {q.name.charAt(0)}
+                  </div>
+                  <div>
+                    <div className="text-[14px] font-bold text-slate-900">
+                      {q.name}
+                    </div>
+                    <div className="text-[12px] text-slate-500">{q.role}</div>
+                  </div>
+                </figcaption>
+              </figure>
+            );
+          })}
         </div>
       </div>
     </section>
