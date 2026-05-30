@@ -1,5 +1,5 @@
 /* === Fonts (must come before tailwind import per CSS spec) === */
-@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Sans+Thai+Looped:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
 
 @import "tailwindcss";
 
@@ -75,10 +75,10 @@
   --color-cream: #FFF8E5;
 
   /* Typography */
-  --font-display: "Bricolage Grotesque", "IBM Plex Sans Thai Looped", system-ui, sans-serif;
-  --font-sans: "IBM Plex Sans", "IBM Plex Sans Thai Looped", system-ui, sans-serif;
-  --font-thai: "IBM Plex Sans Thai Looped", "IBM Plex Sans", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-display: "Kanit", system-ui, sans-serif;
+  --font-sans:    "Kanit", system-ui, sans-serif;
+  --font-thai:    "Kanit", system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, monospace;
 
   /* Radii */
   --radius-card: 1.25rem;
@@ -90,15 +90,8 @@ html {
   scroll-behavior: smooth;
 }
 
-html[lang="th"] body {
-  font-family: var(--font-thai);
-}
-
-html[lang="en"] body {
-  font-family: var(--font-sans);
-}
-
 body {
+  font-family: var(--font-sans);
   background: var(--color-paper);
   color: var(--color-ink-900);
   font-feature-settings: "ss01", "cv11";
@@ -110,13 +103,7 @@ body {
 .font-display {
   font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-html[lang="th"] .font-display {
-  font-family: var(--font-thai);
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
 .font-mono-num {
