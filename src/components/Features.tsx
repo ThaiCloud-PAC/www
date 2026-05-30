@@ -44,7 +44,7 @@ export function Features() {
         <text x="24" y="32" fontSize="8" fill="var(--color-cyan-500)" fontFamily="JetBrains Mono">
           WAVE #233
         </text>
-        <text x="24" y="54" fontSize="22" fontWeight="700" fill="white" fontFamily="Bricolage Grotesque">
+        <text x="24" y="54" fontSize="22" fontWeight="700" fill="white" fontFamily="Kanit">
           18
         </text>
         <text x="24" y="64" fontSize="6" fill="rgba(255,255,255,0.5)" fontFamily="JetBrains Mono">
@@ -57,7 +57,7 @@ export function Features() {
         <text x="118" y="30" fontSize="7" fill="white" fontFamily="JetBrains Mono" fontWeight="700">
           PRIORITY
         </text>
-        <text x="118" y="42" fontSize="12" fontWeight="700" fill="white" fontFamily="Bricolage Grotesque">
+        <text x="118" y="42" fontSize="12" fontWeight="700" fill="white" fontFamily="Kanit">
           SLA 2h
         </text>
         <rect x="108" y="52" width="78" height="34" rx="8" fill="white" stroke="#DBE2EB" />
