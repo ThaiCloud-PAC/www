@@ -1,6 +1,7 @@
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { routing } from "@/i18n/routing";
 
 export function generateStaticParams() {
@@ -22,11 +23,14 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
 
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
   return (
     <html lang={locale}>
       <body>
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
+      {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>
   );
 }
