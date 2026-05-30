@@ -7,6 +7,7 @@ export function Logo({ variant = "light", className = "" }: LogoProps) {
   // "light" = light background (use ink text)
   // "dark"  = dark background (use bone text)
   const textColor = variant === "light" ? "text-ink-900" : "text-bone";
+  const accentColor = variant === "light" ? "text-cyan-700" : "text-cyan-500";
 
   return (
     <div className={`flex items-center gap-2 ${className}`}>
@@ -36,7 +37,7 @@ export function Logo({ variant = "light", className = "" }: LogoProps) {
       <span
         className={`font-display text-[19px] font-semibold tracking-tight ${textColor}`}
       >
-        Thai<span className="text-cyan-500">Cloud</span>
+        Thai<span className={accentColor}>Cloud</span>
       </span>
     </div>
   );

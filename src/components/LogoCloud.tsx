@@ -7,7 +7,7 @@ export function LogoCloud() {
   const all = [...logos, ...logos];
 
   return (
-    <section className="border-y border-ink-100 bg-paper py-14">
+    <section className="border-y border-ink-100 bg-white py-14">
       <div className="mx-auto max-w-7xl px-6">
         <p className="text-center text-[12px] uppercase tracking-[0.16em] text-ink-500">
           {t("title")}
@@ -15,8 +15,8 @@ export function LogoCloud() {
 
         <div className="relative mt-8 overflow-hidden">
           {/* gradient masks */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-paper to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-paper to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-white to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-white to-transparent" />
 
           <div className="animate-ticker flex w-max items-center gap-14">
             {all.map((name, i) => (

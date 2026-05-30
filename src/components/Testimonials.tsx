@@ -6,15 +6,15 @@ export function Testimonials() {
   const t = useTranslations("Testimonials");
   const items = t.raw("items") as Testimonial[];
 
-  // Solid color avatars (no fake photos)
-  const accents = ["#22D3EE", "#FF6B47", "#A5B4FC"];
+  // Solid color avatars (no fake photos) — brand palette rotation
+  const accents = ["#60C7D3", "#F58A1F", "#035897"];
 
   return (
     <section id="customers" className="bg-bone py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <span className="text-[12px] uppercase tracking-[0.16em] text-cyan-600">
+            <span className="text-[12px] uppercase tracking-[0.16em] text-cyan-700">
               {t("eyebrow")}
             </span>
             <h2 className="font-display mt-4 max-w-2xl text-[36px] leading-[1.1] tracking-tight text-ink-900 md:text-[48px]">
@@ -27,7 +27,7 @@ export function Testimonials() {
           {items.map((q, i) => (
             <figure
               key={q.name}
-              className="flex flex-col justify-between rounded-2xl border border-ink-100 bg-white p-7 transition hover:border-ink-200"
+              className="flex flex-col justify-between rounded-2xl border border-ink-100 bg-white p-7 transition hover:border-cyan-500/40"
             >
               <svg
                 width="28"

@@ -5,11 +5,11 @@ export function Security() {
   const badges = t.raw("badges") as string[];
 
   return (
-    <section className="bg-paper py-24">
+    <section className="bg-white py-24">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
-            <span className="text-[12px] uppercase tracking-[0.16em] text-cyan-600">
+            <span className="text-[12px] uppercase tracking-[0.16em] text-cyan-700">
               {t("eyebrow")}
             </span>
             <h2 className="font-display mt-4 text-[32px] leading-[1.15] tracking-tight text-ink-900 md:text-[42px]">
@@ -25,7 +25,7 @@ export function Security() {
               {badges.map((b, i) => (
                 <div
                   key={b}
-                  className="flex items-center gap-3 rounded-xl border border-ink-100 bg-white px-4 py-4 transition hover:border-cyan-500/40"
+                  className="flex items-center gap-3 rounded-xl border border-ink-100 bg-white px-4 py-4 transition hover:border-cyan-500/50"
                 >
                   <ShieldGlyph idx={i} />
                   <span className="text-[13px] font-medium leading-tight text-ink-800">
@@ -42,7 +42,7 @@ export function Security() {
 }
 
 function ShieldGlyph({ idx }: { idx: number }) {
-  const accents = ["#22D3EE", "#FF6B47", "#0A1424", "#06B6D4", "#FCD34D", "#A5B4FC"];
+  const accents = ["#035897", "#60C7D3", "#00A8A7", "#0A6BA8", "#3DB5C3", "#2BA0AE"];
   const c = accents[idx % accents.length];
   return (
     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden>

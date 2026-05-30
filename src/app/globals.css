@@ -5,29 +5,59 @@
 
 /* === Design Tokens === */
 @theme {
-  /* Brand — Packiko navy + cyan */
-  --color-ink-950: #050b18;
-  --color-ink-900: #0a1424;
-  --color-ink-800: #11203a;
-  --color-ink-700: #1a2d4d;
-  --color-ink-600: #243a5e;
-  --color-ink-500: #324c75;
-  --color-ink-400: #5a73a0;
-  --color-ink-300: #8ca0c4;
-  --color-ink-200: #c4d0e3;
-  --color-ink-100: #e6ecf5;
-  --color-ink-50: #f4f7fb;
+  /* Brand navy — based on #035897 (PMS 2186 C) */
+  --color-ink-950: #02283F;
+  --color-ink-900: #035897;   /* brand primary */
+  --color-ink-800: #0A6BA8;
+  --color-ink-700: #2080BD;
+  --color-ink-600: #4598CF;
+  --color-ink-500: #6BA9D6;
+  --color-ink-400: #8FBFE0;
+  --color-ink-300: #B5D3EA;
+  --color-ink-200: #D5E5F2;
+  --color-ink-100: #EAF1F8;
+  --color-ink-50:  #F4F8FC;
 
-  --color-cyan-500: #22d3ee;
-  --color-cyan-400: #38e0f0;
-  --color-cyan-300: #67e8f5;
-  --color-cyan-600: #06b6d4;
+  /* Cyan — based on #60c7d3 (PMS 310 C) — softer, NOT electric */
+  --color-cyan-700: #2BA0AE;
+  --color-cyan-600: #3DB5C3;
+  --color-cyan-500: #60C7D3;  /* brand accent 1 */
+  --color-cyan-400: #84D4DD;
+  --color-cyan-300: #A8E1E8;
+  --color-cyan-200: #CCEEF2;
+  --color-cyan-100: #E5F6F8;
 
-  --color-coral-500: #ff6b47;
-  --color-coral-400: #ff8a6a;
+  /* === Teal — rebased to brand #00A8A7 (was #50C0AE) === */
+  --color-teal-700: #007777;
+  --color-teal-600: #008B8B;
+  --color-teal-500: #00A8A7;     /* brand teal — DEEPER than v1 */
+  --color-teal-400: #50C0AE;     /* the old teal-500 value lives here */
+  --color-teal-300: #74CDBF;
+  --color-teal-200: #97DBD0;
+  --color-teal-100: #BAE8E0;
+  --color-teal-50:  #DCF3EE;
 
-  --color-bone: #f6f3ee;
-  --color-paper: #fafaf7;
+  /* === Warm anchors — ThaiCloud brand orange + amber === */
+  --color-orange-700: #C45418;
+  --color-orange-600: #DD661C;
+  --color-orange-500: #F37521;   /* brand deep orange */
+  --color-orange-400: #F58A1F;   /* brand mid orange */
+  --color-orange-300: #F8A24A;
+  --color-orange-200: #FBC182;
+  --color-orange-100: #FDE0BA;
+  --color-orange-50:  #FEF3E3;
+
+  --color-amber-600: #C58E12;
+  --color-amber-500: #FAB217;    /* brand amber */
+  --color-amber-400: #FBC34A;
+  --color-amber-300: #FCD479;
+  --color-amber-200: #FDE2A6;
+  --color-amber-100: #FEEFCC;
+  --color-amber-50:  #FFF8E5;
+
+  /* Neutrals — light, warm white */
+  --color-paper: #FFFFFF;
+  --color-bone:  #FAFBFC;
 
   /* Typography */
   --font-display: "Bricolage Grotesque", "IBM Plex Sans Thai Looped", system-ui, sans-serif;
@@ -82,26 +112,26 @@ html[lang="th"] .font-display {
 /* === Decorative patterns === */
 .bg-grid {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(3, 40, 63, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(3, 40, 63, 0.04) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
 .bg-grid-light {
   background-image:
-    linear-gradient(to right, rgba(10, 20, 36, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(10, 20, 36, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(3, 40, 63, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(3, 40, 63, 0.05) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
 .bg-dots {
-  background-image: radial-gradient(rgba(34, 211, 238, 0.18) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(96, 199, 211, 0.22) 1px, transparent 1px);
   background-size: 22px 22px;
 }
 
 /* Cyan glow utility */
 .glow-cyan {
-  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.25), 0 0 40px -10px rgba(34, 211, 238, 0.45);
+  box-shadow: 0 0 0 1px rgba(96, 199, 211, 0.25), 0 0 40px -10px rgba(96, 199, 211, 0.45);
 }
 
 /* === Animations === */
@@ -121,8 +151,13 @@ html[lang="th"] .font-display {
 }
 
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.55); }
-  70% { opacity: 0.7; box-shadow: 0 0 0 10px rgba(34, 211, 238, 0); }
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(96, 199, 211, 0.55); }
+  70% { opacity: 0.7; box-shadow: 0 0 0 10px rgba(96, 199, 211, 0); }
+}
+
+@keyframes pulse-dot-amber {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(250, 178, 23, 0.55); }
+  70% { opacity: 0.7; box-shadow: 0 0 0 10px rgba(250, 178, 23, 0); }
 }
 
 .animate-float { animation: float 4s ease-in-out infinite; }

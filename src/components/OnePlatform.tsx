@@ -61,26 +61,18 @@ export function OnePlatform() {
   const modules = t.raw("modules") as Module[];
 
   return (
-    <section id="solutions" className="relative overflow-hidden bg-ink-950 py-24 text-bone md:py-32">
-      <div className="absolute inset-0 bg-grid opacity-50" aria-hidden />
-      <div
-        className="pointer-events-none absolute left-1/2 top-1/3 h-[500px] w-[500px] -translate-x-1/2 rounded-full opacity-50 blur-[120px]"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(34,211,238,0.3), transparent 70%)",
-        }}
-        aria-hidden
-      />
+    <section id="solutions" className="relative overflow-hidden bg-bone py-24 text-ink-900 md:py-32">
+      <div className="absolute inset-0 bg-dots opacity-30" aria-hidden />
 
       <div className="relative mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="text-[12px] uppercase tracking-[0.16em] text-cyan-300">
+          <span className="text-[12px] uppercase tracking-[0.16em] text-cyan-700">
             {t("eyebrow")}
           </span>
-          <h2 className="font-display mt-4 text-[36px] leading-[1.1] tracking-tight md:text-[52px]">
+          <h2 className="font-display mt-4 text-[36px] leading-[1.1] tracking-tight text-ink-900 md:text-[52px]">
             {t("title")}
           </h2>
-          <p className="mt-5 text-[16px] leading-relaxed text-bone/60">
+          <p className="mt-5 text-[16px] leading-relaxed text-ink-600">
             {t("subtitle")}
           </p>
         </div>
@@ -89,18 +81,18 @@ export function OnePlatform() {
           {modules.map((m, idx) => (
             <div
               key={m.name}
-              className="group relative overflow-hidden rounded-2xl border border-bone/10 bg-ink-900/60 p-5 backdrop-blur transition hover:border-cyan-500/40 hover:bg-ink-800/60"
+              className="group relative overflow-hidden rounded-2xl border border-ink-100 bg-white p-5 transition hover:border-cyan-500/50 hover:shadow-md hover:shadow-cyan-500/10"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500/10 text-cyan-300 transition group-hover:bg-cyan-500/20">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-100 text-ink-900 transition group-hover:bg-cyan-500/20">
                 <div className="h-5 w-5">{icons[m.name] ?? icons.WMS}</div>
               </div>
-              <div className="font-display mt-4 text-[18px] font-semibold">
+              <div className="font-display mt-4 text-[18px] font-semibold text-ink-900">
                 {m.name}
               </div>
-              <div className="mt-1 text-[12.5px] text-bone/55">{m.desc}</div>
+              <div className="mt-1 text-[12.5px] text-ink-500">{m.desc}</div>
 
               {/* deterministic corner index */}
-              <span className="absolute right-3 top-3 font-mono-num text-[10px] text-bone/15">
+              <span className="absolute right-3 top-3 font-mono-num text-[10px] text-ink-200">
                 {String(idx + 1).padStart(2, "0")}
               </span>
             </div>

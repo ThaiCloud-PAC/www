@@ -4,25 +4,34 @@ export function FooterCTA() {
   const t = useTranslations("FooterCTA");
 
   return (
-    <section className="bg-paper pb-24">
+    <section className="bg-white pb-24">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="relative overflow-hidden rounded-3xl bg-ink-950 px-8 py-16 md:px-16 md:py-20">
-          <div className="absolute inset-0 bg-grid opacity-70" aria-hidden />
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-orange-100/60 via-amber-50 to-cyan-100/60 px-8 py-16 ring-1 ring-ink-100 md:px-16 md:py-20">
+          {/* soft orange blob, lower-right */}
           <div
-            className="pointer-events-none absolute inset-0 opacity-80"
+            className="pointer-events-none absolute -right-24 -bottom-24 h-[360px] w-[360px] rounded-full blur-[100px]"
             style={{
               background:
-                "radial-gradient(ellipse at 80% 40%, rgba(34,211,238,0.3) 0%, transparent 60%), radial-gradient(ellipse at 10% 80%, rgba(255,107,71,0.25) 0%, transparent 60%)",
+                "radial-gradient(circle, rgba(243,117,33,0.18), transparent 70%)",
+            }}
+            aria-hidden
+          />
+          {/* soft cyan blob, upper-left */}
+          <div
+            className="pointer-events-none absolute -left-24 -top-24 h-[360px] w-[360px] rounded-full blur-[100px]"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(96,199,211,0.18), transparent 70%)",
             }}
             aria-hidden
           />
 
           <div className="relative grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
             <div className="lg:col-span-7">
-              <h2 className="font-display text-[36px] leading-tight tracking-tight text-bone md:text-[48px]">
+              <h2 className="font-display text-[36px] leading-tight tracking-tight text-ink-900 md:text-[48px]">
                 {t("title")}
               </h2>
-              <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-bone/60">
+              <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-600">
                 {t("subtitle")}
               </p>
             </div>
@@ -30,13 +39,13 @@ export function FooterCTA() {
             <div className="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:flex-col">
               <a
                 href="#trial"
-                className="inline-flex items-center justify-center rounded-full bg-cyan-500 px-6 py-3.5 text-[15px] font-semibold text-ink-950 transition hover:bg-cyan-400"
+                className="inline-flex items-center justify-center rounded-full bg-ink-900 px-6 py-3.5 text-[15px] font-semibold text-white transition hover:bg-ink-800"
               >
                 {t("ctaPrimary")}
               </a>
               <a
                 href="#demo"
-                className="inline-flex items-center justify-center rounded-full border border-bone/20 bg-bone/5 px-6 py-3.5 text-[15px] font-medium text-bone backdrop-blur transition hover:bg-bone/10"
+                className="inline-flex items-center justify-center rounded-full border border-ink-200 bg-white px-6 py-3.5 text-[15px] font-medium text-ink-900 transition hover:bg-ink-50"
               >
                 {t("ctaSecondary")}
               </a>

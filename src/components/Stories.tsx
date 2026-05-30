@@ -11,10 +11,12 @@ export function Stories() {
   const t = useTranslations("Stories");
   const items = t.raw("items") as Story[];
 
-  // Each card gets its own visual treatment
+  // Each card gets its own visual treatment — brand palette
   const cards = [
     {
-      bg: "linear-gradient(135deg, #FF6B47 0%, #FF8A6A 100%)",
+      // Beauty • DTC — warm orange→amber, light text
+      bg: "linear-gradient(135deg, #F37521 0%, #FAB217 100%)",
+      darkText: true,
       pattern: (
         <svg viewBox="0 0 400 240" className="absolute inset-0 h-full w-full opacity-25">
           <defs>
@@ -27,12 +29,14 @@ export function Stories() {
       ),
     },
     {
-      bg: "linear-gradient(135deg, #0A1424 0%, #243A5E 100%)",
+      // Fashion • Cross-border — deep navy, light text
+      bg: "linear-gradient(135deg, #02283F 0%, #035897 100%)",
+      darkText: true,
       pattern: (
         <svg viewBox="0 0 400 240" className="absolute inset-0 h-full w-full opacity-30">
           <defs>
             <pattern id="p2" width="50" height="50" patternUnits="userSpaceOnUse">
-              <path d="M0 25h50M25 0v50" stroke="#22D3EE" strokeWidth="0.5" />
+              <path d="M0 25h50M25 0v50" stroke="#60C7D3" strokeWidth="0.5" />
             </pattern>
           </defs>
           <rect width="400" height="240" fill="url(#p2)" />
@@ -40,12 +44,14 @@ export function Stories() {
       ),
     },
     {
-      bg: "linear-gradient(135deg, #22D3EE 0%, #06B6D4 100%)",
+      // F&B • Health — cyan, dark text
+      bg: "linear-gradient(135deg, #60C7D3 0%, #84D4DD 100%)",
+      darkText: false,
       pattern: (
         <svg viewBox="0 0 400 240" className="absolute inset-0 h-full w-full opacity-20">
           <defs>
             <pattern id="p3" width="60" height="60" patternUnits="userSpaceOnUse">
-              <path d="M30 5l25 25-25 25-25-25z" fill="none" stroke="#0A1424" strokeWidth="0.8" />
+              <path d="M30 5l25 25-25 25-25-25z" fill="none" stroke="#02283F" strokeWidth="0.8" />
             </pattern>
           </defs>
           <rect width="400" height="240" fill="url(#p3)" />
@@ -59,7 +65,7 @@ export function Stories() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <span className="text-[12px] uppercase tracking-[0.16em] text-cyan-600">
+            <span className="text-[12px] uppercase tracking-[0.16em] text-cyan-700">
               {t("eyebrow")}
             </span>
             <h2 className="font-display mt-4 max-w-2xl text-[36px] leading-[1.1] tracking-tight text-ink-900 md:text-[48px]">
@@ -87,8 +93,9 @@ export function Stories() {
         <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3">
           {items.map((s, i) => {
             const c = cards[i];
-            const isDarkBg = i !== 2; // cyan card has dark text
-            const textColor = isDarkBg ? "text-bone" : "text-ink-950";
+            // darkText=true means the card has a dark background → use light text on top
+            const useLightText = c.darkText;
+            const textColor = useLightText ? "text-white" : "text-ink-950";
             return (
               <article
                 key={s.title}
@@ -101,7 +108,7 @@ export function Stories() {
                   <div>
                     <span
                       className={`inline-flex items-center rounded-full border ${
-                        isDarkBg ? "border-bone/30 text-bone/85" : "border-ink-950/25 text-ink-950/80"
+                        useLightText ? "border-white/40 text-white/90" : "border-ink-950/25 text-ink-950/80"
                       } bg-black/0 px-2.5 py-1 text-[11px] uppercase tracking-wider`}
                     >
                       {s.tag}
@@ -116,7 +123,7 @@ export function Stories() {
                     </div>
                     <div
                       className={`mt-2 text-[12.5px] uppercase tracking-wider ${
-                        isDarkBg ? "text-bone/70" : "text-ink-950/70"
+                        useLightText ? "text-white/70" : "text-ink-950/70"
                       }`}
                     >
                       {s.metricLabel}

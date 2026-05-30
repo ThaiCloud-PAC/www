@@ -7,28 +7,20 @@ export function Stats() {
   const items = t.raw("items") as StatItem[];
 
   return (
-    <section className="bg-paper py-12 md:py-16">
+    <section className="bg-white py-12 md:py-16">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="relative overflow-hidden rounded-3xl bg-ink-900 p-10 md:p-16">
-          <div className="absolute inset-0 bg-grid opacity-50" aria-hidden />
-          <div
-            className="pointer-events-none absolute -right-20 top-1/2 h-[300px] w-[300px] -translate-y-1/2 rounded-full opacity-60 blur-3xl"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(34,211,238,0.4), transparent 70%)",
-            }}
-            aria-hidden
-          />
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-cyan-100 via-amber-50 to-orange-100/70 p-10 ring-1 ring-ink-100 md:p-16">
+          <div className="absolute inset-0 bg-grid-light opacity-40" aria-hidden />
 
           <div className="relative grid items-center gap-10 md:grid-cols-12">
             <div className="md:col-span-4">
-              <h2 className="font-display text-[28px] leading-tight tracking-tight text-bone md:text-[34px]">
+              <h2 className="font-display text-[28px] leading-tight tracking-tight text-ink-900 md:text-[34px]">
                 {t("title")}
               </h2>
-              <p className="mt-3 text-[14px] text-bone/60">{t("subtitle")}</p>
+              <p className="mt-3 text-[14px] text-ink-600">{t("subtitle")}</p>
               <a
                 href="#stories"
-                className="mt-6 inline-flex items-center gap-1.5 text-[13px] font-medium text-cyan-300 transition hover:text-cyan-400"
+                className="mt-6 inline-flex items-center gap-1.5 text-[13px] font-medium text-ink-900 transition hover:text-cyan-700"
               >
                 {t("cta")}
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
@@ -48,13 +40,13 @@ export function Stats() {
                 <div
                   key={s.label}
                   className={`${
-                    i > 0 ? "md:border-l md:border-bone/10 md:pl-8" : ""
+                    i > 0 ? "md:border-l md:border-orange-200/60 md:pl-8" : ""
                   }`}
                 >
-                  <div className="font-display font-mono-num text-[56px] leading-none font-semibold text-cyan-300 md:text-[72px]">
+                  <div className="font-display font-mono-num text-[56px] leading-none font-semibold text-ink-900 md:text-[72px]">
                     {s.value}
                   </div>
-                  <div className="mt-3 text-[13px] leading-relaxed text-bone/60">
+                  <div className="mt-3 text-[13px] leading-relaxed text-ink-600">
                     {s.label}
                   </div>
                 </div>

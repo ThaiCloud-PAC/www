@@ -13,10 +13,10 @@ export function Pricing() {
   const tiers = t.raw("tiers") as Tier[];
 
   return (
-    <section id="pricing" className="bg-paper py-24 md:py-32">
+    <section id="pricing" className="bg-white py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-[12px] uppercase tracking-[0.16em] text-cyan-600">
+          <span className="text-[12px] uppercase tracking-[0.16em] text-cyan-700">
             {t("eyebrow")}
           </span>
           <h2 className="font-display mt-4 text-[36px] leading-[1.1] tracking-tight text-ink-900 md:text-[52px]">
@@ -35,7 +35,7 @@ export function Pricing() {
                 key={tier.name}
                 className={`relative flex flex-col rounded-2xl p-7 ${
                   featured
-                    ? "bg-ink-900 text-bone shadow-xl shadow-cyan-500/10 ring-1 ring-cyan-500/30 md:-mt-4 md:mb-4"
+                    ? "bg-ink-900 text-white shadow-xl shadow-ink-900/20 ring-1 ring-cyan-500/30 md:-mt-4 md:mb-4"
                     : "border border-ink-100 bg-white"
                 }`}
               >
@@ -47,14 +47,14 @@ export function Pricing() {
 
                 <div
                   className={`font-display text-[22px] font-semibold ${
-                    featured ? "text-bone" : "text-ink-900"
+                    featured ? "text-white" : "text-ink-900"
                   }`}
                 >
                   {tier.name}
                 </div>
                 <p
                   className={`mt-1.5 text-[13px] ${
-                    featured ? "text-bone/55" : "text-ink-500"
+                    featured ? "text-white/65" : "text-ink-500"
                   }`}
                 >
                   {tier.tagline}
@@ -63,14 +63,14 @@ export function Pricing() {
                 <div className="mt-7">
                   <div
                     className={`font-display font-mono-num text-[38px] leading-none font-semibold ${
-                      featured ? "text-cyan-300" : "text-ink-900"
+                      featured ? "text-cyan-200" : "text-ink-900"
                     }`}
                   >
                     {tier.price}
                   </div>
                   <div
                     className={`mt-1 text-[11px] uppercase tracking-wider ${
-                      featured ? "text-bone/40" : "text-ink-400"
+                      featured ? "text-white/45" : "text-ink-400"
                     }`}
                   >
                     {t("billed")}
@@ -81,8 +81,8 @@ export function Pricing() {
                   href="#trial"
                   className={`mt-6 inline-flex items-center justify-center rounded-full px-4 py-3 text-[13px] font-semibold transition ${
                     featured
-                      ? "bg-cyan-500 text-ink-950 hover:bg-cyan-400"
-                      : "border border-ink-900 text-ink-900 hover:bg-ink-900 hover:text-bone"
+                      ? "bg-white text-ink-900 hover:bg-cyan-100"
+                      : "border border-ink-900 text-ink-900 hover:bg-ink-900 hover:text-white"
                   }`}
                 >
                   {tier.cta}
@@ -93,7 +93,7 @@ export function Pricing() {
                     <li
                       key={f}
                       className={`flex items-start gap-2.5 text-[13.5px] ${
-                        featured ? "text-bone/75" : "text-ink-700"
+                        featured ? "text-white/85" : "text-ink-700"
                       }`}
                     >
                       <svg
@@ -102,7 +102,7 @@ export function Pricing() {
                         viewBox="0 0 16 16"
                         fill="none"
                         className={`mt-0.5 flex-shrink-0 ${
-                          featured ? "text-cyan-300" : "text-cyan-600"
+                          featured ? "text-cyan-200" : "text-cyan-700"
                         }`}
                         aria-hidden
                       >
