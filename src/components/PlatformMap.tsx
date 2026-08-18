@@ -77,7 +77,6 @@ export default function PlatformMap() {
         </g>
         <g transform="translate(296 96)">
           <text x="20" y="30" className="pm-core-title">Packiko Core API</text>
-          <text x="270" y="30" textAnchor="end" className="pm-core-sub">multi-tenant</text>
           {/* order dots travel under the stage row */}
           <path id="pmStages" d="M20 71 H 270" className="pm-path-hidden" />
           {[0, 1].map((i) => (
@@ -98,15 +97,15 @@ export default function PlatformMap() {
           ))}
           {/* guard + identity row */}
           <g transform="translate(20 108)">
-            <rect className="pm-pill pm-pill--guard" x="0" y="0" width="112" height="24" rx="12" />
+            <rect className="pm-pill pm-pill--guard" x="0" y="0" width="122" height="24" rx="12" />
             <circle cx="12" cy="12" r="4" className="pm-guard-dot" />
             <text x="22" y="16" className="pm-pill-text">OMS Status Guard</text>
           </g>
-          <g transform="translate(140 108)">
-            <rect className="pm-pill" x="0" y="0" width="130" height="24" rx="12" />
-            <text x="65" y="16" textAnchor="middle" className="pm-pill-text pm-pill-text--light">Worker identity · audit</text>
+          <g transform="translate(148 108)">
+            <rect className="pm-pill" x="0" y="0" width="122" height="24" rx="12" />
+            <text x="61" y="16" textAnchor="middle" className="pm-pill-text pm-pill-text--light">Worker identity · audit</text>
           </g>
-          <text x="20" y="156" className="pm-core-sub">stock · documents · shipping · AI wave &amp; route</text>
+          <text x="20" y="156" className="pm-core-sub">stock · wave · pick · pack · dispatch</text>
         </g>
 
         {/* ---- products around the core ---- */}

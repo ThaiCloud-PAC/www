@@ -1,4 +1,5 @@
 import FlowVisual from "./FlowVisual";
+import { nb } from "@/lib/th";
 
 export default function Hero() {
   return (
@@ -45,20 +46,17 @@ export default function Hero() {
               <div className="detail-sec">
                 <span className="hero-eyebrow">Packiko by ThaiCloud</span>
                 <h1 className="main-heading">
-                  ขายวันละหลายพันออเดอร์ <span className="d-block text-orange js-rotating">แต่คลังยังคุมอยู่., แต่แพ็คไม่พลาด., แต่มีหลักฐานทุก Order., แต่รู้ว่าใครทำอะไร.</span>
+                  Intelligence Layer <span className="d-block text-orange js-rotating">for Logistics., for Fulfilment., for eCommerce.</span>
                 </h1>
                 <p className="sub-para margin-sub-heading">
-                  Packiko ช่วยร้านออนไลน์และทีมคลังคุม Stock ลดแพ็คผิด มีวิดีโอหลักฐานทุก Order และคุมงานหยิบ–แพ็ค–ส่งกับคนหน้างานได้จริง — ระบบนิเวศ Fulfilment ที่สร้างโดยทีมบริหารคลังจริงกว่า 10 ปี
-                </p>
-                <p className="sub-para hero-strap">
-                  ตรวจสอบได้<span>•</span>เห็นสต็อกจริง<span>•</span>เชื่อมขนส่ง<span>•</span>ขยายผ่าน HUB<span>•</span>ต่อยอดการเงิน
+                  {nb("Packiko อยู่หลัง OMS ของคุณ ช่วยร้านออนไลน์และทีมคลังเห็นสต็อกจริง แพ็คไม่พลาด และมีวิดีโอหลักฐานทุกออเดอร์ ออกแบบโดยทีมที่บริหารคลังจริงมากว่า 10 ปี")}
                 </p>
                 <div className="hero-actions">
-                  <a href="#problems" className="btn btn-medium btn-rounded btn-red scroll">
-                    ดูปัญหาที่เราแก้
-                  </a>
-                  <a href="#contact-sec" className="btn btn-medium btn-rounded btn-ghost scroll">
+                  <a href="#contact-sec" className="btn btn-medium btn-rounded btn-red scroll">
                     Book a Demo
+                  </a>
+                  <a href="#solution" className="btn btn-medium btn-rounded btn-ghost scroll">
+                    See How It Works
                   </a>
                 </div>
               </div>
@@ -67,7 +65,7 @@ export default function Hero() {
               <div className="hero-visual w-100 wow fadeInRight" data-wow-duration="1.5s" data-wow-delay=".2s">
                 <FlowVisual />
                 <div className="hero-chips">
-                  <div className="hero-chip"><b>10+ yrs</b><small>real warehouse ops</small></div>
+                  <div className="hero-chip"><b>10+ years</b><small>real warehouse ops</small></div>
                   <div className="hero-chip is-orange"><b>80%</b><small>error reduction</small></div>
                   <div className="hero-chip is-teal"><b>30%</b><small>faster packing</small></div>
                 </div>

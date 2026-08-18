@@ -27,7 +27,7 @@ export default function Contact() {
             <div className="contact-details wow fadeInRight">
               <h4 className="heading">Our Location</h4>
               <p className="text">
-                ติดต่อสอบถามโซลูชัน Fulfillment และ AI อัจฉริยะสำหรับคลังสินค้าของคุณได้เลย
+                เล่าหน้างานของคุณให้เราฟังสั้น ๆ ทีมที่บริหารคลังจริงมากว่า 10 ปีจะช่วยประเมินและแนะนำจุดเริ่มที่เหมาะกับคุณ
               </p>
               <ul>
                 <li>
@@ -38,7 +38,7 @@ export default function Contact() {
                   <a href="tel:+66935455599"><span>+66 9 3545 5599</span></a>
                 </li>
                 <li>
-                  <i aria-hidden="true" className="fas fa-paper-plane"></i><a href="mailto:hello@thaicloud.com">hello@thaicloud.com</a> | <a href="https://thaicloud.com">thaicloud.com</a>
+                  <i aria-hidden="true" className="fas fa-paper-plane"></i><a href="mailto:hello@thaicloud.com">hello@thaicloud.com</a>
                 </li>
               </ul>
             </div>

@@ -12,7 +12,7 @@ export default function Footer() {
                 <Image src="/minimal-creative/images/logo.png" alt="ThaiCloud" width={110} height={64} style={{ width: "110px", height: "auto" }} />
               </span>
               <p className="brand-blurb">
-                Packiko by ThaiCloud — The Fulfilment Ecosystem for Online Commerce. ตรวจสอบได้ • เห็นสต็อกจริง • เชื่อมขนส่ง • ขยายผ่าน HUB • ต่อยอดการเงิน
+                Packiko by ThaiCloud — The Fulfilment Ecosystem for Online Commerce.
               </p>
               <div className="footer-social">
                 <a href="#" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
@@ -35,7 +35,6 @@ export default function Footer() {
               <ul className="list-unstyled">
                 <li><a href="#problems" className="scroll">Problems we solve</a></li>
                 <li><a href="#solution" className="scroll">Solution</a></li>
-                <li><a href="#how-it-works" className="scroll">How it works</a></li>
                 <li><a href="#faq" className="scroll">FAQ</a></li>
                 <li><a href="#contact-sec" className="scroll">Contact</a></li>
               </ul>
@@ -43,10 +42,6 @@ export default function Footer() {
             <div className="col-12 col-lg-4">
               <h6>Contact</h6>
               <ul className="list-unstyled">
-                <li>
-                  <i className="las la-map-marker-alt mr-2"></i>
-                  1853/2-3 Soi Uthaifarm, Rim Thang Rot Fai Sai Pak Nam Road, Khlong Tan, Khlong Toei, Bangkok 10110 Thailand
-                </li>
                 <li><i className="las la-phone-volume mr-2"></i><a href="tel:+66935455599">+66 9 3545 5599</a></li>
                 <li><i className="las la-paper-plane mr-2"></i><a href="mailto:hello@thaicloud.com">hello@thaicloud.com</a></li>
               </ul>

@@ -70,7 +70,6 @@ export default function Header() {
                     ["#home", "home"],
                     ["#problems", "problems"],
                     ["#solution", "solution"],
-                    ["#how-it-works", "how it works"],
                     ["#products", "products"],
                     ["#faq", "faq"],
                     ["#contact-sec", "contact"],
