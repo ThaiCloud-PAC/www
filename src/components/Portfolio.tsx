@@ -1,3 +1,5 @@
+import CountUp from "./CountUp";
+
 const steps = [
   {
     no: "01",
@@ -41,25 +43,25 @@ export default function Portfolio() {
         <div className="row my-4 my-md-0 stat-band wow fadeInUp" data-wow-duration="1s">
           <div className="col-12 col-md-3">
             <div className="parallax-box">
-              <h2 className="count">80</h2>
+              <h2 className="count-num"><CountUp value={80} /></h2>
               <h5>% Error Reduction</h5>
             </div>
           </div>
           <div className="col-12 col-md-3">
             <div className="parallax-box">
-              <h2 className="count text-orange">30</h2>
+              <h2 className="count-num text-orange"><CountUp value={30} /></h2>
               <h5>% Faster Packing</h5>
             </div>
           </div>
           <div className="col-12 col-md-3">
             <div className="parallax-box">
-              <h2 className="count text-red">80</h2>
+              <h2 className="count-num text-red"><CountUp value={80} /></h2>
               <h5>% Labor Efficiency</h5>
             </div>
           </div>
           <div className="col-12 col-md-3">
             <div className="parallax-box">
-              <h2 className="count">5000</h2>
+              <h2 className="count-num"><CountUp value={19765} /></h2>
               <h5>Orders / Day</h5>
             </div>
           </div>
