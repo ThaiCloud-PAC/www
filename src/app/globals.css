@@ -248,7 +248,7 @@ section.problems-sec, section.solution-sec, section.about-sec, section.faq-sec {
 
 .platform-map {
   width: 100%;
-  aspect-ratio: 800 / 360;
+  aspect-ratio: 920 / 372;
   border-radius: 24px;
   background: linear-gradient(135deg, #ffffff 0%, #eef4f9 100%);
   border: 1px solid #e3ebf3;
@@ -259,14 +259,15 @@ section.problems-sec, section.solution-sec, section.about-sec, section.faq-sec {
 .map-caption { text-align: center; font-size: 13px; font-weight: 300; color: #6b7c8f; margin: 16px auto 0 !important; max-width: 820px; }
 .map-caption b { color: #035897; font-weight: 600; }
 .pm-chip { fill: #ffffff; stroke: #d6e1ec; }
-.pm-chip-text { font-size: 11px; font-weight: 500; fill: #202020; }
+.pm-chip-text { font-size: 11px; font-weight: 600; fill: #202020; }
+.pm-letter { font-size: 9px; font-weight: 700; fill: #ffffff; }
 .pm-node { fill: #ffffff; stroke: #cfdbe7; }
 .pm-node--carrier { fill: #00a8a7; stroke: #00a8a7; }
 .pm-node-title { font-size: 14px; font-weight: 700; fill: #035897; }
 .pm-node-sub { font-size: 9px; fill: #6b7c8f; }
 .pm-node-title--light { fill: #ffffff; }
 .pm-node-sub--light { fill: #ffffff; opacity: 0.85; }
-.pm-tag { fill: #f37521; }
+.pm-tag { fill: #0a2540; }
 .pm-tag-text { font-size: 9px; font-weight: 700; fill: #ffffff; letter-spacing: 0.5px; }
 .pm-core { fill: url(#pmCore); }
 .pm-core-title { font-size: 14px; font-weight: 700; fill: #ffffff; }
@@ -305,9 +306,7 @@ section.problems-sec, section.solution-sec, section.about-sec, section.faq-sec {
   .platform-map * { animation: none !important; }
   .pm-dot--order, .pm-dot--sync, .pm-dot--ship { display: none; }
 }
-@media (max-width: 767px) {
-  .platform-map { aspect-ratio: 800 / 360; }
-}
+
 
 .flow-mobile { display: none; }
 .solution-row { margin-top: 44px; }
