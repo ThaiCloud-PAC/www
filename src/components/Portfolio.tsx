@@ -1,6 +1,7 @@
 const steps = [
   {
     no: "01",
+    accent: "accent-blue",
     icon: "las la-shopping-cart",
     title: "รับออเดอร์จาก OMS",
     detail:
@@ -8,6 +9,7 @@ const steps = [
   },
   {
     no: "02",
+    accent: "accent-orange",
     icon: "las la-route",
     title: "จัดเวฟ & หยิบสินค้า",
     detail:
@@ -15,6 +17,7 @@ const steps = [
   },
   {
     no: "03",
+    accent: "accent-teal",
     icon: "las la-video",
     title: "แพ็กพร้อม VDO Proof",
     detail:
@@ -22,6 +25,7 @@ const steps = [
   },
   {
     no: "04",
+    accent: "accent-blue",
     icon: "las la-truck",
     title: "Dispatch Gate & ขนส่ง",
     detail:
@@ -34,7 +38,7 @@ export default function Portfolio() {
     <section id="how-it-works" className="portfolio">
       {/* Counter */}
       <div className="container">
-        <div className="row my-4 my-md-0">
+        <div className="row my-4 my-md-0 stat-band wow fadeInUp" data-wow-duration="1s">
           <div className="col-12 col-md-3">
             <div className="parallax-box">
               <h2 className="count">80</h2>
@@ -78,8 +82,8 @@ export default function Portfolio() {
         <div className="row step-row pt-4">
           {steps.map((s, i) => (
             <div key={s.no} className="col-12 col-md-6 col-lg-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay={`${i * 0.15}s`}>
-              <div className="step-card">
-                <div className="step-no">STEP {s.no}</div>
+              <div className={`step-card ${s.accent}`}>
+                <div className="step-badge">{s.no}</div>
                 <i className={s.icon}></i>
                 <h5>{s.title}</h5>
                 <p>{s.detail}</p>

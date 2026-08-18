@@ -1,43 +1,59 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <>
       {/* Footer Start */}
-      <footer className="footer-style-1 bg-gray">
+      <footer className="site-footer">
         <div className="container">
-          <div className="row align-items-center">
-            {/* Social */}
-            <div className="col-lg-6">
-              <div className="footer-social text-center text-lg-left ">
-                <ul className="list-unstyled">
-                  <li>
-                    <a className="wow fadeInUp" href="#">
-                      <i aria-hidden="true" className="fab fa-facebook-f"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="wow fadeInDown" href="#">
-                      <i aria-hidden="true" className="fab fa-x-twitter"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="wow fadeInDown" href="#">
-                      <i aria-hidden="true" className="fab fa-linkedin-in"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="wow fadeInUp" href="#">
-                      <i aria-hidden="true" className="fab fa-instagram"></i>
-                    </a>
-                  </li>
-                </ul>
+          <div className="row">
+            <div className="col-12 col-lg-4 mb-5 mb-lg-0">
+              <span className="logo-box">
+                <Image src="/minimal-creative/images/logo.png" alt="ThaiCloud" width={110} height={64} style={{ width: "110px", height: "auto" }} />
+              </span>
+              <p className="brand-blurb">
+                Packiko by ThaiCloud — The Fulfilment Ecosystem for Online Commerce. ตรวจสอบได้ • เห็นสต็อกจริง • เชื่อมขนส่ง • ขยายผ่าน HUB • ต่อยอดการเงิน
+              </p>
+              <div className="footer-social">
+                <a href="#" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="X"><i className="fab fa-x-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i className="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
               </div>
             </div>
-            {/* Text */}
-            <div className="col-lg-6 text-center text-lg-right">
-              <p className="company-about fadeIn">
-                &copy; {new Date().getFullYear()} ThaiCloud PAC Co., Ltd. 0105569016405
-              </p>
+            <div className="col-6 col-lg-2 mb-4 mb-lg-0">
+              <h6>Products</h6>
+              <ul className="list-unstyled">
+                <li><a href="#products" className="scroll">Packiko Add-in</a></li>
+                <li><a href="#products" className="scroll">Packiko Prime</a></li>
+                <li><a href="#products" className="scroll">Packiko Ultra</a></li>
+                <li><a href="#products" className="scroll">Packiko Hub</a></li>
+              </ul>
             </div>
+            <div className="col-6 col-lg-2 mb-4 mb-lg-0">
+              <h6>Company</h6>
+              <ul className="list-unstyled">
+                <li><a href="#how-it-works" className="scroll">How it works</a></li>
+                <li><a href="#why-packiko" className="scroll">Why Packiko</a></li>
+                <li><a href="#case-study" className="scroll">Case study</a></li>
+                <li><a href="#contact-sec" className="scroll">Contact</a></li>
+              </ul>
+            </div>
+            <div className="col-12 col-lg-4">
+              <h6>Contact</h6>
+              <ul className="list-unstyled">
+                <li>
+                  <i className="las la-map-marker-alt mr-2"></i>
+                  1853/2-3 Soi Uthaifarm, Rim Thang Rot Fai Sai Pak Nam Road, Khlong Tan, Khlong Toei, Bangkok 10110 Thailand
+                </li>
+                <li><i className="las la-phone-volume mr-2"></i><a href="tel:+66935455599">+66 9 3545 5599</a></li>
+                <li><i className="las la-paper-plane mr-2"></i><a href="mailto:hello@thaicloud.com">hello@thaicloud.com</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="footer-bottom d-flex flex-wrap justify-content-between">
+            <span>&copy; {new Date().getFullYear()} ThaiCloud PAC Co., Ltd. 0105569016405</span>
+            <span>Bangkok, Thailand</span>
           </div>
         </div>
       </footer>

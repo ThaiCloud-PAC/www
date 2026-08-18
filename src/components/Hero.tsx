@@ -43,52 +43,33 @@ export default function Hero() {
               data-wow-delay=".1s"
             >
               <div className="detail-sec">
+                <span className="hero-eyebrow">Packiko by ThaiCloud</span>
                 <h1 className="main-heading">
                   Intelligence Layer <span className="d-block text-orange js-rotating">for eCommerce., for Logistics., for Fulfillment.</span>
                 </h1>
                 <p className="sub-para margin-sub-heading">
-                  Packiko by ThaiCloud — ระบบนิเวศ Fulfilment สำหรับธุรกิจออนไลน์ เราไม่ได้แค่สร้างระบบจัดการคลังสินค้า แต่เราสร้าง &quot;สมองกล&quot; ที่ช่วยตัดสินใจแทนคุณ เพื่อให้การ Fulfillment เป็นเรื่องง่ายและไร้ข้อผิดพลาด
+                  ระบบนิเวศ Fulfilment สำหรับธุรกิจออนไลน์ — เราไม่ได้แค่สร้างระบบจัดการคลังสินค้า แต่เราสร้าง &quot;สมองกล&quot; ที่ช่วยตัดสินใจแทนคุณ เพื่อให้การ Fulfillment เป็นเรื่องง่ายและไร้ข้อผิดพลาด
                 </p>
-                <p className="sub-para" style={{ color: "#035897", fontWeight: 500 }}>
-                  ตรวจสอบได้ • เห็นสต็อกจริง • เชื่อมขนส่ง • ขยายผ่าน HUB • ต่อยอดการเงิน
+                <p className="sub-para hero-strap">
+                  ตรวจสอบได้<span>•</span>เห็นสต็อกจริง<span>•</span>เชื่อมขนส่ง<span>•</span>ขยายผ่าน HUB<span>•</span>ต่อยอดการเงิน
                 </p>
-                <a href="#products" className="btn btn-medium btn-rounded btn-red scroll">
-                  Explore Products
-                </a>
+                <div className="hero-actions">
+                  <a href="#products" className="btn btn-medium btn-rounded btn-red scroll">
+                    Explore Products
+                  </a>
+                  <a href="#how-it-works" className="btn btn-medium btn-rounded btn-ghost scroll">
+                    How It Works
+                  </a>
+                </div>
               </div>
             </div>
             <div className="col-sm-12 col-lg-6 d-flex align-items-center">
-              <div className="row no-gutters">
-                <div className="col-12 col-md-6 mini-slider p-0 d-inline-block d-lg-flex justify-content-center align-items-center">
-                  <FlowVisual />
-                </div>
-                {/* Box-1 */}
-                <div className="col-12 col-md-6 p-0 wow fadeIn" data-wow-duration="1s" data-wow-delay=".1s">
-                  <a href="#how-it-works" className="text-decoration-none scroll">
-                    <div className="custom-box bg-red box-1">
-                      <div className="bg-study-icon">
-                        <i className="las la-address-book"></i>
-                      </div>
-                      <h1 className="box-text mb-sm-2 mt-sm-2 mb-md-3 mt-md-3 mb-lg-3 mt-lg-3">
-                        How It Works
-                      </h1>
-                      <div className="arrow-box">
-                        <i className="las la-arrow-right"></i>
-                      </div>
-                    </div>
-                  </a>
-                  {/* Box-2 */}
-                  <a href="#products" className="text-decoration-none scroll wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
-                    <div className="custom-box bg-orange">
-                      <div className="bg-campus-icon">
-                        <i className="las la-registered"></i>
-                      </div>
-                      <h1 className="box-text">Explore Our Products</h1>
-                      <div className="arrow-box1">
-                        <i className="las la-arrow-right"></i>
-                      </div>
-                    </div>
-                  </a>
+              <div className="hero-visual w-100 wow fadeInRight" data-wow-duration="1.5s" data-wow-delay=".2s">
+                <FlowVisual />
+                <div className="hero-chips">
+                  <div className="hero-chip"><b>5,000</b><small>orders / day</small></div>
+                  <div className="hero-chip is-orange"><b>80%</b><small>error reduction</small></div>
+                  <div className="hero-chip is-teal"><b>30%</b><small>faster packing</small></div>
                 </div>
               </div>
             </div>
