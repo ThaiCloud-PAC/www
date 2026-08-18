@@ -10,7 +10,15 @@ const TOKENS = [
   "มาร์เก็ตเพลส", "ออนไลน์", "คลังสินค้า", "อัตโนมัติ", "ประสิทธิภาพ", "หน้างาน", "พนักงาน",
   "วิดีโอ", "เครือข่าย", "ผลงาน", "สถานี", "สินค้า", "ลูกค้า", "ธุรกิจ", "องค์กร", "บริการ", "หลังบ้าน", "เส้นทาง",
 ];
-const joined = (t: string) => t.split("").join(WJ);
+// Only insert the joiner at cluster boundaries: before a base consonant (ก–ฮ)
+// or a leading vowel (เ แ โ ใ ไ). Never before combining marks (ั ิ ี ึ ื ุ ู ็ ่ ้ ๊ ๋ ์)
+// — a joiner between a consonant and its mark detaches the mark (dotted circle).
+const CLUSTER_START = /[\u0E01-\u0E2E\u0E40-\u0E44]/;
+const joined = (t: string) =>
+  t
+    .split("")
+    .map((ch, i) => (i > 0 && CLUSTER_START.test(ch) ? WJ + ch : ch))
+    .join("");
 const RE = new RegExp(TOKENS.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|"), "g");
 
 /** Apply word-joiners to known Thai tokens; also make dash chains unbreakable (หยิบ–แพ็ค–ส่ง). */
