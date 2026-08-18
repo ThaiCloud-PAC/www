@@ -129,7 +129,7 @@ jQuery(function ($) {
         Sponsor  carousel
     ====================================== */
 
-    $('.sponsor-tags').owlCarousel({
+    if ($.fn.owlCarousel && $('.sponsor-tags').length) $('.sponsor-tags').owlCarousel({
         loop: true,
         margin: 20,
         slideSpeed: 3000,
