@@ -290,6 +290,7 @@ section.problems-sec, section.solution-sec, section.about-sec, section.faq-sec {
 .pm-dot--sync { fill: #00a8a7; }
 .pm-dot--ship { fill: #00a8a7; }
 .pm-customer { fill: #ffffff; stroke: #f37521; stroke-width: 2; }
+.pm-dest { animation: pm-float 3.5s ease-in-out infinite; transform-box: fill-box; }
 .pm-customer-text { font-size: 18px; fill: #f37521; }
 @keyframes pm-stage {
   0%, 100% { fill: rgba(255,255,255,0.12); }
