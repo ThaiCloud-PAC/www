@@ -69,7 +69,7 @@ export default function Pricing() {
             <div className="why-icon"><i className="las la-rocket"></i></div>
             <h4 className="pricing-card-heading">Scale Without Limits</h4>
             <p className="pricing-card-text">
-              ช่วยให้ธุรกิจขยายจากหลักพันสู่เกือบ 20,000 ออเดอร์/วัน ได้โดยไม่ต้องเพิ่มพื้นที่คลัง
+              ช่วยให้ธุรกิจขยายจากหลักพันสู่ 20,000 ออเดอร์/วัน ได้โดยไม่ต้องเพิ่มพื้นที่คลัง
             </p>
             <ul className="why-list">
               <li>เริ่มจาก Add-in / Prime แล้วโตสู่ Ultra</li>

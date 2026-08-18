@@ -61,7 +61,7 @@ export default function Portfolio() {
           </div>
           <div className="col-12 col-md-3">
             <div className="parallax-box">
-              <h2 className="count-num"><CountUp value={19765} /></h2>
+              <h2 className="count-num"><CountUp value={20000} /></h2>
               <h5>Orders / Day</h5>
             </div>
           </div>

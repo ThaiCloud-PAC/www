@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
  * Placeholder for the externally-produced hero animation — swap the whole
  * component when that asset lands; the wrapper is 100% wide, aspect 4:3.
  */
-const TARGET = 19765;
+const TARGET = 20000;
 const CHANNELS = ["#f37521", "#035897", "#00a8a7", "#fab217", "#035897", "#f37521", "#00a8a7", "#035897"];
 const ROWS = CHANNELS.map((c, i) => ({ c, w: 46 + ((i * 37) % 40), s: i % 3 }));
 const STATIONS = [
