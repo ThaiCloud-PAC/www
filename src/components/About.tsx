@@ -41,6 +41,16 @@ const products = [
   },
 ];
 
+// 2 = core strength, 1 = supported, 0 = not the target
+const fit = [
+  { need: "ร้านออนไลน์บน OMS ที่อยากมีวิดีโอหลักฐาน โดยไม่เปลี่ยนระบบ", v: [2, 1, 1, 0] },
+  { need: "แยกสต็อกจริงในคลังออกจากสต็อกขาย รับเข้า แพ็ค คืน", v: [0, 2, 2, 1] },
+  { need: "คลังใหญ่ / Fulfilment center / 3PL หลายลูกค้า หลายโต๊ะแพ็ค", v: [0, 0, 2, 0] },
+  { need: "เวฟ เส้นทางหยิบ สถานี Dispatch Gate และ OMS Status Guard", v: [0, 1, 2, 0] },
+  { need: "วัดผลงานรายคน SLA คอขวด รายงานระดับองค์กร", v: [0, 1, 2, 1] },
+  { need: "เปลี่ยนสาขา / ร้านพัสดุ / หน้าร้านพาร์ทเนอร์เป็นจุด Fulfilment", v: [0, 0, 0, 2] },
+];
+
 export default function About() {
   return (
     <section id="products" className="about-sec bg-gray">
@@ -52,10 +62,10 @@ export default function About() {
             data-wow-delay=".1s"
           >
             <p className="sub-heading text-center">
-              <span></span>Our Products
+              <span></span>Product Fit
             </p>
             <h3 className="heading text-center">
-              One Platform. <span className="d-block">Four Ways In.</span>
+              ธุรกิจแบบไหน <span className="d-block">เหมาะกับผลิตภัณฑ์ไหน</span>
             </h3>
             <p className="text text-center">
               สี่ผลิตภัณฑ์บน Packiko Core API ตัวเดียว เลือกจุดเริ่มที่พอดีกับธุรกิจ — ตั้งแต่ปุ่มบันทึกวิดีโอในระบบเดิม
@@ -79,6 +89,37 @@ export default function About() {
               </a>
             </div>
           ))}
+        </div>
+
+        <div className="row">
+          <div className="col-12 wow fadeInUp" data-wow-duration="1s">
+            <div className="fit-matrix-wrap">
+              <table className="fit-matrix">
+                <thead>
+                  <tr>
+                    <th>คุณคือ… / คุณต้องการ…</th>
+                    <th className="accent-orange">Add-in</th>
+                    <th className="accent-teal">Prime</th>
+                    <th className="accent-blue">Ultra</th>
+                    <th className="accent-yellow">Hub</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {fit.map((r) => (
+                    <tr key={r.need}>
+                      <td>{r.need}</td>
+                      {r.v.map((v, i) => (
+                        <td key={i} className={v === 2 ? "is-core" : v === 1 ? "is-ok" : ""}>
+                          {v === 2 ? "●" : v === 1 ? "○" : "–"}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <p className="fit-legend">● จุดแข็งหลัก · ○ รองรับ · – ไม่ใช่เป้าหมายของผลิตภัณฑ์นี้</p>
+            </div>
+          </div>
         </div>
 
         <div className="row">

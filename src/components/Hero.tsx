@@ -45,20 +45,20 @@ export default function Hero() {
               <div className="detail-sec">
                 <span className="hero-eyebrow">Packiko by ThaiCloud</span>
                 <h1 className="main-heading">
-                  Intelligence Layer <span className="d-block text-orange js-rotating">for eCommerce., for Logistics., for Fulfillment.</span>
+                  ขายวันละหลายพันออเดอร์ <span className="d-block text-orange js-rotating">แต่คลังยังคุมอยู่., แต่แพ็คไม่พลาด., แต่มีหลักฐานทุก Order., แต่รู้ว่าใครทำอะไร.</span>
                 </h1>
                 <p className="sub-para margin-sub-heading">
-                  ระบบนิเวศ Fulfilment สำหรับธุรกิจออนไลน์ — เราไม่ได้แค่สร้างระบบจัดการคลังสินค้า แต่เราสร้าง &quot;สมองกล&quot; ที่ช่วยตัดสินใจแทนคุณ เพื่อให้การ Fulfillment เป็นเรื่องง่ายและไร้ข้อผิดพลาด
+                  Packiko ช่วยร้านออนไลน์และทีมคลังคุม Stock ลดแพ็คผิด มีวิดีโอหลักฐานทุก Order และคุมงานหยิบ–แพ็ค–ส่งกับคนหน้างานได้จริง — ระบบนิเวศ Fulfilment ที่สร้างโดยทีมบริหารคลังจริงกว่า 10 ปี
                 </p>
                 <p className="sub-para hero-strap">
                   ตรวจสอบได้<span>•</span>เห็นสต็อกจริง<span>•</span>เชื่อมขนส่ง<span>•</span>ขยายผ่าน HUB<span>•</span>ต่อยอดการเงิน
                 </p>
                 <div className="hero-actions">
-                  <a href="#products" className="btn btn-medium btn-rounded btn-red scroll">
-                    Explore Products
+                  <a href="#problems" className="btn btn-medium btn-rounded btn-red scroll">
+                    ดูปัญหาที่เราแก้
                   </a>
-                  <a href="#how-it-works" className="btn btn-medium btn-rounded btn-ghost scroll">
-                    How It Works
+                  <a href="#contact-sec" className="btn btn-medium btn-rounded btn-ghost scroll">
+                    Book a Demo
                   </a>
                 </div>
               </div>

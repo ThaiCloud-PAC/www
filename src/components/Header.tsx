@@ -66,31 +66,21 @@ export default function Header() {
               </div>
               <nav className="side-nav m-0">
                 <ul className="navbar-nav flex-lg-row">
-                  <li className="nav-item">
-                    <a href="#home" className="scroll nav-link link">
-                      home
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a href="#products" className="scroll nav-link link">
-                      products
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a href="#how-it-works" className="scroll nav-link link">
-                      how it works
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a href="#why-packiko" className="scroll nav-link link">
-                      why packiko
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a href="#contact-sec" className="scroll nav-link link">
-                      contact
-                    </a>
-                  </li>
+                  {[
+                    ["#home", "home"],
+                    ["#problems", "problems"],
+                    ["#solution", "solution"],
+                    ["#how-it-works", "how it works"],
+                    ["#products", "products"],
+                    ["#faq", "faq"],
+                    ["#contact-sec", "contact"],
+                  ].map(([href, label]) => (
+                    <li key={href} className="nav-item">
+                      <a href={href} className="scroll nav-link link">
+                        {label}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </nav>
 

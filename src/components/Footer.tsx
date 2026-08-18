@@ -33,8 +33,10 @@ export default function Footer() {
             <div className="col-6 col-lg-2 mb-4 mb-lg-0">
               <h6>Company</h6>
               <ul className="list-unstyled">
+                <li><a href="#problems" className="scroll">Problems we solve</a></li>
+                <li><a href="#solution" className="scroll">Solution</a></li>
                 <li><a href="#how-it-works" className="scroll">How it works</a></li>
-                <li><a href="#why-packiko" className="scroll">Why Packiko</a></li>
+                <li><a href="#faq" className="scroll">FAQ</a></li>
                 <li><a href="#contact-sec" className="scroll">Contact</a></li>
               </ul>
             </div>
