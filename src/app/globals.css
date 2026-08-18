@@ -246,17 +246,19 @@ section.problems-sec, section.solution-sec, section.about-sec, section.faq-sec {
    Solution: platform map + list
 ========================================= */
 
+.platform-map-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; margin: 0 -15px; padding: 0 15px; }
+.platform-map-scroll::-webkit-scrollbar { display: none; }
 .platform-map {
   width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
-  aspect-ratio: 440 / 822;
+  min-width: 720px;
+  aspect-ratio: 900 / 372;
   border-radius: 24px;
-  background: linear-gradient(180deg, #ffffff 0%, #eef4f9 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #eef4f9 100%);
   border: 1px solid #e3ebf3;
   overflow: hidden;
   box-shadow: 0 30px 60px -40px rgba(3, 88, 151, 0.35);
 }
+.map-hint { text-align: center; font-size: 12px; color: #6b7c8f; margin: 10px 0 0 !important; }
 .platform-map svg { width: 100%; height: 100%; display: block; font-family: var(--font-kanit), sans-serif; }
 .pm-caption { font-size: 9px; letter-spacing: 2px; fill: #6b7c8f; font-weight: 600; }
 .pm-caption-bg { fill: #f3f6fa; }
@@ -302,19 +304,12 @@ section.problems-sec, section.solution-sec, section.about-sec, section.faq-sec {
   .pm-dot--order, .pm-dot--sync, .pm-dot--ship { display: none; }
 }
 
-.solution-copy .sub-heading { text-align: left; }
-.solution-copy .heading { text-align: left; font-size: 40px; margin-bottom: 16px; }
-.solution-copy .text { text-align: left; max-width: 34em; margin: 0 0 28px !important; font-size: 16px; line-height: 1.75; }
-.solution-list { display: grid; gap: 4px; }
-.solution-item { display: flex; gap: 14px; align-items: flex-start; padding: 12px 0; text-align: left; }
+.solution-row { margin-top: 40px; }
+.solution-item { display: flex; gap: 14px; align-items: flex-start; padding: 12px 0 22px; text-align: left; }
 .solution-item i { flex: none; font-size: 26px; color: var(--accent, #035897); margin-top: 2px; }
 .solution-item b { display: block; font-size: 17px; font-weight: 600; color: #202020; margin-bottom: 4px; }
 .solution-item span { font-size: 15px; font-weight: 400; line-height: 1.65; color: #4a5a6b; }
-@media (max-width: 991px) {
-  .solution-copy .sub-heading, .solution-copy .heading, .solution-copy .text { text-align: center; }
-  .solution-copy .text { margin: 0 auto 24px !important; }
-  .platform-map { margin-top: 32px; }
-}
+@media (max-width: 767px) { .solution-row { margin-top: 24px; } }
 
 /* =========================================
    Stat colour block
