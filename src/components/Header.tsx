@@ -27,7 +27,7 @@ export default function Header() {
             <Link href="/" title="Logo" className="logo link">
               <Image
                 src="/minimal-creative/images/logo.png"
-                alt="logo"
+                alt="ThaiCloud"
                 width={120}
                 height={40}
                 style={{ width: "auto", height: "auto" }}
@@ -61,7 +61,7 @@ export default function Header() {
             <div className="inner-wrapper justify-content-center">
               <div className="col-md-12 text-center">
                 <Link href="/" className="logo-full mb-4 link">
-                  <Image src="/minimal-creative/images/logo.png" alt="Logo" width={120} height={40} style={{ width: "auto", height: "auto" }} />
+                  <Image src="/minimal-creative/images/logo.png" alt="ThaiCloud" width={120} height={40} style={{ width: "auto", height: "auto" }} />
                 </Link>
               </div>
               <nav className="side-nav m-0">
@@ -72,23 +72,23 @@ export default function Header() {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a href="#about" className="scroll nav-link link">
-                      about
+                    <a href="#products" className="scroll nav-link link">
+                      products
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a href="#portfolio" className="scroll nav-link link">
-                      portfolio
+                    <a href="#how-it-works" className="scroll nav-link link">
+                      how it works
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a href="#pricing-sec" className="scroll nav-link link">
-                      pricing
+                    <a href="#why-packiko" className="scroll nav-link link">
+                      why packiko
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a href="#blog" className="scroll nav-link link">
-                      blog
+                    <a href="#case-study" className="scroll nav-link link">
+                      case study
                     </a>
                   </li>
                   <li className="nav-item">
@@ -123,7 +123,7 @@ export default function Header() {
                   </li>
                 </ul>
                 <p className="text-black">
-                  &copy; {new Date().getFullYear()} MegaOne. Made With Love by Themesindustry
+                  &copy; {new Date().getFullYear()} ThaiCloud PAC Co., Ltd.
                 </p>
               </div>
             </div>

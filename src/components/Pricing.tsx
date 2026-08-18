@@ -1,6 +1,6 @@
 export default function Pricing() {
   return (
-    <section id="pricing-sec" className="pricing-sec bg-gray">
+    <section id="why-packiko" className="pricing-sec bg-gray">
       <div className="container">
         <div className="row">
           <div
@@ -29,8 +29,8 @@ export default function Pricing() {
               เราสร้างระบบจากความเข้าใจ &quot;หน้างานจริง&quot; ไม่ใช่แค่จากห้องแล็บ
             </p>
 
-            <a href="#" className="btn btn-medium btn-rounded btn-black">
-              Learn More
+            <a href="#contact-sec" className="btn btn-medium btn-rounded btn-black scroll">
+              Talk to Us
             </a>
           </div>
           {/* Price-2 */}
@@ -44,8 +44,8 @@ export default function Pricing() {
               เปลี่ยนจากระบบบันทึกข้อมูลแบบเดิม เป็นระบบที่ช่วย &quot;วางแผน&quot; และ &quot;คาดการณ์&quot;
             </p>
 
-            <a href="#" className="btn btn-medium btn-rounded btn-black">
-              Learn More
+            <a href="#contact-sec" className="btn btn-medium btn-rounded btn-black scroll">
+              Talk to Us
             </a>
           </div>
           {/* Price-3 */}
@@ -59,8 +59,8 @@ export default function Pricing() {
               ช่วยให้ธุรกิจขยายจาก 1,000 เป็น 5,000 ออเดอร์/วัน ได้โดยไม่ต้องเพิ่มพื้นที่คลัง
             </p>
 
-            <a href="#" className="btn btn-medium btn-rounded btn-black">
-              Learn More
+            <a href="#contact-sec" className="btn btn-medium btn-rounded btn-black scroll">
+              Talk to Us
             </a>
           </div>
         </div>

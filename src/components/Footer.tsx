@@ -20,11 +20,6 @@ export default function Footer() {
                     </a>
                   </li>
                   <li>
-                    <a className="wow fadeInUp" href="#">
-                      <i aria-hidden="true" className="fab fa-google-plus-g"></i>
-                    </a>
-                  </li>
-                  <li>
                     <a className="wow fadeInDown" href="#">
                       <i aria-hidden="true" className="fab fa-linkedin-in"></i>
                     </a>
@@ -32,11 +27,6 @@ export default function Footer() {
                   <li>
                     <a className="wow fadeInUp" href="#">
                       <i aria-hidden="true" className="fab fa-instagram"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="wow fadeInDown" href="#">
-                      <i aria-hidden="true" className="fab fa-pinterest-p"></i>
                     </a>
                   </li>
                 </ul>

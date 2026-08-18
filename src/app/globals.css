@@ -62,3 +62,230 @@ body, h1, h2, h3, h4, h5, h6, p, a, div, span, li, button, input, textarea, .mai
 .pricing-card.active .btn-black {
   background-color: #035897 !important;
 }
+
+/* =========================================
+   FlowVisual (hero animation placeholder)
+========================================= */
+
+.flow-visual {
+  width: 100%;
+  height: 216px;
+  background: linear-gradient(135deg, #f7f9fc 0%, #eef4f9 100%);
+  overflow: hidden;
+}
+.flow-visual svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  font-family: var(--font-kanit), sans-serif;
+}
+.flow-rail {
+  fill: none;
+  stroke: #cfd8e3;
+  stroke-width: 2;
+  stroke-dasharray: 4 4;
+  animation: flow-dash 1.2s linear infinite;
+}
+.flow-rail--core {
+  stroke: url(#flowLine);
+  stroke-dasharray: none;
+  animation: none;
+}
+.flow-packet {
+  fill: #f37521;
+  animation: flow-travel 3s ease-in-out infinite;
+}
+.flow-packet--in {
+  --from: 40px;
+  --to: 112px;
+}
+.flow-packet--out {
+  --from: 208px;
+  --to: 280px;
+  animation-delay: 1.5s;
+}
+.flow-node text {
+  font-size: 12px;
+  font-weight: 600;
+  fill: #ffffff;
+}
+.flow-node .flow-sub {
+  font-size: 8px;
+  font-weight: 400;
+  fill: #ffffff;
+  opacity: 0.85;
+}
+.flow-node--oms circle {
+  fill: #035897;
+}
+.flow-node--carrier circle {
+  fill: #00a8a7;
+}
+.flow-node--core rect {
+  fill: #ffffff;
+  stroke: #035897;
+  stroke-width: 2;
+  filter: drop-shadow(0 6px 14px rgba(3, 88, 151, 0.18));
+}
+.flow-node--core .flow-brand {
+  fill: #035897;
+  font-size: 13px;
+  font-weight: 700;
+}
+.flow-station rect {
+  fill: #e6eef6;
+  stroke: #035897;
+  stroke-width: 1;
+  animation: flow-pulse 2.4s ease-in-out infinite;
+  animation-delay: inherit;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.flow-station .flow-sub {
+  fill: #035897;
+  opacity: 1;
+  font-size: 7px;
+}
+.flow-badge rect {
+  fill: #ffffff;
+  stroke: #cfd8e3;
+}
+.flow-badge .flow-sub {
+  font-size: 8px;
+  fill: #202020;
+}
+.flow-badge--guard rect {
+  stroke: #f37521;
+}
+.flow-badge--guard .flow-sub {
+  fill: #f37521;
+  font-weight: 600;
+}
+.flow-rec {
+  fill: #d43030;
+  animation: flow-blink 1s steps(2) infinite;
+}
+
+@keyframes flow-dash {
+  to { stroke-dashoffset: -8; }
+}
+@keyframes flow-travel {
+  0%   { transform: translateX(var(--from)); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateX(var(--to)); opacity: 0; }
+}
+@keyframes flow-pulse {
+  0%, 100% { fill: #e6eef6; transform: scale(1); }
+  50%      { fill: #f37521; transform: scale(1.15); }
+}
+@keyframes flow-blink {
+  50% { opacity: 0.2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-rail, .flow-packet, .flow-station rect, .flow-rec { animation: none; }
+  .flow-packet { opacity: 0; }
+}
+
+/* =========================================
+   How-it-works steps (portfolio section)
+========================================= */
+
+.step-card {
+  position: relative;
+  padding: 36px 24px 30px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid #eef1f5;
+  height: 100%;
+  text-align: left;
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+.step-card:hover {
+  box-shadow: 0 0 18px #e1e1e1;
+  transform: translateY(-4px);
+}
+.step-card .step-no {
+  font-family: var(--font-kanit), sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #f37521;
+  margin-bottom: 14px;
+}
+.step-card i {
+  font-size: 40px;
+  color: #035897;
+  display: block;
+  margin-bottom: 18px;
+}
+.step-card h5 {
+  font-family: var(--font-kanit), sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #202020;
+  margin-bottom: 10px;
+}
+.step-card p {
+  font-family: var(--font-kanit), sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  color: #202020;
+  margin: 0;
+}
+.step-row > [class*="col-"] {
+  margin-bottom: 30px;
+}
+
+/* Product cards: allow 4-up on the about-card grid */
+.about-sec .our-about-sec .about-card .about-card-tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #00a8a7;
+  margin-bottom: 8px;
+}
+
+/* Contact links inherit list styling */
+.contact-details ul li a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Case-study stat tile (replaces the template's placeholder blog image) */
+.case-stat {
+  height: 216px;
+  background: linear-gradient(135deg, #035897 0%, #00a8a7 100%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+.case-stat-num {
+  font-family: var(--font-kanit), sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+.case-stat-label {
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+.case-stat-foot {
+  font-size: 12px;
+  font-weight: 300;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+/* Case-study section: the sponsor-logo carousel above it was removed, drop its spacer */
+#case-study .blog-area {
+  padding-top: 0;
+}

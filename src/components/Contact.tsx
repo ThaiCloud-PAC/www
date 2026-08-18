@@ -35,10 +35,10 @@ export default function Contact() {
                 </li>
                 <li>
                   <i aria-hidden="true" className="fas fa-phone-volume"></i>
-                  <span>+66 9 3545 5599</span>
+                  <a href="tel:+66935455599"><span>+66 9 3545 5599</span></a>
                 </li>
                 <li>
-                  <i aria-hidden="true" className="fas fa-paper-plane"></i>hello@thaicloud.com | thaicloud.com
+                  <i aria-hidden="true" className="fas fa-paper-plane"></i><a href="mailto:hello@thaicloud.com">hello@thaicloud.com</a> | <a href="https://thaicloud.com">thaicloud.com</a>
                 </li>
               </ul>
             </div>

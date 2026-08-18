@@ -20,9 +20,19 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Minimal Creative | MegaOne HTML5 Template",
-  description: "MegaOne is a highly creative, modern, visually stunning and Bootstrap responsive multipurpose studio and portfolio HTML5 template with 8 ready home page demos.",
-  keywords: "Creative, modern, clean, bootstrap responsive, html5, css3, portfolio, blog, studio, templates, multipurpose, one page, corporate, start-up, studio, branding, designer, freelancer, carousel, parallax, photography, studio, masonry, grid, faq",
+  title: "ThaiCloud | Packiko — Fulfilment Ecosystem for Online Commerce",
+  description:
+    "Packiko by ThaiCloud — ระบบนิเวศ Fulfilment สำหรับธุรกิจออนไลน์: เชื่อม OMS, VDO Proof, สต็อกจริง, หยิบ-แพ็ก-ส่ง, ขนส่ง และเครือข่าย HUB ไว้ในแพลตฟอร์มเดียว สร้างโดยทีมที่บริหารคลังจริงกว่า 10 ปี",
+  keywords:
+    "Packiko, ThaiCloud, fulfillment, fulfilment, warehouse, WMS, 3PL, e-commerce, OMS, ZORT, pick pack ship, VDO proof, Thailand",
+  openGraph: {
+    title: "Packiko by ThaiCloud — The Fulfilment Ecosystem for Online Commerce",
+    description:
+      "ตรวจสอบได้ • เห็นสต็อกจริง • เชื่อมขนส่ง • ขยายผ่าน HUB • ต่อยอดการเงิน — Add-in, Prime, Hub, Ultra",
+    siteName: "ThaiCloud",
+    locale: "th_TH",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

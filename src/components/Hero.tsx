@@ -1,4 +1,4 @@
-import Image from "next/image";
+import FlowVisual from "./FlowVisual";
 
 export default function Hero() {
   return (
@@ -47,39 +47,30 @@ export default function Hero() {
                   Intelligence Layer <span className="d-block text-orange js-rotating">for eCommerce., for Logistics., for Fulfillment.</span>
                 </h1>
                 <p className="sub-para margin-sub-heading">
-                  เราไม่ได้แค่สร้างระบบจัดการคลังสินค้า แต่เราสร้าง &quot;สมองกล&quot; ที่ช่วยตัดสินใจแทนคุณ เพื่อให้การ Fulfillment เป็นเรื่องง่ายและไร้ข้อผิดพลาด
+                  Packiko by ThaiCloud — ระบบนิเวศ Fulfilment สำหรับธุรกิจออนไลน์ เราไม่ได้แค่สร้างระบบจัดการคลังสินค้า แต่เราสร้าง &quot;สมองกล&quot; ที่ช่วยตัดสินใจแทนคุณ เพื่อให้การ Fulfillment เป็นเรื่องง่ายและไร้ข้อผิดพลาด
                 </p>
-                <a href="#about" className="btn btn-medium btn-rounded btn-red scroll">
-                  Explore Solutions
+                <p className="sub-para" style={{ color: "#035897", fontWeight: 500 }}>
+                  ตรวจสอบได้ • เห็นสต็อกจริง • เชื่อมขนส่ง • ขยายผ่าน HUB • ต่อยอดการเงิน
+                </p>
+                <a href="#products" className="btn btn-medium btn-rounded btn-red scroll">
+                  Explore Products
                 </a>
               </div>
             </div>
             <div className="col-sm-12 col-lg-6 d-flex align-items-center">
               <div className="row no-gutters">
                 <div className="col-12 col-md-6 mini-slider p-0 d-inline-block d-lg-flex justify-content-center align-items-center">
-                  <div id="carouselExampleSlidesOnly" className="carousel slide image-div" data-ride="carousel" suppressHydrationWarning>
-                    <div className="carousel-inner" suppressHydrationWarning>
-                      <div className="carousel-item active wow fadeIn" data-wow-duration="1s" data-wow-delay=".1s">
-                        <Image className="d-block w-100" src="/minimal-creative/images/box-img-1.jpg" alt="First slide" width={600} height={400} priority style={{ width: "100%", height: "auto" }} />
-                      </div>
-                      <div className="carousel-item animation1">
-                        <Image className="d-block w-100" src="/minimal-creative/images/box-img-2.jpg" alt="Second slide" width={600} height={400} priority style={{ width: "100%", height: "auto" }} />
-                      </div>
-                      <div className="carousel-item animation2">
-                        <Image className="d-block w-100" src="/minimal-creative/images/box-img-3.jpg" alt="Second slide" width={600} height={400} priority style={{ width: "100%", height: "auto" }} />
-                      </div>
-                    </div>
-                  </div>
+                  <FlowVisual />
                 </div>
                 {/* Box-1 */}
                 <div className="col-12 col-md-6 p-0 wow fadeIn" data-wow-duration="1s" data-wow-delay=".1s">
-                  <a href="#portfolio" className="text-decoration-none scroll">
+                  <a href="#how-it-works" className="text-decoration-none scroll">
                     <div className="custom-box bg-red box-1">
                       <div className="bg-study-icon">
                         <i className="las la-address-book"></i>
                       </div>
                       <h1 className="box-text mb-sm-2 mt-sm-2 mb-md-3 mt-md-3 mb-lg-3 mt-lg-3">
-                        Watch Demo
+                        How It Works
                       </h1>
                       <div className="arrow-box">
                         <i className="las la-arrow-right"></i>
@@ -87,12 +78,12 @@ export default function Hero() {
                     </div>
                   </a>
                   {/* Box-2 */}
-                  <a href="#about" className="text-decoration-none scroll wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                  <a href="#products" className="text-decoration-none scroll wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
                     <div className="custom-box bg-orange">
                       <div className="bg-campus-icon">
                         <i className="las la-registered"></i>
                       </div>
-                      <h1 className="box-text">Explore Our Services</h1>
+                      <h1 className="box-text">Explore Our Products</h1>
                       <div className="arrow-box1">
                         <i className="las la-arrow-right"></i>
                       </div>
