@@ -35,7 +35,6 @@ export default function Footer() {
               <ul className="list-unstyled">
                 <li><a href="#how-it-works" className="scroll">How it works</a></li>
                 <li><a href="#why-packiko" className="scroll">Why Packiko</a></li>
-                <li><a href="#case-study" className="scroll">Case study</a></li>
                 <li><a href="#contact-sec" className="scroll">Contact</a></li>
               </ul>
             </div>

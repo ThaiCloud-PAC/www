@@ -67,7 +67,7 @@ export default function Hero() {
               <div className="hero-visual w-100 wow fadeInRight" data-wow-duration="1.5s" data-wow-delay=".2s">
                 <FlowVisual />
                 <div className="hero-chips">
-                  <div className="hero-chip"><b>5,000</b><small>orders / day</small></div>
+                  <div className="hero-chip"><b>10+ yrs</b><small>real warehouse ops</small></div>
                   <div className="hero-chip is-orange"><b>80%</b><small>error reduction</small></div>
                   <div className="hero-chip is-teal"><b>30%</b><small>faster packing</small></div>
                 </div>

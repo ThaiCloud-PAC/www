@@ -87,11 +87,6 @@ export default function Header() {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a href="#case-study" className="scroll nav-link link">
-                      case study
-                    </a>
-                  </li>
-                  <li className="nav-item">
                     <a href="#contact-sec" className="scroll nav-link link">
                       contact
                     </a>
