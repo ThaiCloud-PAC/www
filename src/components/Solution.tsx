@@ -50,43 +50,30 @@ export default function Solution() {
   return (
     <section id="solution" className="solution-sec bg-gray">
       <div className="container">
-        <div className="row about-details text-center">
-          <div className="col-12 col-lg-8 offset-lg-2 wow zoomIn" data-wow-duration="1s">
-            <p className="sub-heading text-center">
-              <span></span>The Solution
-            </p>
-            <h3 className="heading text-center">{nb("คุมคลังได้จริง ตั้งแต่สต็อกจนของขึ้นรถ")}</h3>
-            <p className="text text-center">{nb("Packiko อยู่หลัง OMS ของคุณ ร้านยังขายบนช่องทางเดิม ส่วนสต็อกจริง หยิบ–แพ็ค–ส่ง หลักฐาน และคนหน้างาน ให้เราดูแล — ทั้งหมดบน API กลางตัวเดียว")}</p>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-12 wow fadeInUp" data-wow-duration="1.2s">
-            <PlatformMap />
-            {/* compact flow for phones (the SVG labels are too small there) */}
-            <ol className="flow-mobile" aria-label="เส้นทางของออเดอร์">
-              <li>ช่องทางขาย</li>
-              <li>OMS</li>
-              <li className="is-lisa">LISA</li>
-              <li className="is-core">Packiko Core<small>สต็อก · เวฟ · หยิบ · แพ็ค + VDO · Gate</small></li>
-              <li>ขนส่ง</li>
-              <li>ลูกค้า</li>
-            </ol>
-          </div>
-        </div>
-
-        <div className="row solution-row">
-          {solutions.map((s, i) => (
-            <div key={s.key} className={`col-12 col-md-6 col-lg-4 wow fadeInUp ${s.accent}`} data-wow-duration="1s" data-wow-delay={`${(i % 3) * 0.1}s`}>
-              <div className="solution-item">
-                <i className={s.icon}></i>
-                <div>
-                  <b>{s.t}</b>
-                  <span>{nb(s.d)}</span>
-                </div>
-              </div>
+        <div className="row align-items-start">
+          <div className="col-12 col-lg-6 solution-copy">
+            <div className="wow fadeInUp" data-wow-duration="1s">
+              <p className="sub-heading">
+                <span></span>The Solution
+              </p>
+              <h3 className="heading">{nb("คุมคลังได้จริง ตั้งแต่สต็อกจนของขึ้นรถ")}</h3>
+              <p className="text">{nb("Packiko อยู่หลัง OMS ของคุณ ร้านยังขายบนช่องทางเดิม ส่วนสต็อกจริง หยิบ–แพ็ค–ส่ง หลักฐาน และคนหน้างาน ให้เราดูแล — ทั้งหมดบน API กลางตัวเดียว")}</p>
             </div>
-          ))}
+            <div className="solution-list">
+              {solutions.map((s, i) => (
+                <div key={s.key} className={`solution-item wow fadeInUp ${s.accent}`} data-wow-duration="1s" data-wow-delay={`${i * 0.08}s`}>
+                  <i className={s.icon}></i>
+                  <div>
+                    <b>{s.t}</b>
+                    <span>{nb(s.d)}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="col-12 col-lg-6 wow fadeIn" data-wow-duration="1.2s">
+            <PlatformMap />
+          </div>
         </div>
       </div>
     </section>

@@ -1,67 +1,45 @@
-import { BRAND_PATHS } from "./brandIcons";
+import { BrandTile, CHANNEL_MARKS, CARRIER_MARKS } from "./brandMarks";
 
 /**
- * PlatformMap — animated ecosystem diagram:
- * sales channels → OMS → LISA → Packiko Core (stock · wave · pick · pack+VDO ·
- * gate) with the four products around it → carriers (fan-out) → customer.
+ * PlatformMap — vertical animated ecosystem diagram (fits phones):
+ * sales channels → OMS → LISA → products (Add-in · Prime · Ultra · Hub)
+ * → Packiko Core (stock · wave · pick · pack+VDO · gate) → carriers → customer.
  * Pure SVG + CSS keyframes (globals.css `.pm-*`), no deps.
  */
-type Brand = { k: string; icon?: keyof typeof BRAND_PATHS; letter?: string; color: string };
-
-const CHANNELS: Brand[] = [
-  { k: "Shopee", icon: "shopee", color: "#EE4D2D" },
-  { k: "Lazada", letter: "L", color: "#0F146D" },
-  { k: "TikTok Shop", icon: "tiktok", color: "#000000" },
-  { k: "LINE", icon: "line", color: "#00C300" },
-  { k: "ShopSCAPE", letter: "S", color: "#1F6FEB" },
-  { k: "Storefront", letter: "W", color: "#035897" },
-];
-const CARRIERS: Brand[] = [
-  { k: "Kerry Express", letter: "K", color: "#F37021" },
-  { k: "Flash Express", letter: "F", color: "#F5B400" },
-  { k: "J&T Express", letter: "J", color: "#E31E24" },
-  { k: "Thailand Post", letter: "T", color: "#C8102E" },
-  { k: "Ninja Van", letter: "N", color: "#C4161C" },
-  { k: "DHL", icon: "dhl", color: "#D40511" },
-];
+const W = 440;
+const CX = W / 2;
+const TILE = 36;
+const GAP = 22;
 const STAGES = ["Stock", "Wave", "Pick", "Pack", "Gate"];
 const PRODUCTS = [
-  { k: "Add-in", x: 312, y: 48, c: "#f37521" },
-  { k: "Prime", x: 312, y: 316, c: "#00a8a7" },
-  { k: "Ultra", x: 512, y: 48, c: "#035897" },
-  { k: "Hub", x: 512, y: 316, c: "#d99a00" },
+  { k: "Add-in", c: "#f37521" },
+  { k: "Prime", c: "#00a8a7" },
+  { k: "Ultra", c: "#035897" },
+  { k: "Hub", c: "#d99a00" },
 ];
 
-const CORE_X = 308;
-const CORE_W = 290;
-const CORE_R = CORE_X + CORE_W; // 598
-const MID_Y = 190;
-const rowY = (i: number) => 40 + i * 50; // 6 rows: 40 … 290
+// vertical layout (y positions)
+const CH_Y = 34; // channel tiles top
+const OMS_Y = 128; // OMS node top (h 62)
+const OMS_H = 62;
+const PROD_Y = 262; // product pills top (h 30)
+const CORE_Y = 322; // core top
+const CORE_H = 190;
+const CAR_Y = 578; // carrier tiles top
+const CUST_Y = 690; // customer centre
+const H = 730;
 
-function BrandGlyph({ b, x, y }: { b: Brand; x: number; y: number }) {
-  if (b.icon) {
-    const p = BRAND_PATHS[b.icon];
-    return (
-      <g transform={`translate(${x} ${y}) scale(0.62)`}>
-        <path d={p.path} fill={b.color} />
-      </g>
-    );
-  }
-  return (
-    <g transform={`translate(${x} ${y})`}>
-      <circle cx="7.5" cy="7.5" r="7.5" fill={b.color} />
-      <text x="7.5" y="10.6" textAnchor="middle" className="pm-letter">{b.letter}</text>
-    </g>
-  );
-}
+const rowX = (i: number, n: number) => CX - (n * TILE + (n - 1) * GAP) / 2 + i * (TILE + GAP);
 
 export default function PlatformMap() {
+  const coreX = 30;
+  const coreW = W - 60;
   return (
     <div className="platform-map" aria-hidden="true">
-      <svg viewBox="0 0 920 372" preserveAspectRatio="xMidYMid meet" role="img">
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" role="img">
         <defs>
           <filter id="pmShadow" x="-20%" y="-20%" width="140%" height="160%">
-            <feDropShadow dx="0" dy="10" stdDeviation="10" floodColor="#035897" floodOpacity="0.14" />
+            <feDropShadow dx="0" dy="8" stdDeviation="8" floodColor="#035897" floodOpacity="0.14" />
           </filter>
           <linearGradient id="pmCore" x1="0" x2="1" y1="0" y2="1">
             <stop offset="0" stopColor="#035897" />
@@ -69,36 +47,42 @@ export default function PlatformMap() {
           </linearGradient>
         </defs>
 
-        {/* ---- channels (left) → OMS ---- */}
-        {CHANNELS.map((c, i) => {
-          const y = rowY(i);
+        {/* ---- row captions ---- */}
+        <text x={CX} y={CH_Y - 12} textAnchor="middle" className="pm-caption">SALES CHANNELS</text>
+        <g transform={`translate(${CX} ${CAR_Y - 16})`}>
+          <rect x="-40" y="-9" width="80" height="16" rx="8" className="pm-caption-bg" />
+          <text textAnchor="middle" y="3.5" className="pm-caption">CARRIERS</text>
+        </g>
+
+        {/* ---- channels → OMS ---- */}
+        {CHANNEL_MARKS.map((m, i) => {
+          const x = rowX(i, CHANNEL_MARKS.length);
+          const cx = x + TILE / 2;
+          const y0 = CH_Y + TILE;
           return (
-            <g key={c.k} transform={`translate(16 ${y})`}>
-              <rect className="pm-chip" x="0" y="0" width="112" height="30" rx="15" />
-              <BrandGlyph b={c} x={10} y={7.5} />
-              <text x="32" y="19" className="pm-chip-text">{c.k}</text>
-              <path id={`pmCh${i}`} d={`M112 15 C 140 15, 128 ${MID_Y - y}, 152 ${MID_Y - y}`} className="pm-path" />
+            <g key={m.key}>
+              <path id={`pmCh${i}`} d={`M${cx} ${y0} C ${cx} ${y0 + 30}, ${CX} ${OMS_Y - 34}, ${CX} ${OMS_Y}`} className="pm-path" />
               <circle r="3.5" className="pm-dot pm-dot--order">
-                <animateMotion dur="2.2s" repeatCount="indefinite" begin={`${i * 0.4}s`}>
+                <animateMotion dur="2.2s" repeatCount="indefinite" begin={`${i * 0.37}s`}>
                   <mpath href={`#pmCh${i}`} />
                 </animateMotion>
               </circle>
+              <BrandTile m={m} x={x} y={CH_Y} />
             </g>
           );
         })}
 
-        {/* ---- OMS node ---- */}
-        <g transform={`translate(168 ${MID_Y - 34})`} filter="url(#pmShadow)">
-          <rect className="pm-node" x="0" y="0" width="96" height="68" rx="14" />
+        {/* ---- OMS ---- */}
+        <g transform={`translate(${CX - 70} ${OMS_Y})`} filter="url(#pmShadow)">
+          <rect className="pm-node" x="0" y="0" width="140" height={OMS_H} rx="14" />
         </g>
-        <g transform={`translate(168 ${MID_Y - 34})`}>
-          <text x="48" y="24" textAnchor="middle" className="pm-node-title">OMS</text>
-          <text x="48" y="42" textAnchor="middle" className="pm-node-sub">orders · cancels</text>
-          <text x="48" y="56" textAnchor="middle" className="pm-node-sub">status updates</text>
+        <g transform={`translate(${CX - 70} ${OMS_Y})`}>
+          <text x="70" y="26" textAnchor="middle" className="pm-node-title">OMS</text>
+          <text x="70" y="45" textAnchor="middle" className="pm-node-sub">orders · cancels · status updates</text>
         </g>
 
-        {/* ---- LISA bridge ---- */}
-        <path id="pmLisa" d={`M264 ${MID_Y} H ${CORE_X}`} className="pm-path pm-path--strong" />
+        {/* ---- LISA bridge (down: orders, up: status sync) ---- */}
+        <path id="pmLisa" d={`M${CX - 8} ${OMS_Y + OMS_H} V ${PROD_Y}`} className="pm-path pm-path--strong" />
         {[0, 1, 2].map((i) => (
           <circle key={i} r="4" className="pm-dot pm-dot--order">
             <animateMotion dur="1.6s" repeatCount="indefinite" begin={`${i * 0.55}s`}>
@@ -106,92 +90,99 @@ export default function PlatformMap() {
             </animateMotion>
           </circle>
         ))}
-        <path id="pmLisaBack" d={`M${CORE_X} ${MID_Y + 16} H 264`} className="pm-path" />
+        <path id="pmLisaBack" d={`M${CX + 8} ${PROD_Y} V ${OMS_Y + OMS_H}`} className="pm-path" />
         <circle r="3" className="pm-dot pm-dot--sync">
           <animateMotion dur="2.4s" repeatCount="indefinite">
             <mpath href="#pmLisaBack" />
           </animateMotion>
         </circle>
-        <g transform={`translate(286 ${MID_Y - 20})`}>
+        <g transform={`translate(${CX + 44} ${OMS_Y + OMS_H + 22})`}>
           <rect className="pm-tag" x="-24" y="-10" width="48" height="19" rx="9.5" />
           <text y="3.5" textAnchor="middle" className="pm-tag-text">LISA</text>
         </g>
 
+        {/* ---- products (front-ends on top of the Core) ---- */}
+        {PRODUCTS.map((p, i) => {
+          const pw = 88;
+          const gap = 10;
+          const x = CX - (PRODUCTS.length * pw + (PRODUCTS.length - 1) * gap) / 2 + i * (pw + gap);
+          return (
+            <g key={p.k} transform={`translate(${x} ${PROD_Y})`}>
+              <path d={`M${pw / 2} 30 V ${CORE_Y - PROD_Y}`} className="pm-path" />
+              <g className="pm-product" style={{ animationDelay: `${i * 0.7}s` }}>
+                <rect x="0" y="0" width={pw} height="30" rx="15" fill={p.c} />
+                <text x={pw / 2} y="19" textAnchor="middle" className="pm-product-text">{p.k}</text>
+              </g>
+            </g>
+          );
+        })}
+        {/* Add-in embeds in the OMS pack screen: dashed link back to OMS */}
+        <path d={`M${CX - 148} ${PROD_Y + 15} C ${CX - 190} ${PROD_Y + 15}, ${CX - 190} ${OMS_Y + 31}, ${CX - 70} ${OMS_Y + 31}`} className="pm-path pm-path--addin" />
+
         {/* ---- Packiko Core ---- */}
-        <g transform={`translate(${CORE_X} 106)`} filter="url(#pmShadow)">
-          <rect className="pm-core" x="0" y="0" width={CORE_W} height="168" rx="22" />
+        <g transform={`translate(${coreX} ${CORE_Y})`} filter="url(#pmShadow)">
+          <rect className="pm-core" x="0" y="0" width={coreW} height={CORE_H} rx="22" />
         </g>
-        <g transform={`translate(${CORE_X} 106)`}>
-          <text x="20" y="30" className="pm-core-title">Packiko Core API</text>
-          <path id="pmStages" d="M20 71 H 270" className="pm-path-hidden" />
+        <g transform={`translate(${coreX} ${CORE_Y})`}>
+          <text x="22" y="32" className="pm-core-title">Packiko Core API</text>
+          <text x={coreW - 22} y="32" textAnchor="end" className="pm-core-sub">one platform</text>
+          <path id="pmStages" d={`M22 78 H ${coreW - 22}`} className="pm-path-hidden" />
           {[0, 1].map((i) => (
-            <circle key={i} r="9" className="pm-dot pm-dot--glow">
+            <circle key={i} r="10" className="pm-dot pm-dot--glow">
               <animateMotion dur="3s" repeatCount="indefinite" begin={`${i * 1.5}s`}>
                 <mpath href="#pmStages" />
               </animateMotion>
             </circle>
           ))}
-          {STAGES.map((s, i) => (
-            <g key={s} transform={`translate(${20 + i * 51} 54)`}>
-              <rect className="pm-stage" style={{ animationDelay: `${i * 0.5}s` }} x="0" y="0" width="44" height="34" rx="9" />
-              <text x="22" y="21" textAnchor="middle" className="pm-stage-text">{s}</text>
-              {s === "Pack" && <circle cx="38" cy="6" r="3" className="pm-rec" />}
-              {i < STAGES.length - 1 && <path d="M44 17 H 51" className="pm-stage-link" />}
-            </g>
-          ))}
-          <g transform="translate(20 108)">
-            <rect className="pm-pill pm-pill--guard" x="0" y="0" width="122" height="24" rx="12" />
-            <circle cx="12" cy="12" r="4" className="pm-guard-dot" />
-            <text x="22" y="16" className="pm-pill-text">OMS Status Guard</text>
+          {STAGES.map((s, i) => {
+            const sw = (coreW - 44 - 4 * 8) / 5;
+            const x = 22 + i * (sw + 8);
+            return (
+              <g key={s} transform={`translate(${x} 60)`}>
+                <rect className="pm-stage" style={{ animationDelay: `${i * 0.5}s` }} x="0" y="0" width={sw} height="36" rx="10" />
+                <text x={sw / 2} y="22.5" textAnchor="middle" className="pm-stage-text">{s}</text>
+                {s === "Pack" && <circle cx={sw - 7} cy="7" r="3" className="pm-rec" />}
+              </g>
+            );
+          })}
+          <g transform="translate(22 116)">
+            <rect className="pm-pill pm-pill--guard" x="0" y="0" width="140" height="26" rx="13" />
+            <circle cx="13" cy="13" r="4" className="pm-guard-dot" />
+            <text x="24" y="17" className="pm-pill-text">OMS Status Guard</text>
           </g>
-          <g transform="translate(148 108)">
-            <rect className="pm-pill" x="0" y="0" width="122" height="24" rx="12" />
-            <text x="61" y="16" textAnchor="middle" className="pm-pill-text pm-pill-text--light">Worker identity · audit</text>
+          <g transform={`translate(${coreW - 22 - 150} 116)`}>
+            <rect className="pm-pill" x="0" y="0" width="150" height="26" rx="13" />
+            <text x="75" y="17" textAnchor="middle" className="pm-pill-text pm-pill-text--light">Worker identity · audit</text>
           </g>
-          <text x="20" y="156" className="pm-core-sub">stock · wave · pick · pack · dispatch</text>
+          <text x="22" y="170" className="pm-core-sub">stock · wave · pick · pack · dispatch · VDO proof</text>
         </g>
 
-        {/* ---- products around the core ---- */}
-        {PRODUCTS.map((p, i) => (
-          <g key={p.k} transform={`translate(${p.x} ${p.y})`}>
-            <path d={p.y < MID_Y ? "M43 30 V 58" : "M43 0 V -42"} className="pm-path" />
-            <g className="pm-product" style={{ animationDelay: `${i * 0.7}s` }}>
-              <rect x="0" y="0" width="86" height="30" rx="15" fill={p.c} />
-              <text x="43" y="19" textAnchor="middle" className="pm-product-text">{p.k}</text>
-            </g>
-          </g>
-        ))}
-        {/* Add-in embeds in the OMS pack screen: dashed link back to OMS */}
-        <path d="M312 63 C 272 63, 250 100, 222 160" className="pm-path pm-path--addin" />
-
-        {/* ---- Core → carriers (fan-out) → customer ---- */}
-        {CARRIERS.map((c, i) => {
-          const y = rowY(i);
+        {/* ---- Core → carriers → customer ---- */}
+        {CARRIER_MARKS.map((m, i) => {
+          const x = rowX(i, CARRIER_MARKS.length);
+          const cx = x + TILE / 2;
+          const y0 = CORE_Y + CORE_H;
           return (
-            <g key={c.k}>
-              <path id={`pmCar${i}`} d={`M${CORE_R} ${MID_Y} C ${CORE_R + 40} ${MID_Y}, ${CORE_R + 30} ${y + 15}, 690 ${y + 15}`} className="pm-path" />
+            <g key={m.key}>
+              <path id={`pmCar${i}`} d={`M${CX} ${y0} C ${CX} ${y0 + 30}, ${cx} ${CAR_Y - 30}, ${cx} ${CAR_Y}`} className="pm-path" />
               <circle r="3.5" className="pm-dot pm-dot--ship">
-                <animateMotion dur="2.4s" repeatCount="indefinite" begin={`${i * 0.4}s`}>
+                <animateMotion dur="2.2s" repeatCount="indefinite" begin={`${i * 0.37}s`}>
                   <mpath href={`#pmCar${i}`} />
                 </animateMotion>
               </circle>
-              <g transform={`translate(690 ${y})`}>
-                <rect className="pm-chip" x="0" y="0" width="118" height="30" rx="15" />
-                <BrandGlyph b={c} x={10} y={7.5} />
-                <text x="32" y="19" className="pm-chip-text">{c.k}</text>
-              </g>
-              <path id={`pmCust${i}`} d={`M808 ${y + 15} C 836 ${y + 15}, 836 ${MID_Y}, 866 ${MID_Y}`} className="pm-path" />
+              <BrandTile m={m} x={x} y={CAR_Y} />
+              <path id={`pmCust${i}`} d={`M${cx} ${CAR_Y + TILE} C ${cx} ${CAR_Y + TILE + 30}, ${CX} ${CUST_Y - 50}, ${CX} ${CUST_Y - 20}`} className="pm-path" />
               <circle r="3" className="pm-dot pm-dot--ship">
-                <animateMotion dur="2s" repeatCount="indefinite" begin={`${1.2 + i * 0.4}s`}>
+                <animateMotion dur="2s" repeatCount="indefinite" begin={`${1.1 + i * 0.37}s`}>
                   <mpath href={`#pmCust${i}`} />
                 </animateMotion>
               </circle>
             </g>
           );
         })}
-        <g transform={`translate(884 ${MID_Y})`}>
-          <circle r="18" className="pm-customer" />
-          <text y="5" textAnchor="middle" className="pm-customer-text">☺</text>
+        <g transform={`translate(${CX} ${CUST_Y})`}>
+          <circle r="20" className="pm-customer" />
+          <text y="6" textAnchor="middle" className="pm-customer-text">☺</text>
         </g>
       </svg>
     </div>
