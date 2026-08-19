@@ -150,7 +150,7 @@ export default function FlowVisual() {
         </g>
         <g transform="translate(290 254)">
           {/* delivery van, in place of the word "Carrier" — nested <svg> is positioned by x/y */}
-          <Truck className="flow-van" x={17} y={6} width={22} height={22} strokeWidth={2} aria-hidden="true" />
+          <Truck className="flow-van" x={20} y={6} width={22} height={22} strokeWidth={2} aria-hidden="true" />
         </g>
 
         {/* ---- Guard chip (bottom-left) ---- */}
