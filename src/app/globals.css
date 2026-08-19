@@ -1,64 +1,280 @@
 @import "tailwindcss";
 
-/* 
- * Minimal Creative overrides: 
- * We leave font-family and background to be governed by the template's style.css 
- * to ensure exact visual compatibility. 
- */
+/* Tailwind v4 resolves `dark:` against prefers-color-scheme by default, which a
+   class can never override. Re-point it at the .dark class the prefs script sets. */
+@custom-variant dark (&:where(.dark, .dark *));
 
-/* =========================================
-   ThaiCloud Brand Color Overrides
-========================================= */
+/* ============================================================
+   Brand palette — identical in both modes (logo-derived)
+   ============================================================ */
+@theme {
+  --font-sans: var(--font-kanit), system-ui, -apple-system, sans-serif;
 
-body, h1, h2, h3, h4, h5, h6, p, a, div, span, li, button, input, textarea, .main-heading, .sub-heading, .heading {
-  font-family: var(--font-kanit), sans-serif !important;
-}
+  --color-navy: #035897;
+  --color-orange: #f37521;
+  --color-teal: #00a8a7;
+  --color-yellow: #fab217;
+  --color-deep: #0a2540;
 
-/* Primary Orange: #f37521 */
-.bg-orange {
-  background-color: #f37521 !important;
-}
-.text-orange {
-  color: #f37521 !important;
+  --shadow-card: 0 20px 40px -32px rgb(3 88 151 / 0.45);
+  --shadow-lift: 0 30px 50px -30px rgb(3 88 151 / 0.45);
 }
 
-/* Primary Dark Blue/Cyan: #035897 / #00a8a7 */
-.bg-red, .btn-red {
-  background-color: #035897 !important;
-  color: #ffffff !important;
-  border-color: #035897 !important;
-}
-.text-red {
-  color: #035897 !important;
-}
-
-.btn-red:hover {
-  background-color: #00a8a7 !important;
-  border-color: #00a8a7 !important;
-}
-
-/* Update slider/banner accents */
-.slider-sec .owl-dots .owl-dot.active span {
-  background: #f37521 !important;
-}
-
-.count.text-orange {
-  color: #fab217 !important; /* Yellow for stats */
-}
-.count.text-red {
-  color: #00a8a7 !important; /* Teal for stats */
+/* ============================================================
+   Semantic tokens — the only things that change between modes.
+   `inline` makes the utilities resolve the var at use-site, so
+   redefining it under .dark is enough.
+   ============================================================ */
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-raised: var(--raised);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-surface: var(--brand-surface);
+  --color-cta: var(--cta);
+  --color-orange-ink: var(--orange-ink);
+  --color-teal-ink: var(--teal-ink);
+  --color-yellow-ink: var(--yellow-ink);
 }
 
-/* Box arrows and hover effects */
-.custom-box:hover .arrow-box1 i {
-  color: #f37521 !important;
+:root {
+  color-scheme: light;
+
+  --surface: #ffffff;
+  --surface-2: #f3f6fa;
+  --raised: #ffffff;
+  --ink: #14181d;
+  --muted: #55636f;
+  --line: #e3ebf3;
+
+  /* Navy reads as a surface in light mode and as an accent in dark mode, so the
+     two roles are separate tokens rather than one inverted value. */
+  --brand: #035897;
+  --brand-surface: #035897;
+  /* Interactive fill. In dark mode the deep navy would sit only 1.46:1 above the
+     page, so buttons get a lighter blue that still carries white text at 5.5:1. */
+  --cta: #035897;
+
+  /* Brand hues are not accessible as text on a light background at their raw
+     value (white-on-#f37521 is 2.9:1) — text uses these darkened variants and
+     fills keep the raw brand colour. */
+  --orange-ink: #b7500c;
+  --teal-ink: #00726f;
+  --yellow-ink: #7d5a00;
+
+  /* SVG scene tokens (FlowVisual / PlatformMap) */
+  --scene-from: #f7f9fc;
+  --scene-to: #e9f1f8;
+  --scene-row: #f3f6fa;
+  --scene-row-id: #cfd9e5;
+  --scene-station: #eef3f8;
+  --scene-station-active: #cfe3f4;
+  --scene-line: #cfdbe7;
+  --map-from: #ffffff;
+  --map-to: #eef4f9;
 }
-.pricing-card.active {
-  border-color: #035897 !important;
+
+.dark {
+  color-scheme: dark;
+
+  --surface: #0e1217;
+  --surface-2: #131920;
+  --raised: #19212a;
+  --ink: #e9eef4;
+  --muted: #a1b1c1;
+  --line: #26313d;
+
+  --brand: #6cb4ee;
+  --brand-surface: #093358;
+  --cta: #1a6cb0;
+
+  --orange-ink: #ff9a55;
+  --teal-ink: #3fd0cf;
+  --yellow-ink: #f3c352;
+
+  --scene-from: #131920;
+  --scene-to: #0e1217;
+  --scene-row: #1b2430;
+  --scene-row-id: #33414f;
+  --scene-station: #1d2833;
+  --scene-station-active: #24405c;
+  --scene-line: #33414f;
+  --map-from: #16202b;
+  --map-to: #0e1217;
 }
-.pricing-card.active .pricing-amount {
-  color: #035897 !important;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 84px;
+  }
+  body {
+    background-color: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    letter-spacing: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Thai body copy stays >= 15px / 400 — see the #10 calm pass. */
+  p, li, td, summary, label, input, textarea, button, a {
+    font-weight: 400;
+  }
+  :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--color-orange) 30%, transparent);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    /* Framer renders its `initial` styles on the server; force the resting
+       state so reduced-motion visitors never get stuck on a hidden frame. */
+    [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
-.pricing-card.active .btn-black {
-  background-color: #035897 !important;
+
+/* ============================================================
+   FlowVisual — hero animation (SVG + keyframes, no JS deps).
+   Colours come from the scene tokens above so it follows the theme.
+   ============================================================ */
+.flow-visual {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, var(--scene-from) 0%, var(--scene-to) 100%);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lift);
+}
+.flow-visual svg { width: 100%; height: 100%; display: block; font-family: var(--font-sans); }
+.flow-blob { opacity: 0.35; }
+.flow-blob--teal { fill: var(--color-teal); opacity: 0.12; }
+.flow-blob--orange { fill: var(--color-orange); opacity: 0.10; }
+.flow-card { fill: var(--raised); stroke: var(--line); }
+.flow-card-title { font-size: 11px; font-weight: 600; fill: var(--brand); }
+.flow-card-meta { font-size: 9px; fill: var(--muted); letter-spacing: 0.5px; }
+.flow-live-dot { fill: #d43030; animation: flow-blink 1.2s steps(2) infinite; }
+.flow-feed { animation: flow-feed 6.4s linear infinite; }
+.flow-row { fill: var(--scene-row); }
+.flow-row-id { fill: var(--scene-row-id); }
+.flow-row-status--0 { fill: color-mix(in srgb, var(--color-navy) 22%, var(--raised)); }
+.flow-row-status--1 { fill: color-mix(in srgb, var(--color-orange) 22%, var(--raised)); }
+.flow-row-status--2 { fill: color-mix(in srgb, var(--color-teal) 22%, var(--raised)); }
+.flow-feed-fade { fill: var(--raised); opacity: 0.85; }
+.flow-station {
+  fill: var(--scene-station);
+  stroke: var(--scene-line);
+  animation: flow-station-pulse 2.4s ease-in-out infinite;
+}
+.flow-station-label { font-size: 10px; font-weight: 600; fill: var(--brand); }
+.flow-cam { fill: var(--color-orange); }
+.flow-rec { fill: #d43030; animation: flow-blink 1s steps(2) infinite; }
+.flow-counter {
+  font-size: 17px; font-weight: 700; fill: var(--ink);
+  letter-spacing: -0.5px; font-variant-numeric: tabular-nums;
+}
+.flow-pill--oms { fill: var(--brand-surface); }
+.flow-pill--carrier { fill: var(--color-teal); }
+.flow-pill--guard { fill: var(--raised); stroke: var(--color-orange); stroke-width: 1.5; }
+.flow-pill-text { font-size: 10px; font-weight: 600; fill: #ffffff; }
+.flow-van { color: #ffffff; }
+.flow-pill-text--dark { fill: var(--orange-ink); }
+.flow-guard-dot { fill: #35c26b; animation: flow-guard 4s ease-in-out infinite; }
+.flow-path { fill: none; stroke: var(--brand); stroke-opacity: 0.35; stroke-width: 1.5; stroke-dasharray: 3 3; }
+.flow-packet { fill: var(--color-orange); }
+.flow-packet--out { fill: var(--color-teal); }
+
+@keyframes flow-blink { 50% { opacity: 0.15; } }
+@keyframes flow-feed {
+  from { transform: translateY(-128px); }
+  to { transform: translateY(0); }
+}
+@keyframes flow-station-pulse {
+  0%, 100% { fill: var(--scene-station); stroke: var(--scene-line); }
+  50% { fill: var(--scene-station-active); stroke: var(--brand); }
+}
+@keyframes flow-guard {
+  0%, 60%, 100% { fill: #35c26b; }
+  70%, 90% { fill: #d43030; }
+}
+
+/* ============================================================
+   PlatformMap — the Solution diagram (navy panel, white type)
+   ============================================================ */
+.platform-map-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+}
+.platform-map-scroll::-webkit-scrollbar { display: none; }
+.platform-map {
+  width: 100%;
+  min-width: 720px;
+  aspect-ratio: 900 / 372;
+  border-radius: 24px;
+  background: linear-gradient(135deg, var(--map-from) 0%, var(--map-to) 100%);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  box-shadow: var(--shadow-lift);
+}
+.platform-map svg { width: 100%; height: 100%; display: block; font-family: var(--font-sans); }
+.pm-caption { font-size: 9px; letter-spacing: 2px; fill: var(--muted); font-weight: 600; }
+.pm-caption-bg { fill: var(--surface-2); }
+.pm-stage-link { stroke: rgb(255 255 255 / 0.4); stroke-width: 1.5; stroke-dasharray: 2 2; }
+.pm-node { fill: var(--raised); stroke: var(--scene-line); }
+.pm-node-title { font-size: 15px; font-weight: 700; fill: var(--brand); }
+.pm-node-sub { font-size: 10px; fill: var(--muted); }
+.pm-tag { fill: var(--color-deep); }
+.pm-tag-text { font-size: 10px; font-weight: 700; fill: #ffffff; letter-spacing: 0.5px; }
+.pm-core { fill: url(#pmCore); }
+.pm-core-title { font-size: 15px; font-weight: 700; fill: #ffffff; }
+.pm-core-sub { font-size: 10px; fill: rgb(255 255 255 / 0.75); }
+.pm-stage { fill: rgb(255 255 255 / 0.12); stroke: rgb(255 255 255 / 0.35); animation: pm-stage 2.5s ease-in-out infinite; }
+.pm-stage-text { font-size: 12px; font-weight: 600; fill: #ffffff; }
+.pm-rec { fill: #ff4d4d; animation: flow-blink 1s steps(2) infinite; }
+.pm-pill { fill: rgb(255 255 255 / 0.12); stroke: rgb(255 255 255 / 0.3); }
+.pm-pill--guard { fill: #ffffff; stroke: #ffffff; }
+.pm-pill-text { font-size: 10.5px; font-weight: 600; fill: #c2560d; }
+.pm-pill-text--light { fill: #ffffff; }
+.pm-guard-dot { fill: #35c26b; animation: flow-guard 4s ease-in-out infinite; }
+.pm-product { animation: pm-float 3.5s ease-in-out infinite; transform-box: fill-box; }
+.pm-product-text { font-size: 12px; font-weight: 700; fill: #ffffff; }
+.pm-path { fill: none; stroke: var(--brand); stroke-opacity: 0.35; stroke-width: 1.5; stroke-dasharray: 3 3; }
+.pm-path--strong { stroke-opacity: 0.55; stroke-width: 2; }
+.pm-path--addin { stroke: var(--color-orange); stroke-opacity: 0.5; }
+.pm-path-hidden { fill: none; stroke: none; }
+.pm-dot--order { fill: var(--color-orange); }
+.pm-dot--glow { fill: var(--color-orange); opacity: 0.35; }
+.pm-dot--sync { fill: var(--color-teal); }
+.pm-dot--ship { fill: var(--color-teal); }
+.pm-customer { fill: var(--raised); stroke: var(--color-orange); stroke-width: 2; }
+.pm-dest { animation: pm-float 3.5s ease-in-out infinite; transform-box: fill-box; }
+.pm-customer-text { font-size: 18px; fill: var(--color-orange); }
+
+@keyframes pm-stage {
+  0%, 100% { fill: rgb(255 255 255 / 0.12); }
+  50% { fill: rgb(243 117 33 / 0.85); }
+}
+@keyframes pm-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-visual *, .platform-map * { animation: none !important; }
+  .flow-packet, .pm-dot--order, .pm-dot--sync, .pm-dot--ship { display: none; }
 }

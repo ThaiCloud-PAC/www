@@ -1,81 +1,107 @@
+"use client";
+
+import Image from "next/image";
+import { Mail, PhoneCall } from "lucide-react";
+import { useT } from "@/i18n";
+import { COMPANY } from "@/lib/company";
+import { SOCIALS, external } from "@/lib/socials";
+import SocialIcon from "./SocialIcon";
+
+const PRODUCTS = ["Packiko Add-in", "Packiko Prime", "Packiko Ultra", "Packiko Hub"];
+
 export default function Footer() {
+  const t = useT();
+  const year = new Date().getFullYear();
+
   return (
-    <>
-      {/* Footer Start */}
-      <footer className="footer-style-1 bg-gray">
-        <div className="container">
-          <div className="row align-items-center">
-            {/* Social */}
-            <div className="col-lg-6">
-              <div className="footer-social text-center text-lg-left ">
-                <ul className="list-unstyled">
-                  <li>
-                    <a className="wow fadeInUp" href="#">
-                      <i aria-hidden="true" className="fab fa-facebook-f"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="wow fadeInDown" href="#">
-                      <i aria-hidden="true" className="fab fa-x-twitter"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="wow fadeInUp" href="#">
-                      <i aria-hidden="true" className="fab fa-google-plus-g"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="wow fadeInDown" href="#">
-                      <i aria-hidden="true" className="fab fa-linkedin-in"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="wow fadeInUp" href="#">
-                      <i aria-hidden="true" className="fab fa-instagram"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="wow fadeInDown" href="#">
-                      <i aria-hidden="true" className="fab fa-pinterest-p"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            {/* Text */}
-            <div className="col-lg-6 text-center text-lg-right">
-              <p className="company-about fadeIn">
-                &copy; {new Date().getFullYear()} ThaiCloud PAC Co., Ltd. 0105569016405
-              </p>
+    <footer className="bg-deep pt-16 pb-7 text-white/80">
+      <div className="mx-auto w-full max-w-6xl px-5 sm:px-6">
+        <div className="grid gap-10 text-center sm:text-left lg:grid-cols-[2fr_1fr_1fr_2fr]">
+          <div>
+            <span className="inline-flex">
+              <Image src="/brand/packiko-mark.png" alt="Packiko by ThaiCloud" width={544} height={340} className="h-12 w-auto" />
+            </span>
+            <p className="mx-auto mt-4 max-w-xs text-sm leading-relaxed sm:mx-0">{t.footer.blurb}</p>
+            <div className="mt-5 flex justify-center gap-2 sm:justify-start">
+              {SOCIALS.map((s) => (
+                <a
+                  key={s.key}
+                  href={s.href}
+                  {...external(s.href)}
+                  aria-label={s.label}
+                  className="grid size-9 place-items-center rounded-full border border-white/20 transition-colors hover:border-orange hover:bg-orange hover:text-white"
+                >
+                  <SocialIcon glyph={s.glyph as "linkedin" | "mail"} />
+                </a>
+              ))}
             </div>
           </div>
-        </div>
-      </footer>
-      {/* Footer End */}
 
-      {/* Animated Cursor */}
-      <div id="animated-cursor">
-        <div id="cursor">
-          <div id="cursor-loader"></div>
-        </div>
-      </div>
+          <div>
+            <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white">{t.footer.products}</h2>
+            <ul className="grid gap-2.5 text-sm">
+              {PRODUCTS.map((p) => (
+                <li key={p}>
+                  <a href="#products" className="hover:text-orange">
+                    {p}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-      {/* Fixed Menu */}
-      <div className="fixed-nav-on-scroll fixed-nav-appear d-none sidemenu_toggle">
-        <div className="row no-gutters">
-          <div className="col-12 d-flex justify-content-center align-items-center position-relative">
-            <div className="fixed-icon-scroll">
-              <a className="menu_bars menu-bars-setting link mr-3 mr-lg-0" style={{ cursor: 'pointer' }}>
-                <div className="menu-lines">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </a>
-            </div>
+          <div>
+            <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white">{t.footer.company}</h2>
+            <ul className="grid gap-2.5 text-sm">
+              <li>
+                <a href="#problems" className="hover:text-orange">
+                  {t.footer.links.problems}
+                </a>
+              </li>
+              <li>
+                <a href="#solution" className="hover:text-orange">
+                  {t.footer.links.solution}
+                </a>
+              </li>
+              <li>
+                <a href="#faq" className="hover:text-orange">
+                  {t.footer.links.faq}
+                </a>
+              </li>
+              <li>
+                <a href="#contact-sec" className="hover:text-orange">
+                  {t.footer.links.contact}
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white">{t.footer.contact}</h2>
+            <ul className="grid gap-2.5 text-sm">
+              <li className="flex items-center justify-center gap-2 sm:justify-start">
+                <PhoneCall className="size-4 shrink-0" aria-hidden="true" />
+                <a href={COMPANY.phoneHref} className="hover:text-orange">
+                  {COMPANY.phone}
+                </a>
+              </li>
+              <li className="flex items-center justify-center gap-2 sm:justify-start">
+                <Mail className="size-4 shrink-0" aria-hidden="true" />
+                <a href={`mailto:${COMPANY.email}`} className="hover:text-orange">
+                  {COMPANY.email}
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
+
+        <div className="mt-12 flex flex-wrap justify-center gap-x-4 gap-y-1 border-t border-white/10 pt-6 text-center text-[13px] text-white/60 sm:justify-between">
+          <span>
+            © {year} {COMPANY.legalName} {COMPANY.registration}
+          </span>
+          <span>{t.footer.city}</span>
+        </div>
       </div>
-    </>
+    </footer>
   );
 }
