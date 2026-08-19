@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SOCIALS, external } from "@/lib/socials";
 
 export default function Footer() {
   return (
@@ -15,7 +16,9 @@ export default function Footer() {
                 Packiko by ThaiCloud — The Fulfilment Ecosystem for Online Commerce.
               </p>
               <div className="footer-social">
-                <a href="https://www.linkedin.com/thaicloud" target="_blank" rel="noopener noreferrer" aria-label="ThaiCloud on LinkedIn"><i className="fab fa-linkedin-in"></i></a>
+                {SOCIALS.map((so) => (
+                  <a key={so.key} href={so.href} {...external(so.href)} aria-label={so.label}><i className={so.icon}></i></a>
+                ))}
               </div>
             </div>
             <div className="col-6 col-lg-2 mb-4 mb-lg-0">

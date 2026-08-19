@@ -1,5 +1,6 @@
 import FlowVisual from "./FlowVisual";
 import { nb } from "@/lib/th";
+import { SOCIALS, external } from "@/lib/socials";
 
 export default function Hero() {
   return (
@@ -14,11 +15,13 @@ export default function Hero() {
         </div>
         {/* Social Icons */}
         <ul className="social-icons social-icons-simple revicon d-none d-md-block d-lg-block cursor-light">
-          <li className="d-table animated-wrap">
-            <a href="https://www.linkedin.com/thaicloud" target="_blank" rel="noopener noreferrer" aria-label="ThaiCloud on LinkedIn" className="animated-element">
-              <i className="fab fa-linkedin-in"></i>
-            </a>
-          </li>
+          {SOCIALS.map((so) => (
+            <li key={so.key} className="d-table animated-wrap">
+              <a href={so.href} {...external(so.href)} aria-label={so.label} className="animated-element">
+                <i className={so.icon}></i>
+              </a>
+            </li>
+          ))}
         </ul>
 
         <div className="container">
