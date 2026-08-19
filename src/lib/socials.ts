@@ -1,9 +1,17 @@
-/** Social / contact links shown in the hero rail, side menu and footer. Edit here only. */
-export const SOCIALS = [
-  { key: "facebook", label: "ThaiCloud on Facebook", href: "#", icon: "fab fa-facebook-f" }, // TODO: link pending
-  { key: "instagram", label: "ThaiCloud on Instagram", href: "#", icon: "fab fa-instagram" }, // TODO: link pending
-  { key: "linkedin", label: "ThaiCloud on LinkedIn", href: "https://www.linkedin.com/thaicloud", icon: "fab fa-linkedin-in" },
-  { key: "email", label: "Email hello@thaicloud.com", href: "mailto:hello@thaicloud.com", icon: "fas fa-envelope" },
-] as const;
+/** Social / contact links shown in the footer. Edit here only.
+ *
+ *  Entries whose href is still "#" are NOT rendered — the site must not ship
+ *  dead links (#12 item 7). Add the real URL here and give the key a glyph in
+ *  `SocialIcon.tsx` to bring one back. */
+type Social = { key: string; label: string; href: string; glyph: "linkedin" | "mail" | null };
+
+const ALL: Social[] = [
+  { key: "facebook", label: "ThaiCloud on Facebook", href: "#", glyph: null }, // TODO: link pending
+  { key: "instagram", label: "ThaiCloud on Instagram", href: "#", glyph: null }, // TODO: link pending
+  { key: "linkedin", label: "ThaiCloud on LinkedIn", href: "https://www.linkedin.com/thaicloud", glyph: "linkedin" },
+  { key: "email", label: "Email hello@thaicloud.com", href: "mailto:hello@thaicloud.com", glyph: "mail" },
+];
+
+export const SOCIALS = ALL.filter((s) => s.href !== "#" && s.glyph !== null);
 
 export const external = (href: string) => (href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {});
