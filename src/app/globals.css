@@ -444,3 +444,6 @@ section.problems-sec, section.solution-sec, section.about-sec, section.faq-sec {
   .site-footer .brand-blurb { margin-left: auto; margin-right: auto; }
   .site-footer .footer-bottom { justify-content: center; text-align: center; gap: 2px 12px; }
 }
+
+/* Template ring cursor: element kept for the magnetic icon hover, ring hidden */
+#animated-cursor { display: none !important; }

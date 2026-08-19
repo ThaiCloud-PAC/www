@@ -55,6 +55,14 @@ export default function Footer() {
       </footer>
       {/* Footer End */}
 
+      {/* Animated cursor: kept (hidden via CSS) because the template's magnetic
+          hover on .animated-wrap icons lives in the same init block */}
+      <div id="animated-cursor" aria-hidden="true">
+        <div id="cursor">
+          <div id="cursor-loader"></div>
+        </div>
+      </div>
+
       {/* Fixed Menu */}
       <div className="fixed-nav-on-scroll fixed-nav-appear d-none sidemenu_toggle">
         <div className="row no-gutters">
