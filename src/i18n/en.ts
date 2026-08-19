@@ -98,7 +98,7 @@ export const en: Dictionary = {
       { t: "AI Wave & Pick Route", d: "Group orders into waves and lay out the shortest pick route — less walking, more picks per hour." },
       { t: "Packing Verification", d: "Every item scanned before the box closes. Wrong model, wrong size or a missing item is flagged on the spot." },
       { t: "VDO Proof", d: "Every order recorded while it is packed, searchable by order number, time or packer — an answer to a claim in seconds." },
-      { t: "OMS Status Guard & Dispatch Gate", d: "Status checked against the OMS before packing and before dispatch. Cancelled orders are blocked immediately, and every box passes the gate before it leaves the warehouse." },
+      { t: "OMS Status Guard & Dispatch Gate", d: "Status checked against the OMS before packing and before dispatch. Cancelled orders are blocked immediately, and every order passes the gate before it leaves the warehouse." },
       { t: "Worker Identity & Performance", d: "A badge scan identifies the person at a shared station, so every pick, pack and approval belongs to a real name — with backlog, bottlenecks and per-person output on one screen." },
     ],
   },
