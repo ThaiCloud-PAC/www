@@ -1,0 +1,12 @@
+{
+  "name": "thaicloud-www-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Azure Static Web Apps managed functions for thaicloud.com",
+  "main": "src/functions/*.js",
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "@azure/functions": "^4.5.1",
+    "@sendgrid/mail": "^8.1.4"
+  }
+}

@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# thaicloud.com
 
-## Getting Started
+Marketing site for **ThaiCloud PAC Co., Ltd.** and the Packiko fulfilment
+ecosystem. Next.js 16 (App Router) + Tailwind v4 + Framer Motion, exported as a
+fully static site.
 
-First, run the development server:
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev          # http://localhost:3000
+npm run lint
+npm run build        # static export → out/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm run dev:swa` runs the Azure Static Web Apps emulator over `npm run dev` so
+the contact form's `/api/contact` function is reachable locally (needs the env
+vars below).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Pushing to **`release`** triggers `.github/workflows/azure-static-web-apps-*.yml`,
+which builds the app (`output_location: out`) and the managed function in `api/`
+(`api_location: api`). `main` is the integration branch — it does not deploy.
 
-## Learn More
+## Contact form
 
-To learn more about Next.js, take a look at the following resources:
+`src/components/Contact.tsx` posts JSON to `/api/contact`, an Azure Static Web
+Apps managed function (`api/src/functions/contact.js`) that sends the message
+with SendGrid. Configure these in the Static Web App's application settings —
+never in the repo:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `SENDGRID_API_KEY`
+- `CONTACT_TO` (currently hello@thaicloud.com)
+- `CONTACT_FROM` (a verified SendGrid sender)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Content, theme and language
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- All visible copy lives in `src/i18n/th.ts` and `src/i18n/en.ts`. They share one
+  type, so a missing key fails the build. Thai is the default; the header pill
+  switches to English and the choice is kept in `localStorage`.
+- Colours are semantic tokens in `src/app/globals.css` (`--surface`, `--ink`,
+  `--brand`, …) redefined under `.dark`. The header toggle cycles
+  system → light → dark; a small blocking script in `<head>` applies the stored
+  choice before the first paint.
+- Language-neutral facts (address, phone, registration number) live in
+  `src/lib/company.ts`.
+- `src/app/opengraph-image.png` is a static asset; regenerate it if the brand
+  line changes.
