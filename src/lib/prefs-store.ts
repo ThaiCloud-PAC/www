@@ -1,11 +1,11 @@
 "use client";
 
-import { DEFAULT_LANG, LANG_KEY, THEME_KEY, type Lang, type ThemeChoice } from "./prefs";
+import { DEFAULT_LANG, DEFAULT_THEME, LANG_KEY, THEME_KEY, type Lang, type Theme } from "./prefs";
 
 /**
  * One tiny store behind both preferences, read through `useSyncExternalStore`.
- * localStorage and `prefers-color-scheme` are external systems, so this keeps
- * the components free of state-syncing effects.
+ * localStorage is an external system, so this keeps the components free of
+ * state-syncing effects.
  */
 type Listener = () => void;
 
@@ -16,12 +16,7 @@ let wired = false;
 function wire() {
   if (wired) return;
   wired = true;
-  window.addEventListener("storage", emit);
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-    // An explicit choice always wins; otherwise follow the OS live.
-    if (!window.localStorage.getItem(THEME_KEY)) applyTheme("system");
-    emit();
-  });
+  window.addEventListener("storage", emit); // keep other tabs in step
 }
 
 export function subscribe(listener: Listener) {
@@ -30,24 +25,16 @@ export function subscribe(listener: Listener) {
   return () => listeners.delete(listener);
 }
 
-export function applyTheme(choice: ThemeChoice) {
-  const dark = choice === "dark" || (choice === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
-  document.documentElement.classList.toggle("dark", dark);
-  document.documentElement.style.colorScheme = dark ? "dark" : "light";
+export function applyTheme(theme: Theme) {
+  document.documentElement.classList.toggle("dark", theme === "dark");
+  document.documentElement.style.colorScheme = theme;
 }
 
-export const getThemeChoice = (): ThemeChoice => {
-  const v = window.localStorage.getItem(THEME_KEY);
-  return v === "dark" || v === "light" ? v : "system";
-};
+export const getTheme = (): Theme => (window.localStorage.getItem(THEME_KEY) === "light" ? "light" : DEFAULT_THEME);
 
-export const getResolvedTheme = (): "light" | "dark" =>
-  document.documentElement.classList.contains("dark") ? "dark" : "light";
-
-export function setThemeChoice(choice: ThemeChoice) {
-  if (choice === "system") window.localStorage.removeItem(THEME_KEY);
-  else window.localStorage.setItem(THEME_KEY, choice);
-  applyTheme(choice);
+export function setTheme(theme: Theme) {
+  window.localStorage.setItem(THEME_KEY, theme);
+  applyTheme(theme);
   emit();
 }
 
@@ -63,6 +50,5 @@ export function setLang(lang: Lang) {
 }
 
 /** Server render (and the first hydration pass) uses the documented defaults. */
-export const serverTheme = (): ThemeChoice => "system";
-export const serverResolved = (): "light" | "dark" => "light";
+export const serverTheme = (): Theme => DEFAULT_THEME;
 export const serverLang = (): Lang => DEFAULT_LANG;

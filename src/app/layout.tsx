@@ -60,7 +60,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     // The prefs script rewrites class/lang before hydration — that is the point,
     // so React must not warn about the difference.
-    <html lang={DEFAULT_LANG} className={kanit.variable} suppressHydrationWarning>
+    <html lang={DEFAULT_LANG} className={"dark " + kanit.variable} suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png" />
         <link rel="icon" type="image/png" sizes="192x192" href="/brand/icon-192.png" />
