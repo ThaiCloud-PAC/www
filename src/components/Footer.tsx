@@ -55,13 +55,6 @@ export default function Footer() {
       </footer>
       {/* Footer End */}
 
-      {/* Animated Cursor */}
-      <div id="animated-cursor">
-        <div id="cursor">
-          <div id="cursor-loader"></div>
-        </div>
-      </div>
-
       {/* Fixed Menu */}
       <div className="fixed-nav-on-scroll fixed-nav-appear d-none sidemenu_toggle">
         <div className="row no-gutters">
