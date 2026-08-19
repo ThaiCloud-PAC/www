@@ -28,8 +28,8 @@ function Logo({ className = "" }: { className?: string }) {
       <Image
         src="/brand/logo.png"
         alt="ThaiCloud"
-        width={132}
-        height={38}
+        width={240}
+        height={138}
         priority
         className="h-8 w-auto"
       />
