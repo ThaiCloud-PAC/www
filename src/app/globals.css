@@ -189,6 +189,7 @@
 .flow-pill--carrier { fill: var(--color-teal); }
 .flow-pill--guard { fill: var(--raised); stroke: var(--color-orange); stroke-width: 1.5; }
 .flow-pill-text { font-size: 10px; font-weight: 600; fill: #ffffff; }
+.flow-van { color: #ffffff; }
 .flow-pill-text--dark { fill: var(--orange-ink); }
 .flow-guard-dot { fill: #35c26b; animation: flow-guard 4s ease-in-out infinite; }
 .flow-path { fill: none; stroke: var(--brand); stroke-opacity: 0.35; stroke-width: 1.5; stroke-dasharray: 3 3; }

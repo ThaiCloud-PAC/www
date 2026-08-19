@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Truck } from "lucide-react";
 
 /**
  * FlowVisual — a self-contained animated "orders pouring in" scene:
@@ -145,10 +146,11 @@ export default function FlowVisual() {
           </circle>
         ))}
         <g transform="translate(290 254)" filter="url(#fvShadow)">
-          <rect className="flow-pill flow-pill--carrier" x="0" y="0" width="92" height="30" rx="15" />
+          <rect className="flow-pill flow-pill--carrier" x="0" y="0" width="56" height="30" rx="15" />
         </g>
         <g transform="translate(290 254)">
-          <text x="14" y="19" className="flow-pill-text">Carrier ➜</text>
+          {/* delivery van, in place of the word "Carrier" — nested <svg> is positioned by x/y */}
+          <Truck className="flow-van" x={17} y={6} width={22} height={22} strokeWidth={2} aria-hidden="true" />
         </g>
 
         {/* ---- Guard chip (bottom-left) ---- */}
