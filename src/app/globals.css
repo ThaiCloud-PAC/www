@@ -189,7 +189,20 @@
 .flow-pill--carrier { fill: var(--color-teal); }
 .flow-pill--guard { fill: var(--raised); stroke: var(--color-orange); stroke-width: 1.5; }
 .flow-pill-text { font-size: 10px; font-weight: 600; fill: #ffffff; }
-.flow-van { color: #ffffff; }
+/* engine idle: a fast, sub-pixel judder so the van reads as running, not parked.
+   Only translates, so it cannot clash with the nested <svg>'s x/y attributes. */
+.flow-van {
+  color: #ffffff;
+  animation: flow-van-idle 0.26s linear infinite;
+}
+@keyframes flow-van-idle {
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(0.1px, 0.35px); }
+  40%  { transform: translate(-0.1px, -0.2px); }
+  60%  { transform: translate(0.15px, 0.3px); }
+  80%  { transform: translate(-0.05px, -0.15px); }
+  100% { transform: translate(0, 0); }
+}
 .flow-pill-text--dark { fill: var(--orange-ink); }
 .flow-guard-dot { fill: #35c26b; animation: flow-guard 4s ease-in-out infinite; }
 .flow-path { fill: none; stroke: var(--brand); stroke-opacity: 0.35; stroke-width: 1.5; stroke-dasharray: 3 3; }

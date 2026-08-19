@@ -12,7 +12,7 @@ import type { ReactNode } from "react";
 export default function Reveal({
   children,
   delay = 0,
-  y = 18,
+  y = 24,
   className,
 }: {
   children: ReactNode;
@@ -26,8 +26,11 @@ export default function Reveal({
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
+      // The bottom margin pulls the trigger line ~18% up the viewport: without
+      // it the reveal fires the moment a block clips the bottom edge and is over
+      // before you have scrolled it into view.
+      viewport={{ once: true, amount: 0.2, margin: "0px 0px -18% 0px" }}
+      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </motion.div>
