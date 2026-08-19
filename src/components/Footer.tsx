@@ -18,8 +18,8 @@ export default function Footer() {
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-6">
         <div className="grid gap-10 text-center sm:text-left lg:grid-cols-[2fr_1fr_1fr_2fr]">
           <div>
-            <span className="inline-flex rounded-xl bg-white px-3 py-2">
-              <Image src="/brand/packiko-logo.png" alt="Packiko by ThaiCloud" width={1000} height={282} className="h-10 w-auto" />
+            <span className="inline-flex">
+              <Image src="/brand/packiko-mark.png" alt="Packiko by ThaiCloud" width={544} height={340} className="h-12 w-auto" />
             </span>
             <p className="mx-auto mt-4 max-w-xs text-sm leading-relaxed sm:mx-0">{t.footer.blurb}</p>
             <div className="mt-5 flex justify-center gap-2 sm:justify-start">

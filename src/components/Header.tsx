@@ -18,18 +18,15 @@ const LINKS = [
   { href: "#contact-sec", key: "contact" },
 ] as const;
 
-/** The logo artwork is dark ink on transparent, so on a dark background it sits
-    on a white chip — the same treatment the footer uses. */
+/** The Packiko cloud mark — coloured artwork on transparent, reads on light and dark. */
 function Logo({ className = "" }: { className?: string }) {
   return (
-    <span
-      className={`inline-flex rounded-lg dark:bg-white dark:px-2 dark:py-1 ${className}`}
-    >
+    <span className={`inline-flex items-center ${className}`}>
       <Image
-        src="/brand/packiko-logo.png"
+        src="/brand/packiko-mark.png"
         alt="Packiko by ThaiCloud"
-        width={1000}
-        height={282}
+        width={544}
+        height={340}
         priority
         className="h-10 w-auto"
       />
