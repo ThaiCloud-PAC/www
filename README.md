@@ -40,9 +40,11 @@ never in the repo:
   type, so a missing key fails the build. Thai is the default; the header pill
   switches to English and the choice is kept in `localStorage`.
 - Colours are semantic tokens in `src/app/globals.css` (`--surface`, `--ink`,
-  `--brand`, …) redefined under `.dark`. The header toggle cycles
-  system → light → dark; a small blocking script in `<head>` applies the stored
-  choice before the first paint.
+  `--brand`, …) redefined under `.dark`. **The site is dark by default**, whatever
+  the device is set to; the header toggle switches to light and back, and the
+  choice is kept in `localStorage`. There is deliberately no "follow the system"
+  mode. `<html>` ships with `class="dark"` and a small blocking script in
+  `<head>` applies a stored light choice before the first paint.
 - Language-neutral facts (address, phone, registration number) live in
   `src/lib/company.ts`.
 - `src/app/opengraph-image.png` is a static asset; regenerate it if the brand
