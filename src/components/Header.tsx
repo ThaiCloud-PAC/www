@@ -28,8 +28,8 @@ function Logo({ className = "" }: { className?: string }) {
       <Image
         src="/brand/packiko-logo.png"
         alt="Packiko by ThaiCloud"
-        width={1200}
-        height={620}
+        width={1000}
+        height={282}
         priority
         className="h-10 w-auto"
       />
