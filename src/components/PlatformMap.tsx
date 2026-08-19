@@ -27,13 +27,14 @@ const CORE_R = CORE_X + CORE_W; // 568
 const CAR_X = 700; // carrier pills
 const CUST_X = 846;
 const PROD_W = 88;
-const GAP_X = 34; // distance from the core edge
-const GAP_Y = 30; // pills sit above/below the core corners
+// products above / below the Core (left pair and right pair)
+const PROD_TOP_Y = CORE_Y - 30 - 44; // 32
+const PROD_BOT_Y = CORE_Y + CORE_H + 44; // 318
 const CORNERS = [
-  { k: "Add-in", c: "#f37521", x: CORE_X - PROD_W - GAP_X, y: CORE_Y - GAP_Y },
-  { k: "Ultra", c: "#035897", x: CORE_R + GAP_X, y: CORE_Y - GAP_Y },
-  { k: "Prime", c: "#00a8a7", x: CORE_X - PROD_W - GAP_X, y: CORE_Y + CORE_H + GAP_Y - 30 },
-  { k: "Hub", c: "#d99a00", x: CORE_R + GAP_X, y: CORE_Y + CORE_H + GAP_Y - 30 },
+  { k: "Add-in", c: "#f37521", x: CORE_X + 14, y: PROD_TOP_Y },
+  { k: "Ultra", c: "#035897", x: CORE_R - PROD_W - 14, y: PROD_TOP_Y },
+  { k: "Prime", c: "#00a8a7", x: CORE_X + 14, y: PROD_BOT_Y },
+  { k: "Hub", c: "#d99a00", x: CORE_R - PROD_W - 14, y: PROD_BOT_Y },
 ];
 const DESTS = [
   { k: "home", y: MID_Y - 62 },
@@ -142,15 +143,13 @@ export default function PlatformMap() {
 
         {/* ---- products on the four corners of the core ---- */}
         {CORNERS.map((p, i) => {
-          const left = p.x < CORE_X;
           const top = p.y < MID_Y;
-          const px = left ? p.x + PROD_W : p.x;
-          const py = p.y + 15;
-          const cx = left ? CORE_X + 14 : CORE_R - 14; // core corner (inside the radius)
-          const cy = top ? CORE_Y + 4 : CORE_Y + CORE_H - 4;
+          const cx = p.x + PROD_W / 2;
+          const y1 = top ? p.y + 30 : p.y; // pill edge facing the core
+          const y2 = top ? CORE_Y : CORE_Y + CORE_H; // core edge
           return (
             <g key={p.k}>
-              <path d={`M${px} ${py} C ${(px + cx) / 2} ${py}, ${(px + cx) / 2} ${cy}, ${cx} ${cy}`} className="pm-path" />
+              <path d={`M${cx} ${y1} V ${y2}`} className="pm-path" />
               <g transform={`translate(${p.x} ${p.y})`}>
                 <g className="pm-product" style={{ animationDelay: `${i * 0.7}s` }}>
                   <rect x="0" y="0" width={PROD_W} height="30" rx="15" fill={p.c} />
@@ -162,7 +161,7 @@ export default function PlatformMap() {
         })}
         {/* Add-in embeds in the OMS pack screen: dashed link back to OMS */}
         <path
-          d={`M${CORNERS[0].x + 24} ${CORNERS[0].y + 30} C ${CORNERS[0].x + 24} ${MID_Y - 50}, ${OMS_X + OMS_W / 2} ${MID_Y - 80}, ${OMS_X + OMS_W / 2} ${MID_Y - OMS_H / 2}`}
+          d={`M${CORNERS[0].x} ${CORNERS[0].y + 15} C ${OMS_X + OMS_W / 2} ${CORNERS[0].y + 15}, ${OMS_X + OMS_W / 2} ${MID_Y - 70}, ${OMS_X + OMS_W / 2} ${MID_Y - OMS_H / 2}`}
           className="pm-path pm-path--addin"
         />
 
