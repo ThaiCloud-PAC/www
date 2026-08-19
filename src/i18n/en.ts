@@ -142,7 +142,11 @@ export const en: Dictionary = {
     ],
     matrix: {
       caption: "You are… / you need…",
-      legend: "● core strength · ○ supported · – not what this product is for",
+      legend: {
+        core: "core strength",
+        ok: "supported",
+        no: "not what this product is for",
+      },
       rows: [
         "Already on an OMS, want video evidence without changing systems",
         "Separate real stock from sales stock — inbound, packing, returns",
