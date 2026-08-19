@@ -24,7 +24,10 @@ const CORE_W = 300;
 const CORE_Y = 106;
 const CORE_H = 168;
 const CORE_R = CORE_X + CORE_W; // 568
-const CAR_X = 700; // carrier pills
+// Carrier pills. The six curves converge to one point at CUST_X - 40 before
+// fanning back out to the destinations, so this needs room on BOTH sides:
+// at 700 the convergence had only 22 units to happen in and read as a knot.
+const CAR_X = 660;
 const CUST_X = 846;
 const PROD_W = 88;
 // products above / below the Core (left pair and right pair)
