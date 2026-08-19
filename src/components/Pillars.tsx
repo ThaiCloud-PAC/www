@@ -1,26 +1,30 @@
+"use client";
+
+import { Boxes, Coins, Store, Truck, Video } from "lucide-react";
+import { useT } from "@/i18n";
+
 /** The five positioning pillars — from the Packiko ecosystem guideline. */
-const pillars = [
-  { icon: "las la-video", accent: "accent-orange", th: "ตรวจสอบได้", en: "Verification" },
-  { icon: "las la-boxes", accent: "accent-teal", th: "เห็นสต็อกจริง", en: "Visibility" },
-  { icon: "las la-truck", accent: "accent-blue", th: "เชื่อมขนส่ง", en: "Logistics" },
-  { icon: "las la-store", accent: "accent-yellow", th: "ขยายผ่าน HUB", en: "HUB Network" },
-  { icon: "las la-coins", accent: "accent-teal", th: "ต่อยอดการเงิน", en: "Fintech" },
-];
+const ICONS = [Video, Boxes, Truck, Store, Coins];
+const TONE = ["text-orange-ink", "text-teal-ink", "text-brand", "text-yellow-ink", "text-teal-ink"];
 
 export default function Pillars() {
+  const t = useT();
   return (
-    <div className="pillars">
-      <div className="container">
-        <ul>
-          {pillars.map((p) => (
-            <li key={p.en} className={p.accent}>
-              <i className={p.icon}></i>
-              <div>
-                <b>{p.th}</b>
-                <small>{p.en}</small>
-              </div>
-            </li>
-          ))}
+    <div className="border-y border-line bg-surface-2">
+      <div className="mx-auto w-full max-w-6xl px-5 py-8 sm:px-6">
+        <ul className="grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-3 lg:grid-cols-5">
+          {t.pillars.map((p, i) => {
+            const Icon = ICONS[i];
+            return (
+              <li key={p.label} className="flex items-center gap-3">
+                <Icon className={`size-6 shrink-0 ${TONE[i]}`} aria-hidden="true" />
+                <div className="min-w-0">
+                  <b className="block truncate text-sm font-semibold text-ink">{p.label}</b>
+                  <small className="block text-xs text-muted">{p.sub}</small>
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

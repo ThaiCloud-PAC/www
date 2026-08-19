@@ -1,161 +1,110 @@
 "use client";
 
 import { useState } from "react";
-import { nb } from "@/lib/th";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  ArrowLeftRight,
+  Ban,
+  BarChart3,
+  Footprints,
+  Forklift,
+  Gavel,
+  GraduationCap,
+  Hourglass,
+  MessageCircle,
+  PackageOpen,
+  Store,
+  UserCog,
+  UserSearch,
+  Users,
+  VideoOff,
+} from "lucide-react";
+import { useT } from "@/i18n";
+import SectionHeading from "./SectionHeading";
+import Reveal from "./Reveal";
 
-/**
- * Problems — three groups shown one at a time (tabs): online merchants
- * (copy verbatim from thaicloud.com), the warehouse floor, and people.
- */
-const groups = [
-  {
-    "key": "merchant",
-    "accent": "accent-orange",
-    "icon": "las la-store-alt",
-    "title": "ร้านค้าออนไลน์",
-    "lead": "พอออเดอร์เยอะขึ้น งานหลังบ้านก็เริ่มพลาด",
-    "items": [
-      {
-        "icon": "las la-box-open",
-        "t": "Stock ไม่ตรง",
-        "d": "ขายไปแล้วแต่ของในคลังหาไม่เจอ จนต้องยกเลิกออเดอร์ คืนเงินลูกค้า และเสียคะแนนร้าน"
-      },
-      {
-        "icon": "las la-exchange-alt",
-        "t": "แพ็คผิด",
-        "d": "หยิบผิดรุ่น สี ไซส์ หรือแพ็คของไม่ครบ จนต้องส่งของใหม่ เสียค่าขนส่ง และเสียเวลาทีมงาน"
-      },
-      {
-        "icon": "las la-comment-dots",
-        "t": "ลูกค้าเคลมสินค้า",
-        "d": "ลูกค้าบอกว่าได้ของไม่ครบ ไม่ได้ของ หรือของไม่ตรง แต่ร้านไม่มีหลักฐานเอาไว้ตรวจสอบ"
-      },
-      {
-        "icon": "las la-gavel",
-        "t": "Marketplace มักตัดสินให้ลูกค้า",
-        "d": "เมื่อไม่มีหลักฐานว่าแพ็คอะไรไปจริง ร้านมักจบที่คืนเงิน แม้ทีมงานจะทำถูกขั้นตอนแล้วก็ตาม"
-      }
-    ]
-  },
-  {
-    "key": "warehouse",
-    "accent": "accent-blue",
-    "icon": "las la-dolly",
-    "title": "หน้างานคลัง หยิบ–แพ็ค–ส่ง",
-    "lead": "ออเดอร์ยิ่งพุ่ง คนยิ่งเดินเยอะ และไม่มีใครเห็นภาพรวม",
-    "items": [
-      {
-        "icon": "las la-walking",
-        "t": "หยิบทีละออเดอร์ เดินซ้ำทางเดิม",
-        "d": "ไม่มีการรวมเวฟ ไม่มีเส้นทางหยิบ พนักงานเดินไกลเกินจำเป็น ยิ่งช่วงพีคยิ่งช้า"
-      },
-      {
-        "icon": "las la-video-slash",
-        "t": "แพ็คไปแล้ว ไม่มีหลักฐาน",
-        "d": "ปิดกล่องแล้วไม่รู้ว่าใครแพ็ค แพ็คอะไร ตอนไหน พอโดนเคลมก็ตอบไม่ได้"
-      },
-      {
-        "icon": "las la-ban",
-        "t": "ส่งของที่ยกเลิกไปแล้ว",
-        "d": "OMS ยกเลิกออเดอร์แล้ว แต่หน้างานไม่รู้ ของออกจากคลังไปแล้ว ต้องตามคืน เสียค่าส่งฟรี"
-      },
-      {
-        "icon": "las la-hourglass-half",
-        "t": "เห็นคอขวดตอนที่สายไปแล้ว",
-        "d": "ไม่รู้ว่าออเดอร์ค้างสถานีไหน SLA หลุดเมื่อไร จนลูกค้าทักมาถามก่อน"
-      }
-    ]
-  },
-  {
-    "key": "people",
-    "accent": "accent-teal",
-    "icon": "las la-users",
-    "title": "พนักงานและทีม",
-    "lead": "งานคลังคืองานคน แต่ระบบส่วนใหญ่ไม่รู้ว่าใครทำอะไร",
-    "items": [
-      {
-        "icon": "las la-user-secret",
-        "t": "ใช้เครื่องร่วมกัน บอกไม่ได้ว่าใครทำ",
-        "d": "หลายคนใช้เครื่องเดียวกันที่สถานี งานถูกบันทึกเป็น 'สถานี' ไม่ใช่ 'คน' ย้อนดูไม่ได้"
-      },
-      {
-        "icon": "las la-chart-bar",
-        "t": "วัดผลรายคนไม่ได้",
-        "d": "ไม่รู้ว่าใครหยิบเร็ว ใครแพ็คแม่น ใครพลาดบ่อย จัดคนและให้โบนัสจากความรู้สึก"
-      },
-      {
-        "icon": "las la-user-graduate",
-        "t": "พนักงานใหม่ต้องจำเองทุกอย่าง",
-        "d": "ไม่มีระบบนำทางหน้างาน สอนงานนาน คุณภาพขึ้นกับคนเก่า พอลาออกก็เริ่มใหม่"
-      },
-      {
-        "icon": "las la-user-tie",
-        "t": "หัวหน้าตัดสินใจโดยไม่มีข้อมูล",
-        "d": "ไม่เห็นว่าโต๊ะไหนล้น โซนไหนว่าง วันนี้ต้องใช้กี่คน จัดคนเกินหรือขาดตลอด"
-      }
-    ]
-  }
+/** Visual config only — the copy lives in the dictionaries. */
+const GROUPS = [
+  { icon: Store, tone: "text-orange-ink", items: [PackageOpen, ArrowLeftRight, MessageCircle, Gavel] },
+  { icon: Forklift, tone: "text-brand", items: [Footprints, VideoOff, Ban, Hourglass] },
+  { icon: Users, tone: "text-teal-ink", items: [UserSearch, BarChart3, GraduationCap, UserCog] },
 ];
 
 export default function Problems() {
+  const t = useT();
   const [active, setActive] = useState(0);
-  const g = groups[active];
-  return (
-    <section id="problems" className="problems-sec">
-      <div className="container">
-        <div className="row about-details text-center">
-          <div className="col-12 col-lg-8 offset-lg-2 wow zoomIn" data-wow-duration="1s">
-            <p className="sub-heading text-center">
-              <span></span>The Problem
-            </p>
-            <h3 className="heading text-center">{nb("ยิ่งขายดี ยิ่งพลาดง่าย")}</h3>
-            <p className="text text-center">{nb("สต็อกไม่ตรง แพ็คผิด โดนเคลมแล้วตอบไม่ได้ — และปัญหาไม่ได้อยู่แค่ที่ร้าน แต่ลามไปถึงหน้างานและคนทำงานด้วย")}</p>
-          </div>
-        </div>
 
-        <div className="row">
-          <div className="col-12 wow fadeInUp" data-wow-duration="1s">
-            <div className="problem-tabs" role="tablist" aria-label="กลุ่มปัญหา">
-              {groups.map((t, i) => (
+  const group = t.problems.groups[active];
+  const cfg = GROUPS[active];
+
+  return (
+    <section id="problems" className="bg-surface py-16 md:py-24">
+      <div className="mx-auto w-full max-w-6xl px-5 sm:px-6">
+        <SectionHeading eyebrow={t.problems.eyebrow} heading={t.problems.heading} lead={t.problems.lead} />
+
+        <Reveal className="mt-10">
+          <div
+            role="tablist"
+            aria-label={t.a11y.problemGroups}
+            className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-2 [scrollbar-width:none] sm:mx-0 sm:justify-center sm:px-0 [&::-webkit-scrollbar]:hidden"
+          >
+            {t.problems.groups.map((g, i) => {
+              const Icon = GROUPS[i].icon;
+              const on = i === active;
+              return (
                 <button
-                  key={t.key}
+                  key={g.title}
                   type="button"
                   role="tab"
-                  aria-selected={i === active}
-                  className={`problem-tab ${t.accent} ${i === active ? "is-active" : ""}`}
+                  aria-selected={on}
                   onClick={() => setActive(i)}
+                  className={`flex shrink-0 items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-semibold transition-colors ${
+                    on
+                      ? "border-transparent bg-cta text-white"
+                      : "border-line bg-raised text-muted hover:border-brand hover:text-brand"
+                  }`}
                 >
-                  <i className={t.icon}></i>
-                  <span>{nb(t.title)}</span>
+                  <Icon className="size-4" aria-hidden="true" />
+                  <span className="whitespace-nowrap">{g.title}</span>
                 </button>
-              ))}
-            </div>
+              );
+            })}
+          </div>
 
-            <div key={g.key} className={`problem-panel ${g.accent}`} role="tabpanel">
-              <div className="row align-items-center">
-                <div className="col-12 col-lg-4">
-                  <h4>{nb(g.title)}</h4>
-                  <p className="lead-line">{nb(g.lead)}</p>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={`${active}-${group.title}`}
+              role="tabpanel"
+              data-reveal
+              className="mt-6 rounded-3xl border border-line bg-surface-2 p-6 md:p-10"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.25 }}
+            >
+              <div className="grid gap-8 lg:grid-cols-3">
+                <div>
+                  <h3 className={`text-2xl font-bold leading-snug ${cfg.tone}`}>{group.title}</h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-muted">{group.lead}</p>
                 </div>
-                <div className="col-12 col-lg-8">
-                  <div className="row">
-                    {g.items.map((it) => (
-                      <div key={it.t} className="col-12 col-md-6">
-                        <div className="problem-item">
-                          <i className={it.icon}></i>
-                          <div>
-                            <b>{nb(it.t)}</b>
-                            <span>{nb(it.d)}</span>
-                          </div>
+                <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:col-span-2">
+                  {group.items.map((it, i) => {
+                    const Icon = cfg.items[i];
+                    return (
+                      <div key={it.t} className="flex gap-3">
+                        <Icon className={`mt-0.5 size-5 shrink-0 ${cfg.tone}`} aria-hidden="true" />
+                        <div>
+                          <b className="block text-[15px] font-semibold text-ink">{it.t}</b>
+                          <span className="mt-1 block text-[15px] leading-relaxed text-muted">{it.d}</span>
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    );
+                  })}
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+            </motion.div>
+          </AnimatePresence>
+        </Reveal>
       </div>
     </section>
   );

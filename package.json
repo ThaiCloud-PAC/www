@@ -1,16 +1,19 @@
 {
-  "name": "temp_next",
+  "name": "thaicloud-www",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "rm -rf out && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "dev:swa": "npx --yes @azure/static-web-apps-cli start http://localhost:3000 --api-location api"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
+    "framer-motion": "^13.1.0",
+    "lucide-react": "^1.32.0",
     "next": "16.2.4",
     "react": "19.2.4",
     "react-dom": "19.2.4"

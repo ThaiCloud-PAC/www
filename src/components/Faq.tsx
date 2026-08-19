@@ -1,60 +1,32 @@
-import { nb } from "@/lib/th";
+"use client";
 
-const faqs = [
-  {
-    "q": "Packiko คืออะไร",
-    "a": "ระบบคุมคลังสำหรับร้านออนไลน์ ทีมคลัง และ 3PL — คุมสต็อกจริง กันแพ็คผิด อัดวิดีโอทุกออเดอร์ และรู้ว่าใครทำอะไรหน้างาน ทั้งหมดบน API กลางตัวเดียว"
-  },
-  {
-    "q": "ต้องเปลี่ยน OMS หรือระบบขายไหม",
-    "a": "ไม่ต้อง Packiko อยู่หลัง OMS ของคุณ ร้านยังขายและจัดการออเดอร์บนช่องทางเดิม LISA ดึงออเดอร์ที่ชำระเงินแล้วเข้ามาให้ (ZORT เป็นเจ้าแรก เพิ่ม OMS อื่นได้) แล้วซิงก์สถานะกลับอัตโนมัติ หน้างานแค่ทำขั้นตอนหยิบ–แพ็คให้ชัดขึ้น"
-  },
-  {
-    "q": "ต่างจากติดกล้องที่โต๊ะแพ็คยังไง",
-    "a": "กล้องให้แค่ภาพย้อนหลัง Packiko ค้นวิดีโอจากเลขออเดอร์ เวลา หรือชื่อคนแพ็คได้ทันที และทำงานคู่กับการสแกนยืนยันของ คุมสต็อก และ OMS Status Guard ที่กันไม่ให้ส่งของที่ยกเลิกไปแล้ว"
-  },
-  {
-    "q": "พนักงานใช้เครื่องร่วมกัน จะรู้ได้ยังไงว่าใครทำ",
-    "a": "รู้ได้ เครื่องร่วมล็อกอินเป็นบัญชีสถานี พนักงานสแกนบัตรระบุตัวก่อนเริ่มงาน ส่วนเครื่องส่วนตัวใช้ SSO ทุกการหยิบ แพ็ค และอนุมัติจึงผูกกับคนจริง ย้อนดูและวัดผลรายคนได้"
-  },
-  {
-    "q": "ถ้า OMS ล่มระหว่างวัน หน้างานต้องหยุดไหม",
-    "a": "ไม่หยุด สถานีหยิบและแพ็คทำต่อได้ โดยออเดอร์จะติดธง OMS-unverified ไว้ และต้องเช็คสถานะกับ OMS ให้ผ่านที่ Dispatch Gate ก่อนปล่อยของออก ของที่ยกเลิกแล้วจึงหลุดออกไปไม่ได้"
-  },
-  {
-    "q": "ควรเริ่มจากผลิตภัณฑ์ไหน",
-    "a": "มี OMS แล้ว อยากคุมสต็อกจริง → Prime · อยากได้วิดีโอหลักฐานในระบบเดิม → Add-in · Fulfilment Center / 3PL → Ultra · เครือข่ายสาขา → Hub ไม่แน่ใจ ทักมาทางฟอร์มด้านล่าง ทีมเราช่วยดูหน้างานให้ได้"
-  }
-];
+import { Plus } from "lucide-react";
+import { useT } from "@/i18n";
+import SectionHeading from "./SectionHeading";
+import Reveal from "./Reveal";
 
 export default function Faq() {
+  const t = useT();
   return (
-    <section id="faq" className="faq-sec bg-gray">
-      <div className="container">
-        <div className="row about-details text-center">
-          <div className="col-12 col-lg-8 offset-lg-2 wow zoomIn" data-wow-duration="1s">
-            <p className="sub-heading text-center">
-              <span></span>FAQ
-            </p>
-            <h3 className="heading text-center">คำถามที่พบบ่อย</h3>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12 col-lg-8 offset-lg-2 wow fadeInUp" data-wow-duration="1s">
-            <div className="faq-list">
-              {faqs.map((f) => (
-                <details key={f.q} className="faq-item">
-                  <summary>
-                    <span>{nb(f.q)}</span>
-                    <i className="las la-plus" aria-hidden="true"></i>
-                  </summary>
-                  <div className="faq-body">
-                    <p>{nb(f.a)}</p>
-                  </div>
-                </details>
-              ))}
-            </div>
-          </div>
+    <section id="faq" className="bg-surface-2 py-16 md:py-24">
+      <div className="mx-auto w-full max-w-6xl px-5 sm:px-6">
+        <SectionHeading eyebrow={t.faq.eyebrow} heading={t.faq.heading} />
+
+        <div className="mx-auto mt-10 grid max-w-3xl gap-2.5">
+          {t.faq.items.map((f, i) => (
+            <Reveal key={f.q} delay={i * 0.04}>
+              <details className="group overflow-hidden rounded-2xl border border-line bg-raised transition-colors open:border-brand/40">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[16px] font-semibold text-ink [&::-webkit-details-marker]:hidden">
+                  <span className="flex-1">{f.q}</span>
+                  <Plus
+                    className="size-5 shrink-0 text-brand transition-transform duration-300 group-open:rotate-45 group-open:text-orange-ink"
+                    aria-hidden="true"
+                  />
+                </summary>
+                <div className="px-5 pb-5 text-[15px] leading-[1.7] text-muted">{f.a}</div>
+              </details>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

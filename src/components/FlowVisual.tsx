@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Truck } from "lucide-react";
 
 /**
  * FlowVisual — a self-contained animated "orders pouring in" scene:
@@ -136,7 +137,7 @@ export default function FlowVisual() {
         </g>
 
         {/* ---- outbound: Dispatch → Carrier ---- */}
-        <path id="fvOut" d="M330 240 C 330 262, 300 269, 290 269" className="flow-path" />
+        <path id="fvOut" d="M280 240 C 302 240, 304 269, 316 269" className="flow-path" />
         {[0, 1, 2].map((i) => (
           <circle key={i} r="4" className="flow-packet flow-packet--out">
             <animateMotion dur="2.6s" repeatCount="indefinite" begin={`${i * 0.9}s`}>
@@ -144,11 +145,12 @@ export default function FlowVisual() {
             </animateMotion>
           </circle>
         ))}
-        <g transform="translate(290 254)" filter="url(#fvShadow)">
-          <rect className="flow-pill flow-pill--carrier" x="0" y="0" width="92" height="30" rx="15" />
+        <g transform="translate(316 254)" filter="url(#fvShadow)">
+          <rect className="flow-pill flow-pill--carrier" x="0" y="0" width="56" height="30" rx="15" />
         </g>
-        <g transform="translate(290 254)">
-          <text x="14" y="19" className="flow-pill-text">Carrier ➜</text>
+        <g transform="translate(316 254)">
+          {/* delivery van, in place of the word "Carrier" — nested <svg> is positioned by x/y */}
+          <Truck className="flow-van" x={17} y={6} width={22} height={22} strokeWidth={2} aria-hidden="true" />
         </g>
 
         {/* ---- Guard chip (bottom-left) ---- */}

@@ -1,86 +1,41 @@
-import PlatformMap from "./PlatformMap";
-import { nb } from "@/lib/th";
+"use client";
 
-const solutions = [
-  {
-    "key": "inventory",
-    "icon": "las la-boxes",
-    "accent": "accent-teal",
-    "t": "Inventory Control",
-    "d": "เห็นสต็อกจริงในคลังแบบเรียลไทม์ แยกจากสต็อกขายบน OMS ของไม่หาย ไม่ขายเกินของที่มี"
-  },
-  {
-    "key": "wave",
-    "icon": "las la-route",
-    "accent": "accent-blue",
-    "t": "AI Wave & Pick Route",
-    "d": "รวมออเดอร์เป็นเวฟและวางเส้นทางหยิบที่สั้นที่สุด พนักงานเดินน้อยลง หยิบได้มากขึ้น"
-  },
-  {
-    "key": "packing",
-    "icon": "las la-clipboard-check",
-    "accent": "accent-blue",
-    "t": "Packing Verification",
-    "d": "สแกนยืนยันทุกชิ้นก่อนปิดกล่อง หยิบผิดรุ่น ผิดไซส์ หรือแพ็คไม่ครบ ระบบเตือนทันที"
-  },
-  {
-    "key": "vdo",
-    "icon": "las la-video",
-    "accent": "accent-orange",
-    "t": "VDO Proof",
-    "d": "อัดวิดีโอทุกออเดอร์ขณะแพ็ค ค้นได้จากเลขออเดอร์ เวลา หรือชื่อคนแพ็ค ใช้ตอบเคลมได้ทันที"
-  },
-  {
-    "key": "guard",
-    "icon": "las la-shield-alt",
-    "accent": "accent-orange",
-    "t": "OMS Status Guard & Dispatch Gate",
-    "d": "เช็คสถานะกับ OMS ก่อนแพ็คและก่อนส่ง ออเดอร์ที่ยกเลิกแล้วถูกบล็อกทันที ของทุกกล่องต้องผ่านด่านตรวจก่อนออกจากคลัง"
-  },
-  {
-    "key": "people",
-    "icon": "las la-user-check",
-    "accent": "accent-yellow",
-    "t": "Worker Identity & Performance",
-    "d": "สแกนบัตรระบุตัวคนที่สถานีร่วม ทุกการหยิบ แพ็ค อนุมัติ ผูกกับคนจริง เห็นงานค้าง คอขวด และผลงานรายคนในหน้าเดียว"
-  }
-];
+import { Boxes, ClipboardCheck, Route, ShieldCheck, UserCheck, Video } from "lucide-react";
+import { useT } from "@/i18n";
+import PlatformMap from "./PlatformMap";
+import SectionHeading from "./SectionHeading";
+import Reveal from "./Reveal";
+
+const ICONS = [Boxes, Route, ClipboardCheck, Video, ShieldCheck, UserCheck];
+const TONE = ["text-teal-ink", "text-brand", "text-brand", "text-orange-ink", "text-orange-ink", "text-yellow-ink"];
 
 export default function Solution() {
+  const t = useT();
   return (
-    <section id="solution" className="solution-sec bg-gray">
-      <div className="container">
-        <div className="row about-details text-center">
-          <div className="col-12 col-lg-8 offset-lg-2 wow zoomIn" data-wow-duration="1s">
-            <p className="sub-heading text-center">
-              <span></span>The Solution
-            </p>
-            <h3 className="heading text-center">{nb("คุมคลังได้จริง ตั้งแต่สต็อกจนของขึ้นรถ")}</h3>
-            <p className="text text-center">{nb("Packiko อยู่หลัง OMS ของคุณ ร้านยังขายบนช่องทางเดิม ส่วนสต็อกจริง หยิบ–แพ็ค–ส่ง หลักฐาน และคนหน้างาน ให้เราดูแล — ทั้งหมดบน API กลางตัวเดียว")}</p>
-          </div>
-        </div>
+    <section id="solution" className="bg-surface-2 py-16 md:py-24">
+      <div className="mx-auto w-full max-w-6xl px-5 sm:px-6">
+        <SectionHeading eyebrow={t.solution.eyebrow} heading={t.solution.heading} lead={t.solution.lead} />
 
-        <div className="row">
-          <div className="col-12 wow fadeIn" data-wow-duration="1.2s">
-            <div className="platform-map-scroll">
-              <PlatformMap />
-            </div>
-            <p className="map-hint d-md-none">← เลื่อนดูแผนภาพ →</p>
+        <Reveal className="mt-12">
+          <div className="platform-map-scroll">
+            <PlatformMap />
           </div>
-        </div>
+          <p className="mt-3 text-center text-xs text-muted md:hidden">{t.solution.mapHint}</p>
+        </Reveal>
 
-        <div className="row solution-row">
-          {solutions.map((s, i) => (
-            <div key={s.key} className={`col-12 col-md-6 col-lg-4 wow fadeInUp ${s.accent}`} data-wow-duration="1s" data-wow-delay={`${(i % 3) * 0.1}s`}>
-              <div className="solution-item">
-                <i className={s.icon}></i>
+        <div className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+          {t.solution.items.map((s, i) => {
+            const Icon = ICONS[i];
+            return (
+              <Reveal key={s.t} delay={(i % 3) * 0.08} className="flex gap-4">
+                <Icon className={`mt-0.5 size-7 shrink-0 ${TONE[i]}`} aria-hidden="true" />
                 <div>
-                  <b>{s.t}</b>
-                  <span>{nb(s.d)}</span>
+                  <b className="block text-[17px] font-semibold text-ink">{s.t}</b>
+                  <span className="mt-1.5 block text-[15px] leading-relaxed text-muted">{s.d}</span>
                 </div>
-              </div>
-            </div>
-          ))}
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>

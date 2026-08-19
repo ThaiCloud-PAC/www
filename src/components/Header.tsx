@@ -1,110 +1,145 @@
-import Link from "next/link";
+"use client";
+
 import Image from "next/image";
-import { SOCIALS, external } from "@/lib/socials";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import { useT } from "@/i18n";
+import LangToggle from "./LangToggle";
+import ThemeToggle from "./ThemeToggle";
+
+const LINKS = [
+  { href: "#home", key: "home" },
+  { href: "#problems", key: "problems" },
+  { href: "#solution", key: "solution" },
+  { href: "#products", key: "products" },
+  { href: "#faq", key: "faq" },
+  { href: "#contact-sec", key: "contact" },
+] as const;
+
+/** The Packiko cloud mark — coloured artwork on transparent, reads on light and dark. */
+function Logo({ className = "" }: { className?: string }) {
+  return (
+    <span className={`inline-flex items-center ${className}`}>
+      <Image
+        src="/brand/packiko-mark.png"
+        alt="Packiko by ThaiCloud"
+        width={544}
+        height={340}
+        priority
+        className="h-10 w-auto"
+      />
+    </span>
+  );
+}
 
 export default function Header() {
+  const t = useT();
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <>
-      {/* Start Loader */}
-      <div className="loader" id="loader-fade">
-        <div className="loader-container center-block">
-          <div className="grid-row">
-            <div className="col center-block">
-              <ul className="loading reversed">
-                <li></li>
-                <li></li>
-                <li></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* End Loader */}
+      <header className="sticky top-0 z-50 border-b border-line bg-surface/85 backdrop-blur-md">
+        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-6">
+          <Link href="/" aria-label="ThaiCloud" className="shrink-0">
+            <Logo />
+          </Link>
 
-      {/* Header Start */}
-      <header className="top-header cursor-light">
-        <div className="row no-gutters">
-          <div className="col-4 col-lg-4">
-            <Link href="/" title="Logo" className="logo link">
-              <Image
-                src="/minimal-creative/images/logo.png"
-                alt="ThaiCloud"
-                width={120}
-                height={40}
-                style={{ width: "auto", height: "auto" }}
-                className="ml-lg-3 m-0"
-              />
-            </Link>
-          </div>
-          <div className="col-8 col-lg-4 d-flex align-items-center justify-content-end justify-content-lg-center">
-            <a className="menu_bars menu-bars-setting sidemenu_toggle link mr-3 mr-lg-0" style={{ cursor: 'pointer' }}>
-              <div className="menu-lines">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </a>
-          </div>
-          <div className="col-4 d-flex justify-content-end">
-            {/* Get a Quote button removed */}
-          </div>
-        </div>
-        <div>
-          {/* Center Menu */}
-          <div className="side-menu center">
-            <div className="quarter-circle" id="btn_sideNavClose">
-              <div className="menu_bars2 active link" style={{ cursor: 'pointer' }}>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </div>
-            <div className="inner-wrapper justify-content-center">
-              <div className="col-md-12 text-center">
-                <Link href="/" className="logo-full mb-4 link">
-                  <Image src="/minimal-creative/images/logo.png" alt="ThaiCloud" width={120} height={40} style={{ width: "auto", height: "auto" }} />
-                </Link>
-              </div>
-              <nav className="side-nav m-0">
-                <ul className="navbar-nav flex-lg-row">
-                  {[
-                    ["#home", "home"],
-                    ["#problems", "problems"],
-                    ["#solution", "solution"],
-                    ["#products", "products"],
-                    ["#faq", "faq"],
-                    ["#contact-sec", "contact"],
-                  ].map(([href, label]) => (
-                    <li key={href} className="nav-item">
-                      <a href={href} className="scroll nav-link link">
-                        {label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
+          <nav className="hidden items-center gap-7 lg:flex" aria-label="Main">
+            {LINKS.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="text-sm font-medium text-muted transition-colors hover:text-brand"
+              >
+                {t.nav[l.key]}
+              </a>
+            ))}
+          </nav>
 
-              <div className="side-footer text-black w-100">
-                <ul className="social-icons-simple">
-                  {SOCIALS.map((so) => (
-                    <li key={so.key} className="side-menu-icons animated-wrap">
-                      <a href={so.href} {...external(so.href)} aria-label={so.label} className="animated-element">
-                        <i className={so.icon}></i>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-black">
-                  &copy; {new Date().getFullYear()} ThaiCloud PAC Co., Ltd.
-                </p>
-              </div>
-            </div>
+          <div className="flex items-center gap-2">
+            <LangToggle />
+            <ThemeToggle />
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              aria-label={t.a11y.openMenu}
+              aria-expanded={open}
+              className="grid size-9 place-items-center rounded-full border border-line text-ink lg:hidden"
+            >
+              <Menu className="size-4" aria-hidden="true" />
+            </button>
           </div>
-          <a id="close_side_menu" href="#" style={{ cursor: 'default' }}></a>
-          {/* Side Menu */}
         </div>
       </header>
-      {/* Header End */}
+
+      <AnimatePresence>
+        {open ? (
+          <motion.div
+            className="fixed inset-0 z-50 lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div
+              className="absolute inset-0 bg-black/50"
+              onClick={() => setOpen(false)}
+              aria-hidden="true"
+            />
+            <motion.div
+              className="absolute inset-y-0 right-0 flex w-[82%] max-w-sm flex-col gap-8 bg-surface p-6 shadow-2xl"
+              data-reveal
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="flex items-center justify-between">
+                <Logo />
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  aria-label={t.a11y.closeMenu}
+                  className="grid size-9 place-items-center rounded-full border border-line text-ink"
+                >
+                  <X className="size-4" aria-hidden="true" />
+                </button>
+              </div>
+
+              <nav className="flex flex-col gap-1" aria-label="Mobile">
+                {LINKS.map((l) => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="rounded-xl px-3 py-3 text-lg font-semibold text-ink transition-colors hover:bg-surface-2 hover:text-brand"
+                  >
+                    {t.nav[l.key]}
+                  </a>
+                ))}
+              </nav>
+
+              <div className="mt-auto flex items-center gap-3 border-t border-line pt-6">
+                <LangToggle />
+                <ThemeToggle />
+              </div>
+            </motion.div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </>
   );
 }
