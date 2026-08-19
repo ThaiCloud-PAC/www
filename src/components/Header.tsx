@@ -86,22 +86,7 @@ export default function Header() {
               <div className="side-footer text-black w-100">
                 <ul className="social-icons-simple">
                   <li className="side-menu-icons animated-wrap">
-                    <a href="#" className="animated-element">
-                      <i className="fab fa-facebook-f"></i>
-                    </a>
-                  </li>
-                  <li className="side-menu-icons animated-wrap">
-                    <a href="#" className="animated-element">
-                      <i className="fab fa-x-twitter"></i>
-                    </a>
-                  </li>
-                  <li className="side-menu-icons animated-wrap">
-                    <a href="#" className="animated-element">
-                      <i className="fab fa-instagram"></i>
-                    </a>
-                  </li>
-                  <li className="side-menu-icons animated-wrap">
-                    <a href="#" className="animated-element">
+                    <a href="https://www.linkedin.com/thaicloud" target="_blank" rel="noopener noreferrer" aria-label="ThaiCloud on LinkedIn" className="animated-element">
                       <i className="fab fa-linkedin-in"></i>
                     </a>
                   </li>

@@ -15,23 +15,8 @@ export default function Hero() {
         {/* Social Icons */}
         <ul className="social-icons social-icons-simple revicon d-none d-md-block d-lg-block cursor-light">
           <li className="d-table animated-wrap">
-            <a href="#" className="animated-element">
-              <i className="fab fa-facebook-f"></i>
-            </a>
-          </li>
-          <li className="d-table animated-wrap">
-            <a href="#" className="animated-element">
-              <i className="fab fa-x-twitter"></i>
-            </a>
-          </li>
-          <li className="d-table animated-wrap">
-            <a href="#" className="animated-element">
+            <a href="https://www.linkedin.com/thaicloud" target="_blank" rel="noopener noreferrer" aria-label="ThaiCloud on LinkedIn" className="animated-element">
               <i className="fab fa-linkedin-in"></i>
-            </a>
-          </li>
-          <li className="d-table animated-wrap">
-            <a href="#" className="animated-element">
-              <i className="fab fa-instagram"></i>
             </a>
           </li>
         </ul>

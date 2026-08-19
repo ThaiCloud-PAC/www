@@ -15,10 +15,7 @@ export default function Footer() {
                 Packiko by ThaiCloud — The Fulfilment Ecosystem for Online Commerce.
               </p>
               <div className="footer-social">
-                <a href="#" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="X"><i className="fab fa-x-twitter"></i></a>
-                <a href="#" aria-label="LinkedIn"><i className="fab fa-linkedin-in"></i></a>
-                <a href="#" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/thaicloud" target="_blank" rel="noopener noreferrer" aria-label="ThaiCloud on LinkedIn"><i className="fab fa-linkedin-in"></i></a>
               </div>
             </div>
             <div className="col-6 col-lg-2 mb-4 mb-lg-0">
