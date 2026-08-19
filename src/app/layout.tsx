@@ -41,7 +41,7 @@ const ORGANIZATION_JSON_LD = {
   "@type": "Organization",
   name: COMPANY.legalName,
   url: COMPANY.site,
-  logo: `${COMPANY.site}/brand/logo.png`,
+  logo: `${COMPANY.site}/brand/packiko-logo.png`,
   email: COMPANY.email,
   telephone: COMPANY.phone.replace(/\s/g, ""),
   taxID: COMPANY.registration,

@@ -26,12 +26,12 @@ function Logo({ className = "" }: { className?: string }) {
       className={`inline-flex rounded-lg dark:bg-white dark:px-2 dark:py-1 ${className}`}
     >
       <Image
-        src="/brand/logo.png"
-        alt="ThaiCloud"
-        width={240}
-        height={138}
+        src="/brand/packiko-logo.png"
+        alt="Packiko by ThaiCloud"
+        width={1200}
+        height={620}
         priority
-        className="h-8 w-auto"
+        className="h-10 w-auto"
       />
     </span>
   );
