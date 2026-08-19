@@ -190,7 +190,14 @@ export default function PlatformMap() {
         {/* ---- destinations: home · warehouse · person ---- */}
         {DESTS.map((d, i) => (
           <g key={d.k}>
-            <path d={`M${CUST_X - 40} ${MID_Y} C ${CUST_X - 26} ${MID_Y}, ${CUST_X - 26} ${d.y}, ${CUST_X - 18} ${d.y}`} className="pm-path" />
+            <path id={`pmDest${i}`} d={`M${CUST_X - 40} ${MID_Y} C ${CUST_X - 26} ${MID_Y}, ${CUST_X - 26} ${d.y}, ${CUST_X - 18} ${d.y}`} className="pm-path" />
+            {[0, 1].map((j) => (
+              <circle key={j} r="3" className="pm-dot pm-dot--ship">
+                <animateMotion dur="1.2s" repeatCount="indefinite" begin={`${i * 0.4 + j * 0.6}s`}>
+                  <mpath href={`#pmDest${i}`} />
+                </animateMotion>
+              </circle>
+            ))}
             <g transform={`translate(${CUST_X} ${d.y})`} className="pm-dest" style={{ animationDelay: `${i * 0.5}s` }}>
               <circle r="18" className="pm-customer" />
               {d.k === "home" && (
