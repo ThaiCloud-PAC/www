@@ -88,7 +88,20 @@ export default function Products() {
               </tbody>
             </table>
           </div>
-          <p className="mt-3 text-center text-[13px] text-muted">{t.products.matrix.legend}</p>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-10 gap-y-2 text-[13px] text-muted">
+            <span>
+              <span className="mr-1.5 text-brand">●</span>
+              {t.products.matrix.legend.core}
+            </span>
+            <span>
+              <span className="mr-1.5 text-teal-ink">○</span>
+              {t.products.matrix.legend.ok}
+            </span>
+            <span>
+              <span className="mr-1.5">–</span>
+              {t.products.matrix.legend.no}
+            </span>
+          </div>
         </Reveal>
       </div>
     </section>
