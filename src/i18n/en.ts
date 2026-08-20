@@ -47,6 +47,7 @@ export const en: Dictionary = {
     { label: "Logistics", sub: "Carrier links" },
     { label: "HUB Network", sub: "Branch nodes" },
     { label: "Fintech", sub: "Working capital" },
+    { label: "Worker Identity", sub: "Per-person proof" },
   ],
 
   problems: {
