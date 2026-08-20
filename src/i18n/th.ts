@@ -49,6 +49,7 @@ export const th = {
     { label: "เชื่อมขนส่ง", sub: "Logistics" },
     { label: "ขยายผ่าน HUB", sub: "HUB Network" },
     { label: "ต่อยอดการเงิน", sub: "Fintech" },
+    { label: "คนหน้างาน", sub: "Worker Identity" },
   ],
 
   problems: {
