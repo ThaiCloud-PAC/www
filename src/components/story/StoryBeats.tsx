@@ -126,7 +126,7 @@ function WaveBeat() {
       {/* on phones the live pick sheet says it; the paragraph would cover the walk */}
       <p className={`${BODY} hidden sm:block`}>{w.body}</p>
 
-      <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-night/70 backdrop-blur">
+      <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-night/85">
         <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5 font-mono text-[11px] tracking-wider text-white/55 uppercase">
           <span>{w.sheet} · W-0193</span>
           <span className="text-cyan">
@@ -219,7 +219,7 @@ function ResultBeat() {
       </p>
       <dl className="mt-4 grid grid-cols-3 gap-2 sm:gap-3">
         {punch.chips.map((c) => (
-          <div key={c.label} className="rounded-2xl border border-white/10 bg-white/[0.04] px-3 py-2.5 backdrop-blur">
+          <div key={c.label} className="rounded-2xl border border-white/10 bg-white/[0.04] px-3 py-2.5">
             <dt className="sr-only">{c.label}</dt>
             <dd className="text-lg font-semibold text-white sm:text-xl">{c.value}</dd>
             <dd className="mt-0.5 text-xs leading-snug text-muted">{c.label}</dd>

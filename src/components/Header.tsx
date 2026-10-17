@@ -73,7 +73,10 @@ export default function Header() {
         <div
           className={cn(
             "mx-auto flex h-14 w-full max-w-7xl items-center justify-between gap-4 rounded-full border px-3 pl-4 transition-all duration-500 sm:px-4 sm:pl-5",
-            scrolled ? "border-white/10 bg-night/70 shadow-2xl shadow-black/40 backdrop-blur-xl" : "border-transparent bg-transparent",
+            // phones: a solid bar; a blur over the 3D story is redone every frame
+            scrolled
+              ? "border-white/10 bg-night/90 shadow-2xl shadow-black/40 lg:bg-night/70 lg:backdrop-blur-xl"
+              : "border-transparent bg-transparent",
           )}
         >
           <a href="#home" aria-label="Packiko by ThaiCloud" className="shrink-0">

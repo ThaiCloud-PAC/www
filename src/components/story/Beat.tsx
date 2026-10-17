@@ -46,8 +46,10 @@ export default function Beat({
         <motion.div
           style={{ opacity, y }}
           className={cn(
-            "max-w-[34rem] rounded-3xl border border-white/10 bg-night/72 p-5 shadow-2xl shadow-black/40 backdrop-blur-md sm:p-7",
-            "lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none lg:backdrop-blur-none",
+            // no backdrop blur: over a scene that redraws every frame, the blur is
+            // recomputed every frame too, and phones can't afford it
+            "max-w-[34rem] rounded-3xl border border-white/10 bg-night/88 p-5 shadow-2xl shadow-black/40 sm:p-7",
+            "lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none",
             className,
           )}
         >

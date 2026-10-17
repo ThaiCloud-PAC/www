@@ -1,7 +1,8 @@
 "use client";
 
-import { Suspense, useState } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Suspense, useEffect, useState } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
+import type { Object3D } from "three";
 import { PerformanceMonitor } from "@react-three/drei";
 import { Bloom, EffectComposer, ToneMapping } from "@react-three/postprocessing";
 import { ToneMappingMode } from "postprocessing";
@@ -26,9 +27,13 @@ export type SceneProps = {
  * only download is three.js itself and the Packiko mark used as a wall sign.
  */
 export default function Scene({ beat, active, reduced, onReady }: SceneProps) {
-  // Bloom and full DPR until the device says it can't keep up.
-  const [hq, setHq] = useState(true);
-  const [dpr, setDpr] = useState<[number, number]>([1, 1.75]);
+  // Phones and tablets start light: no bloom pass (and its 4× multisampled
+  // buffers) and a lower pixel ratio. Waiting for the PerformanceMonitor to
+  // notice meant the first seconds stuttered on exactly the devices that can
+  // least afford it. Desktops get bloom and full DPR until they can't keep up.
+  const [lite] = useState(() => window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024);
+  const [hq, setHq] = useState(!lite);
+  const [dpr, setDpr] = useState<[number, number]>(lite ? [1, 1.5] : [1, 1.75]);
 
   return (
     <Canvas
@@ -70,6 +75,7 @@ export default function Scene({ beat, active, reduced, onReady }: SceneProps) {
       <Network beat={beat} reduced={reduced} />
       {/* last: projects label anchors after everything has moved this frame */}
       <Projector />
+      <Precompile />
 
       {hq ? (
         <EffectComposer multisampling={4}>
@@ -79,4 +85,30 @@ export default function Scene({ beat, active, reduced, onReady }: SceneProps) {
       ) : null}
     </Canvas>
   );
+}
+
+/**
+ * Compiles every shader while the scene fades in. three.js otherwise compiles a
+ * material the first frame it is visible, so the brain and the map (hidden
+ * until their chapters) compiled ~20 programs mid-scroll: a visible hitch on
+ * phones each time. `compile` skips hidden objects, so everything is shown for
+ * the synchronous traversal and put back straight after.
+ */
+function Precompile() {
+  const gl = useThree((s) => s.gl);
+  const scene = useThree((s) => s.scene);
+  const camera = useThree((s) => s.camera);
+  useEffect(() => {
+    const hidden: Object3D[] = [];
+    scene.traverse((o) => {
+      if (!o.visible) {
+        hidden.push(o);
+        o.visible = true;
+      }
+    });
+    // async where the GPU can link in parallel; the traversal itself is sync
+    gl.compileAsync(scene, camera).catch(() => {});
+    hidden.forEach((o) => (o.visible = false));
+  }, [gl, scene, camera]);
+  return null;
 }

@@ -190,7 +190,7 @@ function MapLegend() {
     <motion.ul
       aria-hidden="true"
       style={{ opacity }}
-      className="pointer-events-none absolute right-4 bottom-[57%] z-10 hidden gap-2 rounded-2xl border border-white/10 bg-night/70 p-3 text-xs text-white/75 backdrop-blur sm:right-8 sm:grid lg:bottom-8"
+      className="pointer-events-none absolute right-4 bottom-[57%] z-10 hidden gap-2 rounded-2xl border border-white/10 bg-night/85 p-3 text-xs text-white/75 sm:right-8 sm:grid lg:bottom-8"
     >
       {items.map((i) => (
         <li key={i.label} className="flex items-center gap-2.5">

@@ -28,6 +28,8 @@ import {
 const v = new Vector3();
 /** Each label's height, measured once it first shows (labels grow upward from their anchor). */
 const heights = new WeakMap<HTMLElement, number>();
+/** Each label's current width, for keeping it out of the copy column. */
+const widths = new WeakMap<HTMLElement, number>();
 
 /** Desktop only (the `lg` layout): where the story's copy column ends. Mirrors
     Beat.tsx — a max-w-7xl container with px-8, holding a 34rem panel. */
@@ -67,17 +69,22 @@ export default function Projector() {
   useLayoutEffect(setStaticAnchors, []);
 
   useFrame(({ camera, size }) => {
+    const edge = copyEdge(size.width);
+    // Read every size first, then write every transform: reading a size after
+    // a write forces the browser to recompute styles, once per label per frame.
+    labelEls.forEach((_, el) => {
+      const pill = el.firstElementChild as HTMLElement | null;
+      if (!pill) return;
+      if (!heights.has(el) && pill.offsetHeight > 0) heights.set(el, pill.offsetHeight);
+      if (edge) widths.set(el, pill.offsetWidth);
+    });
+
     labelEls.forEach((id, el) => {
       const a = anchors.get(id);
       if (!a) return;
       v.set(a[0], a[1], a[2]).project(camera); // includes the CameraRig's lens shift
       const behind = v.z > 1 || v.z < -1;
-      // Keep labels on screen: a pill near the edge slides in rather than clipping.
-      let h = heights.get(el);
-      if (h === undefined) {
-        const m = (el.firstElementChild as HTMLElement | null)?.offsetHeight ?? 0;
-        if (m > 0) heights.set(el, (h = m));
-      }
+      const h = heights.get(el);
       const rx = (v.x * 0.5 + 0.5) * size.width;
       const ry = (-v.y * 0.5 + 0.5) * size.height;
       // off screen: hide; near an edge: slide the label in rather than clip it
@@ -85,8 +92,7 @@ export default function Projector() {
       const margin = Math.min(120, size.width / 4);
       // On desktop the copy column is the left edge: a label that would run
       // into the text slides right instead (a picker in the far-left aisle).
-      const edge = copyEdge(size.width);
-      const left = edge ? edge + (el.firstElementChild as HTMLElement | null)!.offsetWidth / 2 : margin;
+      const left = edge ? edge + (widths.get(el) ?? 0) / 2 : margin;
       const x = Math.min(size.width - margin, Math.max(left, rx));
       // below the floating header, whole label included
       const y = Math.min(size.height - 12, Math.max(84 + (h ?? 0), ry));
