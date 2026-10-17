@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
-import { Kanit } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono, Kanit } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { PREFS_SCRIPT, DEFAULT_LANG } from "@/lib/prefs";
 import { COMPANY } from "@/lib/company";
 import { LangProvider } from "@/i18n";
-import { ThemeProvider } from "@/lib/theme";
 import MotionProvider from "@/components/MotionProvider";
 
+const geist = Geist({ variable: "--font-geist", subsets: ["latin"], display: "swap" });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap" });
 const kanit = Kanit({
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-kanit",
@@ -17,23 +18,28 @@ const kanit = Kanit({
 
 export const metadata: Metadata = {
   metadataBase: new URL(COMPANY.site),
-  title: "ThaiCloud | Packiko — Fulfilment Ecosystem for Online Commerce",
+  title: "Packiko | More orders. Fewer people. Faster delivery.",
   description:
-    "Packiko by ThaiCloud — ระบบนิเวศ Fulfilment สำหรับธุรกิจออนไลน์: เชื่อม OMS, VDO Proof, สต็อกจริง, หยิบ-แพ็ก-ส่ง, ขนส่ง และเครือข่าย HUB ไว้ในแพลตฟอร์มเดียว สร้างโดยทีมที่บริหารคลังจริงกว่า 10 ปี",
+    "Packiko is building the brain of the warehouse: software that tells people and machines what to do, so warehouses handle more orders in the same space, depend less on people, and deliver faster through a nationwide micro-fulfillment network.",
   keywords:
-    "Packiko, ThaiCloud, fulfillment, fulfilment, warehouse, WMS, 3PL, e-commerce, OMS, ZORT, pick pack ship, VDO proof, Thailand",
+    "Packiko, ThaiCloud, fulfillment, warehouse, WMS, 3PL, e-commerce, micro-fulfillment, AI warehouse, pick pack ship, VDO proof, Thailand",
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "Packiko by ThaiCloud — The Fulfilment Ecosystem for Online Commerce",
-    description:
-      "ตรวจสอบได้ • เห็นสต็อกจริง • เชื่อมขนส่ง • ขยายผ่าน HUB • ต่อยอดการเงิน — Add-in, Prime, Hub, Ultra",
-    siteName: "ThaiCloud",
-    locale: "th_TH",
+    title: "Packiko | More orders. Fewer people. Faster delivery.",
+    description: "Three stories about fulfillment: Speed. Intelligence. Network.",
+    siteName: "Packiko by ThaiCloud",
+    locale: "en_US",
+    alternateLocale: ["th_TH", "ko_KR", "zh_CN"],
     type: "website",
     url: "/",
   },
   twitter: { card: "summary_large_image" },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#04070c",
+  colorScheme: "dark",
 };
 
 const ORGANIZATION_JSON_LD = {
@@ -58,15 +64,17 @@ const ORGANIZATION_JSON_LD = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    // The prefs script rewrites class/lang before hydration — that is the point,
+    // The prefs script rewrites `lang` before hydration — that is the point,
     // so React must not warn about the difference.
-    <html lang={DEFAULT_LANG} className={"dark " + kanit.variable} suppressHydrationWarning>
+    <html
+      lang={DEFAULT_LANG}
+      className={`${geist.variable} ${geistMono.variable} ${kanit.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png" />
         <link rel="icon" type="image/png" sizes="192x192" href="/brand/icon-192.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/brand/apple-touch-icon.png" />
-        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#0e1217" media="(prefers-color-scheme: dark)" />
         {/* Blocking on purpose: it must run before the first paint. */}
         <script dangerouslySetInnerHTML={{ __html: PREFS_SCRIPT }} />
         <script
@@ -75,11 +83,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
       </head>
       <body className="antialiased">
-        <ThemeProvider>
-          <LangProvider>
-            <MotionProvider>{children}</MotionProvider>
-          </LangProvider>
-        </ThemeProvider>
+        <LangProvider>
+          <MotionProvider>{children}</MotionProvider>
+        </LangProvider>
 
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-MJP9XE8QC2" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">

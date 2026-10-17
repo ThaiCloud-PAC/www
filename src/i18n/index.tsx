@@ -6,6 +6,8 @@ import { getLang, serverLang, setLang, subscribe } from "@/lib/prefs-store";
 import type { Lang } from "@/lib/prefs";
 import { th, type Dictionary } from "./th";
 import { en } from "./en";
+import { ko } from "./ko";
+import { zh } from "./zh";
 
 /** Word-joiner pass over every Thai string, once at module load. */
 function deepNb<T>(value: T): T {
@@ -17,7 +19,7 @@ function deepNb<T>(value: T): T {
   return value;
 }
 
-const DICTS: Record<Lang, Dictionary> = { th: deepNb(th), en };
+const DICTS: Record<Lang, Dictionary> = { th: deepNb(th), en, ko, zh };
 
 type LangState = { lang: Lang; setLang: (l: Lang) => void; t: Dictionary };
 const LangContext = createContext<LangState | null>(null);
