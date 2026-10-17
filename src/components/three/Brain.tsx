@@ -28,6 +28,7 @@ import {
 import type { MotionValue } from "framer-motion";
 import { beamsOn, brainOn, machinesOn } from "@/components/story/timeline";
 import { AMR_COUNT, BRAIN_POS, PALETTE, PEOPLE, WORKER_COUNT, hash, live } from "./world";
+import { LITE } from "./quality";
 import { glow } from "./glow";
 
 /** Beams go to everyone on the floor except the supervisor, who oversees the
@@ -138,7 +139,10 @@ export default function Brain({ beat, reduced }: { beat: MotionValue<number>; re
     if (ringB.current) ringB.current.rotation.set(Math.PI / 3, -t * 0.35, Math.PI / 5);
     if (dust.current) dust.current.rotation.y = t * 0.06;
     parts.core.color.set(PALETTE.cyan).multiplyScalar(3.4 + Math.sin(t * 2.2) * 0.9);
-    if (light.current) light.current.intensity = on * 900;
+    if (light.current) {
+      light.current.intensity = on * 900;
+      light.current.position.set(bx, by + (1 - on) * 6, bz);
+    }
     parts.coneMat.opacity = on * 0.05;
     if (cone.current) cone.current.visible = on > 0.002;
 
@@ -193,10 +197,16 @@ export default function Brain({ beat, reduced }: { beat: MotionValue<number>; re
         <mesh ref={ringA} material={parts.ringMat} geometry={parts.ringGeoA} />
         <mesh ref={ringB} material={parts.ringMat} geometry={parts.ringGeoB} />
         <points ref={dust} geometry={parts.dustGeo} material={parts.dustMat} />
-        <pointLight ref={light} color={PALETTE.cyan} intensity={0} distance={60} decay={1.6} />
         {/* a faint cone of attention down onto the floor */}
         <mesh ref={cone} position={[0, -7.5, 0]} material={parts.coneMat} geometry={parts.coneGeo} />
       </group>
+      {/* Outside the root group, which hides between chapters: a hidden light
+          drops out of the light count, and a new count means every material in
+          view recompiles its shader (a freeze on phones, first when the red
+          routes appear). So it is always there, dark when the brain is off.
+          Phones skip it: the floor glow isn't worth a fourth light on every
+          pixel. */}
+      {LITE ? null : <pointLight ref={light} color={PALETTE.cyan} intensity={0} distance={60} decay={1.6} />}
       <primitive object={parts.beams} />
       <instancedMesh ref={pulses} args={[parts.pulseGeo, parts.pulseMat, BEAMS * PULSES_PER_BEAM]} frustumCulled={false} />
     </>
