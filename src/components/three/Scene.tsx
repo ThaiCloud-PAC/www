@@ -108,28 +108,66 @@ export default function Scene({ beat, active, reduced, onReady }: SceneProps) {
  *
  * The light count is part of every key too, which is why no light may come
  * and go with a chapter (see the brain's light).
+ *
+ * Then, once the programs have linked, one real frame with everything drawn
+ * (hidden objects shown, frustum culling off). Phones finish a shader's GPU
+ * pipeline at its first draw, not at link, Safari's Metal path above all, so
+ * the first draw of the red routes still froze the scroll off the hero. Only
+ * when drawing to the screen: the pipeline is built per target, and that's
+ * where the phone's frames go. The canvas is still fading in, and R3F's next
+ * frame paints over this one before it's ever shown.
  */
 function Precompile({ offscreen }: { offscreen: boolean }) {
   const gl = useThree((s) => s.gl);
   const scene = useThree((s) => s.scene);
   const camera = useThree((s) => s.camera);
   useEffect(() => {
-    const hidden: Object3D[] = [];
-    scene.traverse((o) => {
-      if (!o.visible) {
-        hidden.push(o);
-        o.visible = true;
-      }
-    });
+    let live = true;
+    const showAll = () => {
+      const hidden: Object3D[] = [];
+      scene.traverse((o) => {
+        if (!o.visible) {
+          hidden.push(o);
+          o.visible = true;
+        }
+      });
+      return () => hidden.forEach((o) => (o.visible = false));
+    };
+
+    const restore = showAll();
     const target = offscreen ? new WebGLRenderTarget(1, 1) : null;
     const previous = gl.getRenderTarget();
     gl.setRenderTarget(target);
     // async where the GPU can link in parallel; the traversal itself is sync
-    gl.compileAsync(scene, camera).catch(() => {});
-    gl.compileAsync(scene, camera).catch(() => {});
+    const first = gl.compileAsync(scene, camera);
+    const second = gl.compileAsync(scene, camera);
     gl.setRenderTarget(previous);
     target?.dispose();
-    hidden.forEach((o) => (o.visible = false));
+    restore();
+
+    if (!offscreen) {
+      Promise.all([first, second])
+        .then(() => {
+          if (!live) return;
+          const restoreAll = showAll();
+          const culled: Object3D[] = [];
+          scene.traverse((o) => {
+            if (o.frustumCulled) {
+              culled.push(o);
+              o.frustumCulled = false;
+            }
+          });
+          gl.render(scene, camera);
+          culled.forEach((o) => (o.frustumCulled = true));
+          restoreAll();
+        })
+        .catch(() => {});
+    } else {
+      Promise.all([first, second]).catch(() => {});
+    }
+    return () => {
+      live = false;
+    };
   }, [gl, scene, camera, offscreen]);
   return null;
 }
