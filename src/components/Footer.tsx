@@ -1,105 +1,67 @@
-"use client";
+import { useTranslations } from "next-intl";
+import { Logo } from "./Logo";
+import { LocaleToggle } from "./LocaleToggle";
 
-import Image from "next/image";
-import { Mail, PhoneCall } from "lucide-react";
-import { useT } from "@/i18n";
-import { COMPANY } from "@/lib/company";
-import { SOCIALS, external } from "@/lib/socials";
-import SocialIcon from "./SocialIcon";
+type Column = { title: string; items: string[] };
 
-const PRODUCTS = ["Packiko Add-in", "Packiko Prime", "Packiko Ultra", "Packiko Hub"];
-
-export default function Footer() {
-  const t = useT();
-  const year = new Date().getFullYear();
+export function Footer() {
+  const t = useTranslations("Footer");
+  const cols = t.raw("columns") as Record<string, Column>;
+  const colKeys = ["product", "solutions", "company", "resources"] as const;
 
   return (
-    <footer className="bg-deep pt-16 pb-7 text-white/80">
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-6">
-        <div className="grid gap-10 text-center sm:text-left lg:grid-cols-[2fr_1fr_1fr_2fr]">
-          <div>
-            <span className="inline-flex">
-              <Image src="/brand/packiko-mark.png" alt="Packiko by ThaiCloud" width={544} height={340} className="h-12 w-auto" />
-            </span>
-            <p className="mx-auto mt-4 max-w-xs text-sm leading-relaxed sm:mx-0">{t.footer.blurb}</p>
-            <div className="mt-5 flex justify-center gap-2 sm:justify-start">
-              {SOCIALS.map((s) => (
-                <a
-                  key={s.key}
-                  href={s.href}
-                  {...external(s.href)}
-                  aria-label={s.label}
-                  className="grid size-11 place-items-center rounded-full border border-white/20 transition-colors hover:border-orange hover:bg-orange hover:text-white"
-                >
-                  <SocialIcon glyph={s.glyph as "linkedin" | "mail"} />
-                </a>
-              ))}
+    <footer className="bg-ink-950 pb-8 pt-20 text-white/80">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-[60px]">
+          <div className="lg:col-span-4">
+            <Logo variant="dark" />
+            <p className="mt-[18px] max-w-[280px] text-[13.5px] leading-[1.6] text-white/55">
+              {t("tagline")}
+            </p>
+            <div className="mt-6">
+              <LocaleToggle tone="dark" />
             </div>
           </div>
 
-          <div>
-            <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white">{t.footer.products}</h2>
-            <ul className="grid gap-2.5 text-sm">
-              {PRODUCTS.map((p) => (
-                <li key={p}>
-                  <a href="#products" className="hover:text-orange">
-                    {p}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white">{t.footer.company}</h2>
-            <ul className="grid gap-2.5 text-sm">
-              <li>
-                <a href="#problems" className="hover:text-orange">
-                  {t.footer.links.problems}
-                </a>
-              </li>
-              <li>
-                <a href="#solution" className="hover:text-orange">
-                  {t.footer.links.solution}
-                </a>
-              </li>
-              <li>
-                <a href="#faq" className="hover:text-orange">
-                  {t.footer.links.faq}
-                </a>
-              </li>
-              <li>
-                <a href="#contact-sec" className="hover:text-orange">
-                  {t.footer.links.contact}
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white">{t.footer.contact}</h2>
-            <ul className="grid gap-2.5 text-sm">
-              <li className="flex items-center justify-center gap-2 sm:justify-start">
-                <PhoneCall className="size-4 shrink-0" aria-hidden="true" />
-                <a href={COMPANY.phoneHref} className="hover:text-orange">
-                  {COMPANY.phone}
-                </a>
-              </li>
-              <li className="flex items-center justify-center gap-2 sm:justify-start">
-                <Mail className="size-4 shrink-0" aria-hidden="true" />
-                <a href={`mailto:${COMPANY.email}`} className="hover:text-orange">
-                  {COMPANY.email}
-                </a>
-              </li>
-            </ul>
+          <div className="grid grid-cols-2 gap-7 sm:grid-cols-4 lg:col-span-8">
+            {colKeys.map((k) => {
+              const col = cols[k];
+              return (
+                <div key={k}>
+                  <h4 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.15em] text-white/40">
+                    {col.title}
+                  </h4>
+                  <ul className="space-y-2.5">
+                    {col.items.map((item) => (
+                      <li key={item}>
+                        <a
+                          href="#"
+                          className="text-[13.5px] text-white/70 transition hover:text-white"
+                        >
+                          {item}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
           </div>
         </div>
 
-        <div className="mt-12 flex flex-wrap justify-center gap-x-4 gap-y-1 border-t border-white/10 pt-6 text-center text-[13px] text-white/60 sm:justify-between">
-          <span>
-            © {year} {COMPANY.legalName} {COMPANY.registration}
-          </span>
-          <span>{t.footer.city}</span>
+        <div className="mt-[60px] flex flex-col items-start justify-between gap-3.5 border-t border-white/[0.08] pt-[22px] md:flex-row md:items-center">
+          <span className="text-[12px] text-white/40">{t("legal")}</span>
+          <div className="flex flex-wrap items-center gap-x-[22px] gap-y-2 text-[12px] text-white/55">
+            <a href="#" className="transition hover:text-white">
+              {t("privacy")}
+            </a>
+            <a href="#" className="transition hover:text-white">
+              {t("terms")}
+            </a>
+            <a href="#" className="transition hover:text-white">
+              {t("pdpa")}
+            </a>
+          </div>
         </div>
       </div>
     </footer>

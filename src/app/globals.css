@@ -1,283 +1,181 @@
+/* === Fonts (must come before tailwind import per CSS spec) === */
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+
 @import "tailwindcss";
 
-/* Tailwind v4 resolves `dark:` against prefers-color-scheme by default, which a
-   class can never override. Re-point it at the .dark class the prefs script sets. */
-@custom-variant dark (&:where(.dark, .dark *));
-
-/* ============================================================
-   Brand palette — identical in both modes (logo-derived)
-   ============================================================ */
+/* === Design Tokens === */
 @theme {
-  --font-sans: var(--font-kanit), system-ui, -apple-system, sans-serif;
+  /* Brand navy — based on #035897 (PMS 2186 C) */
+  --color-ink-950: #02283F;
+  --color-ink-900: #035897;   /* brand primary */
+  --color-ink-800: #0A6BA8;
+  --color-ink-700: #2080BD;
+  --color-ink-600: #4598CF;
+  --color-ink-500: #6BA9D6;
+  --color-ink-400: #8FBFE0;
+  --color-ink-300: #B5D3EA;
+  --color-ink-200: #D5E5F2;
+  --color-ink-100: #EAF1F8;
+  --color-ink-50:  #F4F8FC;
 
-  --color-navy: #035897;
-  --color-orange: #f37521;
-  --color-teal: #00a8a7;
-  --color-yellow: #fab217;
-  --color-deep: #0a2540;
+  /* Cyan — based on #60c7d3 (PMS 310 C) — softer, NOT electric */
+  --color-cyan-700: #2BA0AE;
+  --color-cyan-600: #3DB5C3;
+  --color-cyan-500: #60C7D3;  /* brand accent 1 */
+  --color-cyan-400: #84D4DD;
+  --color-cyan-300: #A8E1E8;
+  --color-cyan-200: #CCEEF2;
+  --color-cyan-100: #E5F6F8;
 
-  --shadow-card: 0 20px 40px -32px rgb(3 88 151 / 0.45);
-  --shadow-lift: 0 30px 50px -30px rgb(3 88 151 / 0.45);
+  /* === Teal — rebased to brand #00A8A7 (was #50C0AE) === */
+  --color-teal-700: #007777;
+  --color-teal-600: #008B8B;
+  --color-teal-500: #00A8A7;     /* brand teal — DEEPER than v1 */
+  --color-teal-400: #50C0AE;     /* the old teal-500 value lives here */
+  --color-teal-300: #74CDBF;
+  --color-teal-200: #97DBD0;
+  --color-teal-100: #BAE8E0;
+  --color-teal-50:  #DCF3EE;
+
+  /* === Warm anchors — ThaiCloud brand orange + amber === */
+  --color-orange-700: #C45418;
+  --color-orange-600: #DD661C;
+  --color-orange-500: #F37521;   /* brand deep orange */
+  --color-orange-400: #F58A1F;   /* brand mid orange */
+  --color-orange-300: #F8A24A;
+  --color-orange-200: #FBC182;
+  --color-orange-100: #FDE0BA;
+  --color-orange-50:  #FEF3E3;
+
+  --color-amber-600: #C58E12;
+  --color-amber-500: #FAB217;    /* brand amber */
+  --color-amber-400: #FBC34A;
+  --color-amber-300: #FCD479;
+  --color-amber-200: #FDE2A6;
+  --color-amber-100: #FEEFCC;
+  --color-amber-50:  #FFF8E5;
+
+  /* Neutral charcoals — for body text, headlines, muted copy.
+     Use these (NOT --color-ink-*) for any `text-*` utility. */
+  --color-slate-950: #0A1220;
+  --color-slate-900: #0F1A2A;
+  --color-slate-800: #1E2A3D;
+  --color-slate-700: #2E3D54;
+  --color-slate-600: #44546B;
+  --color-slate-500: #5D6C82;
+  --color-slate-400: #7F8C9F;
+  --color-slate-300: #A5B0BF;
+  --color-slate-200: #C9D0DA;
+  --color-slate-100: #E4E8EE;
+  --color-slate-50:  #F4F6F9;
+
+  /* Neutrals — light, warm white */
+  --color-paper: #FFFFFF;
+  --color-bone:  #FAFBFC;
+  --color-cream: #FFF8E5;
+
+  /* Typography */
+  --font-display: "Kanit", system-ui, sans-serif;
+  --font-sans:    "Kanit", system-ui, sans-serif;
+  --font-thai:    "Kanit", system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, monospace;
+
+  /* Radii */
+  --radius-card: 1.25rem;
+  --radius-pill: 999px;
 }
 
-/* ============================================================
-   Semantic tokens — the only things that change between modes.
-   `inline` makes the utilities resolve the var at use-site, so
-   redefining it under .dark is enough.
-   ============================================================ */
-@theme inline {
-  --color-surface: var(--surface);
-  --color-surface-2: var(--surface-2);
-  --color-raised: var(--raised);
-  --color-ink: var(--ink);
-  --color-muted: var(--muted);
-  --color-line: var(--line);
-  --color-brand: var(--brand);
-  --color-brand-surface: var(--brand-surface);
-  --color-cta: var(--cta);
-  --color-orange-ink: var(--orange-ink);
-  --color-teal-ink: var(--teal-ink);
-  --color-yellow-ink: var(--yellow-ink);
+/* === Base === */
+html {
+  scroll-behavior: smooth;
 }
 
-:root {
-  color-scheme: light;
-
-  --surface: #ffffff;
-  --surface-2: #f3f6fa;
-  --raised: #ffffff;
-  --ink: #14181d;
-  --muted: #55636f;
-  --line: #e3ebf3;
-
-  /* Navy reads as a surface in light mode and as an accent in dark mode, so the
-     two roles are separate tokens rather than one inverted value. */
-  --brand: #035897;
-  --brand-surface: #035897;
-  /* Interactive fill. In dark mode the deep navy would sit only 1.46:1 above the
-     page, so buttons get a lighter blue that still carries white text at 5.5:1. */
-  --cta: #035897;
-
-  /* Brand hues are not accessible as text on a light background at their raw
-     value (white-on-#f37521 is 2.9:1) — text uses these darkened variants and
-     fills keep the raw brand colour. */
-  --orange-ink: #b7500c;
-  --teal-ink: #00726f;
-  --yellow-ink: #7d5a00;
-
-  /* SVG scene tokens (FlowVisual / PlatformMap) */
-  --scene-from: #f7f9fc;
-  --scene-to: #e9f1f8;
-  --scene-row: #f3f6fa;
-  --scene-row-id: #cfd9e5;
-  --scene-station: #eef3f8;
-  --scene-station-active: #cfe3f4;
-  --scene-line: #cfdbe7;
-  --map-from: #ffffff;
-  --map-to: #eef4f9;
+body {
+  font-family: var(--font-sans);
+  background: var(--color-paper);
+  color: var(--color-ink-900);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.dark {
-  color-scheme: dark;
-
-  --surface: #0e1217;
-  --surface-2: #131920;
-  --raised: #19212a;
-  --ink: #e9eef4;
-  --muted: #a1b1c1;
-  --line: #26313d;
-
-  --brand: #6cb4ee;
-  --brand-surface: #093358;
-  --cta: #1a6cb0;
-
-  --orange-ink: #ff9a55;
-  --teal-ink: #3fd0cf;
-  --yellow-ink: #f3c352;
-
-  --scene-from: #131920;
-  --scene-to: #0e1217;
-  --scene-row: #1b2430;
-  --scene-row-id: #33414f;
-  --scene-station: #1d2833;
-  --scene-station-active: #24405c;
-  --scene-line: #33414f;
-  --map-from: #16202b;
-  --map-to: #0e1217;
+/* Display class — used for hero/section headings */
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.015em;
 }
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 84px;
-  }
-  body {
-    background-color: var(--surface);
-    color: var(--ink);
-    font-family: var(--font-sans);
-    letter-spacing: 0;
-    -webkit-font-smoothing: antialiased;
-  }
-  /* Thai body copy stays >= 15px / 400 — see the #10 calm pass. */
-  p, li, td, summary, label, input, textarea, button, a {
-    font-weight: 400;
-  }
-  :focus-visible {
-    outline: 2px solid var(--brand);
-    outline-offset: 2px;
-    border-radius: 4px;
-  }
-  ::selection {
-    background: color-mix(in srgb, var(--color-orange) 30%, transparent);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    /* Framer renders its `initial` styles on the server; force the resting
-       state so reduced-motion visitors never get stuck on a hidden frame. */
-    [data-reveal] {
-      opacity: 1 !important;
-      transform: none !important;
-    }
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
+.font-mono-num {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum", "zero";
 }
 
-/* ============================================================
-   FlowVisual — hero animation (SVG + keyframes, no JS deps).
-   Colours come from the scene tokens above so it follows the theme.
-   ============================================================ */
-.flow-visual {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  background: linear-gradient(135deg, var(--scene-from) 0%, var(--scene-to) 100%);
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: var(--shadow-lift);
-}
-.flow-visual svg { width: 100%; height: 100%; display: block; font-family: var(--font-sans); }
-.flow-blob { opacity: 0.35; }
-.flow-blob--teal { fill: var(--color-teal); opacity: 0.12; }
-.flow-blob--orange { fill: var(--color-orange); opacity: 0.10; }
-.flow-card { fill: var(--raised); stroke: var(--line); }
-.flow-card-title { font-size: 11px; font-weight: 600; fill: var(--brand); }
-.flow-card-meta { font-size: 9px; fill: var(--muted); letter-spacing: 0.5px; }
-.flow-live-dot { fill: #d43030; animation: flow-blink 1.2s steps(2) infinite; }
-.flow-feed { animation: flow-feed 6.4s linear infinite; }
-.flow-row { fill: var(--scene-row); }
-.flow-row-id { fill: var(--scene-row-id); }
-.flow-row-status--0 { fill: color-mix(in srgb, var(--color-navy) 22%, var(--raised)); }
-.flow-row-status--1 { fill: color-mix(in srgb, var(--color-orange) 22%, var(--raised)); }
-.flow-row-status--2 { fill: color-mix(in srgb, var(--color-teal) 22%, var(--raised)); }
-.flow-feed-fade { fill: var(--raised); opacity: 0.85; }
-.flow-station {
-  fill: var(--scene-station);
-  stroke: var(--scene-line);
-  animation: flow-station-pulse 2.4s ease-in-out infinite;
-}
-.flow-station-label { font-size: 10px; font-weight: 600; fill: var(--brand); }
-.flow-cam { fill: var(--color-orange); }
-.flow-rec { fill: #d43030; animation: flow-blink 1s steps(2) infinite; }
-.flow-counter {
-  font-size: 17px; font-weight: 700; fill: var(--ink);
-  letter-spacing: -0.5px; font-variant-numeric: tabular-nums;
-}
-.flow-pill--oms { fill: var(--brand-surface); }
-.flow-pill--carrier { fill: var(--color-teal); }
-.flow-pill--guard { fill: var(--raised); stroke: var(--color-orange); stroke-width: 1.5; }
-.flow-pill-text { font-size: 10px; font-weight: 600; fill: #ffffff; }
-.flow-van { color: #ffffff; }
-.flow-pill-text--dark { fill: var(--orange-ink); }
-.flow-guard-dot { fill: #35c26b; animation: flow-guard 4s ease-in-out infinite; }
-.flow-path { fill: none; stroke: var(--brand); stroke-opacity: 0.35; stroke-width: 1.5; stroke-dasharray: 3 3; }
-.flow-packet { fill: var(--color-orange); }
-.flow-packet--out { fill: var(--color-teal); }
-
-@keyframes flow-blink { 50% { opacity: 0.15; } }
-@keyframes flow-feed {
-  from { transform: translateY(-128px); }
-  to { transform: translateY(0); }
-}
-@keyframes flow-station-pulse {
-  0%, 100% { fill: var(--scene-station); stroke: var(--scene-line); }
-  50% { fill: var(--scene-station-active); stroke: var(--brand); }
-}
-@keyframes flow-guard {
-  0%, 60%, 100% { fill: #35c26b; }
-  70%, 90% { fill: #d43030; }
+/* === Decorative patterns === */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(3, 40, 63, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(3, 40, 63, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
-/* ============================================================
-   PlatformMap — the Solution diagram (navy panel, white type)
-   ============================================================ */
-.platform-map-scroll {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  margin: 0 -1rem;
-  padding: 0 1rem;
+.bg-grid-light {
+  background-image:
+    linear-gradient(to right, rgba(3, 40, 63, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(3, 40, 63, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
-.platform-map-scroll::-webkit-scrollbar { display: none; }
-.platform-map {
-  width: 100%;
-  min-width: 720px;
-  aspect-ratio: 900 / 372;
-  border-radius: 24px;
-  background: linear-gradient(135deg, var(--map-from) 0%, var(--map-to) 100%);
-  border: 1px solid var(--line);
-  overflow: hidden;
-  box-shadow: var(--shadow-lift);
-}
-.platform-map svg { width: 100%; height: 100%; display: block; font-family: var(--font-sans); }
-.pm-caption { font-size: 9px; letter-spacing: 2px; fill: var(--muted); font-weight: 600; }
-.pm-caption-bg { fill: var(--surface-2); }
-.pm-stage-link { stroke: rgb(255 255 255 / 0.4); stroke-width: 1.5; stroke-dasharray: 2 2; }
-.pm-node { fill: var(--raised); stroke: var(--scene-line); }
-.pm-node-title { font-size: 15px; font-weight: 700; fill: var(--brand); }
-.pm-node-sub { font-size: 11.5px; fill: var(--muted); }
-.pm-tag { fill: var(--color-deep); }
-.pm-tag-text { font-size: 11px; font-weight: 700; fill: #ffffff; letter-spacing: 0.5px; }
-.pm-core { fill: url(#pmCore); }
-.pm-core-title { font-size: 15px; font-weight: 700; fill: #ffffff; }
-.pm-core-sub { font-size: 11px; fill: rgb(255 255 255 / 0.85); }
-.pm-stage { fill: rgb(255 255 255 / 0.12); stroke: rgb(255 255 255 / 0.35); animation: pm-stage 2.5s ease-in-out infinite; }
-.pm-stage-text { font-size: 12px; font-weight: 600; fill: #ffffff; }
-.pm-rec { fill: #ff4d4d; animation: flow-blink 1s steps(2) infinite; }
-.pm-pill { fill: rgb(255 255 255 / 0.12); stroke: rgb(255 255 255 / 0.3); }
-.pm-pill--guard { fill: #ffffff; stroke: #ffffff; }
-/* On the fixed white guard pill — #b7500c holds 4.9:1 in both themes. */
-.pm-pill-text { font-size: 10.5px; font-weight: 600; fill: #b7500c; }
-.pm-pill-text--light { fill: #ffffff; }
-.pm-guard-dot { fill: #35c26b; animation: flow-guard 4s ease-in-out infinite; }
-.pm-product { animation: pm-float 3.5s ease-in-out infinite; transform-box: fill-box; }
-/* fill comes from the markup per pill — deep ink on warm hues, white on navy. */
-.pm-product-text { font-size: 12px; font-weight: 700; }
-.pm-path { fill: none; stroke: var(--brand); stroke-opacity: 0.35; stroke-width: 1.5; stroke-dasharray: 3 3; }
-.pm-path--strong { stroke-opacity: 0.55; stroke-width: 2; }
-.pm-path--addin { stroke: var(--color-orange); stroke-opacity: 0.5; }
-.pm-path-hidden { fill: none; stroke: none; }
-.pm-dot--order { fill: var(--color-orange); }
-.pm-dot--glow { fill: var(--color-orange); opacity: 0.35; }
-.pm-dot--sync { fill: var(--color-teal); }
-.pm-dot--ship { fill: var(--color-teal); }
-.pm-customer { fill: var(--raised); stroke: var(--color-orange); stroke-width: 2; }
-.pm-dest { animation: pm-float 3.5s ease-in-out infinite; transform-box: fill-box; }
-.pm-customer-text { font-size: 18px; fill: var(--color-orange); }
 
-@keyframes pm-stage {
-  0%, 100% { fill: rgb(255 255 255 / 0.12); }
-  /* darkened orange so the white stage label stays ≥4.5:1 at the peak */
-  50% { fill: rgb(183 80 12 / 0.92); }
+.bg-dots {
+  background-image: radial-gradient(rgba(96, 199, 211, 0.22) 1px, transparent 1px);
+  background-size: 22px 22px;
 }
-@keyframes pm-float {
+
+/* Cyan glow utility */
+.glow-cyan {
+  box-shadow: 0 0 0 1px rgba(96, 199, 211, 0.25), 0 0 40px -10px rgba(96, 199, 211, 0.45);
+}
+
+/* === Animations === */
+@keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+  50% { transform: translateY(-6px); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .flow-visual *, .platform-map * { animation: none !important; }
-  .flow-packet, .pm-dot--order, .pm-dot--sync, .pm-dot--ship { display: none; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(96, 199, 211, 0.55); }
+  70% { opacity: 0.7; box-shadow: 0 0 0 10px rgba(96, 199, 211, 0); }
+}
+
+@keyframes pulse-amber {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(250, 178, 23, 0.55); }
+  70% { box-shadow: 0 0 0 12px rgba(250, 178, 23, 0); }
+}
+
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-fade-up { animation: fadeUp 0.7s ease-out backwards; }
+.animate-ticker { animation: ticker 40s linear infinite; }
+.animate-pulse-dot { animation: pulse-dot 2.2s ease-in-out infinite; }
+.animate-pulse-amber { animation: pulse-amber 2.2s ease-in-out infinite; }
+
+/* Selection */
+::selection {
+  background: var(--color-cyan-500);
+  color: var(--color-ink-950);
+}
+
+/* Scrollbar — keep subtle */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-ink-200); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink-300); }
