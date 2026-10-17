@@ -10,7 +10,7 @@ export const LANG_KEY = "lang";
 export type Theme = "light" | "dark";
 export type Lang = "th" | "en";
 
-export const DEFAULT_LANG: Lang = "th";
+export const DEFAULT_LANG: Lang = "en";
 
 /** The site is dark by default, whatever the device is set to. There is no
     "follow the system" mode — only an explicit light/dark choice. */
