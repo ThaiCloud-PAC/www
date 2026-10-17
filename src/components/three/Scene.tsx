@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
-import type { Object3D } from "three";
+import { WebGLRenderTarget, type Object3D } from "three";
 import { PerformanceMonitor } from "@react-three/drei";
 import { Bloom, EffectComposer, ToneMapping } from "@react-three/postprocessing";
 import { ToneMappingMode } from "postprocessing";
@@ -12,6 +12,7 @@ import CameraRig from "./CameraRig";
 import Network from "./Network";
 import Projector from "./Projector";
 import Warehouse from "./Warehouse";
+import { LITE } from "./quality";
 import { BG } from "./world";
 
 export type SceneProps = {
@@ -31,9 +32,8 @@ export default function Scene({ beat, active, reduced, onReady }: SceneProps) {
   // buffers) and a lower pixel ratio. Waiting for the PerformanceMonitor to
   // notice meant the first seconds stuttered on exactly the devices that can
   // least afford it. Desktops get bloom and full DPR until they can't keep up.
-  const [lite] = useState(() => window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024);
-  const [hq, setHq] = useState(!lite);
-  const [dpr, setDpr] = useState<[number, number]>(lite ? [1, 1.5] : [1, 1.75]);
+  const [hq, setHq] = useState(!LITE);
+  const [dpr, setDpr] = useState<[number, number]>(LITE ? [1, 1.5] : [1, 1.75]);
 
   return (
     <Canvas
@@ -48,7 +48,9 @@ export default function Scene({ beat, active, reduced, onReady }: SceneProps) {
       <PerformanceMonitor
         onDecline={() => {
           setHq(false);
-          setDpr([1, 1]);
+          // the monitor keeps declining every few seconds on a slow device; a
+          // fresh array each time re-rendered the whole scene for nothing
+          setDpr((d) => (d[1] === 1 ? d : [1, 1]));
         }}
       />
 
@@ -75,7 +77,7 @@ export default function Scene({ beat, active, reduced, onReady }: SceneProps) {
       <Network beat={beat} reduced={reduced} />
       {/* last: projects label anchors after everything has moved this frame */}
       <Projector />
-      <Precompile />
+      <Precompile offscreen={hq} />
 
       {hq ? (
         <EffectComposer multisampling={4}>
@@ -93,8 +95,21 @@ export default function Scene({ beat, active, reduced, onReady }: SceneProps) {
  * until their chapters) compiled ~20 programs mid-scroll: a visible hitch on
  * phones each time. `compile` skips hidden objects, so everything is shown for
  * the synchronous traversal and put back straight after.
+ *
+ * Twice: the route lines' LineMaterial adds a define in its own
+ * onBeforeCompile, after three has keyed the program, so the first real draw
+ * missed the cache and compiled again, right as you scroll off the hero. The
+ * second pass compiles that final variant here instead.
+ *
+ * `offscreen`: with bloom on, the scene draws into the composer's buffer, not
+ * the screen, and three keys tone mapping and colour space on that; compiling
+ * against a render target gets the variants the composer will ask for. Runs
+ * again if the monitor turns bloom off.
+ *
+ * The light count is part of every key too, which is why no light may come
+ * and go with a chapter (see the brain's light).
  */
-function Precompile() {
+function Precompile({ offscreen }: { offscreen: boolean }) {
   const gl = useThree((s) => s.gl);
   const scene = useThree((s) => s.scene);
   const camera = useThree((s) => s.camera);
@@ -106,9 +121,15 @@ function Precompile() {
         o.visible = true;
       }
     });
+    const target = offscreen ? new WebGLRenderTarget(1, 1) : null;
+    const previous = gl.getRenderTarget();
+    gl.setRenderTarget(target);
     // async where the GPU can link in parallel; the traversal itself is sync
     gl.compileAsync(scene, camera).catch(() => {});
+    gl.compileAsync(scene, camera).catch(() => {});
+    gl.setRenderTarget(previous);
+    target?.dispose();
     hidden.forEach((o) => (o.visible = false));
-  }, [gl, scene, camera]);
+  }, [gl, scene, camera, offscreen]);
   return null;
 }
