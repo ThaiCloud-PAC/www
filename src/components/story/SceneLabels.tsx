@@ -59,7 +59,7 @@ function Label({
       <motion.div style={{ opacity, display, paddingBottom: stem }} className="absolute bottom-0 left-0 -translate-x-1/2">
         <div
           className={cn(
-            "rounded-full border px-2.5 py-1 text-[11px] leading-tight whitespace-nowrap shadow-lg shadow-black/40 backdrop-blur sm:text-xs",
+            "rounded-full border px-2.5 py-1 text-[11px] leading-tight whitespace-nowrap shadow-lg shadow-black/40 sm:text-xs",
             TONES[tone],
             className,
           )}
