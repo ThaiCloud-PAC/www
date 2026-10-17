@@ -135,9 +135,10 @@ export default function SceneLabels() {
       </Label>
 
       {/* ---------------- before: one order per trip. Pickers 0 and 1 set off
-          from the same corner, so 1's caption rides higher to stay clear of 0's. */}
+          from the same corner, so 1's caption rides higher to stay clear of 0's.
+          Phones show one caption: three don't fit the small scene. */}
       {[0, 1, 2].map((i) => (
-        <Label key={i} id={`ghost.${i}`} show={atGhosts} tone="red" stem={i === 1 ? 44 : 14}>
+        <Label key={i} id={`ghost.${i}`} show={atGhosts} tone="red" stem={i === 1 ? 44 : 14} secondary={i !== 2}>
           {s.oneOrder}
         </Label>
       ))}
