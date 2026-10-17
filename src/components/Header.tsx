@@ -77,7 +77,7 @@ export default function Header() {
               onClick={() => setOpen(true)}
               aria-label={t.a11y.openMenu}
               aria-expanded={open}
-              className="grid size-9 place-items-center rounded-full border border-line text-ink lg:hidden"
+              className="grid size-11 place-items-center rounded-full border border-line text-ink lg:hidden"
             >
               <Menu className="size-4" aria-hidden="true" />
             </button>
@@ -113,7 +113,7 @@ export default function Header() {
                   type="button"
                   onClick={() => setOpen(false)}
                   aria-label={t.a11y.closeMenu}
-                  className="grid size-9 place-items-center rounded-full border border-line text-ink"
+                  className="grid size-11 place-items-center rounded-full border border-line text-ink"
                 >
                   <X className="size-4" aria-hidden="true" />
                 </button>

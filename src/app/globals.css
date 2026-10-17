@@ -237,22 +237,24 @@
 .pm-stage-link { stroke: rgb(255 255 255 / 0.4); stroke-width: 1.5; stroke-dasharray: 2 2; }
 .pm-node { fill: var(--raised); stroke: var(--scene-line); }
 .pm-node-title { font-size: 15px; font-weight: 700; fill: var(--brand); }
-.pm-node-sub { font-size: 10px; fill: var(--muted); }
+.pm-node-sub { font-size: 11.5px; fill: var(--muted); }
 .pm-tag { fill: var(--color-deep); }
-.pm-tag-text { font-size: 10px; font-weight: 700; fill: #ffffff; letter-spacing: 0.5px; }
+.pm-tag-text { font-size: 11px; font-weight: 700; fill: #ffffff; letter-spacing: 0.5px; }
 .pm-core { fill: url(#pmCore); }
 .pm-core-title { font-size: 15px; font-weight: 700; fill: #ffffff; }
-.pm-core-sub { font-size: 10px; fill: rgb(255 255 255 / 0.75); }
+.pm-core-sub { font-size: 11px; fill: rgb(255 255 255 / 0.85); }
 .pm-stage { fill: rgb(255 255 255 / 0.12); stroke: rgb(255 255 255 / 0.35); animation: pm-stage 2.5s ease-in-out infinite; }
 .pm-stage-text { font-size: 12px; font-weight: 600; fill: #ffffff; }
 .pm-rec { fill: #ff4d4d; animation: flow-blink 1s steps(2) infinite; }
 .pm-pill { fill: rgb(255 255 255 / 0.12); stroke: rgb(255 255 255 / 0.3); }
 .pm-pill--guard { fill: #ffffff; stroke: #ffffff; }
-.pm-pill-text { font-size: 10.5px; font-weight: 600; fill: #c2560d; }
+/* On the fixed white guard pill — #b7500c holds 4.9:1 in both themes. */
+.pm-pill-text { font-size: 10.5px; font-weight: 600; fill: #b7500c; }
 .pm-pill-text--light { fill: #ffffff; }
 .pm-guard-dot { fill: #35c26b; animation: flow-guard 4s ease-in-out infinite; }
 .pm-product { animation: pm-float 3.5s ease-in-out infinite; transform-box: fill-box; }
-.pm-product-text { font-size: 12px; font-weight: 700; fill: #ffffff; }
+/* fill comes from the markup per pill — deep ink on warm hues, white on navy. */
+.pm-product-text { font-size: 12px; font-weight: 700; }
 .pm-path { fill: none; stroke: var(--brand); stroke-opacity: 0.35; stroke-width: 1.5; stroke-dasharray: 3 3; }
 .pm-path--strong { stroke-opacity: 0.55; stroke-width: 2; }
 .pm-path--addin { stroke: var(--color-orange); stroke-opacity: 0.5; }
@@ -267,7 +269,8 @@
 
 @keyframes pm-stage {
   0%, 100% { fill: rgb(255 255 255 / 0.12); }
-  50% { fill: rgb(243 117 33 / 0.85); }
+  /* darkened orange so the white stage label stays ≥4.5:1 at the peak */
+  50% { fill: rgb(183 80 12 / 0.92); }
 }
 @keyframes pm-float {
   0%, 100% { transform: translateY(0); }

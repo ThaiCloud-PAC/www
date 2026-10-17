@@ -29,7 +29,7 @@ export default function Footer() {
                   href={s.href}
                   {...external(s.href)}
                   aria-label={s.label}
-                  className="grid size-9 place-items-center rounded-full border border-white/20 transition-colors hover:border-orange hover:bg-orange hover:text-white"
+                  className="grid size-11 place-items-center rounded-full border border-white/20 transition-colors hover:border-orange hover:bg-orange hover:text-white"
                 >
                   <SocialIcon glyph={s.glyph as "linkedin" | "mail"} />
                 </a>

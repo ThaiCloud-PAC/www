@@ -33,11 +33,13 @@ const PROD_W = 88;
 // products above / below the Core (left pair and right pair)
 const PROD_TOP_Y = CORE_Y - 30 - 44; // 32
 const PROD_BOT_Y = CORE_Y + CORE_H + 44; // 318
+// Pill text: white only clears 4.5:1 on the navy pill — the warmer brand hues
+// carry deep-navy ink instead.
 const CORNERS = [
-  { k: "Add-in", c: "#f37521", x: CORE_X + 14, y: PROD_TOP_Y },
-  { k: "Ultra", c: "#035897", x: CORE_R - PROD_W - 14, y: PROD_TOP_Y },
-  { k: "Prime", c: "#00a8a7", x: CORE_X + 14, y: PROD_BOT_Y },
-  { k: "Hub", c: "#d99a00", x: CORE_R - PROD_W - 14, y: PROD_BOT_Y },
+  { k: "Add-in", c: "#f37521", ink: "#0a2540", x: CORE_X + 14, y: PROD_TOP_Y },
+  { k: "Ultra", c: "#035897", ink: "#ffffff", x: CORE_R - PROD_W - 14, y: PROD_TOP_Y },
+  { k: "Prime", c: "#00a8a7", ink: "#0a2540", x: CORE_X + 14, y: PROD_BOT_Y },
+  { k: "Hub", c: "#d99a00", ink: "#0a2540", x: CORE_R - PROD_W - 14, y: PROD_BOT_Y },
 ];
 const DESTS = [
   { k: "home", y: MID_Y - 62 },
@@ -303,6 +305,7 @@ export default function PlatformMap() {
                     y="19"
                     textAnchor="middle"
                     className="pm-product-text"
+                    fill={p.ink}
                   >
                     {p.k}
                   </text>

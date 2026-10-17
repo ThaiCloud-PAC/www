@@ -61,11 +61,57 @@ export default function Contact() {
 
           <form onSubmit={onSubmit} noValidate className="mt-7 grid gap-4 md:grid-cols-2">
             <div className="grid gap-4">
-              <input name="name" type="text" autoComplete="name" placeholder={t.contact.form.name} className={FIELD} />
-              <input name="email" type="email" autoComplete="email" placeholder={t.contact.form.email} className={FIELD} />
-              <input name="subject" type="text" placeholder={t.contact.form.subject} className={FIELD} />
+              <div>
+                <label htmlFor="contact-name" className="sr-only">
+                  {t.contact.form.name}
+                </label>
+                <input
+                  id="contact-name"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  required
+                  aria-required="true"
+                  placeholder={t.contact.form.name}
+                  className={FIELD}
+                />
+              </div>
+              <div>
+                <label htmlFor="contact-email" className="sr-only">
+                  {t.contact.form.email}
+                </label>
+                <input
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  aria-required="true"
+                  placeholder={t.contact.form.email}
+                  className={FIELD}
+                />
+              </div>
+              <div>
+                <label htmlFor="contact-subject" className="sr-only">
+                  {t.contact.form.subject}
+                </label>
+                <input id="contact-subject" name="subject" type="text" placeholder={t.contact.form.subject} className={FIELD} />
+              </div>
             </div>
-            <textarea name="message" rows={6} placeholder={t.contact.form.message} className={`${FIELD} h-full resize-y`} />
+            <div className="h-full">
+              <label htmlFor="contact-message" className="sr-only">
+                {t.contact.form.message}
+              </label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows={6}
+                required
+                aria-required="true"
+                placeholder={t.contact.form.message}
+                className={`${FIELD} h-full resize-y`}
+              />
+            </div>
 
             {/* honeypot: real people never see or fill this */}
             <input

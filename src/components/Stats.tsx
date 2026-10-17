@@ -19,9 +19,10 @@ export default function Stats() {
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           {t.stats.items.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.06} className="text-center">
-              <h3 className={`text-[38px] font-bold tabular-nums leading-none md:text-[56px] ${TONE[i]}`}>
+              {/* a stat value, not a document heading — keeps the outline h1→h2 clean */}
+              <p className={`text-[38px] font-bold tabular-nums leading-none md:text-[56px] ${TONE[i]}`}>
                 <CountUp value={VALUES[i]} />
-              </h3>
+              </p>
               <p className="mt-2 text-sm text-white/80">{s.label}</p>
             </Reveal>
           ))}

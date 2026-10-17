@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeftRight,
@@ -33,9 +33,24 @@ const GROUPS = [
 export default function Problems() {
   const t = useT();
   const [active, setActive] = useState(0);
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const group = t.problems.groups[active];
   const cfg = GROUPS[active];
+
+  // Roving tabindex per the ARIA tabs pattern: arrows move + activate.
+  function onTablistKeyDown(e: React.KeyboardEvent) {
+    const last = GROUPS.length - 1;
+    let next: number | null = null;
+    if (e.key === "ArrowRight") next = active === last ? 0 : active + 1;
+    else if (e.key === "ArrowLeft") next = active === 0 ? last : active - 1;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = last;
+    if (next === null) return;
+    e.preventDefault();
+    setActive(next);
+    tabRefs.current[next]?.focus();
+  }
 
   return (
     <section id="problems" className="bg-surface py-16 md:py-24">
@@ -46,6 +61,7 @@ export default function Problems() {
           <div
             role="tablist"
             aria-label={t.a11y.problemGroups}
+            onKeyDown={onTablistKeyDown}
             className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-2 [scrollbar-width:none] sm:mx-0 sm:justify-center sm:px-0 [&::-webkit-scrollbar]:hidden"
           >
             {t.problems.groups.map((g, i) => {
@@ -54,9 +70,15 @@ export default function Problems() {
               return (
                 <button
                   key={g.title}
+                  ref={(el) => {
+                    tabRefs.current[i] = el;
+                  }}
                   type="button"
                   role="tab"
+                  id={`problems-tab-${i}`}
                   aria-selected={on}
+                  aria-controls="problems-panel"
+                  tabIndex={on ? 0 : -1}
                   onClick={() => setActive(i)}
                   className={`flex shrink-0 items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-semibold transition-colors ${
                     on
@@ -75,6 +97,8 @@ export default function Problems() {
             <motion.div
               key={`${active}-${group.title}`}
               role="tabpanel"
+              id="problems-panel"
+              aria-labelledby={`problems-tab-${active}`}
               data-reveal
               className="mt-6 rounded-3xl border border-line bg-surface-2 p-6 md:p-10"
               initial={{ opacity: 0, y: 10 }}
