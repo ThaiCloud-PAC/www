@@ -1,27 +1,37 @@
 /**
- * Client preferences shared by the theme (#14) and the language (#13): both are
- * read by ONE blocking script in <head> so the correct theme class and lang are
- * on <html> before the first paint. Nothing here may import React — the script
- * is inlined as a string.
+ * Language preference, read by ONE blocking script in <head> so `lang` is right
+ * before the first paint. Nothing here may import React — the script is inlined
+ * as a string.
+ *
+ * The site is dark-only since the 2026-10 story remake, so there is no theme
+ * preference any more.
  */
-export const THEME_KEY = "theme";
 export const LANG_KEY = "lang";
 
-export type Theme = "light" | "dark";
-export type Lang = "th" | "en";
+export const LANGS = ["th", "en", "ko", "zh"] as const;
+export type Lang = (typeof LANGS)[number];
 
+/** What goes on <html lang>. Chinese is Simplified, and saying so picks the
+ *  right Han glyphs and system font. */
+export const HTML_LANG: Record<Lang, string> = { th: "th", en: "en", ko: "ko", zh: "zh-Hans" };
+
+/** What the static HTML is rendered in. */
 export const DEFAULT_LANG: Lang = "th";
 
-/** The site is dark by default, whatever the device is set to. There is no
-    "follow the system" mode — only an explicit light/dark choice. */
-export const DEFAULT_THEME: Theme = "dark";
+export const isLang = (v: unknown): v is Lang => (LANGS as readonly unknown[]).includes(v);
 
-/** Runs before paint. Keep it small, dependency-free and failure-tolerant. */
+/** First visit with nothing stored: Thai, Korean and Chinese browsers get their
+ *  own language, everyone else English, so visitors from abroad don't land on a
+ *  page they can't read. */
+export function detectLang(navigatorLang: string | undefined): Lang {
+  const l = navigatorLang?.toLowerCase() ?? "";
+  return l.startsWith("th") ? "th" : l.startsWith("ko") ? "ko" : l.startsWith("zh") ? "zh" : "en";
+}
+
+/** Runs before paint. Keep it small, dependency-free and failure-tolerant.
+ *  Mirrors `detectLang` and `HTML_LANG` — keep them in step. */
 export const PREFS_SCRIPT = `(function(){try{
-var d=document.documentElement,s=window.localStorage;
-var light=s.getItem(${JSON.stringify(THEME_KEY)})==="light";
-d.classList.toggle("dark",!light);
-d.style.colorScheme=light?"light":"dark";
-var l=s.getItem(${JSON.stringify(LANG_KEY)});
-if(l==="en"||l==="th"){d.lang=l;}
+var d=document.documentElement,l=window.localStorage.getItem(${JSON.stringify(LANG_KEY)}),h=${JSON.stringify(HTML_LANG)};
+if(!Object.prototype.hasOwnProperty.call(h,l)){var n=(navigator.language||"").toLowerCase().slice(0,2);l=n==="th"||n==="ko"||n==="zh"?n:"en";}
+d.lang=h[l];
 }catch(e){}})();`;

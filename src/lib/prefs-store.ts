@@ -1,11 +1,11 @@
 "use client";
 
-import { DEFAULT_LANG, DEFAULT_THEME, LANG_KEY, THEME_KEY, type Lang, type Theme } from "./prefs";
+import { DEFAULT_LANG, HTML_LANG, LANG_KEY, detectLang, isLang, type Lang } from "./prefs";
 
 /**
- * One tiny store behind both preferences, read through `useSyncExternalStore`.
- * localStorage is an external system, so this keeps the components free of
- * state-syncing effects.
+ * Tiny store behind the language preference, read through
+ * `useSyncExternalStore`. localStorage is an external system, so this keeps the
+ * components free of state-syncing effects.
  */
 type Listener = () => void;
 
@@ -25,30 +25,25 @@ export function subscribe(listener: Listener) {
   return () => listeners.delete(listener);
 }
 
-export function applyTheme(theme: Theme) {
-  document.documentElement.classList.toggle("dark", theme === "dark");
-  document.documentElement.style.colorScheme = theme;
-}
-
-export const getTheme = (): Theme => (window.localStorage.getItem(THEME_KEY) === "light" ? "light" : DEFAULT_THEME);
-
-export function setTheme(theme: Theme) {
-  window.localStorage.setItem(THEME_KEY, theme);
-  applyTheme(theme);
-  emit();
-}
-
 export const getLang = (): Lang => {
-  const v = window.localStorage.getItem(LANG_KEY);
-  return v === "en" || v === "th" ? v : DEFAULT_LANG;
+  try {
+    const v = window.localStorage.getItem(LANG_KEY);
+    if (isLang(v)) return v;
+  } catch {
+    // storage blocked — fall through to the browser language
+  }
+  return detectLang(navigator.language);
 };
 
 export function setLang(lang: Lang) {
-  window.localStorage.setItem(LANG_KEY, lang);
-  document.documentElement.lang = lang;
+  try {
+    window.localStorage.setItem(LANG_KEY, lang);
+  } catch {
+    // storage blocked — the choice lasts for this page only
+  }
+  document.documentElement.lang = HTML_LANG[lang];
   emit();
 }
 
-/** Server render (and the first hydration pass) uses the documented defaults. */
-export const serverTheme = (): Theme => DEFAULT_THEME;
+/** Server render (and the first hydration pass) uses the documented default. */
 export const serverLang = (): Lang => DEFAULT_LANG;
