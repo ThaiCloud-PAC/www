@@ -21,8 +21,6 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
     "public/**",
-    // Azure Functions (CommonJS, Node runtime) — not part of the Next app.
-    "api/**",
   ]),
 ]);
 

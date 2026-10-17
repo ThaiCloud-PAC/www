@@ -14,26 +14,35 @@ npm run build        # static export → out/
 npm run maps         # regenerate src/data/maps.json (only after changing the script)
 ```
 
-`npm run dev:swa` runs the Azure Static Web Apps emulator over `npm run dev` so
-the contact form's `/api/contact` function is reachable locally (needs the env
-vars below).
+`node worker.test.mjs` tests the Worker (canonical-host redirect and the
+contact form). To run the Worker over a fresh build, with the contact form
+live, put the secrets below in `.dev.vars` (git-ignored) and run
+`npm run build && npx wrangler dev`.
 
 ## Deploy
 
-Pushing to **`release`** triggers `.github/workflows/azure-static-web-apps-*.yml`,
-which builds the app (`output_location: out`) and the managed function in `api/`
-(`api_location: api`). `main` is the integration branch — it does not deploy.
+The site runs on **Cloudflare Workers** (`thaicloud-prod-www`): `worker.js` in
+front of the static export in `out/` (see `wrangler.jsonc`). Cloudflare Workers
+Builds deploys every push to **`release`**. `main` is the integration branch and
+does not deploy; promote it with a `main` → `release` PR.
 
 ## Contact form
 
-`src/components/Contact.tsx` posts JSON to `/api/contact`, an Azure Static Web
-Apps managed function (`api/src/functions/contact.js`) that sends the message
-with SendGrid. Configure these in the Static Web App's application settings —
-never in the repo:
+`src/components/sections/Contact.tsx` posts JSON to `/api/contact`, which
+`worker.js` handles and mails through SendGrid. Set these on the Worker
+(Cloudflare dashboard → Workers → `thaicloud-prod-www` → Settings → Variables
+and Secrets, as **secrets**, or `npx wrangler secret put <NAME> --name
+thaicloud-prod-www`), never in the
+repo:
 
 - `SENDGRID_API_KEY`
-- `CONTACT_TO` (currently hello@thaicloud.com)
-- `CONTACT_FROM` (a verified SendGrid sender)
+- `CONTACT_FROM`: a verified SendGrid sender, `web@thaicloud.com` or
+  `Website <web@thaicloud.com>`
+- `CONTACT_TO` (optional): defaults to hello@thaicloud.com; comma-separate
+  several
+
+Without the first two the form answers 500 and visitors see the "email us at
+hello@thaicloud.com" fallback.
 
 ## The story (homepage)
 

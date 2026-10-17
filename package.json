@@ -7,7 +7,6 @@
     "build": "rm -rf out && next build",
     "start": "next start",
     "lint": "eslint",
-    "dev:swa": "npx --yes @azure/static-web-apps-cli start http://localhost:3000 --api-location api",
     "maps": "node scripts/gen-map-points.mjs"
   },
   "dependencies": {
