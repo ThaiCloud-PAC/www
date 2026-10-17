@@ -32,8 +32,7 @@ does not deploy; promote it with a `main` → `release` PR.
 `worker.js` handles and mails through SendGrid. Set these on the Worker
 (Cloudflare dashboard → Workers → `thaicloud-prod-www` → Settings → Variables
 and Secrets, as **secrets**, or `npx wrangler secret put <NAME> --name
-thaicloud-prod-www`), never in the
-repo:
+thaicloud-prod-www`), never in the repo:
 
 - `SENDGRID_API_KEY`
 - `CONTACT_FROM`: a verified SendGrid sender, `web@thaicloud.com` or
