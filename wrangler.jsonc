@@ -7,6 +7,13 @@
   "vars": {
     "SITE_URL": "https://thaicloud.com"
   },
+  // Branch previews (npx wrangler preview). *.workers.dev hosts are exempt from
+  // the canonical-host redirect in worker.js, so SITE_URL is inert on previews.
+  "previews": {
+    "vars": {
+      "SITE_URL": "https://thaicloud.com"
+    }
+  },
   "assets": {
     "directory": "./out",
     "not_found_handling": "404-page",
