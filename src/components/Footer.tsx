@@ -56,10 +56,10 @@ export function Footer() {
               <ul className="space-y-2.5 text-[13.5px]">
                 <li>
                   <a
-                    href={COMPANY.phoneHref}
-                    className="font-mono-num text-white/70 transition hover:text-white"
+                    href={COMPANY.lineHref}
+                    className="text-white/70 transition hover:text-white"
                   >
-                    {COMPANY.phoneDisplay}
+                    LINE: {COMPANY.line}
                   </a>
                 </li>
                 <li>

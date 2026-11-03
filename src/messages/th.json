@@ -14,7 +14,7 @@
     "titleTrail": "และคุมได้ทุกออเดอร์",
     "subtitle": "Packiko คือระบบจัดการคลังสินค้า (WMS) จาก ThaiCloud สำหรับร้านค้าออนไลน์ขนาดใหญ่และผู้ให้บริการ Fulfillment — รับออเดอร์ จัดงาน หยิบ ตรวจ แพ็ก ส่ง ครบในระบบเดียว พร้อมภาพรวมที่หัวหน้าคลังเห็นงานค้างได้ทันที",
     "ctaPrimary": "นัดดู Demo Packiko",
-    "ctaCall": "โทร 093-545-5599",
+    "ctaLine": "LINE: @packiko",
     "audience": "เหมาะกับร้านค้าออนไลน์ 1,000+ ออเดอร์/วัน และคลัง Fulfillment ที่ดูแลหลายแบรนด์"
   },
   "Preview": {
@@ -189,7 +189,7 @@
     "subtitle": "นัดดู Demo กับทีมงาน — เล่าหน้างานของคุณ แล้วเราจะพาดูระบบทำงานจริงตั้งแต่รับออเดอร์จนพัสดุออกจากคลัง",
     "ctaPrimary": "นัดดู Demo Packiko",
     "orContact": "หรือติดต่อโดยตรง",
-    "callLabel": "โทร",
+    "lineLabel": "LINE:",
     "emailLabel": "อีเมล"
   },
   "Footer": {
@@ -431,7 +431,7 @@
   "Demo": {
     "meta": {
       "title": "นัดดู Demo Packiko",
-      "description": "นัดดูระบบทำงานจริงกับทีมงาน — โทร 093-545-5599 หรืออีเมล hello@thaicloud.com"
+      "description": "นัดดูระบบทำงานจริงกับทีมงาน — LINE @packiko หรืออีเมล hello@thaicloud.com"
     },
     "hero": {
       "eyebrow": "นัดดู Demo",
@@ -456,8 +456,8 @@
     },
     "direct": {
       "title": "ติดต่อโดยตรง",
-      "subtitle": "สะดวกโทรหรืออีเมลมากกว่า? ติดต่อทีมงานได้เลย",
-      "callLabel": "โทร",
+      "subtitle": "สะดวกทัก LINE หรืออีเมลมากกว่า? ติดต่อทีมงานได้เลย",
+      "lineLabel": "LINE:",
       "emailLabel": "อีเมล"
     },
     "form": {
@@ -474,7 +474,7 @@
       "submit": "ส่งคำขอนัด Demo",
       "submitting": "กำลังส่ง...",
       "success": "ได้รับข้อมูลแล้ว ทีมงานจะติดต่อกลับภายใน 1 วันทำการ ขอบคุณครับ",
-      "error": "ส่งไม่สำเร็จ — รบกวนโทร 093-545-5599 หรืออีเมล hello@thaicloud.com ได้โดยตรงครับ"
+      "error": "ส่งไม่สำเร็จ — รบกวนทัก LINE @packiko หรืออีเมล hello@thaicloud.com ได้โดยตรงครับ"
     }
   },
   "Legal": {

@@ -7,7 +7,7 @@ type CtaBandProps = {
   subtitle?: string;
 };
 
-/** Closing CTA band — demo link plus the direct phone/email channels. */
+/** Closing CTA band — demo link plus the direct LINE/email channels. */
 export function CtaBand({ title, subtitle }: CtaBandProps) {
   const t = useTranslations("FooterCTA");
 
@@ -54,10 +54,10 @@ export function CtaBand({ title, subtitle }: CtaBandProps) {
         <div className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[14px] text-white/70">
           <span>{t("orContact")}</span>
           <a
-            href={COMPANY.phoneHref}
-            className="font-mono-num font-semibold text-white transition hover:text-amber-400"
+            href={COMPANY.lineHref}
+            className="font-semibold text-white transition hover:text-amber-400"
           >
-            {t("callLabel")} {COMPANY.phoneDisplay}
+            {t("lineLabel")} {COMPANY.line}
           </a>
           <a
             href={`mailto:${COMPANY.email}`}

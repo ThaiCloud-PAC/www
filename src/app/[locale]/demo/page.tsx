@@ -57,10 +57,10 @@ function DemoContent() {
               </p>
               <div className="mt-5 space-y-3">
                 <a
-                  href={COMPANY.phoneHref}
-                  className="font-mono-num block text-[20px] font-bold text-ink-900 transition hover:text-ink-700"
+                  href={COMPANY.lineHref}
+                  className="block text-[20px] font-bold text-ink-900 transition hover:text-ink-700"
                 >
-                  {t("direct.callLabel")} {COMPANY.phoneDisplay}
+                  {t("direct.lineLabel")} {COMPANY.line}
                 </a>
                 <a
                   href={`mailto:${COMPANY.email}`}

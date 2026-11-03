@@ -126,10 +126,10 @@ export function Hero() {
             {t("ctaPrimary")} →
           </Link>
           <a
-            href={COMPANY.phoneHref}
-            className="font-mono-num inline-flex items-center rounded-full border border-white/[0.18] bg-white/[0.08] px-7 py-4 text-[15px] font-semibold text-white backdrop-blur transition hover:bg-white/[0.14]"
+            href={COMPANY.lineHref}
+            className="inline-flex items-center rounded-full border border-white/[0.18] bg-white/[0.08] px-7 py-4 text-[15px] font-semibold text-white backdrop-blur transition hover:bg-white/[0.14]"
           >
-            {t("ctaCall")}
+            {t("ctaLine")}
           </a>
         </div>
 

@@ -67,8 +67,8 @@ function AboutContent() {
             </div>
             <div>
               <dd>
-                <a href={COMPANY.phoneHref} className="font-mono-num text-ink-800 hover:text-ink-900">
-                  {COMPANY.phoneDisplay}
+                <a href={COMPANY.lineHref} className="text-ink-800 hover:text-ink-900">
+                  LINE: {COMPANY.line}
                 </a>
                 {" · "}
                 <a href={`mailto:${COMPANY.email}`} className="text-ink-800 hover:text-ink-900">

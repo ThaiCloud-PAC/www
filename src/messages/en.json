@@ -14,7 +14,7 @@
     "titleTrail": "and you stay in control",
     "subtitle": "Packiko is a warehouse management system (WMS) by ThaiCloud for high-volume online sellers and fulfillment providers — orders, task assignment, picking, checking, packing and handover in one system, with a live overview that shows backlogs the moment they form.",
     "ctaPrimary": "Book a Packiko Demo",
-    "ctaCall": "Call 093-545-5599",
+    "ctaLine": "LINE: @packiko",
     "audience": "Built for online stores shipping 1,000+ orders/day and fulfillment warehouses serving multiple brands"
   },
   "Preview": {
@@ -189,7 +189,7 @@
     "subtitle": "Book a demo with our team — tell us about your operation, and we'll walk you through the real system from order in to parcel out.",
     "ctaPrimary": "Book a Packiko Demo",
     "orContact": "or contact us directly",
-    "callLabel": "Call",
+    "lineLabel": "LINE:",
     "emailLabel": "Email"
   },
   "Footer": {
@@ -431,7 +431,7 @@
   "Demo": {
     "meta": {
       "title": "Book a Packiko Demo",
-      "description": "See the real system in action with our team — call 093-545-5599 or email hello@thaicloud.com"
+      "description": "See the real system in action with our team — LINE @packiko or email hello@thaicloud.com"
     },
     "hero": {
       "eyebrow": "Book a Demo",
@@ -456,8 +456,8 @@
     },
     "direct": {
       "title": "Contact us directly",
-      "subtitle": "Prefer to call or email? Reach the team right away.",
-      "callLabel": "Call",
+      "subtitle": "Prefer LINE or email? Reach the team right away.",
+      "lineLabel": "LINE:",
       "emailLabel": "Email"
     },
     "form": {
@@ -474,7 +474,7 @@
       "submit": "Request a demo",
       "submitting": "Sending...",
       "success": "Got it — our team will get back to you within 1 business day. Thank you!",
-      "error": "Something went wrong — please call 093-545-5599 or email hello@thaicloud.com directly."
+      "error": "Something went wrong — please message LINE @packiko or email hello@thaicloud.com directly."
     }
   },
   "Legal": {
