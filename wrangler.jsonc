@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "www",
+  "name": "thaicloud-prod-www",
+  "account_id": "09a8e413703cb77ee111db09ab232d19",
   "compatibility_date": "2026-08-15",
   "main": "worker.js",
   "vars": {

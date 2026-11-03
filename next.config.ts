@@ -5,6 +5,8 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // Static export for Cloudflare Workers assets (served from ./out by worker.js)
+  output: "export",
 };
 
 export default withNextIntl(nextConfig);

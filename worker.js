@@ -72,6 +72,20 @@ export default {
     if (url.pathname === "/api/contact" || url.pathname === "/api/contact/") {
       return handleContact(request, env);
     }
-    return env.ASSETS.fetch(request);
+    // English is the default, unprefixed locale, but the static export writes it
+    // under /en. Canonicalize /en/* to the unprefixed URL, and serve unprefixed
+    // misses from the /en assets.
+    if (url.pathname === "/en" || url.pathname.startsWith("/en/")) {
+      url.pathname = url.pathname.slice(3) || "/";
+      return Response.redirect(url.toString(), 301);
+    }
+    const res = await env.ASSETS.fetch(request);
+    if (res.status === 404 && !url.pathname.startsWith("/th")) {
+      const enUrl = new URL(url);
+      enUrl.pathname = `/en${url.pathname === "/" ? "" : url.pathname.replace(/\/+$/, "")}`;
+      const enRes = await env.ASSETS.fetch(new Request(enUrl, request));
+      if (enRes.status !== 404) return enRes;
+    }
+    return res;
   },
 };

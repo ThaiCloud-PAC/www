@@ -9,6 +9,7 @@ export const COMPANY = {
   ],
   address: "1853/2-3 Soi Uthaifarm, Rim Thang Rot Fai Sai Pak Nam Road, Khlong Tan, Khlong Toei, Bangkok 10110 Thailand",
   phone: "+66 9 3545 5599",
+  phoneDisplay: "093-545-5599",
   phoneHref: "tel:+66935455599",
   email: "hello@thaicloud.com",
   site: "https://thaicloud.com",

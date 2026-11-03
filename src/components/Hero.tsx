@@ -1,4 +1,6 @@
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { COMPANY } from "@/lib/company";
 
 export function Hero() {
   const t = useTranslations("Hero");
@@ -9,7 +11,7 @@ export function Hero() {
       style={{
         background:
           "radial-gradient(120% 80% at 50% 0%, var(--color-ink-900) 0%, var(--color-ink-950) 60%)",
-        padding: "140px 0 60px",
+        padding: "150px 0 240px",
       }}
     >
       {/* masked grid */}
@@ -75,8 +77,8 @@ export function Hero() {
 
         {/* headline */}
         <h1
-          className="font-display mx-auto mt-7 max-w-[1100px] leading-[1.02] tracking-[-0.025em] text-white"
-          style={{ fontSize: "clamp(44px, 7vw, 92px)" }}
+          className="font-display mx-auto mt-7 max-w-[1100px] leading-[1.06] tracking-[-0.025em] text-white"
+          style={{ fontSize: "clamp(38px, 6.2vw, 80px)" }}
         >
           {t("titleLead")}{" "}
           <span className="relative inline-block">
@@ -110,53 +112,31 @@ export function Hero() {
         </h1>
 
         {/* subtitle */}
-        <p className="mx-auto mt-[26px] max-w-[720px] text-[17px] leading-[1.65] text-white/72">
+        <p className="mx-auto mt-[26px] max-w-[760px] text-[17px] leading-[1.65] text-white/72">
           {t("subtitle")}
         </p>
 
         {/* CTAs */}
         <div className="mt-9 flex flex-wrap justify-center gap-3.5">
-          <a
-            href="#trial"
+          <Link
+            href="/demo"
             className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-7 py-4 text-[15px] font-bold text-white transition hover:-translate-y-px hover:bg-orange-600"
             style={{ boxShadow: "0 8px 24px -8px rgba(243,117,33,0.6)" }}
           >
             {t("ctaPrimary")} →
-          </a>
+          </Link>
           <a
-            href="#demo"
-            className="inline-flex items-center rounded-full border border-white/[0.18] bg-white/[0.08] px-7 py-4 text-[15px] font-semibold text-white backdrop-blur transition hover:bg-white/[0.14]"
+            href={COMPANY.phoneHref}
+            className="font-mono-num inline-flex items-center rounded-full border border-white/[0.18] bg-white/[0.08] px-7 py-4 text-[15px] font-semibold text-white backdrop-blur transition hover:bg-white/[0.14]"
           >
-            {t("ctaSecondary")}
+            {t("ctaCall")}
           </a>
         </div>
 
-        {/* trust row */}
-        <div className="mt-[42px] flex flex-wrap items-center justify-center gap-x-7 gap-y-3.5 text-[13px] text-white/65">
-          <span className="inline-flex items-center gap-px">
-            {[0, 1, 2, 3, 4].map((i) => (
-              <span
-                key={i}
-                className="text-amber-500"
-                style={{ fontSize: "14px", lineHeight: 1 }}
-              >
-                ★
-              </span>
-            ))}
-          </span>
-          <span className="font-mono-num text-white/85">{t("trustRating")}</span>
-          <span>·</span>
-          <span>{t("trustLabel")}</span>
-          <span className="hidden h-3.5 w-px bg-white/[0.18] sm:inline-block" />
-          <span className="font-mono-num inline-flex items-center gap-1.5 text-[11px] tracking-[0.12em] text-amber-500">
-            <span className="relative inline-flex h-[7px] w-[7px]">
-              <span className="absolute inset-0 animate-pulse-amber rounded-full bg-amber-500" />
-              <span className="relative inline-block h-[7px] w-[7px] rounded-full bg-amber-500" />
-            </span>
-            {t("live")}
-          </span>
-          <span>231 {t("liveLabel")}</span>
-        </div>
+        {/* audience line */}
+        <p className="mx-auto mt-[42px] max-w-[640px] text-[13.5px] leading-[1.6] text-white/60">
+          {t("audience")}
+        </p>
       </div>
     </section>
   );

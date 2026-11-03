@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ThaiCloud — Operational intelligence for fulfillment in SEA",
+  title: "Packiko by ThaiCloud — WMS for high-volume fulfillment",
   description:
-    "ThaiCloud (Packiko) unifies WMS, OMS and shipping in one platform for eCommerce brands and 3PLs across Thailand and Southeast Asia.",
+    "Packiko is a warehouse management system for online stores shipping 1,000+ orders a day and fulfillment providers — orders, picking, packing and handover in one system.",
 };
 
 export default function RootLayout({

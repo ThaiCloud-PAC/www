@@ -1,17 +1,23 @@
 import { setRequestLocale } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { ProductPreview } from "@/components/ProductPreview";
-import { LogoCloud } from "@/components/LogoCloud";
-import { Features } from "@/components/Features";
-import { Stats } from "@/components/Stats";
-import { OnePlatform } from "@/components/OnePlatform";
-import { Testimonials } from "@/components/Testimonials";
-import { Stories } from "@/components/Stories";
-import { Security } from "@/components/Security";
-import { Pricing } from "@/components/Pricing";
-import { FooterCTA } from "@/components/FooterCTA";
+import { Proof } from "@/components/Proof";
+import { Problems } from "@/components/Problems";
+import { HowItWorks } from "@/components/HowItWorks";
+import { Capabilities } from "@/components/Capabilities";
+import { Segments } from "@/components/Segments";
+import { StoryTeaser } from "@/components/StoryTeaser";
+import { Integrations } from "@/components/Integrations";
+import { Onboarding } from "@/components/Onboarding";
+import { CtaBand } from "@/components/CtaBand";
 import { Footer } from "@/components/Footer";
+
+function HomeCta() {
+  const t = useTranslations("FooterCTA");
+  return <CtaBand title={t("title")} subtitle={t("subtitle")} />;
+}
 
 export default async function Home({
   params,
@@ -26,15 +32,15 @@ export default async function Home({
       <Nav />
       <Hero />
       <ProductPreview />
-      <LogoCloud />
-      <Features />
-      <Stats />
-      <OnePlatform />
-      <Testimonials />
-      <Stories />
-      <Security />
-      <Pricing />
-      <FooterCTA />
+      <Proof />
+      <Problems />
+      <HowItWorks />
+      <Capabilities />
+      <Segments />
+      <StoryTeaser />
+      <Integrations />
+      <Onboarding />
+      <HomeCta />
       <Footer />
     </main>
   );

@@ -1,232 +1,520 @@
 {
   "Nav": {
-    "product": "Product",
-    "solutions": "Solutions",
-    "pricing": "Pricing",
+    "product": "Packiko",
+    "solutionsSellers": "Online Sellers",
+    "solutions3pl": "3PL / Fulfillment",
     "customers": "Customers",
-    "docs": "Docs",
-    "signIn": "Sign in",
-    "tryFree": "Try free",
-    "contactSales": "Contact sales"
+    "about": "About",
+    "demo": "Book a Demo"
   },
   "Hero": {
-    "badge": "Operational intelligence for eCommerce ops",
-    "titleLead": "One platform for",
-    "titleAccent": "high-growth fulfillment",
-    "titleTrail": "across Southeast Asia",
-    "subtitle": "ThaiCloud unifies WMS, OMS and shipping in one place — so eCommerce brands and 3PLs in Thailand and ASEAN ship faster, with fewer errors, and scale without the chaos.",
-    "ctaPrimary": "Start free trial",
-    "ctaSecondary": "Talk to sales",
-    "trustRating": "4.9 / 5",
-    "trustLabel": "from 200+ warehouses in SEA",
-    "live": "LIVE",
-    "liveLabel": "warehouses operating right now"
-  },
-  "LogoCloud": {
-    "title": "Trusted by Southeast Asia’s fastest-growing brands",
-    "logos": ["Pomelo", "Lazada Cross-border", "Konvy", "Central Online", "Shopee Mall", "GoTo Brands", "Sasin Tech"]
+    "badge": "WMS for warehouses shipping 1,000+ orders a day",
+    "titleLead": "However fast you grow,",
+    "titleAccent": "your warehouse keeps up",
+    "titleTrail": "and you stay in control",
+    "subtitle": "Packiko is a warehouse management system (WMS) by ThaiCloud for high-volume online sellers and fulfillment providers — orders, task assignment, picking, checking, packing and handover in one system, with a live overview that shows backlogs the moment they form.",
+    "ctaPrimary": "Book a Packiko Demo",
+    "ctaCall": "Call 093-545-5599",
+    "audience": "Built for online stores shipping 1,000+ orders/day and fulfillment warehouses serving multiple brands"
   },
   "Preview": {
     "tabOrders": "Orders",
     "tabPick": "Picking",
     "tabInbound": "Inbound",
-    "tabAnalytics": "Analytics",
+    "tabAnalytics": "Overview",
     "metricOrdersToday": "Orders today",
     "metricSLA": "On-time ship",
-    "metricPickRate": "Pick rate / hr",
+    "metricPickRate": "Picks / hr",
     "metricAccuracy": "Accuracy",
     "channels": "Channels",
-    "shopee": "Shopee",
-    "lazada": "Lazada",
-    "tiktok": "TikTok Shop",
-    "web": "Web",
-    "feedTitle": "Live operations feed",
+    "shopee": "Marketplace A",
+    "lazada": "Marketplace B",
+    "tiktok": "Social Commerce",
+    "web": "Webstore",
+    "feedTitle": "Live warehouse activity",
     "feedLines": [
-      "Parcel TC-48201 departed warehouse — Bangkok",
+      "Parcel TC-48201 departed warehouse",
       "Wave #233 picking • 18 items • Zone B-2",
       "Replenish SKU-7733 to bin A-04",
       "Inbound PO-1188 received • 432 units"
     ]
   },
-  "Features": {
-    "eyebrow": "Every step on one platform",
-    "title": "Fewer systems. Fewer errors.",
-    "subtitle": "From inbound and picking to shipping, returns and analytics — every step connected, every signal in one place.",
+  "Proof": {
+    "eyebrow": "Real results",
+    "metric": "4,000 → 20,000",
+    "metricLabel": "orders per day",
+    "title": "One of our customers scaled packing capacity 5×",
+    "context": "A fulfillment warehouse running task assignment and pick-pack control on Packiko scaled from around 4,000 to 20,000 orders per day at peak. Results depend on each warehouse's context — read the full story for the situation, the changes made, and what the numbers mean.",
+    "cta": "Read the customer story"
+  },
+  "Problems": {
+    "eyebrow": "Problems warehouses face",
+    "title": "Sales growing, but the back office can't keep up?",
     "items": [
       {
-        "title": "Smarter inbound",
-        "description": "Receive against supplier ASNs automatically, inspect from mobile, putaway by FEFO with system-suggested bins — no spreadsheets, no guesswork."
+        "title": "Can't pack fast enough on campaign days",
+        "description": "Orders flood in on double-digit days. Work piles up at packing stations, the team works overtime, and marketplace SLAs still slip."
       },
       {
-        "title": "Precise pick & pack",
-        "description": "Automated wave + FEFO picking cuts errors by up to 80%. Works offline when Wi-Fi drops. Built-in weight check before every box is sealed."
+        "title": "Stock counts don't match reality",
+        "description": "System numbers disagree with what's on the shelf. You sell items you don't have, or have items you can't find."
       },
       {
-        "title": "Multi-carrier shipping",
-        "description": "Pre-integrated with Flash, Kerry, J&T, Thailand Post and Ninja Van. Pick the cheapest or fastest carrier per order using rules you define."
+        "title": "Too much time spent searching and walking",
+        "description": "New staff have to memorize where things are. Pick routes are improvised, and most of the shift is spent walking."
       },
       {
-        "title": "Insights that act",
-        "description": "Real-time view of worker productivity, cost per order, low-stock SKUs, and demand forecasts — not yesterday’s report, today’s signal."
+        "title": "No visibility into backlogs",
+        "description": "Supervisors learn about stuck orders when customers complain. Nobody can see which step each order is waiting at, or who is doing what."
       }
     ]
   },
-  "Stats": {
-    "title": "One platform, real cost savings",
-    "subtitle": "Average across customer warehouses, 90 days after onboarding",
-    "items": [
-      { "value": "3.4×", "label": "orders per worker per hour" },
-      { "value": "−80%", "label": "picking errors" },
-      { "value": "−38%", "label": "shipping cost per order" }
-    ],
-    "cta": "See real customer stories"
-  },
-  "Platform": {
-    "eyebrow": "One platform. One contract.",
-    "title": "Every module ready from day one",
-    "subtitle": "No more integration projects. No more juggling licenses.",
-    "modules": [
-      { "name": "WMS", "desc": "Multi-warehouse ops" },
-      { "name": "OMS", "desc": "All channels, one queue" },
-      { "name": "Picking", "desc": "Wave + FEFO automation" },
-      { "name": "Shipping", "desc": "Multi-carrier rules" },
-      { "name": "Returns", "desc": "RMA + auto-refund" },
-      { "name": "Inventory", "desc": "Real-time counts" },
-      { "name": "Settlement", "desc": "COD reconciliation" },
-      { "name": "API", "desc": "Open ERP integration" }
-    ]
-  },
-  "Testimonials": {
-    "eyebrow": "Customer voices",
-    "title": "Leading operators choose ThaiCloud",
-    "items": [
+  "How": {
+    "eyebrow": "How Packiko works",
+    "title": "From order in, to parcel out, in one system",
+    "subtitle": "Every step is connected, every scan is recorded, and the whole trail is auditable.",
+    "steps": [
       {
-        "quote": "We cut daily warehouse hours in half after switching. Staff love it — one phone, every task.",
-        "name": "Natthapon W.",
-        "role": "Head of Fulfillment, Beauty Brand"
+        "title": "Receive orders",
+        "description": "Orders from every sales channel flow into one queue, with stock checked and reserved automatically."
       },
       {
-        "quote": "For the first time we know our true cost per order. That gave us the confidence to reprice shipping in certain provinces.",
-        "name": "Siriporn K.",
-        "role": "COO, Lifestyle DTC Brand"
+        "title": "Assign work",
+        "description": "The system groups orders into waves and distributes tasks by zone, urgency and carrier cutoff."
       },
       {
-        "quote": "During 11.11 we grew 4× without adding headcount — the system reorganized waves automatically as load climbed.",
-        "name": "Teerawut P.",
-        "role": "Founder, Supplements Brand"
+        "title": "Pick",
+        "description": "Staff pick along system-planned routes, scanning to confirm every item — less walking, fewer mistakes."
+      },
+      {
+        "title": "Check & pack",
+        "description": "Scan-verify before each box is sealed, with shipping labels printed automatically per order's carrier."
+      },
+      {
+        "title": "Hand over to carrier",
+        "description": "Handover manifests per carrier round, with statuses pushed back to sales channels so customers see tracking immediately."
       }
     ]
   },
-  "Stories": {
-    "eyebrow": "Measurable results",
-    "title": "See what real teams achieved",
+  "Capabilities": {
+    "eyebrow": "Core capabilities",
+    "title": "The tools warehouse supervisors actually control work with",
+    "subtitle": "Designed from real Thai warehouse floors, not translated from a foreign system.",
     "items": [
       {
-        "tag": "Beauty • DTC",
-        "title": "3× faster picking in 60 days",
-        "metric": "−72%",
-        "metricLabel": "picking errors"
+        "title": "Inbound & putaway",
+        "description": "Receive against POs, count and store at system-suggested locations. Know where everything is, instantly."
       },
       {
-        "tag": "Fashion • Cross-border",
-        "title": "Scaled to 3 warehouses in 4 months",
-        "metric": "+18,000",
-        "metricLabel": "orders per week"
+        "title": "Real-time inventory",
+        "description": "Every stock movement updates instantly from floor scans. Cycle count without stopping the warehouse."
       },
       {
-        "tag": "F&B • Health",
-        "title": "Cut fulfillment cost by 42%",
-        "metric": "฿24",
-        "metricLabel": "cost per order"
+        "title": "Workload & queue management",
+        "description": "See backlog size, who is working on what, and output per person — and move people to bottlenecks in time."
+      },
+      {
+        "title": "Warehouse overview dashboard",
+        "description": "Order status at every step, backlog per zone, and the numbers you make decisions with — on one screen."
+      },
+      {
+        "title": "Sales channel & carrier connections",
+        "description": "Receive orders from Thailand's main sales channels and print carrier labels from one system. Confirm your exact list during the demo."
+      },
+      {
+        "title": "Multi-brand support",
+        "description": "For fulfillment providers — separate stock and reporting per brand you serve, within one warehouse."
       }
-    ],
-    "readAll": "Read all stories"
+    ]
   },
-  "Security": {
-    "eyebrow": "Security & governance",
-    "title": "Built on standards enterprises trust",
-    "subtitle": "ThaiCloud is hosted on Microsoft Azure (Southeast Asia region) with encryption at rest and in transit, PDPA readiness, and a path to ISO 27001 / SOC 2.",
-    "badges": ["PDPA Thailand", "ISO 27001 (in progress)", "SOC 2 Type II", "Azure SEA Region", "Daily Backup", "RBAC + SSO"]
-  },
-  "Pricing": {
-    "eyebrow": "Pricing",
-    "title": "Choose the plan that fits your scale",
-    "subtitle": "Every plan includes WMS, OMS, shipping and core modules. Go live in 7 days.",
-    "billed": "Per warehouse, per month",
-    "popular": "Most popular",
-    "tiers": [
+  "Segments": {
+    "eyebrow": "Choose your business",
+    "title": "Whatever your warehouse looks like, Packiko keeps you in control",
+    "cards": [
       {
-        "name": "Starter",
-        "price": "฿4,900",
-        "tagline": "For brands starting in-house fulfillment",
-        "features": [
-          "1 warehouse • 2 users",
-          "1,500 orders / month",
-          "3 sales channel integrations",
-          "Standard Thai carriers",
-          "Email support"
-        ],
-        "cta": "Start trial"
+        "tag": "Online Sellers & Brands",
+        "title": "Packing 1,000+ orders a day in-house",
+        "description": "Multi-channel orders, your own warehouse team, and campaigns that spike volume — Packiko lets you absorb growth without always adding headcount to match.",
+        "cta": "Solutions for sellers"
       },
       {
-        "name": "Growth",
-        "price": "฿14,900",
-        "tagline": "For brands scaling fast",
-        "features": [
-          "1 warehouse • 10 users",
-          "10,000 orders / month",
-          "All channels + API access",
-          "Wave picking + FEFO",
-          "Analytics dashboard",
-          "Chat + phone support"
-        ],
-        "cta": "Start trial"
+        "tag": "3PL / Fulfillment Providers",
+        "title": "Serving multiple brands in one warehouse",
+        "description": "Separate stock and reporting per brand, keep packing quality consistent across every client, and squeeze more throughput from the same warehouse.",
+        "cta": "Solutions for 3PLs"
+      }
+    ]
+  },
+  "StoryTeaser": {
+    "eyebrow": "Customer story",
+    "tag": "Fulfillment warehouse",
+    "title": "Peak days used to be a nightmare. Now they're just workdays.",
+    "description": "One fulfillment warehouse scaled from around 4,000 to 20,000 orders per day at peak by running task assignment and queue control on Packiko — read where they were stuck, and what changed.",
+    "cta": "Read the full story"
+  },
+  "Integrations": {
+    "eyebrow": "Works with your stack",
+    "title": "Connects to the channels, carriers and systems you already use",
+    "description": "Packiko receives orders from Thailand's main online sales channels, prints carrier labels, and offers an API for accounting or ERP integration. Integration scope differs per system — our team will confirm support for your exact stack during the demo.",
+    "groups": [
+      { "title": "Sales channels", "description": "Marketplaces, social commerce and your brand's webstore" },
+      { "title": "Carriers", "description": "Thailand's main delivery carriers, with labels printed from the system" },
+      { "title": "API", "description": "Connect your accounting, ERP or storefront through the API" }
+    ]
+  },
+  "Onboarding": {
+    "eyebrow": "Getting started",
+    "title": "A team beside you from day one until your warehouse runs itself",
+    "steps": [
+      {
+        "title": "On-site assessment",
+        "description": "We learn your warehouse layout, products and volume to design the rollout around how you actually work."
       },
       {
-        "name": "Enterprise",
-        "price": "Contact us",
-        "tagline": "For 3PLs and multi-warehouse brands",
-        "features": [
-          "Multi-warehouse • Unlimited users",
-          "Unlimited orders",
-          "Advanced SSO + RBAC",
-          "Custom integrations",
-          "99.95% SLA",
-          "Dedicated success manager"
-        ],
-        "cta": "Talk to sales"
+        "title": "Setup & data migration",
+        "description": "Configure the system, import products and storage locations, and connect your sales channels and carriers."
+      },
+      {
+        "title": "Train the floor team",
+        "description": "Hands-on training at your warehouse for pickers, packers and supervisors, until they work confidently."
+      },
+      {
+        "title": "Go-live with support",
+        "description": "Launch with our team on standby through the first stretch, and ongoing support channels after."
       }
     ]
   },
   "FooterCTA": {
-    "title": "Turn your warehouse into an advantage",
-    "subtitle": "30-day free trial. No credit card required. Thai-speaking team to help you onboard.",
-    "ctaPrimary": "Start free trial",
-    "ctaSecondary": "Book a 30-min demo"
+    "title": "Want to see how Packiko would run your warehouse?",
+    "subtitle": "Book a demo with our team — tell us about your operation, and we'll walk you through the real system from order in to parcel out.",
+    "ctaPrimary": "Book a Packiko Demo",
+    "orContact": "or contact us directly",
+    "callLabel": "Call",
+    "emailLabel": "Email"
   },
   "Footer": {
-    "tagline": "Operational intelligence for warehouses and eCommerce across Southeast Asia",
+    "tagline": "Warehouse management and fulfillment software for high-volume online sellers and fulfillment providers",
     "columns": {
       "product": {
         "title": "Product",
-        "items": ["WMS", "OMS", "Picking", "Shipping", "Returns", "Analytics", "API"]
+        "items": [
+          { "label": "Packiko WMS", "href": "/packiko" },
+          { "label": "Book a Demo", "href": "/demo" }
+        ]
       },
       "solutions": {
         "title": "Solutions",
-        "items": ["DTC brands", "Cross-border", "3PL Operators", "Food & Beverage", "Cold chain"]
+        "items": [
+          { "label": "Online Sellers & Brands", "href": "/solutions/online-sellers" },
+          { "label": "3PL / Fulfillment", "href": "/solutions/3pl" }
+        ]
       },
       "company": {
         "title": "Company",
-        "items": ["About", "Customers", "News", "Careers", "Contact"]
-      },
-      "resources": {
-        "title": "Resources",
-        "items": ["Blog", "Docs", "Webinars", "Help Center", "Status"]
+        "items": [
+          { "label": "About ThaiCloud", "href": "/about" },
+          { "label": "Customer Stories", "href": "/customers" },
+          { "label": "Contact", "href": "/demo" }
+        ]
       }
     },
-    "legal": "© 2026 Packiko (ThaiCloud). All rights reserved.",
+    "contactTitle": "Contact",
+    "legal": "© 2026 ThaiCloud PAC Co., Ltd. All rights reserved.",
     "privacy": "Privacy Policy",
-    "terms": "Terms of Service",
-    "pdpa": "PDPA Notice"
+    "terms": "Terms of Use"
+  },
+  "Product": {
+    "meta": {
+      "title": "Packiko — Warehouse management for high-volume operations",
+      "description": "A WMS that runs orders, task assignment, picking, checking, packing and handover in one system — for large online sellers and fulfillment warehouses."
+    },
+    "hero": {
+      "eyebrow": "Product",
+      "title": "Packiko — the WMS built for heavy-duty warehouses",
+      "subtitle": "A warehouse management system that controls every step from order in to parcel out, for teams that need to pack thousands of orders a day, on time and correctly."
+    },
+    "fit": {
+      "title": "Who Packiko is for",
+      "items": [
+        "Online stores shipping 1,000+ orders a day with their own warehouse team",
+        "3PL / fulfillment providers serving multiple brands in one warehouse",
+        "Warehouses that face campaign peaks several times normal volume",
+        "Teams that need a real-time view of backlogs and warehouse output"
+      ]
+    },
+    "problems": {
+      "title": "Problems Packiko solves directly",
+      "items": [
+        { "title": "Can't pack fast enough", "description": "Waves are built and distributed automatically, backlogs are visible at every step, and you know before an SLA slips — not after." },
+        { "title": "Wrong items shipped", "description": "Scan-verify every item at picking and again before the box is sealed. Catch mistakes in the warehouse, not at the customer's door." },
+        { "title": "Inaccurate stock", "description": "Every movement is recorded from floor scans. The number in the system is the number on the shelf." }
+      ]
+    },
+    "workflowTitle": "The workflow, end to end",
+    "capabilitiesTitle": "What the system does",
+    "faq": {
+      "title": "Frequently asked questions",
+      "items": [
+        {
+          "q": "How long does implementation take?",
+          "a": "It depends on warehouse size, SKU count and the systems to integrate. We assess your operation first and commit to a clear timeline up front."
+        },
+        {
+          "q": "What hardware do we need?",
+          "a": "Packiko runs on ordinary smartphones or barcode scanners for the floor, plus a computer for supervisors. We'll recommend hardware suited to your operation."
+        },
+        {
+          "q": "Can it connect to the channels and carriers we already use?",
+          "a": "We support Thailand's main sales channels and carriers, with scope differing per system. Tell us your exact stack when you book a demo so we can confirm before you decide."
+        },
+        {
+          "q": "How is it priced?",
+          "a": "Pricing depends on your volume and scope of use. We quote after assessing your operation, so the price matches how you'll actually use the system."
+        },
+        {
+          "q": "Does the floor team need to be tech-savvy?",
+          "a": "No. The floor screens are step-by-step: scan, and the system tells you what to do next. We train your team on site before go-live."
+        },
+        {
+          "q": "We're a 3PL serving multiple brands — does it work for us?",
+          "a": "Yes. Packiko separates stock and reporting per brand within one warehouse. See the 3PL solutions page for details."
+        }
+      ]
+    },
+    "cta": {
+      "title": "See Packiko running on an operation like yours",
+      "subtitle": "The demo takes about 45 minutes — tell us about your operation first, and we'll walk the system through your actual scenario."
+    }
+  },
+  "SolutionsSellers": {
+    "meta": {
+      "title": "Packiko for Online Sellers & Brands",
+      "description": "Warehouse management for online stores packing 1,000+ orders a day in-house — absorb growth without always adding headcount to match."
+    },
+    "hero": {
+      "eyebrow": "Solutions • Online Sellers & Brands",
+      "title": "Growth is good news — if your warehouse can keep up",
+      "subtitle": "For stores packing a thousand-plus orders a day in-house, Packiko lets the warehouse absorb growing volume while you still see and control every order."
+    },
+    "situation": {
+      "title": "Sound familiar?",
+      "description": "Orders arrive from multiple channels, the packing team works harder every month, every big campaign is a gamble on whether you'll ship in time — and when an order goes wrong, nobody can trace which step it slipped at."
+    },
+    "pains": {
+      "title": "Problems we solve",
+      "items": [
+        { "title": "Campaign days are a gamble", "description": "Double-digit days spike volume 3–5×, but the workflow is the same as a normal day. Work piles up and nobody can see where the bottleneck is." },
+        { "title": "More volume always means more people", "description": "Without systematic pick routes and task distribution, output per person stays low — so every growth spurt demands more headcount and more space." },
+        { "title": "Multi-channel stock out of sync", "description": "Selling on several channels without a real-time central inventory means overselling what you don't have, and sitting on stock you forgot to list." }
+      ]
+    },
+    "newWay": {
+      "title": "The new way of working, with Packiko",
+      "items": [
+        { "title": "Every channel, one queue", "description": "The system consolidates orders, reserves stock and prioritizes urgency. The team simply works the queue the system builds." },
+        { "title": "Wave picking along planned routes", "description": "Pick many orders per pass along the shortest route, scanning every item. Output per person rises without pushing people harder." },
+        { "title": "See backlogs before they become late orders", "description": "The dashboard shows which step each order is waiting at and which zone is stuck — so you move people in time, not after the deadline." }
+      ]
+    },
+    "cta": {
+      "title": "Tell us about your store's operation",
+      "subtitle": "Book a demo and we'll show you how Packiko handles a campaign day like yours."
+    }
+  },
+  "Solutions3pl": {
+    "meta": {
+      "title": "Packiko for 3PLs & Fulfillment Providers",
+      "description": "Run a multi-brand warehouse — separate stock and reporting per client, keep packing quality consistent, and raise throughput from the same floor."
+    },
+    "hero": {
+      "eyebrow": "Solutions • 3PL / Fulfillment Provider",
+      "title": "A warehouse that takes more work is a business that sells more",
+      "subtitle": "For fulfillment providers serving multiple brands — Packiko keeps every client's work cleanly separated, and raises your packing capacity with the same team."
+    },
+    "situation": {
+      "title": "Sound familiar?",
+      "description": "Every brand has its own products, rules and peak seasons. Clients ask for status updates daily, the floor team switches context constantly, and onboarding each new brand means another round of setup from scratch."
+    },
+    "pains": {
+      "title": "Problems we solve",
+      "items": [
+        { "title": "Multiple owners' stock mixed up", "description": "Many brands share one warehouse. If separation isn't airtight, counting, picking and client reporting all break in a chain." },
+        { "title": "Inconsistent quality across brands", "description": "Each brand has different packing requirements. Relying on the team's memory alone means one slip costs you a whole client's trust." },
+        { "title": "Can't tell clients where their work stands", "description": "Brand clients want their own status, but the data lives in several places — so the team burns time compiling answers one request at a time." }
+      ]
+    },
+    "newWay": {
+      "title": "The new way of working, with Packiko",
+      "items": [
+        { "title": "Everything separated by owner", "description": "Stock, orders and reports split per brand in one system. Onboard a new brand without disturbing existing work." },
+        { "title": "One standard across every order", "description": "Each brand's pick-pack rules live in the system. The team follows the steps the system shows — no reliance on memory." },
+        { "title": "Report to brands instantly", "description": "Each brand's work status and stock is always ready to view, cutting the time your team spends compiling answers." }
+      ]
+    },
+    "proof": {
+      "title": "Fulfillment warehouses on Packiko scale for real",
+      "description": "One of our customers scaled from around 4,000 to 20,000 orders per day at peak — read the context and what changed in the customer story.",
+      "cta": "Read the customer story"
+    },
+    "cta": {
+      "title": "Talk to a team that understands fulfillment",
+      "subtitle": "Book a demo and tell us how many brands you serve and at what volume — we'll walk the system through your actual scenario."
+    }
+  },
+  "Customers": {
+    "meta": {
+      "title": "Customer Story — From 4,000 to 20,000 orders a day",
+      "description": "How one fulfillment warehouse scaled packing capacity 5× with Packiko — the context, the old bottlenecks, what changed, and the results."
+    },
+    "hero": {
+      "eyebrow": "Customer story",
+      "tag": "Fulfillment warehouse • Name withheld by agreement with the customer",
+      "title": "From 4,000 to 20,000 orders a day, in the same warehouse",
+      "subtitle": "The story of a fulfillment warehouse that changed how it assigns work with Packiko — and handled a peak five times bigger than before."
+    },
+    "stats": [
+      { "value": "4,000", "label": "orders/day before" },
+      { "value": "20,000", "label": "orders/day at peak after" },
+      { "value": "5×", "label": "packing capacity gained" }
+    ],
+    "statsNote": "Peak-day figures for this customer. Results depend on each warehouse's context, products and workflow.",
+    "sections": [
+      {
+        "title": "Context",
+        "body": "The customer is a fulfillment provider packing for multiple online stores. Most of the work is consumer goods with frequent orders and sharp spikes during marketplace campaigns."
+      },
+      {
+        "title": "Before Packiko",
+        "body": "At around 4,000 orders a day, work assignment ran through the warehouse supervisor — splitting tasks, chasing statuses, firefighting on the floor. Come campaign season, backlogs accumulated and nobody could see where the bottleneck was. Adding people helped, but not enough to keep pace with growth."
+      },
+      {
+        "title": "What changed",
+        "body": "The team moved the whole process onto Packiko — orders grouped into waves and distributed to staff automatically, picking and packing confirmed by scanning every item. The supervisor went from chasing statuses to watching the dashboard and shifting people to wherever work was stuck."
+      },
+      {
+        "title": "The results",
+        "body": "The following peak, the warehouse handled around 20,000 orders a day on the same floor space. Backlogs became visible from the start of the day instead of surfacing as complaints, and the brands storing goods there got clearer status reporting."
+      }
+    ],
+    "cta": {
+      "title": "Want results like this for your warehouse?",
+      "subtitle": "Every warehouse is different — book a demo, tell us about your operation, and we'll tell you honestly what Packiko can and can't do for you."
+    }
+  },
+  "About": {
+    "meta": {
+      "title": "About ThaiCloud",
+      "description": "ThaiCloud is the team behind Packiko — warehouse management software for high-volume online sellers and fulfillment providers in Thailand."
+    },
+    "hero": {
+      "eyebrow": "About us",
+      "title": "We build the systems that make Thai warehouses competitive",
+      "subtitle": "ThaiCloud is the team behind Packiko. We believe a well-run warehouse is the most tangible advantage an eCommerce business can have."
+    },
+    "story": {
+      "title": "Why we built Packiko",
+      "body": "We watched Thai warehouses absorb fast-growing sales with manpower and the supervisor's memory — which works, up to a point, but not at thousands or tens of thousands of orders a day. Foreign systems tend to be expensive, complex, and a poor fit for how Thai warehouse floors actually run. So we built Packiko: a WMS the floor team can genuinely use, and the supervisor can genuinely control work with."
+    },
+    "values": {
+      "title": "How we work",
+      "items": [
+        { "title": "Start from the real floor", "description": "Every feature starts from a problem seen in a real warehouse, not a spec on paper." },
+        { "title": "Speak with evidence", "description": "We cite only results that actually happened, with their context. We don't promise numbers we can't back." },
+        { "title": "In it for the long run", "description": "We measure success by our customers' warehouses taking on more work every year — not by closing the sale." }
+      ]
+    },
+    "company": {
+      "title": "Company information",
+      "registrationLabel": "Company registration no."
+    }
+  },
+  "Demo": {
+    "meta": {
+      "title": "Book a Packiko Demo",
+      "description": "See the real system in action with our team — call 093-545-5599 or email hello@thaicloud.com"
+    },
+    "hero": {
+      "eyebrow": "Book a Demo",
+      "title": "See Packiko run your warehouse's actual scenario",
+      "subtitle": "About 45 minutes — we listen to how your operation works first, then walk the system from order in to parcel out, following your real workflow."
+    },
+    "who": {
+      "title": "This demo is for you if",
+      "items": [
+        "You run an online store around 1,000+ orders/day, or you're approaching it",
+        "You're a 3PL / fulfillment provider serving multiple brands",
+        "Your team is choosing or switching a WMS"
+      ]
+    },
+    "what": {
+      "title": "What you'll see",
+      "items": [
+        "The real system working from order in — assignment, picking, checking, packing — to carrier handover",
+        "The overview dashboard supervisors use to control work and spot backlogs",
+        "Answers on connecting to the sales channels and carriers you already use"
+      ]
+    },
+    "direct": {
+      "title": "Contact us directly",
+      "subtitle": "Prefer to call or email? Reach the team right away.",
+      "callLabel": "Call",
+      "emailLabel": "Email"
+    },
+    "form": {
+      "title": "Or leave your details and we'll get back to you",
+      "name": "Your name",
+      "company": "Company / store name",
+      "email": "Email",
+      "phone": "Phone",
+      "businessType": "Business type",
+      "businessTypes": ["Online store / brand", "3PL / fulfillment provider", "Other"],
+      "orderVolume": "Approximate orders per day",
+      "orderVolumes": ["Under 1,000", "1,000 – 5,000", "5,000 – 20,000", "Over 20,000"],
+      "problem": "Main problem you want to solve (optional)",
+      "submit": "Request a demo",
+      "submitting": "Sending...",
+      "success": "Got it — our team will get back to you within 1 business day. Thank you!",
+      "error": "Something went wrong — please call 093-545-5599 or email hello@thaicloud.com directly."
+    }
+  },
+  "Legal": {
+    "privacy": {
+      "metaTitle": "Privacy Policy",
+      "title": "Privacy Policy",
+      "updated": "Last updated: November 2026",
+      "sections": [
+        {
+          "title": "What we collect",
+          "body": "When you submit a contact or demo request form, we collect your name, contact details and the information you provide, used solely to respond to your request. The website may use analytics tools (such as Google Analytics) to improve the site."
+        },
+        {
+          "title": "How we use it",
+          "body": "We use your information to respond to your enquiry, offer relevant services, and improve the website. We do not sell or disclose your information to third parties for marketing."
+        },
+        {
+          "title": "Your rights under PDPA",
+          "body": "You may request access to, correction of, or deletion of your personal data. Contact us at hello@thaicloud.com."
+        }
+      ]
+    },
+    "terms": {
+      "metaTitle": "Terms of Use",
+      "title": "Website Terms of Use",
+      "updated": "Last updated: November 2026",
+      "sections": [
+        {
+          "title": "Use of this website",
+          "body": "This website provides information about products and services of ThaiCloud PAC Co., Ltd. Content is for general information; actual service terms are governed by individually agreed contracts."
+        },
+        {
+          "title": "Customer results",
+          "body": "Figures and results shown on this website are the results of the specific customer described in that context. Each business's results differ based on its context, products and workflow."
+        },
+        {
+          "title": "Intellectual property",
+          "body": "Trademarks, logos and content on this website are the property of ThaiCloud PAC Co., Ltd. and may not be used without written permission."
+        }
+      ]
+    }
   }
 }
